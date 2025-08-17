@@ -8,6 +8,7 @@ import {
   LayoutDashboard,
   Search,
   FileSearch,
+  FileText,
   CreditCard,
   Users,
   Settings,
@@ -40,9 +41,19 @@ export function DashboardLayout() {
       icon: Search,
     },
     {
+      name: t("dashboard.talent_search_history"),
+      href: "/dashboard/talent-search-history",
+      icon: Users,
+    },
+    {
       name: t("dashboard.cv_analysis"),
       href: "/dashboard/cv-analysis",
       icon: FileSearch,
+    },
+    {
+      name: t("dashboard.cv_analysis_history"),
+      href: "/dashboard/cv-analysis-history",
+      icon: FileText,
     },
     {
       name: t("dashboard.credit_history"),

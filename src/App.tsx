@@ -1,27 +1,34 @@
-import React, { useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Toaster } from 'react-hot-toast'
-import { AuthProvider, useAuth } from './lib/auth'
-import { Navbar } from './components/layout/Navbar'
-import { Footer } from './components/layout/Footer'
-import { HomePage } from './components/HomePage'
-import { LoginPage } from './components/auth/LoginPage'
-import { SignupPage } from './components/auth/SignupPage'
-import { AuthCallback } from './components/auth/AuthCallback'
-import { DashboardLayout } from './components/dashboard/DashboardLayout'
-import { DashboardOverview } from './components/dashboard/DashboardOverview'
-import { CreditHistoryPage } from './components/dashboard/CreditHistoryPage'
-import { CVAnalysisPage } from './components/dashboard/CVAnalysisPage'
-import { TalentSearchPage } from './components/dashboard/TalentSearchPage'
-import { PricingPage } from './components/pricing/PricingPage'
-import { AboutPage } from './components/pages/AboutPage'
-import { ContactPage } from './components/pages/ContactPage'
-import { PrivacyPage } from './components/pages/PrivacyPage'
-import { TermsPage } from './components/pages/TermsPage'
-import { FeaturesPage } from './components/pages/FeaturesPage'
-import { Loader2 } from 'lucide-react'
-import { useTranslation, LanguageManager } from './lib/i18n'
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
+import { AuthProvider, useAuth } from "./lib/auth";
+import { Navbar } from "./components/layout/Navbar";
+import { Footer } from "./components/layout/Footer";
+import { HomePage } from "./components/HomePage";
+import { LoginPage } from "./components/auth/LoginPage";
+import { SignupPage } from "./components/auth/SignupPage";
+import { AuthCallback } from "./components/auth/AuthCallback";
+import { DashboardLayout } from "./components/dashboard/DashboardLayout";
+import { DashboardOverview } from "./components/dashboard/DashboardOverview";
+import { CreditHistoryPage } from "./components/dashboard/CreditHistoryPage";
+import { CVAnalysisPage } from "./components/dashboard/CVAnalysisPage";
+import { TalentSearchPage } from "./components/dashboard/TalentSearchPage";
+import { TalentSearchHistoryPage } from "./components/dashboard/TalentSearchHistoryPage";
+import { CVAnalysisHistoryPage } from "./components/dashboard/CVAnalysisHistoryPage";
+import { PricingPage } from "./components/pricing/PricingPage";
+import { AboutPage } from "./components/pages/AboutPage";
+import { ContactPage } from "./components/pages/ContactPage";
+import { PrivacyPage } from "./components/pages/PrivacyPage";
+import { TermsPage } from "./components/pages/TermsPage";
+import { FeaturesPage } from "./components/pages/FeaturesPage";
+import { Loader2 } from "lucide-react";
+import { useTranslation, LanguageManager } from "./lib/i18n";
 
 // Create a client for React Query
 const queryClient = new QueryClient({
@@ -31,11 +38,11 @@ const queryClient = new QueryClient({
       retry: 1,
     },
   },
-})
+});
 
 // Protected Route Component
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const { user, loading } = useAuth()
+  const { user, loading } = useAuth();
 
   if (loading) {
     return (
@@ -46,19 +53,19 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
           <p className="text-gray-400">Please wait</p>
         </div>
       </div>
-    )
+    );
   }
 
   if (!user) {
-    return <Navigate to="/login" replace />
+    return <Navigate to="/login" replace />;
   }
 
-  return <>{children}</>
+  return <>{children}</>;
 }
 
 // Public Route Component (redirect to dashboard if logged in)
 function PublicRoute({ children }: { children: React.ReactNode }) {
-  const { user, loading } = useAuth()
+  const { user, loading } = useAuth();
 
   if (loading) {
     return (
@@ -69,14 +76,14 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
           <p className="text-gray-400">Please wait</p>
         </div>
       </div>
-    )
+    );
   }
 
   if (user) {
-    return <Navigate to="/dashboard" replace />
+    return <Navigate to="/dashboard" replace />;
   }
 
-  return <>{children}</>
+  return <>{children}</>;
 }
 
 // Layout for public pages
@@ -87,25 +94,25 @@ function PublicLayout({ children }: { children: React.ReactNode }) {
       <main>{children}</main>
       <Footer />
     </div>
-  )
+  );
 }
 
 // Language wrapper component
 function LanguageWrapper({ children }: { children: React.ReactNode }) {
-  const { isRTL } = useTranslation()
-  
+  const { isRTL } = useTranslation();
+
   useEffect(() => {
     // Initialize language manager
-    const manager = LanguageManager.getInstance()
-    document.documentElement.dir = manager.isRTL() ? 'rtl' : 'ltr'
-    document.documentElement.lang = manager.getLanguage()
-  }, [])
-  
+    const manager = LanguageManager.getInstance();
+    document.documentElement.dir = manager.isRTL() ? "rtl" : "ltr";
+    document.documentElement.lang = manager.getLanguage();
+  }, []);
+
   return (
-    <div className="App" dir={isRTL() ? 'rtl' : 'ltr'}>
+    <div className="App" dir={isRTL() ? "rtl" : "ltr"}>
       {children}
     </div>
-  )
+  );
 }
 
 function App() {
@@ -124,7 +131,7 @@ function App() {
                   </PublicLayout>
                 }
               />
-              
+
               <Route
                 path="/login"
                 element={
@@ -133,7 +140,7 @@ function App() {
                   </PublicRoute>
                 }
               />
-              
+
               <Route
                 path="/signup"
                 element={
@@ -142,9 +149,9 @@ function App() {
                   </PublicRoute>
                 }
               />
-              
+
               <Route path="/auth/callback" element={<AuthCallback />} />
-              
+
               {/* Protected Dashboard Routes */}
               <Route
                 path="/dashboard"
@@ -156,15 +163,22 @@ function App() {
               >
                 <Route index element={<DashboardOverview />} />
                 <Route path="talent-search" element={<TalentSearchPage />} />
+                <Route
+                  path="talent-search-history"
+                  element={<TalentSearchHistoryPage />}
+                />
                 <Route path="cv-analysis" element={<CVAnalysisPage />} />
+                <Route
+                  path="cv-analysis-history"
+                  element={<CVAnalysisHistoryPage />}
+                />
                 <Route path="credit-history" element={<CreditHistoryPage />} />
-                {/* TODO: Add more dashboard routes */}
                 {/* <Route path="billing" element={<BillingPage />} />
                 <Route path="referrals" element={<ReferralsPage />} />
                 <Route path="settings" element={<SettingsPage />} />
                 <Route path="admin" element={<AdminPanel />} /> */}
               </Route>
-              
+
               {/* Static Pages */}
               <Route
                 path="/pricing"
@@ -174,7 +188,7 @@ function App() {
                   </PublicLayout>
                 }
               />
-              
+
               <Route
                 path="/features"
                 element={
@@ -183,7 +197,7 @@ function App() {
                   </PublicLayout>
                 }
               />
-              
+
               <Route
                 path="/about"
                 element={
@@ -192,7 +206,7 @@ function App() {
                   </PublicLayout>
                 }
               />
-              
+
               <Route
                 path="/contact"
                 element={
@@ -201,7 +215,7 @@ function App() {
                   </PublicLayout>
                 }
               />
-              
+
               <Route
                 path="/privacy"
                 element={
@@ -210,7 +224,7 @@ function App() {
                   </PublicLayout>
                 }
               />
-              
+
               <Route
                 path="/terms"
                 element={
@@ -219,21 +233,21 @@ function App() {
                   </PublicLayout>
                 }
               />
-              
+
               {/* Catch all route */}
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-            
+
             {/* Toast Notifications */}
             <Toaster
               position="top-center"
               toastOptions={{
                 duration: 4000,
                 style: {
-                  background: '#1e293b',
-                  color: '#f1f5f9',
-                  border: '1px solid #0891b2',
-                  borderRadius: '12px',
+                  background: "#1e293b",
+                  color: "#f1f5f9",
+                  border: "1px solid #0891b2",
+                  borderRadius: "12px",
                 },
               }}
             />
@@ -241,7 +255,7 @@ function App() {
         </AuthProvider>
       </Router>
     </QueryClientProvider>
-  )
+  );
 }
 
-export default App
+export default App;
