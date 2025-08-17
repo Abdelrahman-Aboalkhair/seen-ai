@@ -1,0 +1,160 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "features": "Features",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Sign Up",
+    "dashboard": "Dashboard",
+    "logout": "Logout",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "auth": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "full_name": "Full Name",
+    "forgot_password": "Forgot Password?",
+    "no_account": "Don't have an account?",
+    "have_account": "Already have an account?",
+    "login_here": "Login here",
+    "signup_here": "Sign up here"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "overview": "Overview",
+    "cv_analysis": "CV Analysis",
+    "talent_search": "Talent Search",
+    "credit_history": "Credit History",
+    "total_searches": "Total Searches",
+    "total_analyses": "Total Analyses",
+    "credit_usage": "Credit Usage"
+  },
+  "services": {
+    "title": "Our Services",
+    "cv_analysis": {
+      "title": "CV Analysis",
+      "description": "Comprehensive AI-powered CV analysis",
+      "cost": "credits",
+      "job_title": "Job Title",
+      "job_description": "Job Description",
+      "skills_required": "Skills Required",
+      "upload_cv": "Upload CVs",
+      "upload_instruction": "Click to upload CVs or drag them here",
+      "supported_formats": "Supports PDF, DOC, DOCX",
+      "files_selected": "files selected",
+      "analysis_details": "Analysis Details",
+      "start_analysis": "Start Analysis",
+      "analyzing": "Analyzing...",
+      "analysis_results": "Analysis Results",
+      "candidates_found": "candidates found"
+    },
+    "talent_search": {
+      "title": "Talent Search",
+      "description": "Find the best talents in our database",
+      "cost": "credits",
+      "job_title": "Job Title",
+      "job_description": "Job Description",
+      "skills_required": "Skills Required",
+      "certifications": "Certifications",
+      "education_level": "Education Level",
+      "languages": "Languages",
+      "number_of_candidates": "Number of Candidates",
+      "candidates": "candidates",
+      "candidate_requirements": "Candidate Requirements",
+      "search_settings": "Search Settings",
+      "match_score_type": "Match Score Type",
+      "quick_search": "Quick Search",
+      "balanced_search": "Balanced Search",
+      "detailed_search": "Detailed Search",
+      "comprehensive_search": "Comprehensive Search",
+      "quick_desc": "Fast and basic search",
+      "balanced_desc": "Balanced search with more details",
+      "detailed_desc": "Detailed search with deep analysis",
+      "comprehensive_desc": "Comprehensive and complete search with highest accuracy",
+      "quick_description": "Fast and basic search",
+      "balanced_description": "Balanced search with more details",
+      "detailed_description": "Detailed search with deep analysis",
+      "comprehensive_description": "Comprehensive and complete search with highest accuracy",
+      "processing_notice": "Higher scores take longer but provide more accurate results",
+      "per_candidate": "per candidate",
+      "credits_per_candidate": "credits per candidate",
+      "cost_per_candidate": "Cost per candidate",
+      "cost_summary": "Cost Summary",
+      "total_cost": "Total Cost",
+      "cost_calculation": "candidates x",
+      "equals": "credits total",
+      "search_criteria": "Search Criteria",
+      "start_search": "Start Search",
+      "searching": "Searching...",
+      "search_results": "Search Results",
+      "candidates_found": "candidates found",
+      "note_higher_scores": "Higher scores take longer but provide more accurate results"
+    }
+  },
+  "pricing": {
+    "title": "Pricing Plans",
+    "subtitle": "Choose the plan that fits your needs",
+    "buy_now": "Buy Now",
+    "purchasing": "Purchasing...",
+    "popular": "Most Popular",
+    "free_signup_credits": "free credits on signup",
+    "referral_credits": "credits per referral"
+  },
+  "credit": {
+    "balance": "Credits",
+    "buy_more": "Buy More Credits",
+    "insufficient": "Insufficient credits",
+    "used": "Used",
+    "remaining": "Remaining"
+  },
+  "company": {
+    "name": "SEEN AI HR Solutions",
+    "description": "AI-powered smart recruitment platform for talent discovery and CV analysis using advanced technologies",
+    "tagline": "Powered by the latest AI technologies"
+  },
+  "loading": {
+    "processing": "Processing...",
+    "please_wait": "Please wait..."
+  },
+  "message": {
+    "welcome": "Welcome",
+    "success": "Success!",
+    "error": "Error occurred",
+    "coming_soon": "Coming Soon",
+    "copyright": "All rights reserved"
+  },
+  "error": {
+    "generic": "An error occurred, please try again",
+    "network": "Network error",
+    "package_not_found": "Package not found",
+    "unauthorized": "You must be logged in to perform this action",
+    "validation": "Please fill in all required fields"
+  },
+  "payment": {
+    "success": "Payment successful! Credits have been added to your account",
+    "failed": "Payment failed",
+    "cancelled": "Payment cancelled",
+    "processing": "Processing payment..."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "features": "Features",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "login": "Login",
+    "signup": "Sign Up",
+    "dashboard": "Dashboard",
+    "logout": "Logout",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  }
+}

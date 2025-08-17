@@ -1,0 +1,266 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "about": "من نحن",
+    "services": "الخدمات",
+    "features": "المميزات",
+    "pricing": "الأسعار",
+    "contact": "اتصل بنا",
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب",
+    "dashboard": "لوحة التحكم",
+    "logout": "تسجيل الخروج",
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الخدمة"
+  },
+  "auth": {
+    "login": "تسجيل الدخول",
+    "signup": "إنشاء حساب",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "confirm_password": "تأكيد كلمة المرور",
+    "full_name": "الاسم الكامل",
+    "forgot_password": "نسيت كلمة المرور؟",
+    "no_account": "ليس لديك حساب؟",
+    "have_account": "لديك حساب بالفعل؟",
+    "login_here": "سجل دخولك هنا",
+    "signup_here": "أنشئ حسابك هنا"
+  },
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "overview": "نظرة عامة",
+    "cv_analysis": "تحليل السيرة الذاتية",
+    "talent_search": "البحث عن المواهب",
+    "credit_history": "سجل الكريديت",
+    "total_searches": "إجمالي عمليات البحث",
+    "total_analyses": "إجمالي التحليلات",
+    "credit_usage": "استهلاك الكريديت"
+  },
+  "services": {
+    "title": "خدماتنا",
+    "cv_analysis": {
+      "title": "تحليل السيرة الذاتية",
+      "description": "تحليل شامل للسيرة الذاتية بالذكاء الاصطناعي",
+      "cost": "كريديت",
+      "job_title": "المسمى الوظيفي",
+      "job_description": "وصف الوظيفة",
+      "skills_required": "المهارات المطلوبة",
+      "upload_cv": "رفع السير الذاتية",
+      "upload_instruction": "اضغط لرفع السير الذاتية أو اسحبها هنا",
+      "supported_formats": "يدعم PDF, DOC, DOCX",
+      "files_selected": "ملف مختار",
+      "analysis_details": "تفاصيل التحليل",
+      "start_analysis": "بدء التحليل",
+      "analyzing": "جاري التحليل...",
+      "analysis_results": "نتائج التحليل",
+      "candidates_found": "مرشح عثر عليه"
+    },
+    "talent_search": {
+      "title": "البحث عن المواهب",
+      "description": "ابحث عن أفضل المواهب في قاعدة بياناتنا",
+      "cost": "كريديت",
+      "job_title": "المسمى الوظيفي",
+      "job_description": "وصف الوظيفة",
+      "skills_required": "المهارات المطلوبة",
+      "certifications": "الشهادات",
+      "education_level": "المستوى التعليمي",
+      "languages": "اللغات",
+      "number_of_candidates": "عدد المرشحين",
+      "candidates": "مرشحين",
+      "candidate_requirements": "متطلبات المرشح",
+      "search_settings": "إعدادات البحث",
+      "match_score_type": "نوع درجة التطابق",
+      "quick_search": "بحث سريع",
+      "balanced_search": "بحث متوازن",
+      "detailed_search": "بحث مفصل",
+      "comprehensive_search": "بحث شامل",
+      "quick_desc": "بحث سريع وأساسي",
+      "balanced_desc": "بحث متوازن مع تفاصيل أكثر",
+      "detailed_desc": "بحث مفصل مع تحليل عميق",
+      "comprehensive_desc": "بحث شامل وكامل مع أعلى دقة",
+      "quick_description": "بحث سريع وأساسي",
+      "balanced_description": "بحث متوازن مع تفاصيل أكثر",
+      "detailed_description": "بحث مفصل مع تحليل عميق",
+      "comprehensive_description": "بحث شامل وكامل مع أعلى دقة",
+      "processing_notice": "الدرجات الأعلى تستغرق وقتاً أطول لكن تقدم نتائج أكثر دقة",
+      "per_candidate": "لكل مرشح",
+      "credits_per_candidate": "كريديت لكل مرشح",
+      "cost_per_candidate": "التكلفة لكل مرشح",
+      "cost_summary": "ملخص التكلفة",
+      "total_cost": "التكلفة الإجمالية",
+      "cost_calculation": "مرشح ×",
+      "equals": "كريديت إجمالي",
+      "search_criteria": "معايير البحث",
+      "start_search": "بدء البحث",
+      "searching": "جاري البحث...",
+      "search_results": "نتائج البحث",
+      "candidates_found": "تم العثور على مرشحين",
+      "note_higher_scores": "الدرجات الأعلى تستغرق وقتاً أطول لكن تقدم نتائج أكثر دقة"
+    }
+  },
+  "pricing": {
+    "title": "خطط التسعير",
+    "subtitle": "اختر الخطة التي تناسب احتياجاتك",
+    "buy_now": "اشتري الآن",
+    "purchasing": "جاري الشراء...",
+    "popular": "الأكثر شعبية",
+    "free_signup_credits": "كريديت مجاني عند التسجيل",
+    "referral_credits": "كريديت عند الإحالة"
+  },
+  "credit": {
+    "balance": "الرصيد",
+    "buy_more": "شراء المزيد من الكريديت",
+    "insufficient": "رصيد كريديت غير كافي",
+    "used": "مستخدم",
+    "remaining": "متبقي"
+  },
+  "company": {
+    "name": "SEEN AI HR Solutions",
+    "description": "منصة التوظيف الذكية المدعومة بالذكاء الاصطناعي لاكتشاف أفضل المواهب وتحليل السير الذاتية بتقنيات متقدمة",
+    "tagline": "مدعوم بأحدث تقنيات الذكاء الاصطناعي"
+  },
+  "loading": {
+    "processing": "جاري المعالجة...",
+    "please_wait": "يرجى الانتظار..."
+  },
+  "message": {
+    "welcome": "مرحباً",
+    "success": "تم بنجاح!",
+    "error": "حدث خطأ",
+    "coming_soon": "قريباً",
+    "copyright": "جميع الحقوق محفوظة"
+  },
+  "error": {
+    "generic": "حدث خطأ، يرجى المحاولة مرة أخرى",
+    "network": "خطأ في الشبكة",
+    "package_not_found": "الحزمة غير موجودة",
+    "unauthorized": "يجب تسجيل الدخول لتنفيذ هذا الإجراء",
+    "validation": "يرجى ملء جميع الحقول المطلوبة"
+  },
+  "payment": {
+    "success": "تم الدفع بنجاح! تم إضافة الكريديت إلى حسابك",
+    "failed": "فشل في الدفع",
+    "cancelled": "تم إلغاء الدفع"
+  },
+  "language": {
+    "english": "English",
+    "arabic": "العربية"
+  },
+  "form": {
+    "required": "مطلوب",
+    "optional": "اختياري",
+    "select_option": "اختر خيار",
+    "select_education": "اختر المستوى التعليمي",
+    "high_school": "ثانوية عامة",
+    "bachelor": "بكالوريوس",
+    "master": "ماجستير",
+    "phd": "دكتوراه",
+    "placeholder": {
+      "job_title": "مثال: مهندس برمجيات، مدير مشروع",
+      "job_description": "وصف الدور، المسؤوليات، والتوقعات...",
+      "skills_required": "مثال: JavaScript, React, Node.js, Python",
+      "certifications": "مثال: AWS Certified, PMP, Scrum Master",
+      "languages": "مثال: العربية، الإنجليزية، الفرنسية"
+    }
+  },
+  "current_balance": "رصيدك الحالي",
+  "demo_charge": "شحن تجريبي",
+  "charging": "جاري الشحن...",
+  "credit_added_success": "كريديت بنجاح!",
+  "new_balance": "رصيدك الجديد",
+  "demo_charge_error": "حدث خطأ أثناء الشحن التجريبي",
+  "filter": {
+    "all_scores": "جميع النسب",
+    "high": "عالية (80%+)",
+    "medium": "متوسطة (60-79%)",
+    "low": "منخفضة (<60%)"
+  },
+  "sort": {
+    "by_match_score": "حسب نسبة التطابق",
+    "by_name": "حسب الاسم"
+  },
+  "no_results": "لا توجد نتائج",
+  "no_results_desc": "لا يوجد مرشحون يطابقون معايير البحث المحددة",
+  "try_different_filters": "جرب تغيير معايير التصفية أو مصطلحات البحث",
+  "homepage": {
+    "hero": {
+      "ai_powered": "مدعوم بالذكاء الاصطناعي",
+      "future_of_hiring": "مستقبل التوظيف",
+      "with_ai": "مع الذكاء الاصطناعي",
+      "description": "اكتشف أفضل المواهب وحلل السير الذاتية بتقنية الذكاء الاصطناعي المتقدمة. وفر وقتك واحصل على أفضل النتائج في عملية التوظيف.",
+      "start_now_free": "ابدأ الآن - 200 كريديت مجاني",
+      "learn_more": "اعرف المزيد",
+      "free_days": "14 يوم مجاني",
+      "no_credit_card": "بدون بطاقة ائتمان",
+      "cancel_anytime": "إلغاء في أي وقت"
+    },
+    "stats": {
+      "candidates_analyzed": "مرشح تم تحليله",
+      "companies_trust": "شركة تثق بنا",
+      "matching_accuracy": "دقة المطابقة",
+      "service_available": "خدمة متاحة"
+    },
+    "features": {
+      "title": "ميزات متقدمة للتوظيف الذكي",
+      "subtitle": "استخدم قوة الذكاء الاصطناعي لتحويل عملية التوظيف إلى تجربة ذكية وفعالة",
+      "ai_talent_search": {
+        "title": "البحث عن المواهب بالذكاء الاصطناعي",
+        "description": "اعثر على أفضل المرشحين باستخدام خوارزميات الذكاء الاصطناعي المتقدمة"
+      },
+      "cv_analysis": {
+        "title": "تحليل السيرة الذاتية",
+        "description": "حلل مئات السير الذاتية فوراً واحصل على أفضل المطابقات"
+      },
+      "smart_management": {
+        "title": "إدارة المواهب الذكية",
+        "description": "نظام شامل لإدارة وتتبع المرشحين وعملية التوظيف"
+      },
+      "instant_results": {
+        "title": "نتائج فورية",
+        "description": "احصل على نتائج دقيقة وفورية مع تقارير مفصلة وقابلة للتحميل"
+      }
+    },
+    "pricing_section": {
+      "title": "حزم مرنة لجميع الاحتياجات",
+      "subtitle": "اختر الحزمة التي تناسب احتياجاتك وابدأ في استخدام قوة الذكاء الاصطناعي",
+      "starter": {
+        "name": "المبتدئ",
+        "features": {
+          "credits": "كريديت",
+          "search_candidates": "البحث عن 50 مرشح",
+          "analyze_cvs": "تحليل 100 سيرة ذاتية",
+          "support": "دعم فني 24/7"
+        }
+      },
+      "professional": {
+        "name": "المحترف",
+        "features": {
+          "credits": "كريديت",
+          "search_candidates": "البحث عن 150 مرشح",
+          "analyze_cvs": "تحليل 300 سيرة ذاتية",
+          "advanced_reports": "تقارير متقدمة",
+          "priority_support": "دعم أولوية"
+        }
+      },
+      "enterprise": {
+        "name": "المؤسسي",
+        "features": {
+          "credits": "كريديت",
+          "unlimited_search": "بحث غير محدود",
+          "unlimited_analysis": "تحليل غير محدود",
+          "custom_api": "API مخصص",
+          "account_manager": "مدير حساب مخصص"
+        }
+      },
+      "get_started": "ابدأ الآن",
+      "save_percent": "وفر",
+      "sar": "ريال"
+    },
+    "cta": {
+      "title": "جاهز لتحويل عملية التوظيف؟",
+      "subtitle": "انضم إلى آلاف الشركات التي تثق في SEEN AI للعثور على أفضل المواهب",
+      "start_free": "ابدأ مجاناً الآن",
+      "talk_expert": "تحدث مع خبير"
+    }
+  }
+}
