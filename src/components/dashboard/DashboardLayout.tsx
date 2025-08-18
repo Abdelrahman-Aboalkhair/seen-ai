@@ -74,6 +74,14 @@ export function DashboardLayout() {
     },
   ];
 
+  // Debug logging for admin panel
+  console.log("DashboardLayout Debug:", {
+    profile,
+    is_admin: profile?.is_admin,
+    role: profile?.role,
+    user: user?.email,
+  });
+
   // Add admin panel link if user is admin
   if (profile?.is_admin) {
     navigation.splice(-1, 0, {

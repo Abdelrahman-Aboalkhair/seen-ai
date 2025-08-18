@@ -58,6 +58,7 @@ export function TalentSearchHistoryPage() {
         .select("*")
         .eq("user_id", user.id)
         .order("created_at", { ascending: false });
+      console.log("talent searches data: ", data);
 
       if (error) {
         throw error;
@@ -66,11 +67,11 @@ export function TalentSearchHistoryPage() {
       setHistory(data || []);
     } catch (err: any) {
       console.error("Error loading talent search history:", err);
-      setError(err.message || t("error.load_search_history"));
+      setError(err.message || "Error loading search history");
     } finally {
       setLoading(false);
     }
-  }, [user, t]);
+  }, [user]);
 
   // Delete talent search
   const handleDelete = async (id: string) => {

@@ -1,27 +1,11 @@
 import { createClient } from "@supabase/supabase-js";
+import { config, validateConfig } from "./config";
 
-// Get environment variables with fallback values
-const supabaseUrl =
-  import.meta.env.VITE_SUPABASE_URL ||
-  "https://xbdjfswbbekmtagjrmup.supabase.co";
-const supabaseKey =
-  import.meta.env.VITE_SUPABASE_ANON_KEY ||
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhiZGpmc3diYmVrbXRhZ2pybXVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUzMzA5NjQsImV4cCI6MjA3MDkwNjk2NH0.YMSPykjM9-CSxwv4i4wjPuteDcG8-mPDI4AZmIuPF7s";
-console.log("Supabase Config:", {
-  url: supabaseUrl,
-  keyExists: !!supabaseKey,
-  keyLength: supabaseKey?.length || 0,
-});
+// Validate configuration on import
+validateConfig();
 
-if (!supabaseUrl || !supabaseKey) {
-  console.error("Missing Supabase environment variables:", {
-    url: supabaseUrl,
-    key: supabaseKey ? "present" : "missing",
-  });
-  throw new Error("Missing Supabase environment variables");
-}
-
-export const supabase = createClient(supabaseUrl, supabaseKey);
+// Create Supabase client using centralized config
+export const supabase = createClient(config.supabaseUrl, config.supabaseAnonKey);
 
 // Database Types
 export interface Profile {
