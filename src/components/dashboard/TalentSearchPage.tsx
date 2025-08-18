@@ -615,124 +615,126 @@ export function TalentSearchPage() {
         </div>
       )}
 
-      {/* Results */}
-      {showResults && (
+      {/* Loading State */}
+      {searching ? (
         <div className="mt-8">
-          {/* Results Header */}
-          <div className="bg-[#1E293B] backdrop-blur-sm rounded-xl p-6 border border-[#334155] mb-6">
-            <div
-              className={`flex items-center justify-between mb-4 ${
-                isRTL() ? "flex-row-reverse" : ""
-              }`}
-            >
-              <div
-                className={`flex items-center ${
-                  isRTL()
-                    ? "flex-row-reverse space-x-reverse space-x-3"
-                    : "space-x-3"
-                }`}
-              >
-                <Users className="h-6 w-6 text-[#38BDF8]" />
-                <h3 className="text-xl font-semibold text-[#F8FAFC]">
-                  نتائج البحث ({getFilteredAndSortedResults().length} مرشح)
-                </h3>
-              </div>
-
-              {/* Filter Controls */}
-              <div
-                className={`flex items-center gap-4 ${
-                  isRTL() ? "flex-row-reverse" : ""
-                }`}
-              >
+          <LoadingOverlay
+            isVisible={searching}
+            type="talent-search"
+            onComplete={() => {
+              // This will be called when the loading animation completes
+              // The actual API call should be handled separately
+            }}
+          />
+        </div>
+      ) : (
+        <>
+          {/* Results */}
+          {showResults && (
+            <div className="mt-8">
+              {/* Results Header */}
+              <div className="bg-[#1E293B] backdrop-blur-sm rounded-xl p-6 border border-[#334155] mb-6">
                 <div
-                  className={`flex items-center ${
-                    isRTL()
-                      ? "flex-row-reverse space-x-reverse space-x-2"
-                      : "space-x-2"
+                  className={`flex items-center justify-between mb-4 ${
+                    isRTL() ? "flex-row-reverse" : ""
                   }`}
                 >
-                  <Filter className="h-4 w-4 text-[#94A3B8]" />
-                  <select
-                    value={filterByScore}
-                    onChange={(e) => setFilterByScore(e.target.value)}
-                    className="bg-[#10172A] border border-[#334155] rounded-md px-3 py-1 text-sm text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-[#38BDF8]"
+                  <div
+                    className={`flex items-center ${
+                      isRTL()
+                        ? "flex-row-reverse space-x-reverse space-x-3"
+                        : "space-x-3"
+                    }`}
                   >
-                    <option value="all">جميع المطابقات</option>
-                    <option value="high">عالية (80%+)</option>
-                    <option value="medium">متوسطة (60-79%)</option>
-                    <option value="low">منخفضة (أقل من 60%)</option>
-                  </select>
-                </div>
+                    <Users className="h-6 w-6 text-[#38BDF8]" />
+                    <h3 className="text-xl font-semibold text-[#F8FAFC]">
+                      نتائج البحث ({getFilteredAndSortedResults().length} مرشح)
+                    </h3>
+                  </div>
 
-                <div
-                  className={`flex items-center ${
-                    isRTL()
-                      ? "flex-row-reverse space-x-reverse space-x-2"
-                      : "space-x-2"
-                  }`}
-                >
-                  <SortDesc className="h-4 w-4 text-[#94A3B8]" />
-                  <select
-                    value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value)}
-                    className="bg-[#10172A] border border-[#334155] rounded-md px-3 py-1 text-sm text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-[#38BDF8]"
+                  {/* Filter Controls */}
+                  <div
+                    className={`flex items-center gap-4 ${
+                      isRTL() ? "flex-row-reverse" : ""
+                    }`}
                   >
-                    <option value="match_score">نسبة المطابقة</option>
-                    <option value="name">الاسم</option>
-                  </select>
-                </div>
-              </div>
-            </div>
+                    <div
+                      className={`flex items-center ${
+                        isRTL()
+                          ? "flex-row-reverse space-x-reverse space-x-2"
+                          : "space-x-2"
+                      }`}
+                    >
+                      <Filter className="h-4 w-4 text-[#94A3B8]" />
+                      <select
+                        value={filterByScore}
+                        onChange={(e) => setFilterByScore(e.target.value)}
+                        className="bg-[#10172A] border border-[#334155] rounded-md px-3 py-1 text-sm text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-[#38BDF8]"
+                      >
+                        <option value="all">جميع المطابقات</option>
+                        <option value="high">عالية (80%+)</option>
+                        <option value="medium">متوسطة (60-79%)</option>
+                        <option value="low">منخفضة (أقل من 60%)</option>
+                      </select>
+                    </div>
 
-            {/* Results Summary */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-[#22C55E]/10 border border-[#22C55E]/30 rounded-lg p-3 text-center">
-                <div className="text-[#22C55E] text-2xl font-bold">
-                  {
-                    getFilteredAndSortedResults().filter(
-                      (c) => c["Match Score (0-100)"] >= 80
-                    ).length
-                  }
+                    <div
+                      className={`flex items-center ${
+                        isRTL()
+                          ? "flex-row-reverse space-x-reverse space-x-2"
+                          : "space-x-2"
+                      }`}
+                    >
+                      <SortDesc className="h-4 w-4 text-[#94A3B8]" />
+                      <select
+                        value={sortBy}
+                        onChange={(e) => setSortBy(e.target.value)}
+                        className="bg-[#10172A] border border-[#334155] rounded-md px-3 py-1 text-sm text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-[#38BDF8]"
+                      >
+                        <option value="match_score">نسبة المطابقة</option>
+                        <option value="name">الاسم</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-[#22C55E] text-sm">مطابقة عالية</div>
-              </div>
-              <div className="bg-[#EAB308]/10 border border-[#EAB308]/30 rounded-lg p-3 text-center">
-                <div className="text-[#EAB308] text-2xl font-bold">
-                  {
-                    getFilteredAndSortedResults().filter(
-                      (c) =>
-                        c["Match Score (0-100)"] >= 60 &&
-                        c["Match Score (0-100)"] < 80
-                    ).length
-                  }
-                </div>
-                <div className="text-[#EAB308] text-sm">مطابقة متوسطة</div>
-              </div>
-              <div className="bg-[#F43F5E]/10 border border-[#F43F5E]/30 rounded-lg p-3 text-center">
-                <div className="text-[#F43F5E] text-2xl font-bold">
-                  {
-                    getFilteredAndSortedResults().filter(
-                      (c) => c["Match Score (0-100)"] < 60
-                    ).length
-                  }
-                </div>
-                <div className="text-[#F43F5E] text-sm">مطابقة منخفضة</div>
-              </div>
-            </div>
-          </div>
 
-          {/* Loading State */}
-          {searching ? (
-            <LoadingOverlay
-              isVisible={searching}
-              type="talent-search"
-              onComplete={() => {
-                // This will be called when the loading animation completes
-                // The actual API call should be handled separately
-              }}
-            />
-          ) : (
-            <>
+                {/* Results Summary */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-[#22C55E]/10 border border-[#22C55E]/30 rounded-lg p-3 text-center">
+                    <div className="text-[#22C55E] text-2xl font-bold">
+                      {
+                        getFilteredAndSortedResults().filter(
+                          (c) => c["Match Score (0-100)"] >= 80
+                        ).length
+                      }
+                    </div>
+                    <div className="text-[#22C55E] text-sm">مطابقة عالية</div>
+                  </div>
+                  <div className="bg-[#EAB308]/10 border border-[#EAB308]/30 rounded-lg p-3 text-center">
+                    <div className="text-[#EAB308] text-2xl font-bold">
+                      {
+                        getFilteredAndSortedResults().filter(
+                          (c) =>
+                            c["Match Score (0-100)"] >= 60 &&
+                            c["Match Score (0-100)"] < 80
+                        ).length
+                      }
+                    </div>
+                    <div className="text-[#EAB308] text-sm">مطابقة متوسطة</div>
+                  </div>
+                  <div className="bg-[#F43F5E]/10 border border-[#F43F5E]/30 rounded-lg p-3 text-center">
+                    <div className="text-[#F43F5E] text-2xl font-bold">
+                      {
+                        getFilteredAndSortedResults().filter(
+                          (c) => c["Match Score (0-100)"] < 60
+                        ).length
+                      }
+                    </div>
+                    <div className="text-[#F43F5E] text-sm">مطابقة منخفضة</div>
+                  </div>
+                </div>
+              </div>
+
               {/* Candidates Grid */}
               {getFilteredAndSortedResults().length > 0 ? (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -755,9 +757,9 @@ export function TalentSearchPage() {
                   </p>
                 </div>
               )}
-            </>
+            </div>
           )}
-        </div>
+        </>
       )}
     </div>
   );
