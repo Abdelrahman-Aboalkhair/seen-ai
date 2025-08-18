@@ -22,6 +22,7 @@ import { TalentSearchPage } from "./components/dashboard/TalentSearchPage";
 import { TalentSearchHistoryPage } from "./components/dashboard/TalentSearchHistoryPage";
 import { CVAnalysisHistoryPage } from "./components/dashboard/CVAnalysisHistoryPage";
 import { PricingPage } from "./components/pricing/PricingPage";
+import AdminRoutes from "./router/AdminRoutes";
 import { AboutPage } from "./components/pages/AboutPage";
 import { ContactPage } from "./components/pages/ContactPage";
 import { PrivacyPage } from "./components/pages/PrivacyPage";
@@ -173,11 +174,17 @@ function App() {
                   element={<CVAnalysisHistoryPage />}
                 />
                 <Route path="credit-history" element={<CreditHistoryPage />} />
-                {/* <Route path="billing" element={<BillingPage />} />
-                <Route path="referrals" element={<ReferralsPage />} />
-                <Route path="settings" element={<SettingsPage />} />
-                <Route path="admin" element={<AdminPanel />} /> */}
               </Route>
+
+              {/* Admin Routes */}
+              <Route
+                path="/dashboard/admin/*"
+                element={
+                  <ProtectedRoute>
+                    <AdminRoutes />
+                  </ProtectedRoute>
+                }
+              />
 
               {/* Static Pages */}
               <Route

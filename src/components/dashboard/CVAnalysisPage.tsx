@@ -15,6 +15,7 @@ import { supabase } from "../../lib/supabase";
 import { useTranslation } from "../../lib/i18n";
 import { useCreditBalance } from "../../hooks/useCreditBalance";
 import { CVAnalysisCard } from "../ui/CVAnalysisCard";
+import { LoadingOverlay } from "../ui/LoadingOverlay";
 import { exportResults } from "../../utils/exportUtils";
 import toast from "react-hot-toast";
 
@@ -61,7 +62,7 @@ export function CVAnalysisPage() {
     setAnalyzing(true);
 
     try {
-      let requestBody: any = {
+      const requestBody: any = {
         jobTitle,
         jobDescription,
         skillsRequired: skillsRequired, // Send as string, not array
@@ -87,10 +88,18 @@ export function CVAnalysisPage() {
         requestBody.cvText = cvText;
       }
 
+      // Add a minimum delay to show the loading animation
+      const minDelay = new Promise((resolve) => setTimeout(resolve, 3000));
+
       // Call the Edge Function for CV analysis
-      const { data, error } = await supabase.functions.invoke("cv-analysis", {
+      const analysisPromise = supabase.functions.invoke("cv-analysis", {
         body: requestBody,
       });
+
+      // Wait for both the minimum delay and the actual API call
+      const [data, error] = await Promise.all([analysisPromise, minDelay]).then(
+        ([result]) => [result.data, result.error]
+      );
 
       if (error) {
         throw error;
@@ -529,21 +538,41 @@ export function CVAnalysisPage() {
             </div>
           </div>
 
-          {/* Candidates Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {getFilteredAndSortedResults().map((candidate, index) => (
-              <CVAnalysisCard key={index} candidate={candidate} index={index} />
-            ))}
-          </div>
+          {/* Loading State */}
+          {analyzing ? (
+            <LoadingOverlay
+              isVisible={analyzing}
+              type="cv-analysis"
+              onComplete={() => {
+                // This will be called when the loading animation completes
+                // The actual API call should be handled separately
+              }}
+            />
+          ) : (
+            <>
+              {/* Candidates Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {getFilteredAndSortedResults().map((candidate, index) => (
+                  <CVAnalysisCard
+                    key={index}
+                    candidate={candidate}
+                    index={index}
+                  />
+                ))}
+              </div>
 
-          {getFilteredAndSortedResults().length === 0 && (
-            <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-700 text-center">
-              <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-white mb-2">
-                لا توجد نتائج تطابق الفلاتر المحددة
-              </h3>
-              <p className="text-gray-400">جرب تغيير معايير التصفية أو البحث</p>
-            </div>
+              {getFilteredAndSortedResults().length === 0 && (
+                <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-700 text-center">
+                  <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-medium text-white mb-2">
+                    لا توجد نتائج تطابق الفلاتر المحددة
+                  </h3>
+                  <p className="text-gray-400">
+                    جرب تغيير معايير التصفية أو البحث
+                  </p>
+                </div>
+              )}
+            </>
           )}
         </>
       )}

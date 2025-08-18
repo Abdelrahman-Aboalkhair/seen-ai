@@ -20,6 +20,7 @@ import {
   BarChart3,
   History,
   Zap,
+  FileText,
 } from "lucide-react";
 import toast from "react-hot-toast";
 

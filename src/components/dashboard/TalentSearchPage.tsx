@@ -19,6 +19,7 @@ import { supabase } from "../../lib/supabase";
 import { useTranslation } from "../../lib/i18n";
 import { useCreditBalance } from "../../hooks/useCreditBalance";
 import { CandidateCard } from "../ui/CandidateCard";
+import { LoadingOverlay } from "../ui/LoadingOverlay";
 import toast from "react-hot-toast";
 
 // Match score types with costs
@@ -81,8 +82,11 @@ export function TalentSearchPage() {
     setSearching(true);
 
     try {
+      // Add a minimum delay to show the loading animation
+      const minDelay = new Promise((resolve) => setTimeout(resolve, 3000));
+
       // Call the Edge Function for real AI processing
-      const { data, error } = await supabase.functions.invoke("talent-search", {
+      const searchPromise = supabase.functions.invoke("talent-search", {
         body: {
           jobTitle,
           jobDescription,
@@ -94,6 +98,11 @@ export function TalentSearchPage() {
           matchScoreType,
         },
       });
+
+      // Wait for both the minimum delay and the actual API call
+      const [data, error] = await Promise.all([searchPromise, minDelay]).then(
+        ([result]) => [result.data, result.error]
+      );
 
       if (error) {
         throw error;
@@ -675,27 +684,41 @@ export function TalentSearchPage() {
             </div>
           </div>
 
-          {/* Candidates Grid */}
-          {getFilteredAndSortedResults().length > 0 ? (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {getFilteredAndSortedResults().map((candidate, index) => (
-                <CandidateCard
-                  key={index}
-                  candidate={candidate}
-                  index={index}
-                />
-              ))}
-            </div>
+          {/* Loading State */}
+          {searching ? (
+            <LoadingOverlay
+              isVisible={searching}
+              type="talent-search"
+              onComplete={() => {
+                // This will be called when the loading animation completes
+                // The actual API call should be handled separately
+              }}
+            />
           ) : (
-            <div className="bg-[#1E293B] backdrop-blur-sm rounded-xl p-8 border border-[#334155] text-center">
-              <Users className="h-12 w-12 text-[#94A3B8] mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-[#F8FAFC] mb-2">
-                لا توجد نتائج
-              </h3>
-              <p className="text-gray-400">
-                لم يتم العثور على مرشحين يطابقون معايير البحث المحددة.
-              </p>
-            </div>
+            <>
+              {/* Candidates Grid */}
+              {getFilteredAndSortedResults().length > 0 ? (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {getFilteredAndSortedResults().map((candidate, index) => (
+                    <CandidateCard
+                      key={index}
+                      candidate={candidate}
+                      index={index}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="bg-[#1E293B] backdrop-blur-sm rounded-xl p-8 border border-[#334155] text-center">
+                  <Users className="h-12 w-12 text-[#94A3B8] mx-auto mb-4" />
+                  <h3 className="text-lg font-medium text-[#F8FAFC] mb-2">
+                    لا توجد نتائج
+                  </h3>
+                  <p className="text-gray-400">
+                    لم يتم العثور على مرشحين يطابقون معايير البحث المحددة.
+                  </p>
+                </div>
+              )}
+            </>
           )}
         </div>
       )}
