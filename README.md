@@ -277,18 +277,31 @@ npm run test:coverage
 
 ### Cloud Deployment
 
-#### Vercel
+#### Vercel (Recommended)
 
-```bash
-npm install -g vercel
-vercel --prod
-```
+1. **Install Vercel CLI**
+   ```bash
+   npm install -g vercel
+   ```
 
-#### Netlify
+2. **Deploy to Vercel**
+   ```bash
+   vercel --prod
+   ```
 
-```bash
-npm install -g netlify-cli
-netlify deploy --prod
+3. **Or connect via GitHub:**
+   - Go to [vercel.com](https://vercel.com)
+   - Import your GitHub repository
+   - Vercel will auto-detect Vite/React settings
+   - Add environment variables in dashboard
+
+#### Environment Variables for Vercel
+
+Add these in your Vercel project settings:
+
+```env
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
 #### AWS S3 + CloudFront

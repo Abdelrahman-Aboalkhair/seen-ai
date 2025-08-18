@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Zap, Plus, Minus, Users, RefreshCw, Search } from "lucide-react";
-import { useAuth } from "../../lib/auth";
-import { supabase } from "../../lib/supabase";
-import { useTranslation } from "../../lib/i18n";
+import { useAuth } from "../../../lib/auth";
+import { supabase } from "../../../lib/supabase";
+import { useTranslation } from "../../../lib/i18n";
 import toast from "react-hot-toast";
 
 interface User {

@@ -33,6 +33,7 @@ export interface Profile {
   total_searches: number;
   total_analyses: number;
   is_admin: boolean;
+  role?: string;
   created_at: string;
   updated_at: string;
 }
