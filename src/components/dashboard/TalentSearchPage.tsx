@@ -209,7 +209,8 @@ export function TalentSearchPage() {
       <div className="text-center mb-8">
         <button
           onClick={() => setShowRequirementsGenerator(true)}
-          className="inline-flex items-center bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-lg"
+          className="inline-flex items-center bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600
+           hover:to-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-lg"
         >
           <Brain className="h-5 w-5 mr-2" />
           مولد متطلبات الوظيفة بالذكاء الاصطناعي
@@ -226,6 +227,15 @@ export function TalentSearchPage() {
               {t("credit.balance")}
             </span>
           </div>
+        </div>
+      )}
+
+      {/* Job Requirements Generator */}
+      {showRequirementsGenerator && (
+        <div className="mb-8">
+          <JobRequirementsGenerator
+            onRequirementsGenerated={handleRequirementsGenerated}
+          />
         </div>
       )}
 
@@ -605,15 +615,6 @@ export function TalentSearchPage() {
           </button>
         </div>
       </div>
-
-      {/* Job Requirements Generator */}
-      {showRequirementsGenerator && (
-        <div className="mb-8">
-          <JobRequirementsGenerator
-            onRequirementsGenerated={handleRequirementsGenerated}
-          />
-        </div>
-      )}
 
       {/* Loading State */}
       {searching ? (
