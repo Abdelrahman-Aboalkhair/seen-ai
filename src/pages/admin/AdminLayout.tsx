@@ -1,252 +1,255 @@
-import React, { useState } from "react";
-import { Link, useLocation, Outlet } from "react-router-dom";
-import { motion } from "framer-motion";
-import { useAuth } from "../../lib/auth";
-import { useTranslation } from "../../lib/i18n";
-import { Button } from "../../components/ui/Button";
+import React from "react";
+import { Outlet } from "react-router-dom";
 import {
-  LayoutDashboard,
-  Users,
-  CreditCard,
-  HeadphonesIcon,
-  Settings,
-  BarChart3,
-  Code,
-  LogOut,
-  Menu,
-  X,
-  Shield,
-} from "lucide-react";
-import toast from "react-hot-toast";
+  HomeIcon,
+  UsersIcon,
+  CreditCardIcon,
+  LifebuoyIcon,
+  Cog6ToothIcon,
+  ChartBarIcon,
+  CpuChipIcon,
+  BellIcon,
+  UserCircleIcon,
+  ArrowRightOnRectangleIcon,
+} from "@heroicons/react/24/outline";
+import { useAuth } from "../../lib/auth";
+import { useState, useEffect } from "react";
+import { supabase } from "../../lib/supabase";
+import AdminNavLink from "../../components/admin/AdminNavLink";
 
 const AdminLayout: React.FC = () => {
-  const { user, profile, signOut } = useAuth();
-  const { t, isRTL } = useTranslation();
-  const location = useLocation();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { user, profile } = useAuth();
+  const [currentUser, setCurrentUser] = useState(null);
+  const [showProfileMenu, setShowProfileMenu] = React.useState(false);
+  const [showNotifications, setShowNotifications] = React.useState(false);
 
-  const navigation = [
-    {
-      name: "Dashboard",
-      href: "/dashboard/admin",
-      icon: LayoutDashboard,
-    },
-    {
-      name: "Users Management",
-      href: "/dashboard/admin/users",
-      icon: Users,
-    },
-    {
-      name: "Payments",
-      href: "/dashboard/admin/payments",
-      icon: CreditCard,
-    },
-    {
-      name: "Support Center",
-      href: "/dashboard/admin/support",
-      icon: HeadphonesIcon,
-    },
-    {
-      name: "API Management",
-      href: "/dashboard/admin/api",
-      icon: Code,
-    },
-    {
-      name: "Analytics",
-      href: "/dashboard/admin/analytics",
-      icon: BarChart3,
-    },
-    {
-      name: "System Settings",
-      href: "/dashboard/admin/settings",
-      icon: Settings,
-    },
-  ];
-
-  const handleSignOut = async () => {
+  const handleLogout = async () => {
     try {
-      await signOut();
-      toast.success("تم تسجيل الخروج بنجاح");
+      await supabase.auth.signOut();
     } catch (error) {
-      console.error("Sign out error:", error);
-      toast.error(t("error.generic"));
+      console.error("خطأ في تسجيل الخروج:", error);
     }
   };
 
-  const SidebarContent = () => (
-    <>
-      {/* Logo */}
-      <div className="flex h-16 shrink-0 items-center justify-center">
-        <Link
-          to="/dashboard"
-          className={`flex items-center transition-all duration-300 ${
-            isRTL() ? "space-x-reverse space-x-3" : "space-x-3"
-          }`}
-        >
-          <div className="w-8 h-8 bg-gradient-to-r from-red-500 to-orange-500 rounded-lg flex items-center justify-center">
-            <Shield className="h-5 w-5 text-white" />
-          </div>
-          <motion.span
-            initial={{ opacity: 1, width: "auto" }}
-            animate={{ opacity: 1, width: "auto" }}
-            transition={{ duration: 0.3 }}
-            className="text-lg font-bold bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent whitespace-nowrap overflow-hidden"
-          >
-            Admin Panel
-          </motion.span>
-        </Link>
-      </div>
+  // بيانات وهمية للإشعارات
+  const notifications = [
+    {
+      id: 1,
+      title: "تذكرة دعم جديدة",
+      message: "تم إنشاء تذكرة دعم جديدة من أحمد محمد",
+      time: "منذ 5 دقائق",
+      unread: true,
+    },
+    {
+      id: 2,
+      title: "عملية دفع جديدة",
+      message: "تمت عملية دفع بقيمة $99.99",
+      time: "منذ 15 دقيقة",
+      unread: false,
+    },
+  ];
 
-      {/* Navigation */}
-      <nav className="flex flex-1 flex-col">
-        <ul role="list" className="flex flex-1 flex-col gap-y-7">
-          <li>
-            <ul role="list" className="-mx-2 space-y-1">
-              {navigation.map((item) => {
-                const isActive = location.pathname === item.href;
-                return (
-                  <li key={item.name}>
-                    <Link
-                      to={item.href}
-                      onClick={() => setSidebarOpen(false)}
-                      className={`
-                        group flex gap-x-3 rounded-md p-3 text-sm leading-6 font-semibold transition-all duration-200 relative
-                        ${isRTL() ? "flex-row-reverse" : ""}
-                        ${
-                          isActive
-                            ? "bg-gradient-to-r from-red-500/20 to-orange-500/20 text-red-400 border border-red-500/30"
-                            : "text-gray-300 hover:text-red-400 hover:bg-slate-700/50"
-                        }
-                      `}
-                    >
-                      <item.icon className="h-6 w-6 shrink-0" />
-                      <motion.span
-                        initial={{ opacity: 1, width: "auto" }}
-                        animate={{ opacity: 1, width: "auto" }}
-                        transition={{ duration: 0.3 }}
-                        className="whitespace-nowrap overflow-hidden"
-                      >
-                        {item.name}
-                      </motion.span>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </li>
-
-          {/* User Info & Sign Out */}
-          <li className="mt-auto">
-            <div className="bg-slate-700/50 rounded-lg p-3 mb-3">
-              <div
-                className={`flex items-center ${
-                  isRTL() ? "space-x-reverse space-x-3" : "space-x-3"
-                }`}
-              >
-                <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-orange-500 rounded-full flex items-center justify-center">
-                  <span className="text-white font-semibold text-sm">
-                    {profile?.full_name?.charAt(0) ||
-                      user?.email?.charAt(0) ||
-                      "A"}
-                  </span>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-white truncate">
-                    {profile?.full_name || "Admin"}
-                  </p>
-                  <p className="text-xs text-gray-400 truncate">
-                    {user?.email}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <Button
-              variant="text"
-              onClick={handleSignOut}
-              className={`w-full text-gray-300 hover:text-red-400 transition-all duration-200 ${
-                isRTL() ? "justify-end" : "justify-start"
-              }`}
-            >
-              <LogOut
-                className={`h-5 w-5 ${
-                  isRTL() ? "ml-3" : "mr-3"
-                }`}
-              />
-              <motion.span
-                initial={{ opacity: 1, width: "auto" }}
-                animate={{ opacity: 1, width: "auto" }}
-                transition={{ duration: 0.3 }}
-                className="whitespace-nowrap overflow-hidden"
-              >
-                {t("nav.logout")}
-              </motion.span>
-            </Button>
-          </li>
-        </ul>
-      </nav>
-    </>
-  );
+  const unreadCount = notifications.filter((n) => n.unread).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      {/* Sidebar for desktop */}
-      <div className="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0 lg:z-50 transition-all duration-300">
-        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-slate-800/50 backdrop-blur-xl border-red-500/20 border-r px-4 pb-4">
-          <SidebarContent />
-        </div>
-      </div>
-
-      {/* Mobile sidebar */}
-      <div className="relative z-50 lg:hidden">
-        {sidebarOpen && (
-          <div className="fixed inset-0 bg-slate-900/80" onClick={() => setSidebarOpen(false)} />
-        )}
-        <div className="fixed inset-0 flex">
-          <div
-            className={`relative flex w-full max-w-xs flex-1 ${
-              sidebarOpen ? "translate-x-0" : "-translate-x-full"
-            } transition-transform duration-300 ease-in-out`}
-          >
-            <div className="absolute top-0 flex w-16 justify-center pt-5 left-full">
-              <button
-                type="button"
-                className="-m-2.5 p-2.5 text-gray-400 hover:text-white transition-colors"
-                onClick={() => setSidebarOpen(false)}
-              >
-                <X className="h-6 w-6" />
-              </button>
+    <div className="min-h-screen bg-gray-900 flex" dir="rtl">
+      {/* القائمة الجانبية */}
+      <aside className="w-64 bg-gray-800 border-l border-gray-700 flex flex-col">
+        {/* شعار ومعلومات النظام */}
+        <div className="p-6 border-b border-gray-700">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-lg">S</span>
             </div>
-
-            <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-slate-800/95 backdrop-blur-xl px-6 pb-4">
-              <SidebarContent />
+            <div>
+              <h2 className="text-white font-bold text-lg">SEEN AI HR</h2>
+              <p className="text-gray-400 text-sm">لوحة التحكم الإدارية</p>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Main content */}
-      <div className="lg:ml-64">
-        {/* Mobile menu button */}
-        <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-slate-700 bg-slate-800/80 backdrop-blur-xl px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
-          <button
-            type="button"
-            className="-m-2.5 p-2.5 text-gray-400 hover:text-red-400 transition-colors lg:hidden"
-            onClick={() => setSidebarOpen(true)}
-          >
-            <Menu className="h-6 w-6" />
-          </button>
+        {/* روابط التنقل */}
+        <nav className="flex-1 p-4 space-y-2">
+          <AdminNavLink
+            to="/admin/dashboard"
+            icon={<HomeIcon className="h-5 w-5" />}
+            label="لوحة التحكم"
+            requiredRole="admin"
+          />
 
-          <div className="flex-1 text-sm font-semibold leading-6 text-white">
-            Admin Panel
+          <AdminNavLink
+            to="/admin/users"
+            icon={<UsersIcon className="h-5 w-5" />}
+            label="إدارة المستخدمين"
+            requiredRole="admin"
+          />
+
+          <AdminNavLink
+            to="/admin/payments"
+            icon={<CreditCardIcon className="h-5 w-5" />}
+            label="إدارة المدفوعات"
+            requiredRole="finance_manager"
+          />
+
+          <AdminNavLink
+            to="/admin/support"
+            icon={<LifebuoyIcon className="h-5 w-5" />}
+            label="مركز الدعم"
+            requiredRole="support_agent"
+            badge={3}
+          />
+
+          <AdminNavLink
+            to="/admin/api"
+            icon={<CpuChipIcon className="h-5 w-5" />}
+            label="إدارة التكاملات"
+            requiredRole="admin"
+          />
+
+          <AdminNavLink
+            to="/admin/analytics"
+            icon={<ChartBarIcon className="h-5 w-5" />}
+            label="التحليلات والتقارير"
+            requiredRole="analyst"
+          />
+
+          <AdminNavLink
+            to="/admin/settings"
+            icon={<Cog6ToothIcon className="h-5 w-5" />}
+            label="الإعدادات"
+            requiredRole="super_admin"
+          />
+        </nav>
+      </aside>
+
+      {/* المحتوى الرئيسي */}
+      <div className="flex-1 flex flex-col">
+        {/* الشريط العلوي */}
+        <header className="bg-gray-800 border-b border-gray-700 px-6 py-4">
+          <div className="flex items-center justify-between">
+            {/* عنوان الصفحة */}
+            <div>
+              <h1 className="text-2xl font-bold text-white">
+                لوحة التحكم الإدارية
+              </h1>
+              <p className="text-gray-400 text-sm">مرحباً بك في SEEN AI HR</p>
+            </div>
+
+            {/* أزرار التحكم */}
+            <div className="flex items-center gap-4">
+              {/* زر الإشعارات */}
+              <div className="relative">
+                <button
+                  onClick={() => setShowNotifications(!showNotifications)}
+                  className="relative p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition-colors"
+                >
+                  <BellIcon className="h-6 w-6" />
+                  {unreadCount > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                      {unreadCount}
+                    </span>
+                  )}
+                </button>
+
+                {/* قائمة الإشعارات */}
+                {showNotifications && (
+                  <div className="absolute left-0 mt-2 w-80 bg-gray-800 border border-gray-700 rounded-lg shadow-lg z-50">
+                    <div className="p-4 border-b border-gray-700">
+                      <h3 className="text-white font-medium">الإشعارات</h3>
+                    </div>
+                    <div className="max-h-64 overflow-y-auto">
+                      {notifications.map((notification) => (
+                        <div
+                          key={notification.id}
+                          className={`p-4 border-b border-gray-700 hover:bg-gray-700/50 cursor-pointer ${
+                            notification.unread ? "bg-blue-500/10" : ""
+                          }`}
+                        >
+                          <div className="flex items-start justify-between">
+                            <div className="flex-1">
+                              <h4 className="text-white text-sm font-medium">
+                                {notification.title}
+                              </h4>
+                              <p className="text-gray-400 text-xs mt-1">
+                                {notification.message}
+                              </p>
+                              <p className="text-gray-500 text-xs mt-2">
+                                {notification.time}
+                              </p>
+                            </div>
+                            {notification.unread && (
+                              <div className="w-2 h-2 bg-blue-500 rounded-full mt-1"></div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="p-3 border-t border-gray-700">
+                      <button className="text-blue-400 hover:text-blue-300 text-sm">
+                        عرض جميع الإشعارات
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* قائمة المستخدم */}
+              <div className="relative">
+                <button
+                  onClick={() => setShowProfileMenu(!showProfileMenu)}
+                  className="flex items-center gap-3 p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition-colors"
+                >
+                  <UserCircleIcon className="h-8 w-8" />
+                  <div className="text-right">
+                    <p className="text-white text-sm font-medium">
+                      {user?.email || "مستخدم"}
+                    </p>
+                    <p className="text-gray-400 text-xs">مشرف</p>
+                  </div>
+                </button>
+
+                {/* قائمة الملف الشخصي */}
+                {showProfileMenu && (
+                  <div className="absolute left-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-lg z-50">
+                    <div className="p-2">
+                      <button className="flex items-center gap-3 w-full p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded text-right transition-colors">
+                        <UserCircleIcon className="h-5 w-5" />
+                        الملف الشخصي
+                      </button>
+                      <button className="flex items-center gap-3 w-full p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded text-right transition-colors">
+                        <Cog6ToothIcon className="h-5 w-5" />
+                        الإعدادات
+                      </button>
+                      <hr className="my-2 border-gray-700" />
+                      <button
+                        onClick={handleLogout}
+                        className="flex items-center gap-3 w-full p-2 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded text-right transition-colors"
+                      >
+                        <ArrowRightOnRectangleIcon className="h-5 w-5" />
+                        تسجيل الخروج
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
-        </div>
+        </header>
 
-        {/* Page content */}
-        <main className="py-10">
-          <div className="px-4 sm:px-6 lg:px-8">
-            <Outlet />
-          </div>
+        {/* منطقة المحتوى */}
+        <main className="flex-1 p-6 overflow-auto bg-gray-900">
+          <Outlet
+            context={{
+              currentUser: currentUser || {
+                id: user?.id || "",
+                email: user?.email || "",
+                full_name: profile?.full_name || "مستخدم",
+                role: profile?.role || "admin",
+                permissions: profile?.permissions || {},
+                is_suspended: profile?.is_suspended || false,
+              },
+            }}
+          />
         </main>
       </div>
     </div>

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { adminApi } from "../../lib/adminApi";
 import {
-  ChartArea,
-  Check,
+  UsersIcon,
+  CreditCardIcon,
+  ChartBarIcon,
+  ExclamationTriangleIcon,
+  CheckCircleIcon,
   ClockIcon,
-  CreditCard,
-  User,
-  Users,
-} from "lucide-react";
+} from "@heroicons/react/24/outline";
 
 interface DashboardStats {
   total_users: number;
@@ -63,7 +63,7 @@ const AdminDashboard: React.FC = () => {
           type: "user_registered",
           description: "مستخدم جديد: أحمد محمد",
           timestamp: new Date(Date.now() - 300000).toISOString(),
-          icon: User,
+          icon: UsersIcon,
           color: "text-green-500",
         },
         {
@@ -71,7 +71,7 @@ const AdminDashboard: React.FC = () => {
           type: "payment_completed",
           description: "دفعة بقيمة $99.99 تمت بنجاح",
           timestamp: new Date(Date.now() - 600000).toISOString(),
-          icon: CreditCard,
+          icon: CreditCardIcon,
           color: "text-blue-500",
         },
         {
@@ -79,7 +79,7 @@ const AdminDashboard: React.FC = () => {
           type: "support_ticket",
           description: "تذكرة دعم جديدة من فاطمة علي",
           timestamp: new Date(Date.now() - 900000).toISOString(),
-          icon: Users,
+          icon: ExclamationTriangleIcon,
           color: "text-yellow-500",
         },
       ]);
@@ -118,7 +118,7 @@ const AdminDashboard: React.FC = () => {
         <div className="bg-gray-800 rounded-lg p-6">
           <div className="flex items-center">
             <div className="p-3 bg-blue-500/20 rounded-lg">
-              <Users className="h-6 w-6 text-blue-400" />
+              <UsersIcon className="h-6 w-6 text-blue-400" />
             </div>
             <div className="mr-4">
               <p className="text-gray-400 text-sm">إجمالي المستخدمين</p>
@@ -135,7 +135,7 @@ const AdminDashboard: React.FC = () => {
         <div className="bg-gray-800 rounded-lg p-6">
           <div className="flex items-center">
             <div className="p-3 bg-green-500/20 rounded-lg">
-              <CreditCard className="h-6 w-6 text-green-400" />
+              <CreditCardIcon className="h-6 w-6 text-green-400" />
             </div>
             <div className="mr-4">
               <p className="text-gray-400 text-sm">الإيرادات الشهرية</p>
@@ -152,7 +152,7 @@ const AdminDashboard: React.FC = () => {
         <div className="bg-gray-800 rounded-lg p-6">
           <div className="flex items-center">
             <div className="p-3 bg-purple-500/20 rounded-lg">
-              <ChartArea className="h-6 w-6 text-purple-400" />
+              <ChartBarIcon className="h-6 w-6 text-purple-400" />
             </div>
             <div className="mr-4">
               <p className="text-gray-400 text-sm">المعاملات</p>
@@ -167,7 +167,7 @@ const AdminDashboard: React.FC = () => {
         <div className="bg-gray-800 rounded-lg p-6">
           <div className="flex items-center">
             <div className="p-3 bg-yellow-500/20 rounded-lg">
-              <ChartArea className="h-6 w-6 text-yellow-400" />
+              <ExclamationTriangleIcon className="h-6 w-6 text-yellow-400" />
             </div>
             <div className="mr-4">
               <p className="text-gray-400 text-sm">تذاكر الدعم</p>
@@ -219,7 +219,7 @@ const AdminDashboard: React.FC = () => {
           <div className="space-y-4">
             <div className="flex items-center justify-between p-3 bg-gray-700/50 rounded-lg">
               <div className="flex items-center gap-3">
-                <Check className="h-5 w-5 text-green-500" />
+                <CheckCircleIcon className="h-5 w-5 text-green-500" />
                 <span className="text-white">خدمة المدفوعات</span>
               </div>
               <span className="text-green-400 text-sm">متصلة</span>
@@ -227,7 +227,7 @@ const AdminDashboard: React.FC = () => {
 
             <div className="flex items-center justify-between p-3 bg-gray-700/50 rounded-lg">
               <div className="flex items-center gap-3">
-                <Check className="h-5 w-5 text-green-500" />
+                <CheckCircleIcon className="h-5 w-5 text-green-500" />
                 <span className="text-white">قاعدة البيانات</span>
               </div>
               <span className="text-green-400 text-sm">متصلة</span>
@@ -243,7 +243,7 @@ const AdminDashboard: React.FC = () => {
 
             <div className="flex items-center justify-between p-3 bg-gray-700/50 rounded-lg">
               <div className="flex items-center gap-3">
-                <Check className="h-5 w-5 text-green-500" />
+                <CheckCircleIcon className="h-5 w-5 text-green-500" />
                 <span className="text-white">خدمة البريد الإلكتروني</span>
               </div>
               <span className="text-green-400 text-sm">متصلة</span>
@@ -257,7 +257,7 @@ const AdminDashboard: React.FC = () => {
         <h3 className="text-lg font-semibold text-white mb-4">إجراءات سريعة</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <button className="p-4 bg-blue-600 hover:bg-blue-700 rounded-lg text-white transition-colors text-right">
-            <Users className="h-6 w-6 mb-2" />
+            <UsersIcon className="h-6 w-6 mb-2" />
             <h4 className="font-medium">إدارة المستخدمين</h4>
             <p className="text-sm text-blue-100 mt-1">
               عرض وإدارة حسابات المستخدمين
@@ -265,7 +265,7 @@ const AdminDashboard: React.FC = () => {
           </button>
 
           <button className="p-4 bg-green-600 hover:bg-green-700 rounded-lg text-white transition-colors text-right">
-            <CreditCard className="h-6 w-6 mb-2" />
+            <CreditCardIcon className="h-6 w-6 mb-2" />
             <h4 className="font-medium">إدارة المدفوعات</h4>
             <p className="text-sm text-green-100 mt-1">
               مراقبة المعاملات المالية
@@ -273,7 +273,7 @@ const AdminDashboard: React.FC = () => {
           </button>
 
           <button className="p-4 bg-purple-600 hover:bg-purple-700 rounded-lg text-white transition-colors text-right">
-            <ChartArea className="h-6 w-6 mb-2" />
+            <ChartBarIcon className="h-6 w-6 mb-2" />
             <h4 className="font-medium">التقارير والتحليلات</h4>
             <p className="text-sm text-purple-100 mt-1">عرض إحصائيات مفصلة</p>
           </button>

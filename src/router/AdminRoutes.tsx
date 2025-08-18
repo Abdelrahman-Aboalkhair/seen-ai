@@ -10,6 +10,7 @@ import SystemSettings from "../pages/admin/SystemSettings";
 import ApiManagement from "../pages/admin/ApiManagement";
 import Analytics from "../pages/admin/Analytics";
 import { TalentSearchPage } from "../components/dashboard/TalentSearchPage";
+import { CreditManagement } from "../pages/admin/CreditManagement";
 
 const AdminRoutes: React.FC = () => {
   return (
@@ -31,6 +32,7 @@ const AdminRoutes: React.FC = () => {
         <Route path="analytics" element={<Analytics />} />
         <Route path="talent-search" element={<TalentSearchPage />} />
         <Route path="settings" element={<SystemSettings />} />
+        <Route path="credit-management" element={<CreditManagement />} />
         <Route path="*" element={<Navigate to="dashboard" replace />} />
       </Route>
     </Routes>
