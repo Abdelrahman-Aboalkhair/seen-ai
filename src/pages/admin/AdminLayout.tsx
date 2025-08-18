@@ -245,8 +245,8 @@ const AdminLayout: React.FC = () => {
                 email: user?.email || "",
                 full_name: profile?.full_name || "مستخدم",
                 role: profile?.role || "admin",
-                permissions: profile?.permissions || {},
-                is_suspended: profile?.is_suspended || false,
+                // permissions: profile?.permissions || {},
+                // is_suspended: profile?.is_suspended || false,
               },
             }}
           />
