@@ -75,7 +75,14 @@ export function exportToCSV(
   ];
 
   const csvContent = csvRows.join("\n");
-  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+
+  // Add UTF-8 BOM to ensure proper encoding for Arabic text
+  const BOM = "\uFEFF";
+  const csvContentWithBOM = BOM + csvContent;
+
+  const blob = new Blob([csvContentWithBOM], {
+    type: "text/csv;charset=utf-8;",
+  });
 
   // Create download link
   const link = document.createElement("a");
@@ -137,18 +144,15 @@ export async function exportToPDF(
     creator: "SEEN AI HR Platform",
   });
 
-  // Add title
+  // Add title - Use English text for PDF to avoid encoding issues
   doc.setFontSize(20);
-  doc.text("نتائج تحليل السير الذاتية", 105, 20, { align: "center" });
+  doc.text("CV Analysis Results", 105, 20, { align: "center" });
 
   doc.setFontSize(12);
-  doc.text(
-    `تاريخ التصدير: ${new Date().toLocaleDateString("ar-SA")}`,
-    105,
-    30,
-    { align: "center" }
-  );
-  doc.text(`عدد النتائج: ${results.length}`, 105, 40, { align: "center" });
+  doc.text(`Export Date: ${new Date().toLocaleDateString("en-US")}`, 105, 30, {
+    align: "center",
+  });
+  doc.text(`Total Results: ${results.length}`, 105, 40, { align: "center" });
 
   let yPosition = 60;
   const pageHeight = doc.internal.pageSize.height;
@@ -171,27 +175,27 @@ export async function exportToPDF(
     // Vote score
     doc.setFontSize(12);
     doc.setFont(undefined, "normal");
-    doc.text(`التقييم: ${result.vote}/10`, margin, yPosition);
+    doc.text(`Rating: ${result.vote}/10`, margin, yPosition);
     yPosition += lineHeight;
 
     // Contact info
     if (result.email) {
-      doc.text(`البريد الإلكتروني: ${result.email}`, margin, yPosition);
+      doc.text(`Email: ${result.email}`, margin, yPosition);
       yPosition += lineHeight;
     }
     if (result.phone) {
-      doc.text(`الهاتف: ${result.phone}`, margin, yPosition);
+      doc.text(`Phone: ${result.phone}`, margin, yPosition);
       yPosition += lineHeight;
     }
     if (result.city) {
-      doc.text(`المدينة: ${result.city}`, margin, yPosition);
+      doc.text(`City: ${result.city}`, margin, yPosition);
       yPosition += lineHeight;
     }
 
     // Skills
     if (result.skills) {
       doc.setFont(undefined, "bold");
-      doc.text("المهارات:", margin, yPosition);
+      doc.text("Skills:", margin, yPosition);
       yPosition += lineHeight;
       doc.setFont(undefined, "normal");
 
@@ -205,7 +209,7 @@ export async function exportToPDF(
     // Summary
     if (result.summary) {
       doc.setFont(undefined, "bold");
-      doc.text("الملخص:", margin, yPosition);
+      doc.text("Summary:", margin, yPosition);
       yPosition += lineHeight;
       doc.setFont(undefined, "normal");
 
@@ -220,7 +224,7 @@ export async function exportToPDF(
     // Strengths
     if (result.strengths && result.strengths !== "غير محدد") {
       doc.setFont(undefined, "bold");
-      doc.text("نقاط القوة:", margin, yPosition);
+      doc.text("Strengths:", margin, yPosition);
       yPosition += lineHeight;
       doc.setFont(undefined, "normal");
 
@@ -234,7 +238,7 @@ export async function exportToPDF(
     // Gaps
     if (result.gaps && result.gaps !== "غير محدد") {
       doc.setFont(undefined, "bold");
-      doc.text("نقاط التحسين:", margin, yPosition);
+      doc.text("Areas for Improvement:", margin, yPosition);
       yPosition += lineHeight;
       doc.setFont(undefined, "normal");
 

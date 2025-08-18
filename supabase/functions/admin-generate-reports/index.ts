@@ -202,7 +202,7 @@ Deno.serve(async (req) => {
 
     if (format === "csv") {
       responseData = convertToCSV(report);
-      contentType = "text/csv";
+      contentType = "text/csv;charset=utf-8";
     } else {
       responseData = JSON.stringify({
         success: true,
@@ -571,5 +571,7 @@ function convertToCSV(report: any): string {
     }\n`;
   }
 
-  return csv;
+  // Add UTF-8 BOM to ensure proper encoding for Arabic text
+  const BOM = "\uFEFF";
+  return BOM + csv;
 }
