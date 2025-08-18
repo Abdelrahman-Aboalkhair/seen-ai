@@ -74,19 +74,11 @@ export function DashboardLayout() {
     },
   ];
 
-  // Debug logging for admin panel
-  console.log("DashboardLayout Debug:", {
-    profile,
-    is_admin: profile?.is_admin,
-    role: profile?.role,
-    user: user?.email,
-  });
-
   // Add admin panel link if user is admin
   if (profile?.is_admin) {
     navigation.splice(-1, 0, {
       name: "Admin Panel",
-      href: "/dashboard/admin",
+      href: "/admin",
       icon: Shield,
     });
   }
@@ -224,7 +216,9 @@ export function DashboardLayout() {
                   <li key={item.name}>
                     <Link
                       to={item.href}
-                      onClick={() => setSidebarOpen(false)}
+                      onClick={() => {
+                        setSidebarOpen(false);
+                      }}
                       className={`
                         group flex gap-x-3 rounded-md p-3 text-sm leading-6 font-semibold transition-all duration-200 relative
                         ${isRTL() ? "flex-row-reverse" : ""}
