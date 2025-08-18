@@ -211,7 +211,7 @@ export function CreditHistoryPage() {
               : "bg-slate-700 text-gray-300 hover:bg-slate-600"
           }`}
         >
-          {t("nav.home")}
+          {t("nav.all")}
         </button>
         <button
           onClick={() => setFilter("purchase")}
@@ -248,8 +248,8 @@ export function CreditHistoryPage() {
             <Clock className="h-12 w-12 text-gray-400 mx-auto mb-4" />
             <p className="text-gray-400">
               {filter === "all"
-                ? "لا توجد معاملات حتى الآن"
-                : "لا توجد معاملات من هذا النوع"}
+                ? t("credit.no_transactions")
+                : t("credit.no_transactions_type")}
             </p>
           </div>
         ) : (

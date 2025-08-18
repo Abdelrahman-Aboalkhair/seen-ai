@@ -77,7 +77,7 @@ export function TalentSearchPage() {
     setCertifications(requirements.certificates.join(", "));
     setEducationLevel(requirements.educationLevel);
     setShowRequirementsGenerator(false);
-    toast.success("تم تطبيق المتطلبات المولدة على نموذج البحث");
+    toast.success(t("services.talent_search.requirements_applied"));
   };
 
   const handleSearch = async () => {
@@ -131,7 +131,7 @@ export function TalentSearchPage() {
       }
 
       if (!data || !data.data || !data.data.candidates) {
-        throw new Error("لم يتم العثور على نتائج");
+        throw new Error(t("services.talent_search.search_not_found"));
       }
 
       // Update local balance
@@ -648,7 +648,9 @@ export function TalentSearchPage() {
                   >
                     <Users className="h-6 w-6 text-[#38BDF8]" />
                     <h3 className="text-xl font-semibold text-[#F8FAFC]">
-                      نتائج البحث ({getFilteredAndSortedResults().length} مرشح)
+                      {t("services.talent_search.search_results_count")} (
+                      {getFilteredAndSortedResults().length}{" "}
+                      {t("services.talent_search.candidates")})
                     </h3>
                   </div>
 
@@ -753,7 +755,7 @@ export function TalentSearchPage() {
                     لا توجد نتائج
                   </h3>
                   <p className="text-gray-400">
-                    لم يتم العثور على مرشحين يطابقون معايير البحث المحددة.
+                    {t("services.talent_search.no_candidates_found")}.
                   </p>
                 </div>
               )}

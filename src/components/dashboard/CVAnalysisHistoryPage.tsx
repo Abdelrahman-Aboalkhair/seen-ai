@@ -61,7 +61,7 @@ export function CVAnalysisHistoryPage() {
       setHistory(data || []);
     } catch (err: any) {
       console.error("Error loading CV analysis history:", err);
-      setError(err.message || "فشل في تحميل سجل التحليلات");
+      setError(err.message || t("error.load_analysis_history"));
     } finally {
       setLoading(false);
     }
@@ -86,7 +86,7 @@ export function CVAnalysisHistoryPage() {
       setHistory(history.filter((item) => item.id !== id));
     } catch (err: any) {
       console.error("Error deleting CV analysis:", err);
-      setError(err.message || "فشل في حذف التحليل");
+      setError(err.message || t("error.delete_analysis"));
     }
   };
 
@@ -125,7 +125,9 @@ export function CVAnalysisHistoryPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <RefreshCw className="h-8 w-8 text-cyan-500 animate-spin mx-auto mb-4" />
-          <p className="text-gray-400">جاري تحميل سجل التحليلات...</p>
+          <p className="text-gray-400">
+            {t("history.loading_analysis_history")}
+          </p>
         </div>
       </div>
     );
@@ -159,10 +161,10 @@ export function CVAnalysisHistoryPage() {
         >
           <div>
             <h1 className="text-3xl font-bold text-white mb-2">
-              سجل تحليلات السيرة الذاتية
+              {t("history.cv_analysis_history")}
             </h1>
             <p className="text-gray-400">
-              عرض جميع تحليلات السيرة الذاتية السابقة
+              {t("history.cv_analysis_history_description")}
             </p>
           </div>
           <div className="flex items-center space-x-4">
@@ -170,7 +172,9 @@ export function CVAnalysisHistoryPage() {
               <div className="text-2xl font-bold text-cyan-500">
                 {history.length}
               </div>
-              <div className="text-sm text-gray-400">إجمالي التحليلات</div>
+              <div className="text-sm text-gray-400">
+                {t("history.total_analyses")}
+              </div>
             </div>
             <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center">
               <FileText className="h-6 w-6 text-white" />
@@ -189,7 +193,9 @@ export function CVAnalysisHistoryPage() {
                 <div className="text-lg font-semibold text-white">
                   {history.filter((item) => item.status === "completed").length}
                 </div>
-                <div className="text-sm text-gray-400">مكتمل</div>
+                <div className="text-sm text-gray-400">
+                  {t("history.completed")}
+                </div>
               </div>
             </div>
           </div>
@@ -220,7 +226,9 @@ export function CVAnalysisHistoryPage() {
                 <div className="text-lg font-semibold text-white">
                   {history.filter((item) => item.status === "failed").length}
                 </div>
-                <div className="text-sm text-gray-400">فشل</div>
+                <div className="text-sm text-gray-400">
+                  {t("history.failed")}
+                </div>
               </div>
             </div>
           </div>
@@ -236,7 +244,7 @@ export function CVAnalysisHistoryPage() {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <input
               type="text"
-              placeholder="البحث في التحليلات..."
+              placeholder={t("history.search_in_analyses")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-4 py-2 bg-white/5 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500"
@@ -249,9 +257,9 @@ export function CVAnalysisHistoryPage() {
             className="px-4 py-2 bg-white/5 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-cyan-500"
           >
             <option value="all">جميع الحالات</option>
-            <option value="completed">مكتمل</option>
+            <option value="completed">{t("history.completed")}</option>
             <option value="processing">قيد المعالجة</option>
-            <option value="failed">فشل</option>
+            <option value="failed">{t("history.failed")}</option>
           </select>
 
           <button
@@ -269,12 +277,12 @@ export function CVAnalysisHistoryPage() {
         <div className="text-center py-12">
           <FileText className="h-16 w-16 text-gray-600 mx-auto mb-4" />
           <h3 className="text-xl font-semibold text-gray-400 mb-2">
-            لا توجد تحليلات
+            {t("history.no_analyses")}
           </h3>
           <p className="text-gray-500">
             {searchTerm || statusFilter !== "all"
-              ? "لا توجد نتائج تطابق البحث"
-              : "لم تقم بأي تحليل للسيرة الذاتية بعد"}
+              ? t("history.no_analysis_results")
+              : t("history.no_analyses_yet")}
           </p>
         </div>
       ) : (
@@ -302,7 +310,7 @@ export function CVAnalysisHistoryPage() {
                 }`}
               >
                 <h2 className="text-2xl font-bold text-white">
-                  تفاصيل التحليل
+                  {t("history.analysis_details")}
                 </h2>
                 <button
                   onClick={() => setShowDetails(false)}

@@ -49,7 +49,7 @@ export function DashboardOverview() {
     // Check for payment success
     const paymentStatus = searchParams.get("payment");
     if (paymentStatus === "success") {
-      toast.success("تم الدفع بنجاح! تم إضافة الكريديت إلى حسابك", {
+      toast.success(t("payment.success"), {
         duration: 6000,
         icon: "🎉",
       });
@@ -93,12 +93,12 @@ export function DashboardOverview() {
       cost: `10 ${t("services.talent_search.cost")}`,
     },
     {
-      title: "سجل البحث عن المواهب",
-      description: "عرض جميع عمليات البحث السابقة",
+      title: t("dashboard.talent_search_history"),
+      description: t("dashboard.talent_search_history_description"),
       icon: History,
       href: "/dashboard/talent-search-history",
       gradient: "from-purple-500 to-pink-500",
-      cost: "مجاني",
+      cost: t("dashboard.free"),
     },
     {
       title: t("services.cv_analysis.title"),
@@ -109,12 +109,12 @@ export function DashboardOverview() {
       cost: `5 ${t("services.cv_analysis.cost")}`,
     },
     {
-      title: "سجل تحليل السير الذاتية",
-      description: "عرض جميع التحليلات السابقة",
+      title: t("dashboard.cv_analysis_history"),
+      description: t("dashboard.cv_analysis_history_description"),
       icon: FileText,
       href: "/dashboard/cv-analysis-history",
       gradient: "from-blue-500 to-indigo-500",
-      cost: "مجاني",
+      cost: t("dashboard.free"),
     },
     {
       title: t("pricing.buy_now"),
@@ -260,7 +260,7 @@ export function DashboardOverview() {
         transition={{ duration: 0.8, delay: 0.2 }}
       >
         <h2 className="text-2xl font-bold text-white mb-6">
-          {isRTL() ? "إجراءات سريعة" : "Quick Actions"}
+          {t("dashboard.quick_actions")}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {quickActions.map((action, index) => (
@@ -293,7 +293,7 @@ export function DashboardOverview() {
                     </span>
                     <Link to={action.href}>
                       <Button size="sm" variant="secondary" className="group">
-                        {isRTL() ? "ابدأ الآن" : "Start Now"}
+                        {t("dashboard.start_now")}
                         <ArrowRight
                           className={`h-3 w-3 group-hover:translate-x-1 transition-transform ${
                             isRTL() ? "mr-2 group-hover:-translate-x-1" : "ml-2"
@@ -321,7 +321,7 @@ export function DashboardOverview() {
           }`}
         >
           <h2 className="text-2xl font-bold text-white">
-            {isRTL() ? "النشاط الأخير" : "Recent Activity"}
+            {t("dashboard.recent_activity")}
           </h2>
           <Link to="/dashboard/credit-history">
             <Button variant="text" size="sm" className="group">
@@ -346,12 +346,10 @@ export function DashboardOverview() {
               <div className="text-center py-8">
                 <Clock className="h-12 w-12 text-gray-500 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-white mb-2">
-                  {isRTL() ? "لا يوجد نشاط حتى الآن" : "No activity yet"}
+                  {t("dashboard.no_activity_yet")}
                 </h3>
                 <p className="text-gray-400 mb-4">
-                  {isRTL()
-                    ? "ابدأ استخدام النظام لرؤية أنشطتك هنا"
-                    : "Start using the system to see your activities here"}
+                  {t("dashboard.start_using_system")}
                 </p>
                 <Link to="/dashboard/talent-search">
                   <Button>{t("services.talent_search.title")}</Button>

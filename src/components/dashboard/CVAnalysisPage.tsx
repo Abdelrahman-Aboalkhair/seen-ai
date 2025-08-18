@@ -111,7 +111,7 @@ export function CVAnalysisPage() {
       }
 
       if (!data || !data.data || !data.data.cvAnalysis) {
-        throw new Error("لم يتم العثور على نتائج التحليل");
+        throw new Error(t("services.cv_analysis.analysis_not_found"));
       }
 
       // Update local balance
@@ -121,7 +121,9 @@ export function CVAnalysisPage() {
       setResults(data.data.cvAnalysis);
       setShowResults(true);
       toast.success(
-        `تم تحليل السيرة الذاتية بنجاح: ${data.data.cvAnalysis.length} نتيجة!`
+        `${t("services.cv_analysis.analysis_success")}: ${
+          data.data.cvAnalysis.length
+        } ${t("services.cv_analysis.candidates_found")}!`
       );
     } catch (error: any) {
       console.error("CV Analysis error:", error);
@@ -168,10 +170,12 @@ export function CVAnalysisPage() {
     try {
       const fileName = `cv-analysis-${new Date().toISOString().split("T")[0]}`;
       await exportResults(results, { format, fileName });
-      toast.success(`تم تصدير النتائج بنجاح بصيغة ${format.toUpperCase()}`);
+      toast.success(
+        `${t("services.cv_analysis.export_success")} ${format.toUpperCase()}`
+      );
     } catch (error) {
       console.error("Export error:", error);
-      toast.error("فشل في تصدير النتائج");
+      toast.error(t("services.cv_analysis.export_failed"));
     } finally {
       setExporting(false);
     }
@@ -253,7 +257,9 @@ export function CVAnalysisPage() {
                   balance >= CREDITS_COST ? "text-green-400" : "text-red-400"
                 }`}
               >
-                {balance >= CREDITS_COST ? "جاهز للتحليل" : "رصيد غير كافي"}
+                {balance >= CREDITS_COST
+                  ? t("services.cv_analysis.ready_for_analysis")
+                  : t("services.cv_analysis.insufficient_balance")}
               </p>
             </div>
             <AlertCircle
@@ -402,7 +408,7 @@ export function CVAnalysisPage() {
             {inputMethod === "text" && cvText.trim() && (
               <div className="mt-3">
                 <p className="text-sm text-gray-400">
-                  تم إدخال {cvText.length} حرف
+                  {t("services.cv_analysis.characters_entered")} {cvText.length}
                 </p>
               </div>
             )}
@@ -458,7 +464,7 @@ export function CVAnalysisPage() {
               >
                 <Users className="h-6 w-6 text-cyan-400" />
                 <h2 className="text-xl font-semibold text-white">
-                  نتائج تحليل السير الذاتية (
+                  {t("services.cv_analysis.cv_analysis_results")} (
                   {getFilteredAndSortedResults().length})
                 </h2>
               </div>
@@ -517,21 +523,21 @@ export function CVAnalysisPage() {
                     disabled={exporting}
                     className="bg-green-600 hover:bg-green-700 disabled:bg-slate-600 text-white text-xs px-3 py-1 rounded-md transition-colors disabled:cursor-not-allowed"
                   >
-                    {exporting ? "جاري التصدير..." : "CSV"}
+                    {exporting ? t("services.cv_analysis.exporting") : "CSV"}
                   </button>
                   <button
                     onClick={() => handleExport("json")}
                     disabled={exporting}
                     className="bg-blue-600 hover:bg-blue-700 disabled:bg-slate-600 text-white text-xs px-3 py-1 rounded-md transition-colors disabled:cursor-not-allowed"
                   >
-                    {exporting ? "جاري التصدير..." : "JSON"}
+                    {exporting ? t("services.cv_analysis.exporting") : "JSON"}
                   </button>
                   <button
                     onClick={() => handleExport("pdf")}
                     disabled={exporting}
                     className="bg-red-600 hover:bg-red-700 disabled:bg-slate-600 text-white text-xs px-3 py-1 rounded-md transition-colors disabled:cursor-not-allowed"
                   >
-                    {exporting ? "جاري التصدير..." : "PDF"}
+                    {exporting ? t("services.cv_analysis.exporting") : "PDF"}
                   </button>
                 </div>
               </div>
@@ -568,7 +574,7 @@ export function CVAnalysisPage() {
                     لا توجد نتائج تطابق الفلاتر المحددة
                   </h3>
                   <p className="text-gray-400">
-                    جرب تغيير معايير التصفية أو البحث
+                    {t("services.cv_analysis.try_changing_filters")}
                   </p>
                 </div>
               )}

@@ -19,6 +19,7 @@ import {
   UserPlus,
   Shield,
   History,
+  Calendar,
 } from "lucide-react";
 import toast from "react-hot-toast";
 
@@ -54,6 +55,11 @@ export function DashboardLayout() {
       name: t("dashboard.cv_analysis_history"),
       href: "/dashboard/cv-analysis-history",
       icon: FileText,
+    },
+    {
+      name: t("dashboard.interview"),
+      href: "/dashboard/interview",
+      icon: Calendar,
     },
     {
       name: t("dashboard.credit_history"),
@@ -93,7 +99,7 @@ export function DashboardLayout() {
   const handleSignOut = async () => {
     try {
       await signOut();
-      toast.success("تم تسجيل الخروج بنجاح");
+      toast.success(t("message.success"));
     } catch (error) {
       console.error("Sign out error:", error);
       toast.error(t("error.generic"));

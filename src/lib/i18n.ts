@@ -21,12 +21,17 @@ const translations = {
     "nav.register": "إنشاء حساب",
     "nav.privacy": "سياسة الخصوصية",
     "nav.terms": "شروط الخدمة",
+    "nav.all": "الكل",
+    "nav.purchase": "شراء",
+    "nav.spend": "إنفاق",
 
     // Credit system
     "credit.balance": "كريديت",
     "credit.low_balance": "رصيد منخفض",
     "credit.buy_more": "شراء المزيد من الكريديت",
     "credit.insufficient": "رصيد كريديت غير كافي",
+    "credit.no_transactions": "لا توجد معاملات حتى الآن",
+    "credit.no_transactions_type": "لا توجد معاملات من هذا النوع",
     "credit.loading": "جاري التحميل...",
 
     // Pricing
@@ -50,6 +55,30 @@ const translations = {
     "dashboard.total_searches": "إجمالي البحث",
     "dashboard.total_analyses": "إجمالي التحليلات",
     "dashboard.credit_usage": "استهلاك الكريديت",
+    "dashboard.quick_actions": "إجراءات سريعة",
+    "dashboard.recent_activity": "النشاط الأخير",
+    "dashboard.no_activity_yet": "لا يوجد نشاط حتى الآن",
+    "dashboard.start_using_system": "ابدأ استخدام النظام لرؤية أنشطتك هنا",
+    "dashboard.start_now": "ابدأ الآن",
+    "dashboard.talent_search_history_description":
+      "عرض جميع عمليات البحث السابقة",
+    "dashboard.cv_analysis_history_description": "عرض جميع التحليلات السابقة",
+    "dashboard.free": "مجاني",
+    "dashboard.interview": "المقابلة",
+    "dashboard.interview_description": "إدارة وجدولة مقابلات المرشحين",
+    "dashboard.schedule_interview": "جدولة مقابلة",
+    "dashboard.upcoming_interviews": "المقابلات القادمة",
+    "dashboard.completed_interviews": "المقابلات المكتملة",
+    "dashboard.avg_score": "متوسط النتيجة",
+    "dashboard.interview_management": "إدارة المقابلات",
+    "dashboard.filter": "تصفية",
+    "dashboard.upcoming": "قادمة",
+    "dashboard.completed": "مكتملة",
+    "dashboard.no_upcoming_interviews": "لا توجد مقابلات قادمة",
+    "dashboard.schedule_first_interview": "جدول أول مقابلة للبدء",
+    "dashboard.no_completed_interviews": "لا توجد مقابلات مكتملة",
+    "dashboard.completed_interviews_will_appear_here":
+      "ستظهر المقابلات المكتملة هنا",
 
     // Services
     "services.cv_analysis.title": "تحليل السير الذاتية",
@@ -100,6 +129,16 @@ const translations = {
     "error.not_found": "الصفحة غير موجودة",
     "error.generic": "حدث خطأ غير متوقع",
     "error.validation": "يرجى ملء جميع الحقول المطلوبة",
+    "error.load_search_history": "فشل في تحميل سجل عمليات البحث",
+    "error.delete_search": "فشل في حذف عملية البحث",
+    "error.load_analysis_history": "فشل في تحميل سجل التحليلات",
+    "error.delete_analysis": "فشل في حذف التحليل",
+
+    // Payment
+    "payment.success": "تم الدفع بنجاح! تم إضافة الكريديت إلى حسابك",
+    "payment.failed": "فشل الدفع",
+    "payment.cancelled": "تم إلغاء الدفع",
+    "payment.processing": "جاري معالجة الدفع...",
 
     // Additional service translations
     "services.cv_analysis.analysis_details": "تفاصيل التحليل",
@@ -110,6 +149,18 @@ const translations = {
     "services.cv_analysis.analyzing": "جاري التحليل...",
     "services.cv_analysis.analysis_results": "نتائج التحليل",
     "services.cv_analysis.candidates_found": "تم العثور على مرشحين",
+    "services.cv_analysis.ready_for_analysis": "جاهز للتحليل",
+    "services.cv_analysis.insufficient_balance": "رصيد غير كافي",
+    "services.cv_analysis.characters_entered": "حرف تم إدخاله",
+    "services.cv_analysis.cv_analysis_results": "نتائج تحليل السير الذاتية",
+    "services.cv_analysis.exporting": "جاري التصدير...",
+    "services.cv_analysis.export_success": "تم تصدير النتائج بنجاح",
+    "services.cv_analysis.export_failed": "فشل في تصدير النتائج",
+    "services.cv_analysis.analysis_not_found":
+      "لم يتم العثور على نتائج التحليل",
+    "services.cv_analysis.analysis_success": "تم تحليل السيرة الذاتية بنجاح",
+    "services.cv_analysis.try_changing_filters":
+      "جرب تغيير معايير التصفية أو البحث",
     "services.cv_analysis.upload_cv": "رفع السير الذاتية",
     "services.cv_analysis.upload_instruction":
       "اضغط لرفع السير الذاتية أو اسحبها هنا",
@@ -147,6 +198,12 @@ const translations = {
     "services.talent_search.searching": "جاري البحث...",
     "services.talent_search.search_results": "نتائج البحث",
     "services.talent_search.candidates_found": "تم العثور على مرشحين",
+    "services.talent_search.requirements_applied":
+      "تم تطبيق المتطلبات المولدة على نموذج البحث",
+    "services.talent_search.search_not_found": "لم يتم العثور على نتائج",
+    "services.talent_search.no_candidates_found":
+      "لم يتم العثور على مرشحين يطابقون معايير البحث المحددة",
+    "services.talent_search.search_results_count": "نتائج البحث",
 
     // Form additions
     "form.optional": "اختياري",
@@ -162,6 +219,34 @@ const translations = {
       "مثال: JavaScript, React, Node.js, Python",
     "form.placeholder.certifications": "مثال: AWS Certified, PMP, Scrum Master",
     "form.placeholder.languages": "مثال: العربية، الإنجليزية، الفرنسية",
+
+    // History
+    "history.talent_search_history": "سجل عمليات البحث عن المواهب",
+    "history.talent_search_history_description":
+      "عرض جميع عمليات البحث عن المواهب السابقة",
+    "history.total_searches": "إجمالي عمليات البحث",
+    "history.completed": "مكتمل",
+    "history.failed": "فشل",
+    "history.search_in_searches": "البحث في عمليات البحث...",
+    "history.no_searches": "لا توجد عمليات بحث",
+    "history.no_search_results": "لا توجد نتائج تطابق البحث",
+    "history.no_searches_yet": "لم تقم بأي عملية بحث عن المواهب بعد",
+    "history.search_results_details": "تفاصيل نتائج البحث",
+    "history.search_summary": "ملخص البحث",
+    "history.candidates_count": "عدد المرشحين",
+    "history.matching_candidates": "المرشحون المطابقون",
+    "history.matching_candidates_count": "المرشحون المطابقون",
+    "history.loading_search_history": "جاري تحميل سجل عمليات البحث...",
+    "history.cv_analysis_history": "سجل تحليلات السيرة الذاتية",
+    "history.cv_analysis_history_description":
+      "عرض جميع تحليلات السيرة الذاتية السابقة",
+    "history.total_analyses": "إجمالي التحليلات",
+    "history.search_in_analyses": "البحث في التحليلات...",
+    "history.no_analyses": "لا توجد تحليلات",
+    "history.no_analysis_results": "لا توجد نتائج تطابق البحث",
+    "history.no_analyses_yet": "لم تقم بأي تحليل للسيرة الذاتية بعد",
+    "history.analysis_details": "تفاصيل التحليل",
+    "history.loading_analysis_history": "جاري تحميل سجل التحليلات...",
 
     // Additional dashboard and UI
     current_balance: "رصيدك الحالي",
@@ -255,12 +340,17 @@ const translations = {
     "nav.login": "Sign In",
     "nav.signup": "Get Started",
     "nav.logout": "Sign Out",
+    "nav.all": "All",
+    "nav.purchase": "Purchase",
+    "nav.spend": "Spend",
 
     // Credit system
     "credit.balance": "Credits",
     "credit.low_balance": "Low Balance",
     "credit.buy_more": "Buy More Credits",
     "credit.insufficient": "Insufficient Credits",
+    "credit.no_transactions": "No transactions yet",
+    "credit.no_transactions_type": "No transactions of this type",
     "credit.loading": "Loading...",
 
     // Pricing
@@ -284,6 +374,33 @@ const translations = {
     "dashboard.total_searches": "Total Searches",
     "dashboard.total_analyses": "Total Analyses",
     "dashboard.credit_usage": "Credit Usage",
+    "dashboard.quick_actions": "Quick Actions",
+    "dashboard.recent_activity": "Recent Activity",
+    "dashboard.no_activity_yet": "No activity yet",
+    "dashboard.start_using_system":
+      "Start using the system to see your activities here",
+    "dashboard.start_now": "Start Now",
+    "dashboard.talent_search_history_description":
+      "View all previous search operations",
+    "dashboard.cv_analysis_history_description": "View all previous analyses",
+    "dashboard.free": "Free",
+    "dashboard.interview": "Interview",
+    "dashboard.interview_description":
+      "Manage and schedule candidate interviews",
+    "dashboard.schedule_interview": "Schedule Interview",
+    "dashboard.upcoming_interviews": "Upcoming Interviews",
+    "dashboard.completed_interviews": "Completed Interviews",
+    "dashboard.avg_score": "Average Score",
+    "dashboard.interview_management": "Interview Management",
+    "dashboard.filter": "Filter",
+    "dashboard.upcoming": "Upcoming",
+    "dashboard.completed": "Completed",
+    "dashboard.no_upcoming_interviews": "No upcoming interviews",
+    "dashboard.schedule_first_interview":
+      "Schedule your first interview to get started",
+    "dashboard.no_completed_interviews": "No completed interviews",
+    "dashboard.completed_interviews_will_appear_here":
+      "Completed interviews will appear here",
 
     // Services
     "services.cv_analysis.title": "CV Analysis",
@@ -334,6 +451,17 @@ const translations = {
     "error.not_found": "Page not found",
     "error.generic": "An unexpected error occurred",
     "error.validation": "Please fill in all required fields",
+    "error.load_search_history": "Failed to load search history",
+    "error.delete_search": "Failed to delete search",
+    "error.load_analysis_history": "Failed to load analysis history",
+    "error.delete_analysis": "Failed to delete analysis",
+
+    // Payment
+    "payment.success":
+      "Payment successful! Credits have been added to your account",
+    "payment.failed": "Payment failed",
+    "payment.cancelled": "Payment cancelled",
+    "payment.processing": "Processing payment...",
 
     // Additional service translations
     "services.cv_analysis.analysis_details": "Analysis Details",
@@ -344,6 +472,18 @@ const translations = {
     "services.cv_analysis.analyzing": "Analyzing...",
     "services.cv_analysis.analysis_results": "Analysis Results",
     "services.cv_analysis.candidates_found": "candidates found",
+    "services.cv_analysis.ready_for_analysis": "Ready for Analysis",
+    "services.cv_analysis.insufficient_balance": "Insufficient Balance",
+    "services.cv_analysis.characters_entered": "characters entered",
+    "services.cv_analysis.cv_analysis_results": "CV Analysis Results",
+    "services.cv_analysis.exporting": "Exporting...",
+    "services.cv_analysis.export_success": "Results exported successfully",
+    "services.cv_analysis.export_failed": "Failed to export results",
+    "services.cv_analysis.analysis_not_found": "Analysis results not found",
+    "services.cv_analysis.analysis_success":
+      "CV analysis completed successfully",
+    "services.cv_analysis.try_changing_filters":
+      "Try changing filter criteria or search",
     "services.cv_analysis.upload_cv": "Upload CVs",
     "services.cv_analysis.upload_instruction":
       "Click to upload CVs or drag them here",
@@ -383,6 +523,12 @@ const translations = {
     "services.talent_search.searching": "Searching...",
     "services.talent_search.search_results": "Search Results",
     "services.talent_search.candidates_found": "candidates found",
+    "services.talent_search.requirements_applied":
+      "Generated requirements applied to search form",
+    "services.talent_search.search_not_found": "Search results not found",
+    "services.talent_search.no_candidates_found":
+      "No candidates found matching the specified search criteria",
+    "services.talent_search.search_results_count": "Search Results",
 
     // Form additions
     "form.optional": "Optional",
@@ -399,6 +545,33 @@ const translations = {
       "e.g., JavaScript, React, Node.js, Python",
     "form.placeholder.certifications": "e.g., AWS Certified, PMP, Scrum Master",
     "form.placeholder.languages": "e.g., English, Arabic, French",
+
+    // History
+    "history.talent_search_history": "Talent Search History",
+    "history.talent_search_history_description":
+      "View all previous talent search operations",
+    "history.total_searches": "Total Searches",
+    "history.completed": "Completed",
+    "history.failed": "Failed",
+    "history.search_in_searches": "Search in searches...",
+    "history.no_searches": "No searches",
+    "history.no_search_results": "No results match the search",
+    "history.no_searches_yet": "You haven't performed any talent searches yet",
+    "history.search_results_details": "Search Results Details",
+    "history.search_summary": "Search Summary",
+    "history.candidates_count": "Candidates Count",
+    "history.matching_candidates": "Matching Candidates",
+    "history.matching_candidates_count": "Matching Candidates",
+    "history.loading_search_history": "Loading search history...",
+    "history.cv_analysis_history": "CV Analysis History",
+    "history.cv_analysis_history_description": "View all previous CV analyses",
+    "history.total_analyses": "Total Analyses",
+    "history.search_in_analyses": "Search in analyses...",
+    "history.no_analyses": "No analyses",
+    "history.no_analysis_results": "No results match the search",
+    "history.no_analyses_yet": "You haven't performed any CV analyses yet",
+    "history.analysis_details": "Analysis Details",
+    "history.loading_analysis_history": "Loading analysis history...",
 
     // Additional dashboard and UI
     current_balance: "Your Current Balance",

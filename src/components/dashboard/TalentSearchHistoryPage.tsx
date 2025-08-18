@@ -66,7 +66,7 @@ export function TalentSearchHistoryPage() {
       setHistory(data || []);
     } catch (err: any) {
       console.error("Error loading talent search history:", err);
-      setError(err.message || "فشل في تحميل سجل عمليات البحث");
+      setError(err.message || t("error.load_search_history"));
     } finally {
       setLoading(false);
     }
@@ -91,7 +91,7 @@ export function TalentSearchHistoryPage() {
       setHistory(history.filter((item) => item.id !== id));
     } catch (err: any) {
       console.error("Error deleting talent search:", err);
-      setError(err.message || "فشل في حذف عملية البحث");
+      setError(err.message || t("error.delete_search"));
     }
   };
 
@@ -141,7 +141,7 @@ export function TalentSearchHistoryPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <RefreshCw className="h-8 w-8 text-cyan-500 animate-spin mx-auto mb-4" />
-          <p className="text-gray-400">جاري تحميل سجل عمليات البحث...</p>
+          <p className="text-gray-400">{t("history.loading_search_history")}</p>
         </div>
       </div>
     );
@@ -175,10 +175,10 @@ export function TalentSearchHistoryPage() {
         >
           <div>
             <h1 className="text-3xl font-bold text-white mb-2">
-              سجل عمليات البحث عن المواهب
+              {t("history.talent_search_history")}
             </h1>
             <p className="text-gray-400">
-              عرض جميع عمليات البحث عن المواهب السابقة
+              {t("history.talent_search_history_description")}
             </p>
           </div>
           <div className="flex items-center space-x-4">
@@ -186,7 +186,9 @@ export function TalentSearchHistoryPage() {
               <div className="text-2xl font-bold text-purple-500">
                 {history.length}
               </div>
-              <div className="text-sm text-gray-400">إجمالي عمليات البحث</div>
+              <div className="text-sm text-gray-400">
+                {t("history.total_searches")}
+              </div>
             </div>
             <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
               <Users className="h-6 w-6 text-white" />
@@ -205,7 +207,9 @@ export function TalentSearchHistoryPage() {
                 <div className="text-lg font-semibold text-white">
                   {history.filter((item) => item.status === "completed").length}
                 </div>
-                <div className="text-sm text-gray-400">مكتمل</div>
+                <div className="text-sm text-gray-400">
+                  {t("history.completed")}
+                </div>
               </div>
             </div>
           </div>
@@ -250,7 +254,9 @@ export function TalentSearchHistoryPage() {
                 <div className="text-lg font-semibold text-white">
                   {history.filter((item) => item.status === "failed").length}
                 </div>
-                <div className="text-sm text-gray-400">فشل</div>
+                <div className="text-sm text-gray-400">
+                  {t("history.failed")}
+                </div>
               </div>
             </div>
           </div>
@@ -266,7 +272,7 @@ export function TalentSearchHistoryPage() {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <input
               type="text"
-              placeholder="البحث في عمليات البحث..."
+              placeholder={t("history.search_in_searches")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-4 py-2 bg-white/5 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500"
@@ -279,10 +285,10 @@ export function TalentSearchHistoryPage() {
             className="px-4 py-2 bg-white/5 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-cyan-500"
           >
             <option value="all">جميع الحالات</option>
-            <option value="completed">مكتمل</option>
+            <option value="completed">{t("history.completed")}</option>
             <option value="processing">قيد المعالجة</option>
             <option value="pending">في الانتظار</option>
-            <option value="failed">فشل</option>
+                            <option value="failed">{t("history.failed")}</option>
           </select>
 
           <button
@@ -300,12 +306,12 @@ export function TalentSearchHistoryPage() {
         <div className="text-center py-12">
           <Users className="h-16 w-16 text-gray-600 mx-auto mb-4" />
           <h3 className="text-xl font-semibold text-gray-400 mb-2">
-            لا توجد عمليات بحث
+                          {t("history.no_searches")}
           </h3>
           <p className="text-gray-500">
             {searchTerm || statusFilter !== "all"
-              ? "لا توجد نتائج تطابق البحث"
-              : "لم تقم بأي عملية بحث عن المواهب بعد"}
+              ? t("history.no_search_results")
+              : t("history.no_searches_yet")}
           </p>
         </div>
       ) : (
@@ -333,7 +339,7 @@ export function TalentSearchHistoryPage() {
                 }`}
               >
                 <h2 className="text-2xl font-bold text-white">
-                  تفاصيل نتائج البحث
+                  {t("history.search_results_details")}
                 </h2>
                 <button
                   onClick={() => setShowDetails(false)}
@@ -346,11 +352,11 @@ export function TalentSearchHistoryPage() {
               {/* Search Summary */}
               <div className="mb-6 p-4 bg-gray-800/50 rounded-lg">
                 <h3 className="text-lg font-semibold text-white mb-3">
-                  ملخص البحث
+                  {t("history.search_summary")}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                   <div>
-                    <span className="text-gray-400">عدد المرشحين:</span>
+                    <span className="text-gray-400">{t("history.candidates_count")}:</span>
                     <span className="text-white ml-2">
                       {selectedItem.candidate_count}
                     </span>
@@ -362,7 +368,7 @@ export function TalentSearchHistoryPage() {
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">المرشحون المطابقون:</span>
+                    <span className="text-gray-400">{t("history.matching_candidates")}:</span>
                     <span className="text-green-400 ml-2">
                       {selectedItem.results?.length || 0}
                     </span>
@@ -380,7 +386,7 @@ export function TalentSearchHistoryPage() {
               {selectedItem.results && selectedItem.results.length > 0 ? (
                 <div className="space-y-6">
                   <h3 className="text-lg font-semibold text-white">
-                    المرشحون المطابقون ({selectedItem.results.length})
+                    {t("history.matching_candidates_count")} ({selectedItem.results.length})
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {selectedItem.results.map((candidate, index) => (

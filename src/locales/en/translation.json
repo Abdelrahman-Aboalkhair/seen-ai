@@ -32,10 +32,33 @@
     "cv_analysis": "CV Analysis",
     "talent_search": "Talent Search",
     "talent_search_history": "Talent Search History",
+    "cv_analysis_history": "CV Analysis History",
+    "interview": "Interview",
     "credit_history": "Credit History",
     "total_searches": "Total Searches",
     "total_analyses": "Total Analyses",
-    "credit_usage": "Credit Usage"
+    "credit_usage": "Credit Usage",
+    "quick_actions": "Quick Actions",
+    "recent_activity": "Recent Activity",
+    "no_activity_yet": "No activity yet",
+    "start_using_system": "Start using the system to see your activities here",
+    "start_now": "Start Now",
+    "interview_description": "Manage and schedule candidate interviews",
+    "schedule_interview": "Schedule Interview",
+    "upcoming_interviews": "Upcoming Interviews",
+    "completed_interviews": "Completed Interviews",
+    "avg_score": "Average Score",
+    "interview_management": "Interview Management",
+    "filter": "Filter",
+    "upcoming": "Upcoming",
+    "completed": "Completed",
+    "no_upcoming_interviews": "No upcoming interviews",
+    "schedule_first_interview": "Schedule your first interview to get started",
+    "no_completed_interviews": "No completed interviews",
+    "completed_interviews_will_appear_here": "Completed interviews will appear here",
+    "talent_search_history_description": "View all previous search operations",
+    "cv_analysis_history_description": "View all previous analyses",
+    "free": "Free"
   },
   "services": {
     "title": "Our Services",
@@ -54,7 +77,17 @@
       "start_analysis": "Start Analysis",
       "analyzing": "Analyzing...",
       "analysis_results": "Analysis Results",
-      "candidates_found": "candidates found"
+      "candidates_found": "candidates found",
+      "ready_for_analysis": "Ready for Analysis",
+      "insufficient_balance": "Insufficient Balance",
+      "characters_entered": "characters entered",
+      "cv_analysis_results": "CV Analysis Results",
+      "exporting": "Exporting...",
+      "export_success": "Results exported successfully",
+      "export_failed": "Failed to export results",
+      "analysis_not_found": "Analysis results not found",
+      "analysis_success": "CV analysis completed successfully",
+      "try_changing_filters": "Try changing filter criteria or search"
     },
     "talent_search": {
       "title": "Talent Search",
@@ -96,7 +129,11 @@
       "searching": "Searching...",
       "search_results": "Search Results",
       "candidates_found": "candidates found",
-      "note_higher_scores": "Higher scores take longer but provide more accurate results"
+      "note_higher_scores": "Higher scores take longer but provide more accurate results",
+      "requirements_applied": "Generated requirements applied to search form",
+      "search_not_found": "Search results not found",
+      "no_candidates_found": "No candidates found matching the specified search criteria",
+      "search_results_count": "Search Results"
     }
   },
   "pricing": {
@@ -113,7 +150,9 @@
     "buy_more": "Buy More Credits",
     "insufficient": "Insufficient credits",
     "used": "Used",
-    "remaining": "Remaining"
+    "remaining": "Remaining",
+    "no_transactions": "No transactions yet",
+    "no_transactions_type": "No transactions of this type"
   },
   "company": {
     "name": "SEEN AI HR Solutions",
@@ -136,13 +175,43 @@
     "network": "Network error",
     "package_not_found": "Package not found",
     "unauthorized": "You must be logged in to perform this action",
-    "validation": "Please fill in all required fields"
+    "validation": "Please fill in all required fields",
+    "load_search_history": "Failed to load search history",
+    "delete_search": "Failed to delete search",
+    "load_analysis_history": "Failed to load analysis history",
+    "delete_analysis": "Failed to delete analysis"
   },
   "payment": {
     "success": "Payment successful! Credits have been added to your account",
     "failed": "Payment failed",
     "cancelled": "Payment cancelled",
     "processing": "Processing payment..."
+  },
+  "history": {
+    "talent_search_history": "Talent Search History",
+    "talent_search_history_description": "View all previous talent search operations",
+    "total_searches": "Total Searches",
+    "completed": "Completed",
+    "failed": "Failed",
+    "search_in_searches": "Search in searches...",
+    "no_searches": "No searches",
+    "no_search_results": "No results match the search",
+    "no_searches_yet": "You haven't performed any talent searches yet",
+    "search_results_details": "Search Results Details",
+    "search_summary": "Search Summary",
+    "candidates_count": "Candidates Count",
+    "matching_candidates": "Matching Candidates",
+    "matching_candidates_count": "Matching Candidates",
+    "loading_search_history": "Loading search history...",
+    "cv_analysis_history": "CV Analysis History",
+    "cv_analysis_history_description": "View all previous CV analyses",
+    "total_analyses": "Total Analyses",
+    "search_in_analyses": "Search in analyses...",
+    "no_analyses": "No analyses",
+    "no_analysis_results": "No results match the search",
+    "no_analyses_yet": "You haven't performed any CV analyses yet",
+    "analysis_details": "Analysis Details",
+    "loading_analysis_history": "Loading analysis history..."
   },
   "nav": {
     "home": "Home",
@@ -156,6 +225,9 @@
     "dashboard": "Dashboard",
     "logout": "Logout",
     "privacy": "Privacy Policy",
-    "terms": "Terms of Service"
+    "terms": "Terms of Service",
+    "all": "All",
+    "purchase": "Purchase",
+    "spend": "Spend"
   }
 }

@@ -11,7 +11,10 @@
     "dashboard": "لوحة التحكم",
     "logout": "تسجيل الخروج",
     "privacy": "سياسة الخصوصية",
-    "terms": "شروط الخدمة"
+    "terms": "شروط الخدمة",
+    "all": "الكل",
+    "purchase": "شراء",
+    "spend": "إنفاق"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -32,10 +35,33 @@
     "cv_analysis": "تحليل السيرة الذاتية",
     "talent_search": "البحث عن المواهب",
     "talent_search_history": "سجل البحث عن المواهب",
+    "cv_analysis_history": "سجل تحليل السير الذاتية",
+    "interview": "المقابلة",
     "credit_history": "سجل الكريديت",
     "total_searches": "إجمالي عمليات البحث",
     "total_analyses": "إجمالي التحليلات",
-    "credit_usage": "استهلاك الكريديت"
+    "credit_usage": "استهلاك الكريديت",
+    "quick_actions": "إجراءات سريعة",
+    "recent_activity": "النشاط الأخير",
+    "no_activity_yet": "لا يوجد نشاط حتى الآن",
+    "start_using_system": "ابدأ استخدام النظام لرؤية أنشطتك هنا",
+    "start_now": "ابدأ الآن",
+    "interview_description": "إدارة وجدولة مقابلات المرشحين",
+    "schedule_interview": "جدولة مقابلة",
+    "upcoming_interviews": "المقابلات القادمة",
+    "completed_interviews": "المقابلات المكتملة",
+    "avg_score": "متوسط النتيجة",
+    "interview_management": "إدارة المقابلات",
+    "filter": "تصفية",
+    "upcoming": "قادمة",
+    "completed": "مكتملة",
+    "no_upcoming_interviews": "لا توجد مقابلات قادمة",
+    "schedule_first_interview": "جدول أول مقابلة للبدء",
+    "no_completed_interviews": "لا توجد مقابلات مكتملة",
+    "completed_interviews_will_appear_here": "ستظهر المقابلات المكتملة هنا",
+    "talent_search_history_description": "عرض جميع عمليات البحث السابقة",
+    "cv_analysis_history_description": "عرض جميع التحليلات السابقة",
+    "free": "مجاني"
   },
   "services": {
     "title": "خدماتنا",
@@ -54,7 +80,17 @@
       "start_analysis": "بدء التحليل",
       "analyzing": "جاري التحليل...",
       "analysis_results": "نتائج التحليل",
-      "candidates_found": "مرشح عثر عليه"
+      "candidates_found": "مرشح عثر عليه",
+      "ready_for_analysis": "جاهز للتحليل",
+      "insufficient_balance": "رصيد غير كافي",
+      "characters_entered": "حرف تم إدخاله",
+      "cv_analysis_results": "نتائج تحليل السير الذاتية",
+      "exporting": "جاري التصدير...",
+      "export_success": "تم تصدير النتائج بنجاح",
+      "export_failed": "فشل في تصدير النتائج",
+      "analysis_not_found": "لم يتم العثور على نتائج التحليل",
+      "analysis_success": "تم تحليل السيرة الذاتية بنجاح",
+      "try_changing_filters": "جرب تغيير معايير التصفية أو البحث"
     },
     "talent_search": {
       "title": "البحث عن المواهب",
@@ -96,7 +132,11 @@
       "searching": "جاري البحث...",
       "search_results": "نتائج البحث",
       "candidates_found": "تم العثور على مرشحين",
-      "note_higher_scores": "الدرجات الأعلى تستغرق وقتاً أطول لكن تقدم نتائج أكثر دقة"
+      "note_higher_scores": "الدرجات الأعلى تستغرق وقتاً أطول لكن تقدم نتائج أكثر دقة",
+      "requirements_applied": "تم تطبيق المتطلبات المولدة على نموذج البحث",
+      "search_not_found": "لم يتم العثور على نتائج",
+      "no_candidates_found": "لم يتم العثور على مرشحين يطابقون معايير البحث المحددة",
+      "search_results_count": "نتائج البحث"
     }
   },
   "pricing": {
@@ -113,7 +153,9 @@
     "buy_more": "شراء المزيد من الكريديت",
     "insufficient": "رصيد كريديت غير كافي",
     "used": "مستخدم",
-    "remaining": "متبقي"
+    "remaining": "متبقي",
+    "no_transactions": "لا توجد معاملات حتى الآن",
+    "no_transactions_type": "لا توجد معاملات من هذا النوع"
   },
   "company": {
     "name": "SEEN AI HR Solutions",
@@ -136,12 +178,42 @@
     "network": "خطأ في الشبكة",
     "package_not_found": "الحزمة غير موجودة",
     "unauthorized": "يجب تسجيل الدخول لتنفيذ هذا الإجراء",
-    "validation": "يرجى ملء جميع الحقول المطلوبة"
+    "validation": "يرجى ملء جميع الحقول المطلوبة",
+    "load_search_history": "فشل في تحميل سجل عمليات البحث",
+    "delete_search": "فشل في حذف عملية البحث",
+    "load_analysis_history": "فشل في تحميل سجل التحليلات",
+    "delete_analysis": "فشل في حذف التحليل"
   },
   "payment": {
     "success": "تم الدفع بنجاح! تم إضافة الكريديت إلى حسابك",
     "failed": "فشل في الدفع",
     "cancelled": "تم إلغاء الدفع"
+  },
+  "history": {
+    "talent_search_history": "سجل عمليات البحث عن المواهب",
+    "talent_search_history_description": "عرض جميع عمليات البحث عن المواهب السابقة",
+    "total_searches": "إجمالي عمليات البحث",
+    "completed": "مكتمل",
+    "failed": "فشل",
+    "search_in_searches": "البحث في عمليات البحث...",
+    "no_searches": "لا توجد عمليات بحث",
+    "no_search_results": "لا توجد نتائج تطابق البحث",
+    "no_searches_yet": "لم تقم بأي عملية بحث عن المواهب بعد",
+    "search_results_details": "تفاصيل نتائج البحث",
+    "search_summary": "ملخص البحث",
+    "candidates_count": "عدد المرشحين",
+    "matching_candidates": "المرشحون المطابقون",
+    "matching_candidates_count": "المرشحون المطابقون",
+    "loading_search_history": "جاري تحميل سجل عمليات البحث...",
+    "cv_analysis_history": "سجل تحليلات السيرة الذاتية",
+    "cv_analysis_history_description": "عرض جميع تحليلات السيرة الذاتية السابقة",
+    "total_analyses": "إجمالي التحليلات",
+    "search_in_analyses": "البحث في التحليلات...",
+    "no_analyses": "لا توجد تحليلات",
+    "no_analysis_results": "لا توجد نتائج تطابق البحث",
+    "no_analyses_yet": "لم تقم بأي تحليل للسيرة الذاتية بعد",
+    "analysis_details": "تفاصيل التحليل",
+    "loading_analysis_history": "جاري تحميل سجل التحليلات..."
   },
   "language": {
     "english": "English",
