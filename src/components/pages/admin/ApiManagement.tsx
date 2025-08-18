@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { adminApi } from "../../../lib/adminApi";
+import { apiUtils } from "../../../lib/api";
 import {
   CpuChipIcon,
   PlusIcon,
@@ -117,7 +118,7 @@ const ApiManagement: React.FC = () => {
 
   const testOpenAI = async (apiKey: string) => {
     try {
-      const response = await fetch("https://api.openai.com/v1/models", {
+      const response = await fetch(apiUtils.buildExternalUrl('openai', 'models'), {
         method: "GET",
         headers: {
           Authorization: `Bearer ${apiKey}`,
@@ -328,7 +329,7 @@ const ApiManagement: React.FC = () => {
                 name: "OpenAI",
                 type: "ai",
                 api_key: "",
-                endpoint: "https://api.openai.com/v1",
+                endpoint: apiUtils.buildExternalUrl('openai', ''),
                 description: "خدمة الذكاء الاصطناعي لتحليل السير الذاتية",
               });
               setShowAddModal(true);
