@@ -61,11 +61,11 @@ export function CVAnalysisHistoryPage() {
       setHistory(data || []);
     } catch (err: any) {
       console.error("Error loading CV analysis history:", err);
-      setError(err.message || t("error.load_analysis_history"));
+      setError(err.message || "Error loading analysis history");
     } finally {
       setLoading(false);
     }
-  }, [user, t]);
+  }, [user]);
 
   // Delete CV analysis
   const handleDelete = async (id: string) => {
@@ -86,7 +86,7 @@ export function CVAnalysisHistoryPage() {
       setHistory(history.filter((item) => item.id !== id));
     } catch (err: any) {
       console.error("Error deleting CV analysis:", err);
-      setError(err.message || t("error.delete_analysis"));
+      setError(err.message || "Error deleting analysis");
     }
   };
 
@@ -125,9 +125,7 @@ export function CVAnalysisHistoryPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <RefreshCw className="h-8 w-8 text-cyan-500 animate-spin mx-auto mb-4" />
-          <p className="text-gray-400">
-            {t("history.loading_analysis_history")}
-          </p>
+          <p className="text-gray-400">Loading analysis history...</p>
         </div>
       </div>
     );
