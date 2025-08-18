@@ -6,9 +6,14 @@ import { useTranslation } from "../../lib/i18n";
 interface LoadingOverlayProps {
   isVisible: boolean;
   type: "talent-search" | "cv-analysis";
+  onComplete?: () => void;
 }
 
-export function LoadingOverlay({ isVisible, type }: LoadingOverlayProps) {
+export function LoadingOverlay({
+  isVisible,
+  type,
+  onComplete,
+}: LoadingOverlayProps) {
   const { t, isRTL } = useTranslation();
   const [currentMessage, setCurrentMessage] = useState(0);
 

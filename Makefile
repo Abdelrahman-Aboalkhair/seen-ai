@@ -98,6 +98,16 @@ deploy-stop: ## Stop production container
 	docker stop seen-ai-hr-prod
 	docker rm seen-ai-hr-prod
 
+# Vercel deployment
+vercel-deploy: ## Deploy to Vercel
+	vercel --prod
+
+vercel-dev: ## Deploy to Vercel (preview)
+	vercel
+
+vercel-logs: ## Show Vercel deployment logs
+	vercel logs
+
 # Database commands (if using local Supabase)
 db-start: ## Start local Supabase database
 	docker-compose up supabase -d

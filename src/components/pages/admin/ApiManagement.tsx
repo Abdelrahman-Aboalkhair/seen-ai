@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "sonner";
-import { adminApi } from "../../lib/adminApi";
+import { adminApi } from "../../../lib/adminApi";
 import {
   CpuChipIcon,
   PlusIcon,

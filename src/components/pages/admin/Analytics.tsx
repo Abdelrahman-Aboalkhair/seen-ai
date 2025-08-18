@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { adminApi } from "../../lib/adminApi";
+import { adminApi } from "../../../lib/adminApi";
 import {
   ChartBarIcon,
   ArrowTrendingUpIcon,
