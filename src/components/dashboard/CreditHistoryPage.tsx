@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   Zap,
   TrendingUp,
@@ -30,13 +30,7 @@ export function CreditHistoryPage() {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<"all" | "purchase" | "spend">("all");
 
-  useEffect(() => {
-    if (user) {
-      fetchTransactions();
-    }
-  }, [user, filter]);
-
-  const fetchTransactions = async () => {
+  const fetchTransactions = useCallback(async () => {
     try {
       setLoading(true);
       const { data, error } = await supabase
@@ -67,7 +61,13 @@ export function CreditHistoryPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
+
+  useEffect(() => {
+    if (user) {
+      fetchTransactions();
+    }
+  }, [user, filter, fetchTransactions]);
 
   const getTransactionIcon = (type: string, serviceUsed?: string) => {
     if (type === "purchase" || type === "bonus" || type === "referral") {

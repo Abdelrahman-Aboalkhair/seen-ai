@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useAuth } from "../../lib/auth";
@@ -39,11 +39,31 @@ export function DashboardOverview() {
   const [recentActivity, setRecentActivity] = useState<any[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const loadRecentActivity = useCallback(async () => {
+    try {
+      setLoading(true);
+
+      // Get recent activity from credit usage logs
+      const { data: activities } = await supabase
+        .from("credit_transactions")
+        .select("*")
+        .eq("user_id", user!.id)
+        .order("created_at", { ascending: false })
+        .limit(5);
+
+      setRecentActivity(activities || []);
+    } catch (error) {
+      console.error("Error loading recent activity:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, [user]);
+
   useEffect(() => {
     if (user) {
       loadRecentActivity();
     }
-  }, [user]);
+  }, [user, loadRecentActivity]);
 
   useEffect(() => {
     // Check for payment success
@@ -62,26 +82,6 @@ export function DashboardOverview() {
       setSearchParams(searchParams);
     }
   }, [searchParams, setSearchParams, t, refetch]);
-
-  const loadRecentActivity = async () => {
-    try {
-      setLoading(true);
-
-      // Get recent activity from credit usage logs
-      const { data: activities } = await supabase
-        .from("credit_transactions")
-        .select("*")
-        .eq("user_id", user!.id)
-        .order("created_at", { ascending: false })
-        .limit(5);
-
-      setRecentActivity(activities || []);
-    } catch (error) {
-      console.error("Error loading recent activity:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const quickActions = [
     {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import {
   Search,
@@ -46,7 +46,7 @@ export function TalentSearchHistoryPage() {
   const [showDetails, setShowDetails] = useState(false);
 
   // Load talent search history
-  const loadHistory = async () => {
+  const loadHistory = useCallback(async () => {
     if (!user) return;
 
     try {
@@ -70,7 +70,7 @@ export function TalentSearchHistoryPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user, t]);
 
   // Delete talent search
   const handleDelete = async (id: string) => {
@@ -134,7 +134,7 @@ export function TalentSearchHistoryPage() {
   // Load history on component mount
   useEffect(() => {
     loadHistory();
-  }, [user]);
+  }, [loadHistory]);
 
   if (loading) {
     return (
@@ -288,7 +288,7 @@ export function TalentSearchHistoryPage() {
             <option value="completed">{t("history.completed")}</option>
             <option value="processing">قيد المعالجة</option>
             <option value="pending">في الانتظار</option>
-                            <option value="failed">{t("history.failed")}</option>
+            <option value="failed">{t("history.failed")}</option>
           </select>
 
           <button
@@ -306,7 +306,7 @@ export function TalentSearchHistoryPage() {
         <div className="text-center py-12">
           <Users className="h-16 w-16 text-gray-600 mx-auto mb-4" />
           <h3 className="text-xl font-semibold text-gray-400 mb-2">
-                          {t("history.no_searches")}
+            {t("history.no_searches")}
           </h3>
           <p className="text-gray-500">
             {searchTerm || statusFilter !== "all"
@@ -356,7 +356,9 @@ export function TalentSearchHistoryPage() {
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                   <div>
-                    <span className="text-gray-400">{t("history.candidates_count")}:</span>
+                    <span className="text-gray-400">
+                      {t("history.candidates_count")}:
+                    </span>
                     <span className="text-white ml-2">
                       {selectedItem.candidate_count}
                     </span>
@@ -368,7 +370,9 @@ export function TalentSearchHistoryPage() {
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">{t("history.matching_candidates")}:</span>
+                    <span className="text-gray-400">
+                      {t("history.matching_candidates")}:
+                    </span>
                     <span className="text-green-400 ml-2">
                       {selectedItem.results?.length || 0}
                     </span>
@@ -386,7 +390,8 @@ export function TalentSearchHistoryPage() {
               {selectedItem.results && selectedItem.results.length > 0 ? (
                 <div className="space-y-6">
                   <h3 className="text-lg font-semibold text-white">
-                    {t("history.matching_candidates_count")} ({selectedItem.results.length})
+                    {t("history.matching_candidates_count")} (
+                    {selectedItem.results.length})
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {selectedItem.results.map((candidate, index) => (

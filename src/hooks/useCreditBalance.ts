@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "../lib/auth";
 import { supabase } from "../lib/supabase";
 import { t } from "../lib/i18n";
@@ -11,7 +11,7 @@ export function useCreditBalance() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchBalance = async () => {
+  const fetchBalance = useCallback(async () => {
     if (!user) {
       setLoading(false);
       return;
@@ -38,11 +38,11 @@ export function useCreditBalance() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
 
   useEffect(() => {
     fetchBalance();
-  }, [user]);
+  }, [fetchBalance]);
 
   const deductCredits = async (
     amount: number,

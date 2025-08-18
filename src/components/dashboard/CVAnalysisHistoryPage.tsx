@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import {
   Search,
@@ -41,7 +41,7 @@ export function CVAnalysisHistoryPage() {
   const [showDetails, setShowDetails] = useState(false);
 
   // Load CV analysis history
-  const loadHistory = async () => {
+  const loadHistory = useCallback(async () => {
     if (!user) return;
 
     try {
@@ -65,7 +65,7 @@ export function CVAnalysisHistoryPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user, t]);
 
   // Delete CV analysis
   const handleDelete = async (id: string) => {
@@ -118,7 +118,7 @@ export function CVAnalysisHistoryPage() {
   // Load history on component mount
   useEffect(() => {
     loadHistory();
-  }, [user]);
+  }, [loadHistory]);
 
   if (loading) {
     return (

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "../lib/auth";
 import { supabase } from "../lib/supabase";
 import { useNavigate } from "react-router-dom";
@@ -18,16 +18,7 @@ export function useAdminAuth() {
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
 
-  useEffect(() => {
-    if (!user) {
-      setLoading(false);
-      return;
-    }
-
-    fetchAdminProfile();
-  }, [user]);
-
-  const fetchAdminProfile = async () => {
+  const fetchAdminProfile = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from("profiles")
@@ -55,7 +46,16 @@ export function useAdminAuth() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
+
+  useEffect(() => {
+    if (!user) {
+      setLoading(false);
+      return;
+    }
+
+    fetchAdminProfile();
+  }, [user, fetchAdminProfile]);
 
   const hasPermission = (permission: string): boolean => {
     if (!profile) return false;

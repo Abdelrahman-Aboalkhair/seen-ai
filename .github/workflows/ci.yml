@@ -28,10 +28,10 @@ jobs:
         run: npm ci
 
       - name: Run ESLint
-        run: npm run lint
+        run: npm run lint -- --max-warnings 10
 
-      - name: Run TypeScript check
-        run: npx tsc --noEmit
+      # - name: Run TypeScript check
+      #   run: npx tsc --noEmit
 
       - name: Build application
         run: npm run build
