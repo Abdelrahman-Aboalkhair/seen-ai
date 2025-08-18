@@ -719,7 +719,7 @@ export function useTranslation() {
     document.documentElement.lang = language;
 
     return unsubscribe;
-  }, []);
+  }, [language]);
 
   const t = (key: TranslationKey): string => {
     return LanguageManager.getInstance().translate(key);
