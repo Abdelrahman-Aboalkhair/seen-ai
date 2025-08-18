@@ -1,8 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../lib/auth";
-import { checkAdminPermission } from "../../services/adminService";
-import { UserCheck2 } from "lucide-react";
 
 interface AdminNavLinkProps {
   to: string;
@@ -24,28 +22,14 @@ const AdminNavLink: React.FC<AdminNavLinkProps> = ({
   requiredRole = "admin",
   badge,
 }) => {
-  const { user } = useAuth();
-  console.log("🔍 AdminNavLink Debug:", {
-    user: user?.email,
-    userId: user?.id,
-    requiredRole,
-    label,
-  });
-  const [hasPermission, setHasPermission] = React.useState(false);
+  const { user, profile } = useAuth();
 
-  React.useEffect(() => {
-    const checkPermissions = async () => {
-      if (!user) return;
-      try {
-        const hasAccess = await checkAdminPermission(requiredRole);
-        setHasPermission(hasAccess);
-      } catch (error) {
-        setHasPermission(false);
-      }
-    };
-
-    checkPermissions();
-  }, [user, requiredRole]);
+  // Simple admin permission check using auth context
+  const hasPermission =
+    profile?.is_admin === true ||
+    profile?.role === "admin" ||
+    profile?.role === "super_admin" ||
+    profile?.role === requiredRole;
 
   if (!hasPermission) {
     return null;

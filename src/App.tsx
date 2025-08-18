@@ -31,6 +31,8 @@ import { TermsPage } from "./components/pages/TermsPage";
 import { FeaturesPage } from "./components/pages/FeaturesPage";
 import { Loader2 } from "lucide-react";
 import { useTranslation, LanguageManager } from "./lib/i18n";
+import { CreditManagement } from "./pages/admin/CreditManagement";
+import DashboardRoutes from "./router/DashboardRoutes";
 
 // Create a client for React Query
 const queryClient = new QueryClient({
@@ -118,6 +120,8 @@ function LanguageWrapper({ children }: { children: React.ReactNode }) {
 }
 
 function App() {
+  console.log("App component rendered");
+
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
@@ -180,7 +184,7 @@ function App() {
 
               {/* Admin Routes */}
               <Route
-                path="/dashboard/admin/*"
+                path="/admin/*"
                 element={
                   <ProtectedRoute>
                     <AdminRoutes />

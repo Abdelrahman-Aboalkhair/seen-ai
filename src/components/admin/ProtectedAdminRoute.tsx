@@ -25,7 +25,7 @@ const ProtectedAdminRoute: React.FC<ProtectedAdminRouteProps> = ({
 
   // إعادة التوجيه لصفحة تسجيل الدخول إذا لم يكن المستخدم مسجل الدخول
   if (!user) {
-    return <Navigate to="/auth/login" replace />;
+    return <Navigate to="/login" replace />;
   }
 
   // التحقق من الدور المطلوب
