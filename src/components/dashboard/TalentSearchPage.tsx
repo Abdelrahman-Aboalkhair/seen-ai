@@ -13,6 +13,7 @@ import {
   Users,
   FileText,
   CheckCircle2,
+  Brain,
 } from "lucide-react";
 import { useAuth } from "../../lib/auth";
 import { supabase } from "../../lib/supabase";
@@ -20,6 +21,7 @@ import { useTranslation } from "../../lib/i18n";
 import { useCreditBalance } from "../../hooks/useCreditBalance";
 import { CandidateCard } from "../ui/CandidateCard";
 import { LoadingOverlay } from "../ui/LoadingOverlay";
+import { JobRequirementsGenerator } from "../ui/JobRequirementsGenerator";
 import toast from "react-hot-toast";
 
 // Match score types with costs
@@ -52,6 +54,10 @@ export function TalentSearchPage() {
   const [sortBy, setSortBy] = useState("match_score");
   const [filterByScore, setFilterByScore] = useState("all");
 
+  // Job Requirements Generator state
+  const [showRequirementsGenerator, setShowRequirementsGenerator] =
+    useState(false);
+
   // Calculate total cost
   const [totalCost, setTotalCost] = useState(0);
 
@@ -62,6 +68,17 @@ export function TalentSearchPage() {
     const cost = numberOfCandidates * scoreTypeData.total;
     setTotalCost(cost);
   }, [numberOfCandidates, matchScoreType]);
+
+  // Handle generated requirements
+  const handleRequirementsGenerated = (requirements: any) => {
+    setJobTitle(requirements.jobTitle);
+    setJobDescription(requirements.requirements);
+    setSkillsRequired(requirements.skills.join(", "));
+    setCertifications(requirements.certificates.join(", "));
+    setEducationLevel(requirements.educationLevel);
+    setShowRequirementsGenerator(false);
+    toast.success("تم تطبيق المتطلبات المولدة على نموذج البحث");
+  };
 
   const handleSearch = async () => {
     if (!user) {
@@ -186,6 +203,17 @@ export function TalentSearchPage() {
             {t("dashboard.talent_search_history")}
           </Link>
         </div>
+      </div>
+
+      {/* Job Requirements Generator Button */}
+      <div className="text-center mb-8">
+        <button
+          onClick={() => setShowRequirementsGenerator(true)}
+          className="inline-flex items-center bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-lg"
+        >
+          <Brain className="h-5 w-5 mr-2" />
+          مولد متطلبات الوظيفة بالذكاء الاصطناعي
+        </button>
       </div>
 
       {/* Current Balance Display */}
@@ -577,6 +605,15 @@ export function TalentSearchPage() {
           </button>
         </div>
       </div>
+
+      {/* Job Requirements Generator */}
+      {showRequirementsGenerator && (
+        <div className="mb-8">
+          <JobRequirementsGenerator
+            onRequirementsGenerated={handleRequirementsGenerated}
+          />
+        </div>
+      )}
 
       {/* Results */}
       {showResults && (

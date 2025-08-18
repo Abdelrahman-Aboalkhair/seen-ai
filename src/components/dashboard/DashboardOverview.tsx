@@ -69,10 +69,10 @@ export function DashboardOverview() {
 
       // Get recent activity from credit usage logs
       const { data: activities } = await supabase
-        .from("credit_usage_logs")
+        .from("credit_transactions")
         .select("*")
         .eq("user_id", user!.id)
-        .order("usage_date", { ascending: false })
+        .order("created_at", { ascending: false })
         .limit(5);
 
       setRecentActivity(activities || []);
@@ -374,7 +374,8 @@ export function DashboardOverview() {
                       }`}
                     >
                       <div className="p-2 bg-cyan-500/10 rounded-lg">
-                        {activity.service_used === "cv-analysis" ? (
+                        {activity.description?.includes("تحليل") ||
+                        activity.description?.includes("analysis") ? (
                           <FileSearch className="h-5 w-5 text-blue-400" />
                         ) : (
                           <Search className="h-5 w-5 text-purple-400" />
@@ -382,12 +383,13 @@ export function DashboardOverview() {
                       </div>
                       <div className={isRTL() ? "text-right" : ""}>
                         <p className="font-medium text-white">
-                          {activity.service_used === "cv-analysis"
+                          {activity.description?.includes("تحليل") ||
+                          activity.description?.includes("analysis")
                             ? t("services.cv_analysis.title")
                             : t("services.talent_search.title")}
                         </p>
                         <p className="text-sm text-gray-400">
-                          {formatDate(activity.usage_date)}
+                          {formatDate(activity.created_at)}
                         </p>
                       </div>
                     </div>
@@ -396,7 +398,7 @@ export function DashboardOverview() {
                         isRTL() ? "text-left" : "text-right"
                       }`}
                     >
-                      -{activity.credits_deducted} {t("credit.balance")}
+                      -{Math.abs(activity.credits_amount)} {t("credit.balance")}
                     </div>
                   </div>
                 ))}
