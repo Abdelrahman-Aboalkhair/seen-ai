@@ -200,7 +200,22 @@ Deno.serve(async (req) => {
       );
     }
 
-    const n8nData = await n8nResponse.json();
+    // Check if response is empty
+    const responseText = await n8nResponse.text();
+    console.log("n8n response text:", responseText);
+
+    if (!responseText || responseText.trim() === "") {
+      throw new Error("استجابة فارغة من خدمة البحث عن الكفاءات");
+    }
+
+    let n8nData;
+    try {
+      n8nData = JSON.parse(responseText);
+    } catch (parseError) {
+      console.error("JSON parse error:", parseError);
+      throw new Error("تنسيق استجابة غير صحيح من خدمة البحث");
+    }
+
     console.log("n8n response:", n8nData);
     console.log("n8n response type:", typeof n8nData);
     console.log("n8n response is array:", Array.isArray(n8nData));
