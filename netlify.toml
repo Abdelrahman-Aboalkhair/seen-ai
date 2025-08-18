@@ -8,6 +8,8 @@
 [build.environment]
   # Node.js version
   NODE_VERSION = "18"
+  # Force npm instead of pnpm
+  NPM_FLAGS = "--legacy-peer-deps"
 
 # Redirects for React Router (SPA)
 [[redirects]]
