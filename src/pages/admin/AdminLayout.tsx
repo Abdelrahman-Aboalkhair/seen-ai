@@ -114,6 +114,13 @@ const AdminLayout: React.FC = () => {
           />
 
           <AdminNavLink
+            to="/admin/credit-management"
+            icon={<CreditCardIcon className="h-5 w-5" />}
+            label="إدارة الائتمانات"
+            requiredRole="admin"
+          />
+
+          <AdminNavLink
             to="/admin/settings"
             icon={<Cog6ToothIcon className="h-5 w-5" />}
             label="الإعدادات"

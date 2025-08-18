@@ -52,6 +52,11 @@ export function DashboardLayout() {
       icon: FileSearch,
     },
     {
+      name: "Bulk CV Analysis",
+      href: "/dashboard/bulk-cv-analysis",
+      icon: Users,
+    },
+    {
       name: t("dashboard.cv_analysis_history"),
       href: "/dashboard/cv-analysis-history",
       icon: FileText,
