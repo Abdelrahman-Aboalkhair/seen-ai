@@ -50,12 +50,8 @@ Deno.serve(async (req) => {
     const offset = url.searchParams.get("offset") || "0";
     const search = url.searchParams.get("search") || "";
 
-    // Build query URL
-    let queryUrl = `${supabaseUrl}/rest/v1/talent_searches?user_id=eq.${actualUserId}&select=id,name,email,resume_url,created_at&order=created_at.desc&limit=${limit}&offset=${offset}`;
-
-    if (search) {
-      queryUrl += `&or=(name.ilike.%${search}%,email.ilike.%${search}%)`;
-    }
+    // Build query URL - fetch talent searches and extract candidates from results
+    const queryUrl = `${supabaseUrl}/rest/v1/talent_searches?user_id=eq.${actualUserId}&select=id,results,created_at&order=created_at.desc&limit=${limit}&offset=${offset}`;
 
     console.log("Fetching candidates with query:", queryUrl);
 
@@ -72,15 +68,42 @@ Deno.serve(async (req) => {
       throw new Error("Failed to fetch candidates");
     }
 
-    const candidates = await candidatesResponse.json();
-    console.log(`✅ Fetched ${candidates.length} candidates`);
+    const talentSearches = await candidatesResponse.json();
+
+    // Extract candidates from all talent searches
+    const allCandidates: any[] = [];
+    talentSearches.forEach((search: any) => {
+      if (search.results && Array.isArray(search.results)) {
+        // Add search_id to each candidate for reference
+        const candidatesWithSearchId = search.results.map((candidate: any) => ({
+          ...candidate,
+          search_id: search.id,
+          search_created_at: search.created_at,
+        }));
+        allCandidates.push(...candidatesWithSearchId);
+      }
+    });
+
+    // Apply search filter if provided
+    let filteredCandidates = allCandidates;
+    if (search) {
+      filteredCandidates = allCandidates.filter(
+        (candidate: any) =>
+          candidate.full_name?.toLowerCase().includes(search.toLowerCase()) ||
+          candidate.email?.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    console.log(
+      `✅ Fetched ${filteredCandidates.length} candidates from ${talentSearches.length} searches`
+    );
 
     return new Response(
       JSON.stringify({
         success: true,
         data: {
-          candidates,
-          count: candidates.length,
+          candidates: filteredCandidates,
+          count: filteredCandidates.length,
         },
       }),
       {

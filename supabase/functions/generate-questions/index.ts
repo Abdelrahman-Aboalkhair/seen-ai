@@ -73,6 +73,7 @@ Deno.serve(async (req) => {
         },
       }
     );
+    console.log("Interview response:", interviewResponse);
 
     if (!interviewResponse.ok) {
       throw new Error("Failed to fetch interview details");
@@ -113,7 +114,7 @@ Please provide only the questions, one per line, without any additional text or 
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "gpt-4o",
+          model: "gpt-4o-mini",
           messages: [
             {
               role: "user",
@@ -125,6 +126,7 @@ Please provide only the questions, one per line, without any additional text or 
         }),
       }
     );
+    console.log("openaiResponse", openaiResponse);
 
     if (!openaiResponse.ok) {
       const errorText = await openaiResponse.text();

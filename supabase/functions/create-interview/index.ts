@@ -103,7 +103,28 @@ Deno.serve(async (req) => {
       throw new Error(`Failed to create interview: ${createResponse.status}`);
     }
 
-    const createdInterview = await createResponse.json();
+    // Try to get the created interview data, but handle empty responses
+    let createdInterview: any = null;
+    try {
+      const responseText = await createResponse.text();
+      if (responseText.trim()) {
+        createdInterview = JSON.parse(responseText);
+      }
+    } catch (parseError) {
+      console.log(
+        "No JSON response body, which is normal for successful inserts"
+      );
+    }
+
+    // If no response body, construct the interview data from what we sent
+    if (!createdInterview) {
+      createdInterview = {
+        id: createResponse.headers.get("x-resource-id") || "unknown",
+        ...interviewData,
+        created_at: new Date().toISOString(),
+      };
+    }
+
     console.log("✅ Interview created successfully:", createdInterview);
 
     return new Response(
