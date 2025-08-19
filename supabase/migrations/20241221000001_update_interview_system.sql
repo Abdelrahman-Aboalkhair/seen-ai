@@ -66,6 +66,7 @@ ALTER TABLE interview_answers ENABLE ROW LEVEL SECURITY;
 ALTER TABLE interview_analyses ENABLE ROW LEVEL SECURITY;
 
 -- Create RLS policies for interview_sessions
+DROP POLICY IF EXISTS "Users can view sessions for their interviews" ON interview_sessions;
 CREATE POLICY "Users can view sessions for their interviews" ON interview_sessions
   FOR SELECT USING (
     EXISTS (
@@ -75,6 +76,7 @@ CREATE POLICY "Users can view sessions for their interviews" ON interview_sessio
     )
   );
 
+DROP POLICY IF EXISTS "Users can insert sessions for their interviews" ON interview_sessions;
 CREATE POLICY "Users can insert sessions for their interviews" ON interview_sessions
   FOR INSERT WITH CHECK (
     EXISTS (
@@ -84,6 +86,7 @@ CREATE POLICY "Users can insert sessions for their interviews" ON interview_sess
     )
   );
 
+DROP POLICY IF EXISTS "Users can update sessions for their interviews" ON interview_sessions;
 CREATE POLICY "Users can update sessions for their interviews" ON interview_sessions
   FOR UPDATE USING (
     EXISTS (
@@ -94,58 +97,47 @@ CREATE POLICY "Users can update sessions for their interviews" ON interview_sess
   );
 
 -- Allow candidates to access their own sessions via session token
+DROP POLICY IF EXISTS "Candidates can access their own sessions" ON interview_sessions;
 CREATE POLICY "Candidates can access their own sessions" ON interview_sessions
   FOR SELECT USING (
     session_token = current_setting('request.jwt.claims', true)::json->>'session_token'
   );
 
-CREATE POLICY "Candidates can update their own sessions" ON interview_sessions
-  FOR UPDATE USING (
-    session_token = current_setting('request.jwt.claims', true)::json->>'session_token'
-  );
-
 -- Create RLS policies for interview_answers
+DROP POLICY IF EXISTS "Users can view answers for their interviews" ON interview_answers;
 CREATE POLICY "Users can view answers for their interviews" ON interview_answers
   FOR SELECT USING (
     EXISTS (
-      SELECT 1 FROM interviews 
-      JOIN interview_sessions ON interviews.id = interview_sessions.interview_id
+      SELECT 1 FROM interview_sessions 
+      JOIN interviews ON interviews.id = interview_sessions.interview_id
       WHERE interview_sessions.id = interview_answers.session_id 
       AND interviews.user_id = auth.uid()
     )
   );
 
+DROP POLICY IF EXISTS "Candidates can insert their own answers" ON interview_answers;
 CREATE POLICY "Candidates can insert their own answers" ON interview_answers
   FOR INSERT WITH CHECK (
     EXISTS (
       SELECT 1 FROM interview_sessions 
       WHERE interview_sessions.id = interview_answers.session_id
-      AND session_token = current_setting('request.jwt.claims', true)::json->>'session_token'
+      AND interview_sessions.session_token = current_setting('request.jwt.claims', true)::json->>'session_token'
     )
   );
 
 -- Create RLS policies for interview_analyses
+DROP POLICY IF EXISTS "Users can view analyses for their interviews" ON interview_analyses;
 CREATE POLICY "Users can view analyses for their interviews" ON interview_analyses
   FOR SELECT USING (
     EXISTS (
-      SELECT 1 FROM interviews 
-      JOIN interview_sessions ON interviews.id = interview_sessions.interview_id
+      SELECT 1 FROM interview_sessions 
+      JOIN interviews ON interviews.id = interview_sessions.interview_id
       WHERE interview_sessions.id = interview_analyses.session_id 
       AND interviews.user_id = auth.uid()
     )
   );
 
-CREATE POLICY "Users can insert analyses for their interviews" ON interview_analyses
-  FOR INSERT WITH CHECK (
-    EXISTS (
-      SELECT 1 FROM interviews 
-      JOIN interview_sessions ON interviews.id = interview_sessions.interview_id
-      WHERE interview_sessions.id = interview_analyses.session_id 
-      AND interviews.user_id = auth.uid()
-    )
-  );
-
--- Create function to generate session token
+-- Create SQL functions
 CREATE OR REPLACE FUNCTION generate_session_token()
 RETURNS TEXT AS $$
 BEGIN
@@ -153,22 +145,28 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Create function to check if session is expired
-CREATE OR REPLACE FUNCTION is_session_expired(session_id UUID)
+CREATE OR REPLACE FUNCTION is_session_expired(session_token TEXT)
 RETURNS BOOLEAN AS $$
-DECLARE
-  session_expires_at TIMESTAMP WITH TIME ZONE;
 BEGIN
-  SELECT expires_at INTO session_expires_at
-  FROM interview_sessions
-  WHERE id = session_id;
-  
-  RETURN session_expires_at < NOW();
+  RETURN EXISTS (
+    SELECT 1 FROM interview_sessions 
+    WHERE interview_sessions.session_token = session_token 
+    AND expires_at < NOW()
+  );
 END;
 $$ LANGUAGE plpgsql;
 
--- Create trigger to update updated_at for new tables
+-- Create trigger to update updated_at
+CREATE OR REPLACE FUNCTION update_interview_sessions_updated_at()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS update_interview_sessions_updated_at ON interview_sessions;
 CREATE TRIGGER update_interview_sessions_updated_at
   BEFORE UPDATE ON interview_sessions
   FOR EACH ROW
-  EXECUTE FUNCTION update_updated_at_column();
+  EXECUTE FUNCTION update_interview_sessions_updated_at();
