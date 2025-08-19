@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { useTranslation } from "../../lib/i18n";
 import { Button } from "../ui/Button";
 import {
@@ -21,6 +22,7 @@ import {
   Search,
   Filter,
   MoreVertical,
+  Brain,
 } from "lucide-react";
 
 export function InterviewPage() {
@@ -39,10 +41,19 @@ export function InterviewPage() {
             {t("dashboard.interview_description")}
           </p>
         </div>
-        <Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600">
-          <Plus className="h-4 w-4 mr-2" />
-          {t("dashboard.schedule_interview")}
-        </Button>
+        <div className="flex gap-3">
+          <Link
+            to="/dashboard/interview-wizard"
+            className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-lg transition-colors duration-200"
+          >
+            <Plus className="h-4 w-4 mr-2" />
+            {t("dashboard.schedule_interview")}
+          </Link>
+          <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
+            <Brain className="h-4 w-4 mr-2" />
+            Smart Interview Wizard
+          </Button>
+        </div>
       </div>
 
       {/* Stats Cards */}
@@ -140,16 +151,14 @@ export function InterviewPage() {
           <div className="text-center py-12">
             <Calendar className="h-12 w-12 text-gray-500 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-gray-400 mb-2">
-              {activeTab === "upcoming" 
-                ? t("dashboard.no_upcoming_interviews") 
-                : t("dashboard.no_completed_interviews")
-              }
+              {activeTab === "upcoming"
+                ? t("dashboard.no_upcoming_interviews")
+                : t("dashboard.no_completed_interviews")}
             </h3>
             <p className="text-gray-500">
               {activeTab === "upcoming"
                 ? t("dashboard.schedule_first_interview")
-                : t("dashboard.completed_interviews_will_appear_here")
-              }
+                : t("dashboard.completed_interviews_will_appear_here")}
             </p>
           </div>
         </CardContent>

@@ -22,6 +22,7 @@ import { TalentSearchPage } from "./components/dashboard/TalentSearchPage";
 import { TalentSearchHistoryPage } from "./components/dashboard/TalentSearchHistoryPage";
 import { CVAnalysisHistoryPage } from "./components/dashboard/CVAnalysisHistoryPage";
 import { InterviewPage } from "./components/dashboard/InterviewPage";
+import { InterviewWizard } from "./features/interview";
 import { PricingPage } from "./components/pricing/PricingPage";
 import AdminRoutes from "./router/AdminRoutes";
 import { AboutPage } from "./components/pages/AboutPage";
@@ -179,6 +180,7 @@ function App() {
                   element={<CVAnalysisHistoryPage />}
                 />
                 <Route path="interview" element={<InterviewPage />} />
+                <Route path="interview-wizard" element={<InterviewWizard />} />
                 <Route path="credit-history" element={<CreditHistoryPage />} />
               </Route>
 
