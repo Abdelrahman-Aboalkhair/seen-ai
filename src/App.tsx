@@ -18,7 +18,7 @@ import { DashboardLayout } from "./components/dashboard/DashboardLayout";
 import { DashboardOverview } from "./components/dashboard/DashboardOverview";
 import { CreditHistoryPage } from "./components/dashboard/CreditHistoryPage";
 import { CVAnalysisPage } from "./components/dashboard/CVAnalysisPage";
-import { TalentSearchPage } from "./components/dashboard/TalentSearchPage";
+import { TalentSearchPage } from "./features/talent-search";
 import { TalentSearchHistoryPage } from "./components/dashboard/TalentSearchHistoryPage";
 import { CVAnalysisHistoryPage } from "./components/dashboard/CVAnalysisHistoryPage";
 import { InterviewPage } from "./components/dashboard/InterviewPage";

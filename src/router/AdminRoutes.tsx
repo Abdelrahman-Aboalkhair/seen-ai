@@ -9,8 +9,8 @@ import SupportCenter from "../pages/admin/SupportCenter";
 import SystemSettings from "../pages/admin/SystemSettings";
 import ApiManagement from "../pages/admin/ApiManagement";
 import Analytics from "../pages/admin/Analytics";
-import { TalentSearchPage } from "../components/dashboard/TalentSearchPage";
 import { CreditManagement } from "../pages/admin/CreditManagement";
+import { TalentSearchPage } from "../features/talent-search";
 
 const AdminRoutes: React.FC = () => {
   return (
