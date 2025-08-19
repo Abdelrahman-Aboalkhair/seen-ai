@@ -56,6 +56,11 @@ export const InterviewStep: React.FC<InterviewStepProps> = ({
                   <div>
                     <h4 className="text-white font-medium">{candidate.name}</h4>
                     <p className="text-gray-400 text-sm">{candidate.email}</p>
+                    {candidate.matchScore && (
+                      <p className="text-xs text-gray-500">
+                        Match Score: {candidate.matchScore}%
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">

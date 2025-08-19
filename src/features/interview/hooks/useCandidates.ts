@@ -35,17 +35,25 @@ export const useCandidates = () => {
   // Filter candidates based on search query
   const filteredCandidates = availableCandidates.filter(
     (candidate) =>
-      candidate.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      candidate.email.toLowerCase().includes(searchQuery.toLowerCase())
+      candidate.full_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      candidate.email?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   // Convert talent search candidate to interview candidate
   const convertToInterviewCandidate = (candidate: any): Candidate => ({
     candidateId: candidate.id,
-    name: candidate.name,
+    name: candidate.full_name || candidate.name || "Unknown",
     email: candidate.email,
     resumeUrl: candidate.resume_url,
     status: "pending",
+    // Add additional metadata from talent search
+    searchId: candidate.search_id,
+    searchCreatedAt: candidate.search_created_at,
+    matchScore: candidate.match_score,
+    skills: candidate.skills || [],
+    experienceYears: candidate.experience_years,
+    educationLevel: candidate.education_level,
+    location: candidate.location,
   });
 
   // Add manual candidate
@@ -53,6 +61,7 @@ export const useCandidates = () => {
     name,
     email,
     status: "pending",
+    // Manual candidates won't have talent search metadata
   });
 
   useEffect(() => {

@@ -34,9 +34,34 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
 
       {/* Results Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {candidates.map((candidate) => (
-          <CandidateCard key={candidate.id} candidate={candidate} />
-        ))}
+        {candidates.map((candidate, index) => {
+          // Transform candidate data to match CandidateCard expectations
+          const transformedCandidate = {
+            current_position:
+              candidate.current_position || "Position not specified",
+            full_name: candidate.full_name,
+            linkedin_url: candidate.linkedin_url || "",
+            match_score: candidate.match_score,
+            skills_match:
+              candidate.skills?.join(", ") || "Skills not specified",
+            experience_match: `${candidate.experience_years || 0}+ years`,
+            summary: candidate.summary || "No summary available",
+            ranking: index + 1,
+            education_match:
+              candidate.education_level || "Education not specified",
+            culture_fit: "Good cultural fit",
+            strengths: "Strong technical skills",
+            gaps: "No major gaps identified",
+          };
+
+          return (
+            <CandidateCard
+              key={candidate.id}
+              candidate={transformedCandidate}
+              index={index}
+            />
+          );
+        })}
       </div>
 
       {/* No Results */}

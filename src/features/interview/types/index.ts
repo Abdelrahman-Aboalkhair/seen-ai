@@ -26,6 +26,14 @@ export interface Candidate {
   email: string;
   resumeUrl?: string;
   status: string;
+  // Additional fields from talent search
+  searchId?: string;
+  searchCreatedAt?: string;
+  matchScore?: number;
+  skills?: string[];
+  experienceYears?: number;
+  educationLevel?: string;
+  location?: string;
 }
 
 export interface InterviewResult {
