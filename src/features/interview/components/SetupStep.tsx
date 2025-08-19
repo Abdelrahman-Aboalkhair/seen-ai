@@ -124,45 +124,20 @@ export const SetupStep: React.FC<SetupStepProps> = ({
           </div>
         </div>
 
-        <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-3">
-                <Brain className="h-4 w-4 text-white" />
-              </div>
-              <div>
-                <h3 className="text-green-400 font-medium">
-                  مولد الأسئلة الذكي
-                </h3>
-                <p className="text-green-300 text-sm">
-                  إنشاء أسئلة ذكية بناءً على الوظيفة
-                </p>
-              </div>
-            </div>
-            <button
-              onClick={onCreateInterview}
-              disabled={loading || !interviewData.jobTitle.trim()}
-              className="px-4 py-2 bg-green-600 hover:bg-green-700 disabled:bg-gray-600 text-white rounded-lg transition-colors disabled:cursor-not-allowed"
-            >
-              {loading ? "جاري الإنشاء..." : "إنشاء أسئلة"}
-            </button>
-          </div>
+        <div className="text-center">
+          <button
+            onClick={onCreateInterview}
+            disabled={loading || !interviewData.jobTitle.trim()}
+            className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-600 disabled:to-gray-600 text-white rounded-lg transition-all duration-200 disabled:cursor-not-allowed flex items-center mx-auto"
+          >
+            <Video className="h-5 w-5 mr-2" />
+            {loading ? "جاري الإنشاء..." : "إنشاء المقابلة"}
+          </button>
           {!interviewData.jobTitle.trim() && (
             <p className="text-red-400 text-sm mt-2">
               يرجى إدخال المسمى الوظيفي أولاً
             </p>
           )}
-        </div>
-
-        <div className="text-center">
-          <button
-            onClick={onCreateInterview}
-            disabled={loading || !interviewData.jobTitle.trim()}
-            className="px-8 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white rounded-lg transition-colors disabled:cursor-not-allowed flex items-center mx-auto"
-          >
-            <Video className="h-5 w-5 mr-2" />
-            {loading ? "جاري الإنشاء..." : "بدء المقابلة"}
-          </button>
         </div>
       </div>
     </div>

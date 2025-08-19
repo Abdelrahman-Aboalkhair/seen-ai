@@ -6,14 +6,16 @@ interface InterviewStepProps {
   candidates: Candidate[];
   loading: boolean;
   onSimulateInterview: (candidateIndex: number) => void;
-  onNewInterview: () => void;
+  onNext: () => void;
+  onPrevious: () => void;
 }
 
 export const InterviewStep: React.FC<InterviewStepProps> = ({
   candidates,
   loading,
   onSimulateInterview,
-  onNewInterview,
+  onNext,
+  onPrevious,
 }) => {
   return (
     <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-700">
@@ -95,12 +97,18 @@ export const InterviewStep: React.FC<InterviewStepProps> = ({
           </div>
         </div>
 
-        <div className="text-center">
+        <div className="flex justify-center space-x-4">
           <button
-            onClick={onNewInterview}
+            onClick={onPrevious}
             className="px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors"
           >
-            إنشاء مقابلة جديدة
+            السابق
+          </button>
+          <button
+            onClick={onNext}
+            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+          >
+            التالي
           </button>
         </div>
       </div>

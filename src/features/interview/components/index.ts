@@ -5,3 +5,5 @@ export { SetupStep } from "./SetupStep";
 export { CandidatesStep } from "./CandidatesStep";
 export { QuestionsStep } from "./QuestionsStep";
 export { InterviewStep } from "./InterviewStep";
+export { SummaryStep } from "./SummaryStep";
+export { QuestionCategorySelector } from "./QuestionCategorySelector";

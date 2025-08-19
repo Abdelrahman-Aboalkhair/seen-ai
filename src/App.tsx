@@ -23,6 +23,8 @@ import { TalentSearchHistoryPage } from "./components/dashboard/TalentSearchHist
 import { CVAnalysisHistoryPage } from "./components/dashboard/CVAnalysisHistoryPage";
 import { InterviewPage } from "./components/dashboard/InterviewPage";
 import { InterviewWizard } from "./features/interview";
+import { PublicInterviewPage } from "./pages/PublicInterviewPage";
+import { CandidateInterview } from "./pages/CandidateInterview";
 import { PricingPage } from "./components/pricing/PricingPage";
 import AdminRoutes from "./router/AdminRoutes";
 import { AboutPage } from "./components/pages/AboutPage";
@@ -247,6 +249,18 @@ function App() {
                     <TermsPage />
                   </PublicLayout>
                 }
+              />
+
+              {/* Public Interview Route */}
+              <Route
+                path="/interview/:interviewId"
+                element={<PublicInterviewPage />}
+              />
+
+              {/* Candidate Interview Route */}
+              <Route
+                path="/interview/:sessionToken"
+                element={<CandidateInterview />}
               />
 
               {/* Catch all route */}

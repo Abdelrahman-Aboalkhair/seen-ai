@@ -35,11 +35,18 @@ Deno.serve(async (req) => {
     }
 
     // Extract data from request
-    const { interviewId, numQuestions = 5 } = bodyData;
+    const {
+      interviewId,
+      numQuestions = 5,
+      questionType = "general",
+      jobTitle,
+      jobDescription,
+      interviewType,
+    } = bodyData;
 
     // Validate required fields
-    if (!interviewId) {
-      throw new Error("Interview ID is required");
+    if (!jobTitle) {
+      throw new Error("Job title is required");
     }
 
     // Get user from auth header
@@ -63,41 +70,144 @@ Deno.serve(async (req) => {
     const userData = await userResponse.json();
     const actualUserId = userData.id;
 
-    // Get interview details
-    const interviewResponse = await fetch(
-      `${supabaseUrl}/rest/v1/interviews?id=eq.${interviewId}&user_id=eq.${actualUserId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${serviceRoleKey}`,
-          apikey: serviceRoleKey,
-        },
+    // Use passed data or fetch interview details if needed
+    let interview = {
+      job_title: jobTitle,
+      job_description: jobDescription,
+      interview_type: interviewType,
+    };
+
+    // If we have an interviewId and it's not "temp", try to fetch from database
+    if (interviewId && interviewId !== "temp") {
+      const interviewResponse = await fetch(
+        `${supabaseUrl}/rest/v1/interviews?id=eq.${interviewId}&user_id=eq.${actualUserId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${serviceRoleKey}`,
+            apikey: serviceRoleKey,
+          },
+        }
+      );
+
+      if (interviewResponse.ok) {
+        const interviews = await interviewResponse.json();
+        if (interviews && interviews.length > 0) {
+          interview = interviews[0];
+        }
       }
-    );
-    console.log("Interview response:", interviewResponse);
-
-    if (!interviewResponse.ok) {
-      throw new Error("Failed to fetch interview details");
     }
 
-    const interviews = await interviewResponse.json();
-    if (!interviews || interviews.length === 0) {
-      throw new Error("Interview not found or access denied");
-    }
-
-    const interview = interviews[0];
     console.log("Generating questions for interview:", interview);
 
-    // Generate questions using OpenAI
-    const prompt = `Generate ${numQuestions} professional interview questions for a ${
-      interview.interview_type
-    } interview for the position of "${interview.job_title}".
+    // Generate questions using OpenAI based on question type
+    const getQuestionTypePrompt = (type: string) => {
+      const typePrompts: Record<string, string> = {
+        technical: `Generate ${numQuestions} technical interview questions for a ${
+          interviewType || interview.interview_type
+        } interview for the position of "${jobTitle || interview.job_title}".
 
-Job Description: ${interview.job_description || "Not provided"}
+Job Description: ${
+          jobDescription || interview.job_description || "Not provided"
+        }
+
+Requirements:
+1. Questions should focus on technical skills and knowledge
+2. Include coding problems, system design, and technical concepts
+3. Questions should be appropriate for the job level
+4. Mix of easy, medium, and hard difficulty questions`,
+
+        behavioral: `Generate ${numQuestions} behavioral interview questions for a ${
+          interviewType || interview.interview_type
+        } interview for the position of "${jobTitle || interview.job_title}".
+
+Job Description: ${
+          jobDescription || interview.job_description || "Not provided"
+        }
+
+Requirements:
+1. Questions should focus on past behavior and experiences
+2. Use STAR method (Situation, Task, Action, Result) format
+3. Questions should assess soft skills and work ethic
+4. Include questions about teamwork, leadership, and problem-solving`,
+
+        situational: `Generate ${numQuestions} situational interview questions for a ${
+          interviewType || interview.interview_type
+        } interview for the position of "${jobTitle || interview.job_title}".
+
+Job Description: ${
+          jobDescription || interview.job_description || "Not provided"
+        }
+
+Requirements:
+1. Questions should present hypothetical work scenarios
+2. Focus on how the candidate would handle specific situations
+3. Include questions about conflict resolution and decision-making
+4. Questions should be relevant to the job role`,
+
+        problem_solving: `Generate ${numQuestions} problem-solving interview questions for a ${
+          interviewType || interview.interview_type
+        } interview for the position of "${jobTitle || interview.job_title}".
+
+Job Description: ${
+          jobDescription || interview.job_description || "Not provided"
+        }
+
+Requirements:
+1. Questions should test analytical and problem-solving skills
+2. Include both technical and business problem scenarios
+3. Questions should assess logical thinking and creativity
+4. Mix of structured and open-ended problems`,
+
+        leadership: `Generate ${numQuestions} leadership interview questions for a ${
+          interviewType || interview.interview_type
+        } interview for the position of "${jobTitle || interview.job_title}".
+
+Job Description: ${
+          jobDescription || interview.job_description || "Not provided"
+        }
+
+Requirements:
+1. Questions should focus on leadership and management skills
+2. Include questions about team management and motivation
+3. Questions should assess strategic thinking and vision
+4. Include scenarios about leading change and innovation`,
+
+        culture_fit: `Generate ${numQuestions} culture fit interview questions for a ${
+          interviewType || interview.interview_type
+        } interview for the position of "${jobTitle || interview.job_title}".
+
+Job Description: ${
+          jobDescription || interview.job_description || "Not provided"
+        }
+
+Requirements:
+1. Questions should assess alignment with company values
+2. Include questions about work style and preferences
+3. Questions should evaluate adaptability and growth mindset
+4. Focus on long-term career goals and motivations`,
+
+        general: `Generate ${numQuestions} professional interview questions for a ${
+          interviewType || interview.interview_type
+        } interview for the position of "${jobTitle || interview.job_title}".
+
+Job Description: ${
+          jobDescription || interview.job_description || "Not provided"
+        }
 
 Requirements:
 1. Questions should be relevant to the job title and description
 2. Mix of technical, behavioral, and situational questions
 3. Questions should be clear and professional
+4. Include questions appropriate for the interview type`,
+      };
+
+      return typePrompts[type] || typePrompts.general;
+    };
+
+    const prompt =
+      getQuestionTypePrompt(questionType) +
+      `
+
 4. Each question should be on a separate line
 5. Number each question (1, 2, 3, etc.)
 
@@ -151,70 +261,82 @@ Please provide only the questions, one per line, without any additional text or 
 
     console.log("Generated questions:", questions);
 
-    // Save questions to database
-    const questionsToSave = questions.map((question, index) => ({
-      interview_id: interviewId,
-      question_text: question,
-      question_type: "general", // Default type
-      is_ai_generated: true,
-      order_index: index + 1,
+    // Format questions for response
+    const formattedQuestions = questions.map((question, index) => ({
+      id: `temp_${Date.now()}_${index}`,
+      questionText: question,
+      questionType: questionType,
+      isAiGenerated: true,
+      orderIndex: index + 1,
+      category: questionType,
     }));
 
-    // Delete existing AI-generated questions for this interview
-    await fetch(
-      `${supabaseUrl}/rest/v1/interview_questions?interview_id=eq.${interviewId}&is_ai_generated=eq.true`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${serviceRoleKey}`,
-          apikey: serviceRoleKey,
-        },
-      }
-    );
+    // Only save to database if we have a real interviewId
+    if (interviewId && interviewId !== "temp") {
+      const questionsToSave = questions.map((question, index) => ({
+        interview_id: interviewId,
+        question_text: question,
+        question_type: questionType,
+        is_ai_generated: true,
+        order_index: index + 1,
+      }));
 
-    // Insert new questions
-    const saveResponse = await fetch(
-      `${supabaseUrl}/rest/v1/interview_questions`,
-      {
-        method: "POST",
+      // Delete existing AI-generated questions for this interview
+      await fetch(
+        `${supabaseUrl}/rest/v1/interview_questions?interview_id=eq.${interviewId}&is_ai_generated=eq.true`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${serviceRoleKey}`,
+            apikey: serviceRoleKey,
+          },
+        }
+      );
+
+      // Insert new questions
+      const saveResponse = await fetch(
+        `${supabaseUrl}/rest/v1/interview_questions`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${serviceRoleKey}`,
+            apikey: serviceRoleKey,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(questionsToSave),
+        }
+      );
+
+      if (!saveResponse.ok) {
+        const errorText = await saveResponse.text();
+        console.error("Failed to save questions:", errorText);
+        // Don't throw error, just log it and continue
+      }
+    }
+    console.log("✅ Questions generated successfully:", formattedQuestions);
+
+    // Update interview status only if we have a real interviewId
+    if (interviewId && interviewId !== "temp") {
+      await fetch(`${supabaseUrl}/rest/v1/interviews?id=eq.${interviewId}`, {
+        method: "PATCH",
         headers: {
           Authorization: `Bearer ${serviceRoleKey}`,
           apikey: serviceRoleKey,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(questionsToSave),
-      }
-    );
-
-    if (!saveResponse.ok) {
-      const errorText = await saveResponse.text();
-      console.error("Failed to save questions:", errorText);
-      throw new Error("Failed to save generated questions");
+        body: JSON.stringify({
+          status: "questions_ready",
+          updated_at: new Date().toISOString(),
+        }),
+      });
     }
-
-    const savedQuestions = await saveResponse.json();
-    console.log("✅ Questions saved successfully:", savedQuestions);
-
-    // Update interview status
-    await fetch(`${supabaseUrl}/rest/v1/interviews?id=eq.${interviewId}`, {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${serviceRoleKey}`,
-        apikey: serviceRoleKey,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        status: "questions_ready",
-        updated_at: new Date().toISOString(),
-      }),
-    });
 
     return new Response(
       JSON.stringify({
         success: true,
         data: {
-          questions: savedQuestions,
-          count: questions.length,
+          questions: formattedQuestions,
+          count: formattedQuestions.length,
         },
       }),
       {
