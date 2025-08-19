@@ -28,6 +28,8 @@ export interface Candidate {
   availability: string;
   salary_expectation?: string;
   created_at: string;
+  current_position?: string;
+  summary?: string;
 }
 
 export interface SearchResult {

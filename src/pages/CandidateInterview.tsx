@@ -18,6 +18,19 @@ import {
   ArrowRight,
   ArrowLeft,
   Timer,
+  Brain,
+  Target,
+  Zap,
+  Trophy,
+  Sparkles,
+  Eye,
+  FileText,
+  Users,
+  Globe,
+  Shield,
+  Wifi,
+  Volume2,
+  Calendar,
 } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import toast from "react-hot-toast";
@@ -233,8 +246,27 @@ export const CandidateInterview: React.FC = () => {
 
       if (error) throw error;
 
+      // Trigger AI analysis
+      try {
+        console.log("Triggering AI analysis for session:", session.id);
+        const { data: analysisData, error: analysisError } =
+          await supabase.functions.invoke("analyze-interview-results", {
+            body: { sessionId: session.id },
+          });
+
+        if (analysisError) {
+          console.error("Analysis error:", analysisError);
+          toast.error("تم إكمال المقابلة ولكن فشل في تحليل النتائج");
+        } else {
+          console.log("Analysis completed successfully:", analysisData);
+          toast.success("تم إكمال المقابلة وتحليل النتائج بنجاح");
+        }
+      } catch (analysisError) {
+        console.error("Error triggering analysis:", analysisError);
+        toast.error("تم إكمال المقابلة ولكن فشل في تحليل النتائج");
+      }
+
       setIsCompleted(true);
-      toast.success("تم إكمال المقابلة بنجاح");
     } catch (error: any) {
       console.error("Error completing interview:", error);
       toast.error("فشل في إكمال المقابلة");
@@ -331,13 +363,22 @@ export const CandidateInterview: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4" />
-          <p className="text-muted-foreground">جاري تحميل المقابلة...</p>
-          <p className="text-sm text-gray-500 mt-2">
-            Session Token: {sessionToken}
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
+        <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-12 border border-slate-700 max-w-md w-full text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mb-6">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+          </div>
+          <h3 className="text-xl font-semibold text-white mb-2">
+            جاري تحميل المقابلة
+          </h3>
+          <p className="text-gray-400">
+            يرجى الانتظار بينما نقوم بإعداد المقابلة الذكية...
           </p>
+          <div className="mt-4 p-3 bg-slate-700/50 rounded-lg">
+            <p className="text-xs text-gray-500">
+              Session Token: {sessionToken}
+            </p>
+          </div>
         </div>
       </div>
     );
@@ -345,88 +386,180 @@ export const CandidateInterview: React.FC = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Card className="max-w-md">
-          <CardContent className="pt-6 text-center">
-            <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-            <h2 className="text-xl font-semibold mb-2">خطأ في المقابلة</h2>
-            <p className="text-muted-foreground mb-4">{error}</p>
-            <Button onClick={() => navigate("/")}>
-              العودة للصفحة الرئيسية
-            </Button>
-          </CardContent>
-        </Card>
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
+        <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-12 border border-slate-700 max-w-md w-full text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-full mb-6">
+            <AlertCircle className="h-8 w-8 text-white" />
+          </div>
+          <h3 className="text-xl font-semibold text-white mb-2">
+            خطأ في المقابلة
+          </h3>
+          <p className="text-gray-400 mb-6">{error}</p>
+          <Button
+            onClick={() => navigate("/")}
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+          >
+            العودة للصفحة الرئيسية
+          </Button>
+        </div>
       </div>
     );
   }
 
   if (isCompleted) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Card className="max-w-md">
-          <CardContent className="pt-6 text-center">
-            <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
-            <h2 className="text-xl font-semibold mb-2">تم إكمال المقابلة</h2>
-            <p className="text-muted-foreground mb-4">
-              شكراً لك على إكمال المقابلة. سنتواصل معك قريباً.
-            </p>
-            <Button onClick={() => navigate("/")}>
-              العودة للصفحة الرئيسية
-            </Button>
-          </CardContent>
-        </Card>
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
+        <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-12 border border-slate-700 max-w-md w-full text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mb-6">
+            <Trophy className="h-8 w-8 text-white" />
+          </div>
+          <h3 className="text-xl font-semibold text-white mb-2">
+            تم إكمال المقابلة بنجاح! 🎉
+          </h3>
+          <p className="text-gray-400 mb-6">
+            شكراً لك على إكمال المقابلة الذكية. سيتم تحليل إجاباتك باستخدام
+            الذكاء الاصطناعي وسنتواصل معك قريباً.
+          </p>
+          <Button
+            onClick={() => navigate("/")}
+            className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white"
+          >
+            العودة للصفحة الرئيسية
+          </Button>
+        </div>
       </div>
     );
   }
 
   if (!isStarted) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <Card className="max-w-2xl w-full">
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl mb-2">
-              مرحباً بك في المقابلة
-            </CardTitle>
-            <p className="text-muted-foreground">{interviewData?.job_title}</p>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="text-center p-4 bg-muted rounded-lg">
-                <Clock className="h-8 w-8 mx-auto mb-2 text-blue-600" />
-                <div className="font-bold">
-                  {interviewData?.duration_minutes}
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6">
+        <div className="max-w-4xl mx-auto">
+          {/* Header */}
+          <div className="bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-2xl p-8 border border-blue-500/20 mb-8">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mb-6">
+                <Brain className="h-10 w-10 text-white" />
+              </div>
+              <h1 className="text-4xl font-bold text-white mb-3">
+                مرحباً بك في المقابلة الذكية
+              </h1>
+              <p className="text-gray-400 text-lg mb-6">
+                مقابلة{" "}
+                <span className="text-blue-400 font-semibold">
+                  {interviewData?.job_title}
+                </span>{" "}
+                باستخدام الذكاء الاصطناعي
+              </p>
+            </div>
+          </div>
+
+          {/* Stats Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Clock className="h-6 w-6 text-blue-400" />
                 </div>
-                <div className="text-sm text-muted-foreground">دقيقة</div>
-              </div>
-              <div className="text-center p-4 bg-muted rounded-lg">
-                <CheckCircle className="h-8 w-8 mx-auto mb-2 text-green-600" />
-                <div className="font-bold">{questions.length}</div>
-                <div className="text-sm text-muted-foreground">سؤال</div>
-              </div>
-              <div className="text-center p-4 bg-muted rounded-lg">
-                <Timer className="h-8 w-8 mx-auto mb-2 text-orange-600" />
-                <div className="font-bold">2</div>
-                <div className="text-sm text-muted-foreground">دقيقة/سؤال</div>
+                <p className="text-2xl font-bold text-white">
+                  {interviewData?.duration_minutes}
+                </p>
+                <p className="text-gray-400 text-sm">دقيقة</p>
               </div>
             </div>
 
-            <div className="bg-blue-50 dark:bg-blue-950/20 p-4 rounded-lg">
-              <h3 className="font-semibold mb-2">تعليمات مهمة:</h3>
-              <ul className="text-sm space-y-1 text-blue-700 dark:text-blue-200">
-                <li>• تأكد من وجود اتصال إنترنت مستقر</li>
-                <li>• احضر في بيئة هادئة ومناسبة</li>
-                <li>• كل سؤال له وقت محدد (2 دقيقة)</li>
-                <li>• لا يمكنك العودة للسؤال السابق</li>
-                <li>• لا يمكنك إعادة المقابلة بعد البدء</li>
-              </ul>
+            <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <FileText className="h-6 w-6 text-green-400" />
+                </div>
+                <p className="text-2xl font-bold text-white">
+                  {questions.length}
+                </p>
+                <p className="text-gray-400 text-sm">سؤال</p>
+              </div>
             </div>
 
-            <Button onClick={startInterview} size="lg" className="w-full">
-              <Play className="h-4 w-4 mr-2" />
-              بدء المقابلة
+            <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Timer className="h-6 w-6 text-orange-400" />
+                </div>
+                <p className="text-2xl font-bold text-white">2</p>
+                <p className="text-gray-400 text-sm">دقيقة/سؤال</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Instructions */}
+          <div className="bg-gradient-to-r from-amber-600/10 to-orange-600/10 rounded-2xl p-8 border border-amber-500/20 mb-8">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center">
+                <Shield className="h-6 w-6 text-amber-400" />
+              </div>
+              <h3 className="text-2xl font-bold text-white">تعليمات مهمة</h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="flex items-center gap-3 p-4 bg-slate-800/50 rounded-lg">
+                <div className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                  <Wifi className="h-4 w-4 text-blue-400" />
+                </div>
+                <span className="text-gray-300">
+                  تأكد من وجود اتصال إنترنت مستقر
+                </span>
+              </div>
+
+              <div className="flex items-center gap-3 p-4 bg-slate-800/50 rounded-lg">
+                <div className="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
+                  <Volume2 className="h-4 w-4 text-green-400" />
+                </div>
+                <span className="text-gray-300">
+                  احضر في بيئة هادئة ومناسبة
+                </span>
+              </div>
+
+              <div className="flex items-center gap-3 p-4 bg-slate-800/50 rounded-lg">
+                <div className="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                  <Timer className="h-4 w-4 text-purple-400" />
+                </div>
+                <span className="text-gray-300">
+                  كل سؤال له وقت محدد (2 دقيقة)
+                </span>
+              </div>
+
+              <div className="flex items-center gap-3 p-4 bg-slate-800/50 rounded-lg">
+                <div className="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center">
+                  <AlertCircle className="h-4 w-4 text-red-400" />
+                </div>
+                <span className="text-gray-300">
+                  لا يمكنك العودة للسؤال السابق
+                </span>
+              </div>
+
+              <div className="flex items-center gap-3 p-4 bg-slate-800/50 rounded-lg md:col-span-2">
+                <div className="w-8 h-8 bg-cyan-500/20 rounded-lg flex items-center justify-center">
+                  <Brain className="h-4 w-4 text-cyan-400" />
+                </div>
+                <span className="text-gray-300">
+                  سيتم تحليل إجاباتك باستخدام الذكاء الاصطناعي
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Start Button */}
+          <div className="text-center">
+            <Button
+              onClick={startInterview}
+              size="lg"
+              className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold px-12 py-4 text-lg h-auto"
+            >
+              <Play className="h-6 w-6 mr-3" />
+              بدء المقابلة الذكية
             </Button>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     );
   }
@@ -435,99 +568,137 @@ export const CandidateInterview: React.FC = () => {
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-4">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6">
+      <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <Card className="mb-6">
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-between mb-4">
+        <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700 mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+                <Target className="h-6 w-6 text-white" />
+              </div>
               <div>
-                <h1 className="text-xl font-semibold">
+                <h1 className="text-2xl font-bold text-white">
                   {interviewData?.job_title}
                 </h1>
-                <p className="text-muted-foreground">
+                <p className="text-gray-400">
                   السؤال {currentQuestionIndex + 1} من {questions.length}
                 </p>
               </div>
-              <div className="text-right">
-                <div className="text-2xl font-bold text-red-600">
-                  {formatTime(timeRemaining)}
+            </div>
+
+            <div className="text-right">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-12 bg-red-500/20 rounded-lg flex items-center justify-center">
+                  <Clock className="h-5 w-5 text-red-400" />
                 </div>
-                <div className="text-sm text-muted-foreground">
-                  الوقت المتبقي
+                <div>
+                  <div className="text-3xl font-bold text-red-400 font-mono">
+                    {formatTime(timeRemaining)}
+                  </div>
+                  <div className="text-sm text-gray-400">الوقت المتبقي</div>
                 </div>
               </div>
             </div>
-            <Progress value={progress} className="h-2" />
-          </CardContent>
-        </Card>
+          </div>
 
-        {/* Question */}
-        <Card className="mb-6">
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle>السؤال الحالي</CardTitle>
-              <Badge variant="outline">{currentQuestion?.test_type}</Badge>
+          {/* Progress Bar */}
+          <div className="space-y-2">
+            <div className="flex justify-between text-sm text-gray-400">
+              <span>التقدم</span>
+              <span>{Math.round(progress)}%</span>
             </div>
-          </CardHeader>
-          <CardContent>
-            <div className="mb-6">
-              <p className="text-lg leading-relaxed">
+            <div className="w-full bg-slate-700 rounded-full h-3">
+              <div
+                className="bg-gradient-to-r from-blue-500 to-purple-500 h-3 rounded-full transition-all duration-300"
+                style={{ width: `${progress}%` }}
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Question Card */}
+        <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700 mb-6 overflow-hidden">
+          <div className="bg-gradient-to-r from-slate-700/50 to-slate-800/50 p-6 border-b border-slate-600">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold text-white flex items-center gap-3">
+                <div className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                  <FileText className="h-4 w-4 text-blue-400" />
+                </div>
+                السؤال الحالي
+              </h2>
+              <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30">
+                {currentQuestion?.test_type}
+              </Badge>
+            </div>
+          </div>
+
+          <div className="p-6">
+            <div className="mb-8">
+              <p className="text-lg leading-relaxed text-gray-200">
                 {currentQuestion?.question_text}
               </p>
             </div>
 
             <div className="space-y-4">
               <label className="block">
-                <span className="block text-sm font-medium mb-2">إجابتك:</span>
+                <span className="block text-sm font-medium mb-3 text-gray-300 flex items-center gap-2">
+                  <div className="w-5 h-5 bg-green-500/20 rounded flex items-center justify-center">
+                    <Zap className="h-3 w-3 text-green-400" />
+                  </div>
+                  إجابتك:
+                </span>
                 <Textarea
                   value={answers[currentQuestion?.id || ""] || ""}
                   onChange={(e) => handleAnswerChange(e.target.value)}
                   placeholder="اكتب إجابتك هنا..."
-                  rows={6}
-                  className="w-full"
+                  rows={8}
+                  className="w-full bg-slate-700/50 border-slate-600 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500/20 resize-none"
                 />
               </label>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
         {/* Navigation */}
-        <Card>
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <Button
-                onClick={handlePreviousQuestion}
-                disabled={currentQuestionIndex === 0}
-                variant="outline"
-              >
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                السؤال السابق
-              </Button>
+        <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700">
+          <div className="flex items-center justify-between">
+            <Button
+              onClick={handlePreviousQuestion}
+              disabled={currentQuestionIndex === 0}
+              variant="outline"
+              className="border-slate-600 text-gray-300 hover:bg-slate-700 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              السؤال السابق
+            </Button>
 
-              <div className="text-sm text-muted-foreground">
+            <div className="text-center">
+              <div className="text-sm text-gray-400 mb-1">التقدم</div>
+              <div className="text-lg font-semibold text-white">
                 {currentQuestionIndex + 1} من {questions.length}
               </div>
-
-              <Button
-                onClick={handleNextQuestion}
-                disabled={!answers[currentQuestion?.id || ""]?.trim()}
-              >
-                {currentQuestionIndex === questions.length - 1 ? (
-                  <>
-                    إنهاء المقابلة
-                    <CheckCircle className="h-4 w-4 mr-2" />
-                  </>
-                ) : (
-                  <>
-                    السؤال التالي
-                    <ArrowRight className="h-4 w-4 mr-2" />
-                  </>
-                )}
-              </Button>
             </div>
-          </CardContent>
-        </Card>
+
+            <Button
+              onClick={handleNextQuestion}
+              disabled={!answers[currentQuestion?.id || ""]?.trim()}
+              className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {currentQuestionIndex === questions.length - 1 ? (
+                <>
+                  إنهاء المقابلة
+                  <Trophy className="h-4 w-4 mr-2" />
+                </>
+              ) : (
+                <>
+                  السؤال التالي
+                  <ArrowRight className="h-4 w-4 mr-2" />
+                </>
+              )}
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -24,6 +24,7 @@ import { CVAnalysisHistoryPage } from "./components/dashboard/CVAnalysisHistoryP
 import { InterviewPage } from "./components/dashboard/InterviewPage";
 import { InterviewWizard } from "./features/interview";
 import { CandidateInterview } from "./pages/CandidateInterview";
+import { InterviewResults } from "./pages/InterviewResults";
 import { PricingPage } from "./components/pricing/PricingPage";
 import AdminRoutes from "./router/AdminRoutes";
 import { AboutPage } from "./components/pages/AboutPage";
@@ -183,6 +184,10 @@ function App() {
                 />
                 <Route path="interview" element={<InterviewPage />} />
                 <Route path="interview-wizard" element={<InterviewWizard />} />
+                <Route
+                  path="interview-results/:interviewId"
+                  element={<InterviewResults />}
+                />
                 <Route path="credit-history" element={<CreditHistoryPage />} />
               </Route>
 

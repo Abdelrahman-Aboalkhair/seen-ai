@@ -136,7 +136,8 @@
       "requirements_applied": "تم تطبيق المتطلبات المولدة على نموذج البحث",
       "search_not_found": "لم يتم العثور على نتائج",
       "no_candidates_found": "لم يتم العثور على مرشحين يطابقون معايير البحث المحددة",
-      "search_results_count": "نتائج البحث"
+      "search_results_count": "نتائج البحث",
+      "history": "سجل البحث"
     }
   },
   "pricing": {

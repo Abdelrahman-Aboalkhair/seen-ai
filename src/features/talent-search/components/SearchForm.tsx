@@ -216,7 +216,6 @@ export const SearchForm: React.FC<SearchFormProps> = ({
       {/* Job Requirements Generator Modal */}
       {showRequirementsGenerator && (
         <JobRequirementsGenerator
-          onClose={() => setShowRequirementsGenerator(false)}
           onRequirementsGenerated={handleRequirementsGenerated}
         />
       )}

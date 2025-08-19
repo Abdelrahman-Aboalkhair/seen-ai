@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { DashboardLayout } from "../components/dashboard/DashboardLayout";
 import { DashboardOverview } from "../components/dashboard/DashboardOverview";
-import { TalentSearchPage } from "../components/dashboard/TalentSearchPage";
+import { TalentSearchPage } from "../features/talent-search/components/TalentSearchPage";
 import { CVAnalysisPage } from "../components/dashboard/CVAnalysisPage";
 import { CVAnalysisHistoryPage } from "../components/dashboard/CVAnalysisHistoryPage";
 import { TalentSearchHistoryPage } from "../components/dashboard/TalentSearchHistoryPage";

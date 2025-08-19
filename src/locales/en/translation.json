@@ -133,7 +133,8 @@
       "requirements_applied": "Generated requirements applied to search form",
       "search_not_found": "Search results not found",
       "no_candidates_found": "No candidates found matching the specified search criteria",
-      "search_results_count": "Search Results"
+      "search_results_count": "Search Results",
+      "history": "Search History"
     }
   },
   "pricing": {

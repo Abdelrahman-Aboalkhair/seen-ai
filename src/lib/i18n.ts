@@ -88,6 +88,7 @@ const translations = {
     "services.talent_search.title": "البحث عن المرشحين",
     "services.talent_search.description": "بحث متقدم عن أفضل المواهب",
     "services.talent_search.cost": "كريديت لكل بحث",
+    "services.talent_search.history": "سجل البحث",
 
     // Forms
     "form.email": "البريد الإلكتروني",
@@ -410,6 +411,7 @@ const translations = {
     "services.talent_search.title": "Talent Search",
     "services.talent_search.description": "Advanced search for top talent",
     "services.talent_search.cost": "Credits per search",
+    "services.talent_search.history": "Search History",
 
     // Forms
     "form.email": "Email",
