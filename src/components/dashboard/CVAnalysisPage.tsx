@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FileText,
@@ -198,22 +198,13 @@ export function CVAnalysisPage() {
               {t("services.cv_analysis.description")}
             </p>
           </div>
-          <div className="flex gap-3">
-            <Link
-              to="/dashboard/bulk-cv-analysis"
-              className="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200"
-            >
-              <Users className="h-4 w-4 mr-2" />
-              Bulk CV Analysis
-            </Link>
-            <Link
-              to="/dashboard/cv-analysis-history"
-              className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200"
-            >
-              <FileText className="h-4 w-4 mr-2" />
-              {t("dashboard.cv_analysis_history")}
-            </Link>
-          </div>
+          <Link
+            to="/dashboard/cv-analysis-history"
+            className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200"
+          >
+            <FileText className="h-4 w-4 mr-2" />
+            {t("dashboard.cv_analysis_history")}
+          </Link>
         </div>
       </div>
 
