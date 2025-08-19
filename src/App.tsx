@@ -23,7 +23,6 @@ import { TalentSearchHistoryPage } from "./components/dashboard/TalentSearchHist
 import { CVAnalysisHistoryPage } from "./components/dashboard/CVAnalysisHistoryPage";
 import { InterviewPage } from "./components/dashboard/InterviewPage";
 import { InterviewWizard } from "./features/interview";
-import { PublicInterviewPage } from "./pages/PublicInterviewPage";
 import { CandidateInterview } from "./pages/CandidateInterview";
 import { PricingPage } from "./components/pricing/PricingPage";
 import AdminRoutes from "./router/AdminRoutes";
@@ -124,6 +123,7 @@ function LanguageWrapper({ children }: { children: React.ReactNode }) {
 
 function App() {
   console.log("App component rendered");
+  console.log("Current location:", window.location.pathname);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -251,12 +251,6 @@ function App() {
                 }
               />
 
-              {/* Public Interview Route */}
-              <Route
-                path="/interview/:interviewId"
-                element={<PublicInterviewPage />}
-              />
-
               {/* Candidate Interview Route */}
               <Route
                 path="/interview/:sessionToken"
@@ -264,7 +258,7 @@ function App() {
               />
 
               {/* Catch all route */}
-              <Route path="*" element={<Navigate to="/" replace />} />
+              {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
             </Routes>
 
             {/* Toast Notifications */}

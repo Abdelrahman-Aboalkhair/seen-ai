@@ -70,7 +70,7 @@ Deno.serve(async (req) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "SmartRecruiter <noreply@smartrecruiter.com>",
+        from: "SmartRecruiter <onboarding@resend.dev>",
         to: candidateEmail,
         subject: `مقابلة جديدة - ${jobTitle}`,
         html: emailContent.html,

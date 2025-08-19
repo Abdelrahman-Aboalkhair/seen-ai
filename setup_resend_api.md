@@ -14,7 +14,10 @@ The interview system is now working in **development mode** - it logs email deta
    - Go to your Supabase Dashboard
    - Navigate to Settings > API
    - Add environment variable: `RESEND_API_KEY` = your_api_key_here
-4. **Redeploy the function**:
+4. **Domain Configuration**:
+   - **For Testing**: The function now uses `onboarding@resend.dev` (Resend's default domain)
+   - **For Production**: Add and verify your domain at https://resend.com/domains
+5. **Redeploy the function**:
    ```bash
    npx supabase functions deploy send-interview-invitation
    ```

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   Card,
@@ -24,32 +24,47 @@ import toast from "react-hot-toast";
 
 interface InterviewSession {
   id: string;
-  interviewId: string;
-  candidateId: string;
-  sessionToken: string;
+  interview_id: string;
+  candidate_id: string;
+  session_token: string;
   status: "pending" | "started" | "completed" | "expired";
-  startedAt?: string;
-  completedAt?: string;
-  expiresAt: string;
+  started_at?: string;
+  completed_at?: string;
+  expires_at: string;
 }
 
 interface InterviewQuestion {
   id: string;
-  questionText: string;
-  testType: string;
-  questionDurationSeconds: number;
-  questionOrder: number;
+  question_text: string;
+  test_type: string;
+  question_duration_seconds: number;
+  question_order: number;
 }
 
 interface InterviewData {
-  jobTitle: string;
-  durationMinutes: number;
-  testTypes: string[];
+  job_title: string;
+  duration_minutes: number;
+  test_types: string[];
 }
 
 export const CandidateInterview: React.FC = () => {
-  const { sessionToken } = useParams<{ sessionToken: string }>();
+  const { sessionToken: encodedSessionToken } = useParams<{
+    sessionToken: string;
+  }>();
   const navigate = useNavigate();
+
+  // Decode the session token from URL
+  const sessionToken = encodedSessionToken
+    ? decodeURIComponent(encodedSessionToken)
+    : null;
+
+  console.log(
+    "CandidateInterview component loaded with sessionToken:",
+    sessionToken
+  );
+  console.log("Encoded sessionToken from URL:", encodedSessionToken);
+  console.log("Current URL:", window.location.href);
+  console.log("Component is rendering...");
 
   const [session, setSession] = useState<InterviewSession | null>(null);
   const [interviewData, setInterviewData] = useState<InterviewData | null>(
@@ -64,57 +79,35 @@ export const CandidateInterview: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (sessionToken) {
-      loadInterviewSession();
-    }
-  }, [sessionToken]);
-
-  useEffect(() => {
-    if (isStarted && questions.length > 0) {
-      const currentQuestion = questions[currentQuestionIndex];
-      if (currentQuestion) {
-        setTimeRemaining(currentQuestion.questionDurationSeconds);
-      }
-    }
-  }, [isStarted, questions, currentQuestionIndex]);
-
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-
-    if (isStarted && timeRemaining > 0) {
-      timer = setTimeout(() => {
-        setTimeRemaining((prev) => {
-          if (prev <= 1) {
-            // Auto-submit current answer and move to next question
-            handleNextQuestion();
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    }
-
-    return () => clearTimeout(timer);
-  }, [isStarted, timeRemaining]);
-
-  const loadInterviewSession = async () => {
+  const loadInterviewSession = useCallback(async () => {
     try {
       setLoading(true);
+      console.log("Loading session with token:", sessionToken);
 
       // Get session data
+      console.log("Querying for session with token:", sessionToken);
       const { data: sessionData, error: sessionError } = await supabase
         .from("interview_sessions")
         .select("*")
         .eq("session_token", sessionToken)
         .single();
 
-      if (sessionError) throw sessionError;
+      if (sessionError) {
+        console.error("Session error:", sessionError);
+        throw sessionError;
+      }
 
       if (!sessionData) {
         setError("Session not found");
         return;
       }
+
+      console.log("Session data:", sessionData);
+      console.log(
+        "Session interview_id type:",
+        typeof sessionData.interview_id
+      );
+      console.log("Session interview_id value:", sessionData.interview_id);
 
       // Check if session is expired
       if (new Date(sessionData.expires_at) < new Date()) {
@@ -125,13 +118,24 @@ export const CandidateInterview: React.FC = () => {
       setSession(sessionData);
 
       // Get interview data
+      console.log("Fetching interview with ID:", sessionData.interview_id);
+      console.log(
+        "Is interview_id a valid UUID?",
+        /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
+          sessionData.interview_id
+        )
+      );
       const { data: interviewData, error: interviewError } = await supabase
         .from("interviews")
         .select("job_title, duration_minutes, test_types")
         .eq("id", sessionData.interview_id)
         .single();
 
-      if (interviewError) throw interviewError;
+      if (interviewError) {
+        console.error("Interview error:", interviewError);
+        throw interviewError;
+      }
+      console.log("Interview data:", interviewData);
       setInterviewData(interviewData);
 
       // Get questions
@@ -156,7 +160,7 @@ export const CandidateInterview: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [sessionToken]);
 
   const startInterview = async () => {
     if (!session) return;
@@ -186,57 +190,29 @@ export const CandidateInterview: React.FC = () => {
     }
   };
 
-  const handleAnswerChange = (answer: string) => {
-    const currentQuestion = questions[currentQuestionIndex];
-    if (currentQuestion) {
-      setAnswers((prev) => ({
-        ...prev,
-        [currentQuestion.id]: answer,
-      }));
-    }
-  };
+  const saveAnswer = useCallback(
+    async (questionId: string, answer: string) => {
+      if (!session) return;
 
-  const handleNextQuestion = async () => {
-    const currentQuestion = questions[currentQuestionIndex];
-    if (currentQuestion) {
-      // Save current answer
-      await saveAnswer(currentQuestion.id, answers[currentQuestion.id] || "");
-    }
+      try {
+        const { error } = await supabase.from("interview_answers").upsert({
+          session_id: session.id,
+          question_id: questionId,
+          answer_text: answer,
+          time_taken_seconds:
+            questions[currentQuestionIndex]?.question_duration_seconds -
+              timeRemaining || 0,
+        });
 
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex((prev) => prev + 1);
-    } else {
-      // Interview completed
-      await completeInterview();
-    }
-  };
+        if (error) throw error;
+      } catch (error: any) {
+        console.error("Error saving answer:", error);
+      }
+    },
+    [session, questions, currentQuestionIndex, timeRemaining]
+  );
 
-  const handlePreviousQuestion = () => {
-    if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex((prev) => prev - 1);
-    }
-  };
-
-  const saveAnswer = async (questionId: string, answer: string) => {
-    if (!session) return;
-
-    try {
-      const { error } = await supabase.from("interview_answers").upsert({
-        session_id: session.id,
-        question_id: questionId,
-        answer_text: answer,
-        time_taken_seconds:
-          questions[currentQuestionIndex]?.questionDurationSeconds -
-            timeRemaining || 0,
-      });
-
-      if (error) throw error;
-    } catch (error: any) {
-      console.error("Error saving answer:", error);
-    }
-  };
-
-  const completeInterview = async () => {
+  const completeInterview = useCallback(async () => {
     if (!session) return;
 
     try {
@@ -263,6 +239,37 @@ export const CandidateInterview: React.FC = () => {
       console.error("Error completing interview:", error);
       toast.error("فشل في إكمال المقابلة");
     }
+  }, [session, questions, currentQuestionIndex, answers, saveAnswer]);
+
+  const handleAnswerChange = (answer: string) => {
+    const currentQuestion = questions[currentQuestionIndex];
+    if (currentQuestion) {
+      setAnswers((prev) => ({
+        ...prev,
+        [currentQuestion.id]: answer,
+      }));
+    }
+  };
+
+  const handleNextQuestion = useCallback(async () => {
+    const currentQuestion = questions[currentQuestionIndex];
+    if (currentQuestion) {
+      // Save current answer
+      await saveAnswer(currentQuestion.id, answers[currentQuestion.id] || "");
+    }
+
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex((prev) => prev + 1);
+    } else {
+      // Interview completed
+      await completeInterview();
+    }
+  }, [questions, currentQuestionIndex, answers, saveAnswer, completeInterview]);
+
+  const handlePreviousQuestion = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex((prev) => prev - 1);
+    }
   };
 
   const formatTime = (seconds: number) => {
@@ -275,12 +282,62 @@ export const CandidateInterview: React.FC = () => {
     return questions[currentQuestionIndex];
   };
 
+  useEffect(() => {
+    if (sessionToken && sessionToken.trim() !== "") {
+      console.log("Loading interview session with token:", sessionToken);
+      loadInterviewSession();
+    } else {
+      console.error("Invalid session token:", sessionToken);
+      setError("Invalid interview link");
+    }
+  }, [sessionToken, loadInterviewSession]);
+
+  useEffect(() => {
+    if (isStarted && questions.length > 0) {
+      const currentQuestion = questions[currentQuestionIndex];
+      if (currentQuestion) {
+        setTimeRemaining(currentQuestion.question_duration_seconds);
+      }
+    }
+  }, [isStarted, questions, currentQuestionIndex]);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+
+    if (isStarted && timeRemaining > 0) {
+      timer = setTimeout(() => {
+        setTimeRemaining((prev) => {
+          if (prev <= 1) {
+            // Auto-submit current answer and move to next question
+            handleNextQuestion();
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+
+    return () => clearTimeout(timer);
+  }, [isStarted, timeRemaining, handleNextQuestion]);
+
+  // Debug: Always show this first to confirm component is rendering
+  console.log("CandidateInterview render state:", {
+    loading,
+    error,
+    session,
+    interviewData,
+    questions,
+  });
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4" />
           <p className="text-muted-foreground">جاري تحميل المقابلة...</p>
+          <p className="text-sm text-gray-500 mt-2">
+            Session Token: {sessionToken}
+          </p>
         </div>
       </div>
     );
@@ -330,14 +387,14 @@ export const CandidateInterview: React.FC = () => {
             <CardTitle className="text-2xl mb-2">
               مرحباً بك في المقابلة
             </CardTitle>
-            <p className="text-muted-foreground">{interviewData?.jobTitle}</p>
+            <p className="text-muted-foreground">{interviewData?.job_title}</p>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="text-center p-4 bg-muted rounded-lg">
                 <Clock className="h-8 w-8 mx-auto mb-2 text-blue-600" />
                 <div className="font-bold">
-                  {interviewData?.durationMinutes}
+                  {interviewData?.duration_minutes}
                 </div>
                 <div className="text-sm text-muted-foreground">دقيقة</div>
               </div>
@@ -386,7 +443,7 @@ export const CandidateInterview: React.FC = () => {
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h1 className="text-xl font-semibold">
-                  {interviewData?.jobTitle}
+                  {interviewData?.job_title}
                 </h1>
                 <p className="text-muted-foreground">
                   السؤال {currentQuestionIndex + 1} من {questions.length}
@@ -410,13 +467,13 @@ export const CandidateInterview: React.FC = () => {
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle>السؤال الحالي</CardTitle>
-              <Badge variant="outline">{currentQuestion?.testType}</Badge>
+              <Badge variant="outline">{currentQuestion?.test_type}</Badge>
             </div>
           </CardHeader>
           <CardContent>
             <div className="mb-6">
               <p className="text-lg leading-relaxed">
-                {currentQuestion?.questionText}
+                {currentQuestion?.question_text}
               </p>
             </div>
 

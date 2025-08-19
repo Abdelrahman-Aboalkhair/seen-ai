@@ -278,7 +278,7 @@ export const useInterviewWizard = () => {
       allCandidates.unshift({
         candidateId: "00000000-0000-0000-0000-000000000001", // Use a valid UUID format
         name: "Abdelrahman Aboalkhair (Test)",
-        email: "bgbody5@gmail.com",
+        email: "abdelrahman.aboalkhair1@gmail.com", // Use your verified Resend email
         resumeUrl: null,
         status: "pending",
       });
@@ -384,29 +384,14 @@ export const useInterviewWizard = () => {
         );
 
         const candidatesToInsert = selectedCandidates.map((candidate) => {
-          // Handle test candidates differently
-          if (
-            candidate.candidateId === "00000000-0000-0000-0000-000000000001"
-          ) {
-            // For test candidates, don't set candidate_id (let it be null)
-            return {
-              interview_id: interviewData.id,
-              name: candidate.name,
-              email: candidate.email,
-              resume_url: candidate.resumeUrl,
-              status: "pending",
-            };
-          } else {
-            // For real candidates, use the candidate_id
-            return {
-              interview_id: interviewData.id,
-              candidate_id: candidate.candidateId,
-              name: candidate.name,
-              email: candidate.email,
-              resume_url: candidate.resumeUrl,
-              status: "pending",
-            };
-          }
+          // All candidates are inserted the same way since interview_candidates table doesn't have candidate_id
+          return {
+            interview_id: interviewData.id,
+            name: candidate.name,
+            email: candidate.email,
+            resume_url: candidate.resumeUrl,
+            status: "pending",
+          };
         });
 
         const { error } = await supabase
@@ -452,15 +437,26 @@ export const useInterviewWizard = () => {
 
       // Generate session for each candidate
       for (const candidate of interviewCandidates) {
-        // Create interview session
+        // Create interview session using database function for session token
+        console.log("Creating session for candidate:", candidate.email);
+        console.log("Interview ID:", interviewData.id);
+
+        // Generate session token using database function
+        const { data: tokenData, error: tokenError } = await supabase.rpc(
+          "generate_session_token"
+        );
+
+        if (tokenError) throw tokenError;
+
+        const sessionToken = tokenData;
+        console.log("Generated session token:", sessionToken);
+
         const { data: session, error: sessionError } = await supabase
           .from("interview_sessions")
           .insert({
             interview_id: interviewData.id,
             candidate_id: candidate.id,
-            session_token: btoa(
-              Math.random().toString(36) + Date.now().toString(36)
-            ),
+            session_token: sessionToken,
             expires_at: new Date(
               Date.now() + 7 * 24 * 60 * 60 * 1000
             ).toISOString(), // 7 days
@@ -477,7 +473,9 @@ export const useInterviewWizard = () => {
             body: {
               candidateEmail: candidate.email,
               candidateName: candidate.name,
-              interviewLink: `${window.location.origin}/interview/${session.session_token}`,
+              interviewLink: `${
+                window.location.origin
+              }/interview/${encodeURIComponent(session.session_token)}`,
               jobTitle: interviewData.jobTitle,
               durationMinutes: interviewData.durationMinutes,
             },
