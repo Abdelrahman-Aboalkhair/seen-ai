@@ -23,9 +23,21 @@ Deno.serve(async (req) => {
       throw new Error("Environment settings not available");
     }
 
-    // Get interview ID from query parameters
+    // Get interview ID from query parameters or request body
     const url = new URL(req.url);
-    const interviewId = url.searchParams.get("interviewId");
+    let interviewId = url.searchParams.get("interviewId");
+    let includeResults = url.searchParams.get("includeResults") === "true";
+
+    // If not in query params, try to get from request body
+    if (!interviewId && req.method === "POST") {
+      try {
+        const bodyData = await req.json();
+        interviewId = bodyData.interviewId;
+        includeResults = bodyData.includeResults === true;
+      } catch (e) {
+        console.error("Error parsing request body:", e);
+      }
+    }
 
     if (!interviewId) {
       throw new Error("Interview ID is required");
@@ -128,8 +140,55 @@ Deno.serve(async (req) => {
       }
     }
 
+    // If includeResults is true, also fetch sessions and analyses
+    let sessions = [];
+    let analyses = [];
+
+    if (includeResults) {
+      // Fetch sessions
+      const sessionsResponse = await fetch(
+        `${supabaseUrl}/rest/v1/interview_sessions?interview_id=eq.${interviewId}&select=*,interview_candidates(name,email),interviews(job_title,job_description,test_types)`,
+        {
+          headers: {
+            Authorization: `Bearer ${serviceRoleKey}`,
+            apikey: serviceRoleKey,
+          },
+        }
+      );
+
+      if (sessionsResponse.ok) {
+        sessions = await sessionsResponse.json();
+
+        // Fetch analyses for all sessions
+        if (sessions.length > 0) {
+          const sessionIds = sessions.map((s: any) => s.id);
+          const analysesResponse = await fetch(
+            `${supabaseUrl}/rest/v1/interview_analyses?session_id=in.(${sessionIds.join(
+              ","
+            )})`,
+            {
+              headers: {
+                Authorization: `Bearer ${serviceRoleKey}`,
+                apikey: serviceRoleKey,
+              },
+            }
+          );
+
+          if (analysesResponse.ok) {
+            analyses = await analysesResponse.json();
+          }
+        }
+      }
+    }
+
     console.log(
-      `✅ Fetched interview data: ${questions.length} questions, ${candidates.length} candidates, ${results.length} results`
+      `✅ Fetched interview data: ${questions.length} questions, ${
+        candidates.length
+      } candidates, ${results.length} results${
+        includeResults
+          ? `, ${sessions.length} sessions, ${analyses.length} analyses`
+          : ""
+      }`
     );
 
     return new Response(
@@ -140,6 +199,7 @@ Deno.serve(async (req) => {
           questions,
           candidates,
           results,
+          ...(includeResults && { sessions, analyses }),
         },
       }),
       {

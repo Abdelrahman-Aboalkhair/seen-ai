@@ -38,11 +38,13 @@ export function InterviewPage() {
   const [activeTab, setActiveTab] = useState("upcoming");
   const { interviews, loading, error, refetch, deleteInterview } =
     useInterviews();
+  console.log("interviews: ", interviews);
 
   // Calculate statistics
   const upcomingInterviews = interviews.filter(
     (interview) =>
-      interview.status === "pending" || interview.status === "started"
+      interview.status === "questions_ready" ||
+      interview.status === "in_progress"
   );
 
   const completedInterviews = interviews.filter(
@@ -251,8 +253,8 @@ export function InterviewPage() {
                 .filter((interview) => {
                   if (activeTab === "upcoming") {
                     return (
-                      interview.status === "pending" ||
-                      interview.status === "started"
+                      interview.status === "questions_ready" ||
+                      interview.status === "in_progress"
                     );
                   } else {
                     return interview.status === "completed";
@@ -274,14 +276,18 @@ export function InterviewPage() {
                               variant={
                                 interview.status === "completed"
                                   ? "default"
-                                  : "secondary"
+                                  : interview.status === "in_progress"
+                                  ? "secondary"
+                                  : "outline"
                               }
                               className="text-xs"
                             >
                               {interview.status === "completed"
                                 ? "مكتمل"
-                                : interview.status === "started"
+                                : interview.status === "in_progress"
                                 ? "قيد التقدم"
+                                : interview.status === "questions_ready"
+                                ? "جاهز للبدء"
                                 : "في الانتظار"}
                             </Badge>
                           </div>

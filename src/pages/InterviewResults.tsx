@@ -106,35 +106,29 @@ export const InterviewResults: React.FC = () => {
       setLoading(true);
       setError(null);
 
-      // Load interview sessions
-      const { data: sessionsData, error: sessionsError } = await supabase
-        .from("interview_sessions")
-        .select(
-          `
-          *,
-          interview_candidates(name, email),
-          interviews(job_title, job_description, test_types)
-        `
-        )
-        .eq("interview_id", interviewId)
-        .order("created_at", { ascending: false });
+      // Use the edge function to get interview data with results
+      const { data, error: fetchError } = await supabase.functions.invoke(
+        "get-interview-data",
+        {
+          method: "POST",
+          body: {
+            interviewId,
+            includeResults: true,
+          },
+        }
+      );
 
-      if (sessionsError) throw sessionsError;
+      if (fetchError) throw fetchError;
 
-      setSessions(sessionsData || []);
-
-      // Load analyses for all sessions
-      if (sessionsData && sessionsData.length > 0) {
-        const sessionIds = sessionsData.map((s) => s.id);
-        const { data: analysesData, error: analysesError } = await supabase
-          .from("interview_analyses")
-          .select("*")
-          .in("session_id", sessionIds)
-          .order("created_at", { ascending: false });
-
-        if (analysesError) throw analysesError;
-        setAnalyses(analysesData || []);
+      if (!data.success) {
+        throw new Error(
+          data.error?.message || "Failed to fetch interview results"
+        );
       }
+
+      console.log("Interview results data:", data.data);
+      setSessions(data.data.sessions || []);
+      setAnalyses(data.data.analyses || []);
     } catch (error: any) {
       console.error("Error loading interview results:", error);
       setError(error.message);
@@ -392,10 +386,11 @@ export const InterviewResults: React.FC = () => {
                         </h4>
                       </div>
                       <p className="text-white font-medium mb-1">
-                        {session.interviews.job_title}
+                        {session.interviews?.job_title || "N/A"}
                       </p>
                       <p className="text-sm text-gray-400">
-                        {session.interviews.job_description}
+                        {session.interviews?.job_description ||
+                          "No description available"}
                       </p>
                     </div>
 

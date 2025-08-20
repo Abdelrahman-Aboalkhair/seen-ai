@@ -27,14 +27,21 @@ export const useInterviews = () => {
       setLoading(true);
       setError(null);
 
-      const { data, error: fetchError } = await supabase
-        .from("interviews")
-        .select("*")
-        .order("created_at", { ascending: false });
+      const { data, error: fetchError } = await supabase.functions.invoke(
+        "get-interviews",
+        {
+          method: "GET",
+        }
+      );
 
       if (fetchError) throw fetchError;
 
-      setInterviews(data || []);
+      if (!data.success) {
+        throw new Error(data.error?.message || "Failed to fetch interviews");
+      }
+
+      console.log("data: ", data.data);
+      setInterviews(data.data || []);
     } catch (err: any) {
       console.error("Error fetching interviews:", err);
       setError(err.message);
