@@ -1,16 +1,21 @@
 import React, { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "../../../components/ui/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../../components/ui/Card";
 import { Button } from "../../../components/ui/Button";
 import { Badge } from "../../../components/ui/Badge";
 import { Progress } from "../../../components/ui/Progress";
-import { 
-  ChevronLeft, 
-  ChevronRight, 
-  CheckCircle, 
+import {
+  ChevronLeft,
+  ChevronRight,
+  CheckCircle,
   Circle,
   Users,
   FileText,
-  Share2
+  Share2,
 } from "lucide-react";
 import { useInterviewWizard } from "../hooks/useInterviewWizard";
 import { InterviewSetup } from "./InterviewSetup";
@@ -37,7 +42,9 @@ export const InterviewWizard: React.FC = () => {
     resetInterview,
   } = useInterviewWizard();
 
-  const [selectedCandidateIds, setSelectedCandidateIds] = useState<string[]>([]);
+  const [selectedCandidateIds, setSelectedCandidateIds] = useState<string[]>(
+    []
+  );
   const [interviewCandidates, setInterviewCandidates] = useState<any[]>([]);
 
   const currentStep = interviewData.currentStep;
@@ -55,7 +62,9 @@ export const InterviewWizard: React.FC = () => {
     } else if (currentStep === 2) {
       // Step 2: Add candidates to interview
       if (selectedCandidateIds.length > 0) {
-        const addedCandidates = await addCandidatesToInterview(selectedCandidateIds);
+        const addedCandidates = await addCandidatesToInterview(
+          selectedCandidateIds
+        );
         setInterviewCandidates(addedCandidates || []);
       }
     }
@@ -68,15 +77,15 @@ export const InterviewWizard: React.FC = () => {
   };
 
   const handleCandidateToggle = (candidateId: string) => {
-    setSelectedCandidateIds(prev => 
-      prev.includes(candidateId) 
-        ? prev.filter(id => id !== candidateId)
+    setSelectedCandidateIds((prev) =>
+      prev.includes(candidateId)
+        ? prev.filter((id) => id !== candidateId)
         : [...prev, candidateId]
     );
   };
 
   const handleSelectAll = () => {
-    setSelectedCandidateIds(candidates.map(c => c.candidateId!));
+    setSelectedCandidateIds(candidates.map((c) => c.candidateId!));
   };
 
   const handleDeselectAll = () => {
@@ -109,9 +118,10 @@ export const InterviewWizard: React.FC = () => {
             onContinueToNextStep={handleNextStep}
             generatingQuestions={generatingQuestions}
             balance={balance}
+            onToggleTestType={toggleTestType}
           />
         );
-      
+
       case 2:
         return (
           <CandidateSelection
@@ -125,19 +135,19 @@ export const InterviewWizard: React.FC = () => {
             onFetchCandidates={fetchCandidates}
           />
         );
-      
+
       case 3:
         return (
           <InterviewSummary
             interviewData={interviewData}
             questions={questions}
-            candidates={interviewCandidates}
-            onGenerateLinks={generateInterviewLinks}
-            onResetInterview={resetInterview}
-            loading={loading}
+            canGenerateQuestions={false}
+            onGenerateQuestions={() => {}}
+            generatingQuestions={false}
+            balance={balance}
           />
         );
-      
+
       default:
         return null;
     }
@@ -182,11 +192,15 @@ export const InterviewWizard: React.FC = () => {
                 <div key={step.id} className="flex items-center gap-2">
                   <div className="flex items-center gap-2">
                     {getStepIcon(step.id)}
-                    <div className={`text-sm font-medium ${
-                      getStepStatus(step.id) === 'completed' ? 'text-green-600' :
-                      getStepStatus(step.id) === 'current' ? 'text-primary' :
-                      'text-muted-foreground'
-                    }`}>
+                    <div
+                      className={`text-sm font-medium ${
+                        getStepStatus(step.id) === "completed"
+                          ? "text-green-600"
+                          : getStepStatus(step.id) === "current"
+                          ? "text-primary"
+                          : "text-muted-foreground"
+                      }`}
+                    >
                       {step.title}
                     </div>
                   </div>
@@ -196,20 +210,18 @@ export const InterviewWizard: React.FC = () => {
                 </div>
               ))}
             </div>
-            
+
             <Badge variant="outline">
               الخطوة {currentStep} من {totalSteps}
             </Badge>
           </div>
-          
+
           <Progress value={(currentStep / totalSteps) * 100} className="h-2" />
         </CardContent>
       </Card>
 
       {/* Step Content */}
-      <div className="min-h-[600px]">
-        {renderStepContent()}
-      </div>
+      <div className="min-h-[600px]">{renderStepContent()}</div>
 
       {/* Navigation */}
       {currentStep < 3 && (
@@ -224,20 +236,20 @@ export const InterviewWizard: React.FC = () => {
                 <ChevronLeft className="h-4 w-4 mr-2" />
                 السابق
               </Button>
-              
+
               <div className="flex items-center gap-4">
                 {currentStep === 1 && questions.length > 0 && (
                   <div className="text-sm text-muted-foreground">
                     تم إنشاء {questions.length} سؤال
                   </div>
                 )}
-                
+
                 {currentStep === 2 && selectedCandidateIds.length > 0 && (
                   <div className="text-sm text-muted-foreground">
                     {selectedCandidateIds.length} مرشح محدد
                   </div>
                 )}
-                
+
                 <Button
                   onClick={handleNextStep}
                   disabled={!canProceedToNextStep() || loading}
@@ -263,19 +275,26 @@ export const InterviewWizard: React.FC = () => {
       {/* Step Indicators */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {INTERVIEW_STEPS.map((step) => (
-          <Card key={step.id} className={`${
-            getStepStatus(step.id) === 'completed' ? 'border-green-200 bg-green-50 dark:bg-green-950/20' :
-            getStepStatus(step.id) === 'current' ? 'border-primary bg-primary/5' :
-            'border-muted'
-          }`}>
+          <Card
+            key={step.id}
+            className={`${
+              getStepStatus(step.id) === "completed"
+                ? "border-green-200 bg-green-50 dark:bg-green-950/20"
+                : getStepStatus(step.id) === "current"
+                ? "border-primary bg-primary/5"
+                : "border-muted"
+            }`}
+          >
             <CardContent className="pt-6">
               <div className="flex items-center gap-3 mb-2">
                 {getStepIcon(step.id)}
                 <h3 className="font-semibold">{step.title}</h3>
               </div>
-              <p className="text-sm text-muted-foreground">{step.description}</p>
-              
-              {getStepStatus(step.id) === 'completed' && (
+              <p className="text-sm text-muted-foreground">
+                {step.description}
+              </p>
+
+              {getStepStatus(step.id) === "completed" && (
                 <Badge variant="secondary" className="mt-2">
                   مكتمل
                 </Badge>

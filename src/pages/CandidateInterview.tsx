@@ -52,6 +52,9 @@ interface InterviewQuestion {
   test_type: string;
   question_duration_seconds: number;
   question_order: number;
+  question_options?: Array<{ id: string; text: string }>;
+  correct_answer?: string;
+  question_type?: string;
 }
 
 interface InterviewData {
@@ -155,7 +158,7 @@ export const CandidateInterview: React.FC = () => {
       const { data: questionsData, error: questionsError } = await supabase
         .from("interview_questions")
         .select(
-          "id, question_text, test_type, question_duration_seconds, question_order"
+          "id, question_text, test_type, question_duration_seconds, question_order, question_options, correct_answer, question_type"
         )
         .eq("interview_id", sessionData.interview_id)
         .order("question_order");
@@ -646,15 +649,47 @@ export const CandidateInterview: React.FC = () => {
                   <div className="w-5 h-5 bg-green-500/20 rounded flex items-center justify-center">
                     <Zap className="h-3 w-3 text-green-400" />
                   </div>
-                  إجابتك:
+                  اختر إجابتك:
                 </span>
-                <Textarea
-                  value={answers[currentQuestion?.id || ""] || ""}
-                  onChange={(e) => handleAnswerChange(e.target.value)}
-                  placeholder="اكتب إجابتك هنا..."
-                  rows={8}
-                  className="w-full bg-slate-700/50 border-slate-600 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500/20 resize-none"
-                />
+                <div className="space-y-3">
+                  {currentQuestion?.question_options?.map((option: any) => (
+                    <label
+                      key={option.id}
+                      className={`flex items-center p-4 rounded-lg border-2 cursor-pointer transition-all duration-200 ${
+                        answers[currentQuestion?.id || ""] === option.id
+                          ? "border-blue-500 bg-blue-500/10"
+                          : "border-slate-600 bg-slate-700/50 hover:border-slate-500"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name={`question-${currentQuestion?.id}`}
+                        value={option.id}
+                        checked={
+                          answers[currentQuestion?.id || ""] === option.id
+                        }
+                        onChange={(e) => handleAnswerChange(e.target.value)}
+                        className="sr-only"
+                      />
+                      <div
+                        className={`w-5 h-5 rounded-full border-2 mr-3 flex items-center justify-center ${
+                          answers[currentQuestion?.id || ""] === option.id
+                            ? "border-blue-500 bg-blue-500"
+                            : "border-slate-400"
+                        }`}
+                      >
+                        {answers[currentQuestion?.id || ""] === option.id && (
+                          <div className="w-2 h-2 bg-white rounded-full"></div>
+                        )}
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-white mb-1">
+                          {option.id}. {option.text}
+                        </div>
+                      </div>
+                    </label>
+                  ))}
+                </div>
               </label>
             </div>
           </div>
@@ -682,7 +717,7 @@ export const CandidateInterview: React.FC = () => {
 
             <Button
               onClick={handleNextQuestion}
-              disabled={!answers[currentQuestion?.id || ""]?.trim()}
+              disabled={!answers[currentQuestion?.id || ""]}
               className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {currentQuestionIndex === questions.length - 1 ? (

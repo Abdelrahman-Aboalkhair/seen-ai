@@ -3,6 +3,7 @@ import { supabase } from "../../../lib/supabase";
 import {
   InterviewData,
   TestType,
+  DurationOption,
   Question,
   Candidate,
   TEST_TYPES,
@@ -51,26 +52,22 @@ export const useInterviewWizard = () => {
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(interviewData));
   }, [interviewData]);
 
-  // Calculate total questions and credits based on selected test types and duration
+  // Calculate total questions and credits based on selected test types and their plans
   const calculateInterviewDetails = useCallback(
-    (selectedTypes: TestType[], duration: number) => {
-      const durationOption = DURATION_OPTIONS.find(
-        (opt) => opt.value === duration
-      );
-      if (!durationOption) return { totalQuestions: 0, creditsUsed: 0 };
-
-      const maxTestTypes = durationOption.maxTestTypes;
-      const actualTestTypes = selectedTypes.slice(0, maxTestTypes);
-
+    (selectedTypes: TestType[]) => {
       let totalQuestions = 0;
       let creditsUsed = 0;
 
-      actualTestTypes.forEach((testType) => {
-        const questionsPerType = Math.floor(
-          durationOption.questionCount / actualTestTypes.length
-        );
-        totalQuestions += questionsPerType;
-        creditsUsed += questionsPerType * testType.creditsPerQuestion;
+      selectedTypes.forEach((testType) => {
+        if (testType.selectedPlan) {
+          totalQuestions += testType.selectedPlan.questionCount;
+          creditsUsed += testType.selectedPlan.credits;
+        } else {
+          // Fallback to default plan if none selected
+          const defaultPlan = testType.durationOptions[0];
+          totalQuestions += defaultPlan.questionCount;
+          creditsUsed += defaultPlan.credits;
+        }
       });
 
       return { totalQuestions, creditsUsed };
@@ -84,11 +81,10 @@ export const useInterviewWizard = () => {
       setInterviewData((prev) => {
         const updated = { ...prev, ...updates };
 
-        // Recalculate questions and credits if test types or duration changed
-        if (updates.selectedTestTypes || updates.durationMinutes) {
+        // Recalculate questions and credits if test types changed
+        if (updates.selectedTestTypes) {
           const { totalQuestions, creditsUsed } = calculateInterviewDetails(
-            updates.selectedTestTypes || prev.selectedTestTypes,
-            updates.durationMinutes || prev.durationMinutes
+            updates.selectedTestTypes
           );
           updated.totalQuestions = totalQuestions;
           updated.creditsUsed = creditsUsed;
@@ -102,7 +98,7 @@ export const useInterviewWizard = () => {
 
   // Toggle test type selection
   const toggleTestType = useCallback(
-    (testType: TestType) => {
+    (testType: TestType, selectedPlan?: DurationOption) => {
       setInterviewData((prev) => {
         const isSelected = prev.selectedTestTypes.some(
           (t) => t.id === testType.id
@@ -110,29 +106,30 @@ export const useInterviewWizard = () => {
         let newSelectedTypes: TestType[];
 
         if (isSelected) {
-          newSelectedTypes = prev.selectedTestTypes.filter(
-            (t) => t.id !== testType.id
-          );
-        } else {
-          // Check if we can add more test types based on duration
-          const durationOption = DURATION_OPTIONS.find(
-            (opt) => opt.value === prev.durationMinutes
-          );
-          if (
-            durationOption &&
-            prev.selectedTestTypes.length >= durationOption.maxTestTypes
-          ) {
-            toast.error(
-              `يمكنك اختيار ${durationOption.maxTestTypes} أنواع اختبار كحد أقصى لمدة ${prev.durationMinutes} دقيقة`
+          if (selectedPlan) {
+            // Update the plan for existing test type
+            newSelectedTypes = prev.selectedTestTypes.map((t) =>
+              t.id === testType.id ? { ...t, selectedPlan } : t
             );
-            return prev;
+          } else {
+            // Remove test type
+            newSelectedTypes = prev.selectedTestTypes.filter(
+              (t) => t.id !== testType.id
+            );
           }
-          newSelectedTypes = [...prev.selectedTestTypes, testType];
+        } else {
+          // Add new test type with selected plan
+          if (!selectedPlan) {
+            // If no plan selected, use the first available plan
+            selectedPlan = testType.durationOptions[0];
+          }
+          
+          const testTypeWithPlan = { ...testType, selectedPlan };
+          newSelectedTypes = [...prev.selectedTestTypes, testTypeWithPlan];
         }
 
         const { totalQuestions, creditsUsed } = calculateInterviewDetails(
-          newSelectedTypes,
-          prev.durationMinutes
+          newSelectedTypes
         );
 
         return {
@@ -180,9 +177,8 @@ export const useInterviewWizard = () => {
       let questionOrder = 1;
 
       for (const testType of interviewData.selectedTestTypes) {
-        const questionsPerType = Math.floor(
-          interviewData.totalQuestions / interviewData.selectedTestTypes.length
-        );
+        const selectedPlan = testType.selectedPlan || testType.durationOptions[0];
+        const questionsPerType = selectedPlan.questionCount;
 
         const { data, error } = await supabase.functions.invoke(
           "generate-interview-questions",
@@ -195,7 +191,7 @@ export const useInterviewWizard = () => {
               testType: testType.name,
               languageProficiency: interviewData.languageProficiency,
               numberOfQuestions: questionsPerType,
-              durationMinutes: interviewData.durationMinutes,
+              durationMinutes: selectedPlan.duration,
             },
           }
         );
@@ -213,7 +209,7 @@ export const useInterviewWizard = () => {
               testType: testType.name,
               modelAnswer: q.modelAnswer,
               skillMeasured: q.skillMeasured,
-              questionDurationSeconds: 120, // 2 minutes per question
+              questionDurationSeconds: Math.round((selectedPlan.duration * 60) / questionsPerType), // Calculate based on plan duration
               questionOrder: questionOrder + index,
               isAiGenerated: true,
             })
@@ -344,6 +340,9 @@ export const useInterviewWizard = () => {
         question_duration_seconds: q.questionDurationSeconds,
         question_order: q.questionOrder,
         is_ai_generated: q.isAiGenerated,
+        question_options: q.options || [],
+        correct_answer: q.correctAnswer || "",
+        question_type: q.questionType || "multiple_choice",
       }));
 
       const { error: questionsError } = await supabase

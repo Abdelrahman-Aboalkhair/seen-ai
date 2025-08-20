@@ -29,6 +29,7 @@ export interface TestType {
   durationOptions: DurationOption[];
   questionCount: number;
   creditsPerQuestion: number;
+  selectedPlan?: DurationOption;
 }
 
 export interface DurationOption {
@@ -48,6 +49,9 @@ export interface Question {
   questionOrder: number;
   isAiGenerated: boolean;
   category?: string;
+  options?: Array<{ id: string; text: string }>;
+  correctAnswer?: string;
+  questionType?: "text" | "multiple_choice";
 }
 
 export interface Candidate {

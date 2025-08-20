@@ -129,7 +129,7 @@ function createPromptForTestType({
   languageProficiency?: string;
   numberOfQuestions: number;
 }) {
-  const basePrompt = `Generate ${numberOfQuestions} interview questions for a ${testLevel} level ${testType} test for the position: ${jobTitle}`;
+  const basePrompt = `Generate ${numberOfQuestions} multiple-choice interview questions for a ${testLevel} level ${testType} test for the position: ${jobTitle}`;
 
   let specificPrompt = "";
 
@@ -140,92 +140,223 @@ function createPromptForTestType({
         Each question should have:
         - Question text
         - 4 multiple choice options (A, B, C, D)
-        - Correct answer
+        - Correct answer (A, B, C, or D)
         - Brief explanation
         - Skill being measured (logical reasoning, mathematical ability, verbal comprehension)
         
         Make questions appropriate for ${testLevel} level and relevant to ${jobTitle} role.
+        
+        Return the questions in this exact JSON format:
+        {
+          "questions": [
+            {
+              "questionText": "Question text here",
+              "options": [
+                {"id": "A", "text": "Option A text"},
+                {"id": "B", "text": "Option B text"},
+                {"id": "C", "text": "Option C text"},
+                {"id": "D", "text": "Option D text"}
+              ],
+              "correctAnswer": "A",
+              "explanation": "Brief explanation",
+              "skillMeasured": "logical reasoning"
+            }
+          ]
+        }
       `;
       break;
 
     case "psychometric":
       specificPrompt = `
-        Generate personality assessment questions based on Big 5 personality traits.
+        Generate personality assessment multiple-choice questions based on Big 5 personality traits.
         Each question should have:
         - Question text (situational or behavioral)
-        - Expected response pattern
+        - 4 multiple choice options (A, B, C, D)
+        - Correct answer (A, B, C, or D)
         - Personality trait being measured (openness, conscientiousness, extraversion, agreeableness, neuroticism)
         - Interpretation guidelines
         
         Focus on workplace scenarios relevant to ${jobTitle}.
+        
+        Return the questions in this exact JSON format:
+        {
+          "questions": [
+            {
+              "questionText": "Question text here",
+              "options": [
+                {"id": "A", "text": "Option A text"},
+                {"id": "B", "text": "Option B text"},
+                {"id": "C", "text": "Option C text"},
+                {"id": "D", "text": "Option D text"}
+              ],
+              "correctAnswer": "A",
+              "explanation": "Brief explanation",
+              "skillMeasured": "personality assessment"
+            }
+          ]
+        }
       `;
       break;
 
     case "competency":
       specificPrompt = `
-        Generate job-related skill assessment questions.
+        Generate job-related skill assessment multiple-choice questions.
         Each question should have:
         - Question text (situational or practical)
-        - Expected ideal answer
+        - 4 multiple choice options (A, B, C, D)
+        - Correct answer (A, B, C, or D)
         - Competency being measured
         - Scoring criteria
         
         Focus on skills: ${requiredSkills?.join(", ") || "general job skills"}.
+        
+        Return the questions in this exact JSON format:
+        {
+          "questions": [
+            {
+              "questionText": "Question text here",
+              "options": [
+                {"id": "A", "text": "Option A text"},
+                {"id": "B", "text": "Option B text"},
+                {"id": "C", "text": "Option C text"},
+                {"id": "D", "text": "Option D text"}
+              ],
+              "correctAnswer": "A",
+              "explanation": "Brief explanation",
+              "skillMeasured": "competency assessment"
+            }
+          ]
+        }
       `;
       break;
 
     case "eq":
       specificPrompt = `
-        Generate emotional intelligence assessment questions.
+        Generate emotional intelligence assessment multiple-choice questions.
         Each question should have:
         - Situational question text
-        - Expected response showing high EQ
+        - 4 multiple choice options (A, B, C, D)
+        - Correct answer (A, B, C, or D)
         - EQ component being measured (self-awareness, self-regulation, motivation, empathy, social skills)
         - Behavioral indicators
         
         Focus on workplace scenarios relevant to ${jobTitle}.
+        
+        Return the questions in this exact JSON format:
+        {
+          "questions": [
+            {
+              "questionText": "Question text here",
+              "options": [
+                {"id": "A", "text": "Option A text"},
+                {"id": "B", "text": "Option B text"},
+                {"id": "C", "text": "Option C text"},
+                {"id": "D", "text": "Option D text"}
+              ],
+              "correctAnswer": "A",
+              "explanation": "Brief explanation",
+              "skillMeasured": "emotional intelligence"
+            }
+          ]
+        }
       `;
       break;
 
     case "sjt":
       specificPrompt = `
-        Generate situational judgment test questions.
+        Generate situational judgment test multiple-choice questions.
         Each question should have:
         - Workplace scenario description
-        - 4 response options
-        - Best and worst options identified
+        - 4 multiple choice options (A, B, C, D)
+        - Correct answer (A, B, C, or D)
         - Explanation for each option
         - Decision-making skill being measured
         
         Scenarios should be relevant to ${jobTitle} role.
+        
+        Return the questions in this exact JSON format:
+        {
+          "questions": [
+            {
+              "questionText": "Question text here",
+              "options": [
+                {"id": "A", "text": "Option A text"},
+                {"id": "B", "text": "Option B text"},
+                {"id": "C", "text": "Option C text"},
+                {"id": "D", "text": "Option D text"}
+              ],
+              "correctAnswer": "A",
+              "explanation": "Brief explanation",
+              "skillMeasured": "situational judgment"
+            }
+          ]
+        }
       `;
       break;
 
     case "technical":
       specificPrompt = `
-        Generate technical skills assessment questions.
+        Generate technical skills assessment multiple-choice questions.
         Each question should have:
         - Technical question or problem
-        - Expected solution or answer
+        - 4 multiple choice options (A, B, C, D)
+        - Correct answer (A, B, C, or D)
         - Technical skill being measured
         - Difficulty level appropriate for ${testLevel}
         
         Focus on technical skills relevant to ${jobTitle}.
+        
+        Return the questions in this exact JSON format:
+        {
+          "questions": [
+            {
+              "questionText": "Question text here",
+              "options": [
+                {"id": "A", "text": "Option A text"},
+                {"id": "B", "text": "Option B text"},
+                {"id": "C", "text": "Option C text"},
+                {"id": "D", "text": "Option D text"}
+              ],
+              "correctAnswer": "A",
+              "explanation": "Brief explanation",
+              "skillMeasured": "technical skills"
+            }
+          ]
+        }
       `;
       break;
 
     case "language":
       specificPrompt = `
-        Generate language proficiency questions in ${
+        Generate language proficiency multiple-choice questions in ${
           languageProficiency || "English"
         }.
         Each question should have:
         - Question text in ${languageProficiency || "English"}
-        - Correct answer
+        - 4 multiple choice options (A, B, C, D)
+        - Correct answer (A, B, C, or D)
         - Language skill being measured (grammar, vocabulary, comprehension, business communication)
         - Difficulty level appropriate for ${testLevel}
         
         Questions should be business/professional context relevant to ${jobTitle}.
+        
+        Return the questions in this exact JSON format:
+        {
+          "questions": [
+            {
+              "questionText": "Question text here",
+              "options": [
+                {"id": "A", "text": "Option A text"},
+                {"id": "B", "text": "Option B text"},
+                {"id": "C", "text": "Option C text"},
+                {"id": "D", "text": "Option D text"}
+              ],
+              "correctAnswer": "A",
+              "explanation": "Brief explanation",
+              "skillMeasured": "language proficiency"
+            }
+          ]
+        }
       `;
       break;
 
@@ -272,15 +403,36 @@ Please format your response as a JSON array of objects with the following struct
 
 function parseQuestionsFromResponse(content: string, testType: string) {
   try {
-    // Try to extract JSON from the response
-    const jsonMatch = content.match(/\[[\s\S]*\]/);
+    // First, try to extract array format (as specified in the prompt)
+    const arrayMatch = content.match(/\[[\s\S]*\]/);
+    if (arrayMatch) {
+      const questions = JSON.parse(arrayMatch[0]);
+      if (Array.isArray(questions)) {
+        return questions.map((q: any, index: number) => ({
+          questionText: q.questionText || q.question || `Question ${index + 1}`,
+          options: q.options || [],
+          correctAnswer: q.correctAnswer || "",
+          modelAnswer: q.modelAnswer || q.answer || q.expectedAnswer || "",
+          skillMeasured: q.skillMeasured || q.skill || q.trait || "general",
+          questionType: "multiple_choice",
+        }));
+      }
+    }
+
+    // Fallback: try to extract JSON object with questions property
+    const jsonMatch = content.match(/\{[\s\S]*\}/);
     if (jsonMatch) {
-      const questions = JSON.parse(jsonMatch[0]);
-      return questions.map((q: any, index: number) => ({
-        questionText: q.questionText || q.question || `Question ${index + 1}`,
-        modelAnswer: q.modelAnswer || q.answer || q.expectedAnswer || "",
-        skillMeasured: q.skillMeasured || q.skill || q.trait || "general",
-      }));
+      const parsed = JSON.parse(jsonMatch[0]);
+      if (parsed.questions && Array.isArray(parsed.questions)) {
+        return parsed.questions.map((q: any, index: number) => ({
+          questionText: q.questionText || q.question || `Question ${index + 1}`,
+          options: q.options || [],
+          correctAnswer: q.correctAnswer || "",
+          modelAnswer: q.explanation || q.modelAnswer || "",
+          skillMeasured: q.skillMeasured || q.skill || q.trait || "general",
+          questionType: "multiple_choice",
+        }));
+      }
     }
 
     // Fallback: parse manually if JSON extraction fails
@@ -291,8 +443,11 @@ function parseQuestionsFromResponse(content: string, testType: string) {
       if (i + 2 < lines.length) {
         questions.push({
           questionText: lines[i].replace(/^\d+\.\s*/, ""),
+          options: [],
+          correctAnswer: "",
           modelAnswer: lines[i + 1].replace(/^Answer:\s*/, ""),
           skillMeasured: lines[i + 2].replace(/^Skill:\s*/, "") || "general",
+          questionType: "text",
         });
       }
     }
@@ -304,9 +459,12 @@ function parseQuestionsFromResponse(content: string, testType: string) {
     return [
       {
         questionText: `Please describe your experience with ${testType} in the context of this role.`,
+        options: [],
+        correctAnswer: "",
         modelAnswer:
           "A comprehensive response showing relevant experience and skills.",
         skillMeasured: testType,
+        questionType: "text",
       },
     ];
   }
