@@ -9,13 +9,7 @@ import { Button } from "../../../components/ui/Button";
 import { Input } from "../../../components/ui/Input";
 import { Textarea } from "../../../components/ui/Textarea";
 import { Badge } from "../../../components/ui/Badge";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../../../components/ui/Select";
+
 import {
   CheckCircle,
   Clock,
@@ -173,71 +167,34 @@ export const InterviewSetup: React.FC<InterviewSetupProps> = ({
               <label className="block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">
                 مستوى الاختبار
               </label>
-              <Select
+              <select
                 value={interviewData.testLevel || "intermediate"}
-                onValueChange={(value) => onUpdateData({ testLevel: value })}
+                onChange={(e) => onUpdateData({ testLevel: e.target.value })}
+                className="w-full h-12 px-3 py-2 text-sm border-2 border-gray-300 dark:border-slate-600 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-200 bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100"
               >
-                <SelectTrigger className="h-12 border-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
-                  <SelectValue>
-                    {TEST_LEVELS.find(
-                      (level) =>
-                        level.value ===
-                        (interviewData.testLevel || "intermediate")
-                    )?.label || "اختر المستوى"}
-                  </SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  {TEST_LEVELS.map((level) => (
-                    <SelectItem key={level.value} value={level.value}>
-                      <div className="flex items-center gap-2">
-                        <span
-                          className={`w-3 h-3 rounded-full ${
-                            level.value === "beginner"
-                              ? "bg-green-500"
-                              : level.value === "intermediate"
-                              ? "bg-yellow-500"
-                              : "bg-red-500"
-                          }`}
-                        ></span>
-                        {level.label}
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                {TEST_LEVELS.map((level) => (
+                  <option key={level.value} value={level.value}>
+                    {level.label}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div>
               <label className="block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">
                 مدة المقابلة
               </label>
-              <Select
+              <select
                 value={selectedDuration.toString()}
-                onValueChange={(value) => handleDurationChange(parseInt(value))}
+                onChange={(e) => handleDurationChange(parseInt(e.target.value))}
+                className="w-full h-12 px-3 py-2 text-sm border-2 border-gray-300 dark:border-slate-600 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-200 bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100"
               >
-                <SelectTrigger className="h-12 border-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
-                  <SelectValue>
-                    {DURATION_OPTIONS.find(
-                      (option) => option.value === selectedDuration
-                    )?.label || "اختر المدة"}
-                  </SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  {DURATION_OPTIONS.map((option) => (
-                    <SelectItem
-                      key={option.value}
-                      value={option.value.toString()}
-                    >
-                      <div className="flex items-center justify-between w-full">
-                        <span>{option.label}</span>
-                        <Badge variant="outline" className="ml-2">
-                          {option.questionCount} سؤال
-                        </Badge>
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                {DURATION_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value.toString()}>
+                    {option.label} - {option.questionCount} سؤال
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
         </CardContent>
@@ -388,29 +345,22 @@ export const InterviewSetup: React.FC<InterviewSetupProps> = ({
                           <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
                             اختر اللغة
                           </label>
-                          <Select
+                          <select
                             value={interviewData.languageProficiency || ""}
-                            onValueChange={(value) =>
-                              onUpdateData({ languageProficiency: value })
+                            onChange={(e) =>
+                              onUpdateData({
+                                languageProficiency: e.target.value,
+                              })
                             }
+                            className="w-full px-3 py-2 text-sm border-2 border-gray-300 dark:border-slate-600 rounded-md focus:border-purple-500 focus:ring-2 focus:ring-purple-200 bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100"
                           >
-                            <SelectTrigger className="border-2 focus:border-purple-500 focus:ring-2 focus:ring-purple-200">
-                              <SelectValue>
-                                {LANGUAGE_OPTIONS.find(
-                                  (lang) =>
-                                    lang.value ===
-                                    interviewData.languageProficiency
-                                )?.label || "اختر اللغة"}
-                              </SelectValue>
-                            </SelectTrigger>
-                            <SelectContent>
-                              {LANGUAGE_OPTIONS.map((lang) => (
-                                <SelectItem key={lang.value} value={lang.value}>
-                                  {lang.label}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
+                            <option value="">اختر اللغة</option>
+                            {LANGUAGE_OPTIONS.map((lang) => (
+                              <option key={lang.value} value={lang.value}>
+                                {lang.label}
+                              </option>
+                            ))}
+                          </select>
                         </div>
                       )}
                     </div>

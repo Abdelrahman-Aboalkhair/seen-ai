@@ -72,6 +72,8 @@ export const EDUCATION_LEVELS = [
 ] as const;
 
 export const CANDIDATE_COUNT_OPTIONS = [
+  { value: 1, label: "1 candidate" },
+  { value: 2, label: "2 candidates" },
   { value: 3, label: "3 candidates" },
   { value: 5, label: "5 candidates" },
   { value: 10, label: "10 candidates" },

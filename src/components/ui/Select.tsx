@@ -107,7 +107,11 @@ export const Select: React.FC<SelectProps> = ({
   });
 
   return (
-    <div ref={selectRef} className={`relative ${className}`}>
+    <div
+      ref={selectRef}
+      className={`relative ${className}`}
+      style={{ zIndex: isOpen ? 9999 : "auto", position: "relative" }}
+    >
       {childrenWithProps}
     </div>
   );
@@ -144,7 +148,16 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 
   return (
     <div
-      className={`absolute z-50 w-full mt-1 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded-md shadow-lg max-h-60 overflow-auto ${className}`}
+      className={`absolute z-[9999] w-full mt-1 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded-md shadow-lg max-h-60 overflow-auto ${className}`}
+      style={{
+        top: "100%",
+        left: 0,
+        right: 0,
+        minWidth: "100%",
+        visibility: "visible",
+        opacity: 1,
+        display: "block",
+      }}
     >
       {children}
     </div>
@@ -158,6 +171,7 @@ export const SelectItem: React.FC<SelectItemProps> = ({
   onClick,
 }) => {
   const handleClick = () => {
+    console.log("SelectItem clicked:", value);
     onClick?.(value);
   };
 
@@ -165,6 +179,7 @@ export const SelectItem: React.FC<SelectItemProps> = ({
     <div
       className={`px-3 py-2 text-sm cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-900 dark:text-gray-100 ${className}`}
       onClick={handleClick}
+      style={{ cursor: "pointer" }}
     >
       {children}
     </div>

@@ -21,8 +21,8 @@ export const useInterviewWizard = () => {
   const { balance, deductCredits } = useCreditBalance();
 
   const [interviewData, setInterviewData] = useState<InterviewData>(() => {
-    // Load from localStorage on initial render
-    const saved = localStorage.getItem(STORAGE_KEY);
+    // Load from sessionStorage on initial render
+    const saved = sessionStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
         return JSON.parse(saved);
@@ -46,9 +46,9 @@ export const useInterviewWizard = () => {
     };
   });
 
-  // Save to localStorage whenever interviewData changes
+  // Save to sessionStorage whenever interviewData changes
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(interviewData));
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(interviewData));
   }, [interviewData]);
 
   // Calculate total questions and credits based on selected test types and duration
@@ -523,7 +523,7 @@ export const useInterviewWizard = () => {
     });
     setQuestions([]);
     setCandidates([]);
-    localStorage.removeItem(STORAGE_KEY);
+    sessionStorage.removeItem(STORAGE_KEY);
   }, []);
 
   return {

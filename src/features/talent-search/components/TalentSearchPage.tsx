@@ -23,6 +23,7 @@ export const TalentSearchPage: React.FC = () => {
     resetSearch,
     applyRequirements,
   } = useTalentSearch();
+  console.log("results: ", results);
 
   const {
     filters,
@@ -31,6 +32,7 @@ export const TalentSearchPage: React.FC = () => {
     uniqueLocations,
     experienceRanges,
   } = useSearchFilters(results);
+  console.log("filteredAndSortedResults: ", filteredAndSortedResults);
 
   return (
     <div className="p-6">

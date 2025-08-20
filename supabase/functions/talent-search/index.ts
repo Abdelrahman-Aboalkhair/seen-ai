@@ -172,6 +172,7 @@ Deno.serve(async (req) => {
         },
         body: JSON.stringify(n8nPayload),
       });
+      console.log("n8nResponse: ", n8nResponse);
 
       console.log("n8nResponse status:", n8nResponse.status);
       console.log("n8nResponse statusText:", n8nResponse.statusText);
