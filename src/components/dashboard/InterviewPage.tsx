@@ -35,20 +35,20 @@ import { useInterviews } from "../../features/interview/hooks/useInterviews";
 
 export function InterviewPage() {
   const { t, isRTL } = useTranslation();
-  const [activeTab, setActiveTab] = useState("upcoming");
+  const [activeTab, setActiveTab] = useState("completed");
   const { interviews, loading, error, refetch, deleteInterview } =
     useInterviews();
   console.log("interviews: ", interviews);
 
   // Calculate statistics
-  const upcomingInterviews = interviews.filter(
+  const completedInterviews = interviews.filter(
+    (interview) => interview.status === "completed"
+  );
+
+  const activeInterviews = interviews.filter(
     (interview) =>
       interview.status === "questions_ready" ||
       interview.status === "in_progress"
-  );
-
-  const completedInterviews = interviews.filter(
-    (interview) => interview.status === "completed"
   );
 
   const averageScore =
@@ -80,12 +80,8 @@ export function InterviewPage() {
             className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-lg transition-colors duration-200"
           >
             <Plus className="h-4 w-4 mr-2" />
-            {t("dashboard.schedule_interview")}
+            إنشاء مقابلة جديدة
           </Link>
-          <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
-            <Brain className="h-4 w-4 mr-2" />
-            Smart Interview Wizard
-          </Button>
         </div>
       </div>
 
@@ -96,14 +92,14 @@ export function InterviewPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-400">
-                  {t("dashboard.upcoming_interviews")}
+                  المقابلات النشطة
                 </p>
                 <p className="text-2xl font-bold text-white mt-1">
-                  {loading ? "..." : upcomingInterviews.length}
+                  {loading ? "..." : activeInterviews.length}
                 </p>
               </div>
               <div className="h-12 w-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
-                <Calendar className="h-6 w-6 text-blue-400" />
+                <Video className="h-6 w-6 text-blue-400" />
               </div>
             </div>
           </CardContent>
@@ -199,15 +195,14 @@ export function InterviewPage() {
           {/* Tab Navigation */}
           <div className="flex space-x-1 mb-6">
             <button
-              onClick={() => setActiveTab("upcoming")}
+              onClick={() => setActiveTab("active")}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                activeTab === "upcoming"
+                activeTab === "active"
                   ? "bg-cyan-500 text-white"
                   : "text-gray-400 hover:text-white hover:bg-slate-700"
               }`}
             >
-              {t("dashboard.upcoming")} (
-              {loading ? "..." : upcomingInterviews.length})
+              المقابلات النشطة ({loading ? "..." : activeInterviews.length})
             </button>
             <button
               onClick={() => setActiveTab("completed")}
@@ -217,8 +212,8 @@ export function InterviewPage() {
                   : "text-gray-400 hover:text-white hover:bg-slate-700"
               }`}
             >
-              {t("dashboard.completed")} (
-              {loading ? "..." : completedInterviews.length})
+              المقابلات المكتملة ({loading ? "..." : completedInterviews.length}
+              )
             </button>
           </div>
 
@@ -251,7 +246,7 @@ export function InterviewPage() {
             <div className="space-y-4">
               {interviews
                 .filter((interview) => {
-                  if (activeTab === "upcoming") {
+                  if (activeTab === "active") {
                     return (
                       interview.status === "questions_ready" ||
                       interview.status === "in_progress"

@@ -10,6 +10,11 @@ import {
   Brain,
   Mail,
   Link as LinkIcon,
+  X,
+  Edit3,
+  Send,
+  UserCheck,
+  AlertCircle,
 } from "lucide-react";
 import { InterviewData } from "../types";
 import toast from "react-hot-toast";
@@ -30,33 +35,106 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
 }) => {
   const [copied, setCopied] = useState(false);
   const [shareLink, setShareLink] = useState("");
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [candidatesData, setCandidatesData] = useState<any[]>([]);
+  const [editableCandidates, setEditableCandidates] = useState<any[]>([]);
+  const [sending, setSending] = useState(false);
 
   // Fetch session links when component mounts
   useEffect(() => {
     if (interviewData.id) {
       fetchSessionLinks();
+      fetchCandidatesData();
     }
   }, [interviewData.id]);
 
-  // Generate share link
+  // Fetch candidates data from database
+  const fetchCandidatesData = async () => {
+    if (!interviewData.id) return;
+
+    try {
+      const { data: candidates, error } = await supabase
+        .from("interview_candidates")
+        .select("*")
+        .eq("interview_id", interviewData.id);
+
+      if (error) {
+        console.error("Error fetching candidates:", error);
+        return;
+      }
+
+      setCandidatesData(candidates || []);
+      setEditableCandidates(candidates?.map((c) => ({ ...c })) || []);
+    } catch (error) {
+      console.error("Error fetching candidates data:", error);
+    }
+  };
+
+  // Show confirmation modal
+  const showSendConfirmation = () => {
+    if (!interviewData.id) {
+      toast.error("لا يمكن إنشاء رابط المشاركة بدون معرف المقابلة");
+      return;
+    }
+
+    if (candidatesData.length === 0) {
+      toast.error("لا توجد مرشحين لإرسال الدعوات إليهم");
+      return;
+    }
+
+    setShowConfirmModal(true);
+  };
+
+  // Generate share link and send emails
   const generateShareLink = async () => {
     if (!interviewData.id) {
       toast.error("لا يمكن إنشاء رابط المشاركة بدون معرف المقابلة");
       return;
     }
 
-    if (onGenerateLinks) {
-      try {
+    setSending(true);
+    try {
+      // Update candidate emails if they were changed
+      await updateCandidateEmails();
+
+      if (onGenerateLinks) {
         await onGenerateLinks();
-        toast.success("تم إنشاء روابط المقابلة بنجاح");
+        toast.success("تم إنشاء روابط المقابلة وإرسال الدعوات بنجاح");
 
         // After generating links, fetch the actual session tokens
         await fetchSessionLinks();
-      } catch (error) {
-        toast.error("فشل في إنشاء روابط المقابلة");
-        return;
+        setShowConfirmModal(false);
+      }
+    } catch (error) {
+      toast.error("فشل في إنشاء روابط المقابلة");
+    } finally {
+      setSending(false);
+    }
+  };
+
+  // Update candidate emails in database
+  const updateCandidateEmails = async () => {
+    for (const candidate of editableCandidates) {
+      const original = candidatesData.find((c) => c.id === candidate.id);
+      if (original && original.email !== candidate.email) {
+        const { error } = await supabase
+          .from("interview_candidates")
+          .update({ email: candidate.email, name: candidate.name })
+          .eq("id", candidate.id);
+
+        if (error) {
+          console.error("Error updating candidate:", error);
+          throw new Error(`فشل في تحديث بيانات ${candidate.name}`);
+        }
       }
     }
+  };
+
+  // Handle candidate data changes
+  const updateCandidateData = (index: number, field: string, value: string) => {
+    const updated = [...editableCandidates];
+    updated[index] = { ...updated[index], [field]: value };
+    setEditableCandidates(updated);
   };
 
   // Fetch actual session links from the database
@@ -296,11 +374,11 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
         <div className="space-y-4">
           <div className="flex items-center space-x-3">
             <button
-              onClick={generateShareLink}
+              onClick={showSendConfirmation}
               className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center"
             >
-              <LinkIcon className="h-4 w-4 mr-2" />
-              إنشاء روابط المقابلة وإرسال البريد
+              <Send className="h-4 w-4 mr-2" />
+              إرسال دعوات المقابلة
             </button>
 
             <button
@@ -367,6 +445,246 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
           إكمال
         </button>
       </div>
+
+      {/* Confirmation Modal */}
+      {showConfirmModal && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-slate-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-700">
+            <div className="p-6">
+              {/* Modal Header */}
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-white flex items-center gap-3">
+                  <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+                    <UserCheck className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  تأكيد إرسال دعوات المقابلة
+                </h2>
+                <button
+                  onClick={() => setShowConfirmModal(false)}
+                  className="text-gray-400 hover:text-gray-300 transition-colors"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+
+              {/* Interview Summary */}
+              <div className="bg-slate-700/50 rounded-lg p-4 mb-6">
+                <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                  <FileText className="h-5 w-5" />
+                  ملخص المقابلة
+                </h3>
+                <div className="grid grid-cols-2 gap-4 text-sm mb-4">
+                  <div>
+                    <span className="text-gray-400">المسمى الوظيفي:</span>
+                    <span className="text-white ml-2 font-medium">
+                      {interviewData.jobTitle}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-gray-400">المدة المتوقعة:</span>
+                    <span className="text-white ml-2 font-medium">
+                      {interviewData.durationMinutes} دقيقة
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-gray-400">عدد الأسئلة:</span>
+                    <span className="text-white ml-2 font-medium">
+                      {interviewData.questions?.length || 0} سؤال
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-gray-400">أنواع الاختبارات:</span>
+                    <span className="text-white ml-2 font-medium">
+                      {interviewData.selectedTestTypes?.map(t => t.label).join(", ") || "تقنية"}
+                    </span>
+                  </div>
+                </div>
+                
+                {interviewData.jobDescription && (
+                  <div className="mt-4 p-3 bg-slate-600/50 rounded border-r-4 border-blue-500">
+                    <span className="text-gray-400 text-sm">وصف الوظيفة:</span>
+                    <p className="text-white text-sm mt-1">{interviewData.jobDescription}</p>
+                  </div>
+                )}
+              </div>
+
+              {/* Email Preview & Instructions */}
+              <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 rounded-lg p-4 mb-6 border border-blue-500/30">
+                <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                  <Mail className="h-5 w-5 text-blue-400" />
+                  ما سيتم إرساله في البريد الإلكتروني
+                </h3>
+                
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <span className="text-white font-medium">عنوان البريد:</span>
+                      <span className="text-gray-300"> مقابلة جديدة - {interviewData.jobTitle}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <span className="text-white font-medium">محتوى البريد:</span>
+                      <span className="text-gray-300"> دعوة رسمية مع رابط المقابلة الفريد</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <span className="text-white font-medium">الرابط:</span>
+                      <span className="text-gray-300"> رابط آمن ومشفر صالح لمدة 7 أيام</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <span className="text-white font-medium">التوقعات:</span>
+                      <span className="text-gray-300"> سيتم إرسال بريد منفصل لكل مرشح</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Important Notes */}
+              <div className="bg-gradient-to-r from-amber-900/20 to-orange-900/20 rounded-lg p-4 mb-6 border border-amber-500/30">
+                <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                  <AlertCircle className="h-5 w-5 text-amber-400" />
+                  ملاحظات مهمة
+                </h3>
+                
+                <div className="space-y-2 text-sm">
+                  <div className="flex items-start gap-2">
+                    <span className="text-amber-400">•</span>
+                    <span className="text-gray-300">سيتم إرسال دعوة منفصلة لكل مرشح على بريده الإلكتروني</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="text-amber-400">•</span>
+                    <span className="text-gray-300">كل رابط مقابلة فريد ومخصص للمرشح المحدد</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="text-amber-400">•</span>
+                    <span className="text-gray-300">الروابط صالحة لمدة 7 أيام من تاريخ الإرسال</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="text-amber-400">•</span>
+                    <span className="text-gray-300">يمكن للمرشحين الوصول للمقابلة من أي جهاز متصل بالإنترنت</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="text-amber-400">•</span>
+                    <span className="text-gray-300">سيتم تتبع تقدم كل مرشح وإرسال النتائج تلقائياً</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Candidates List */}
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                  <Users className="h-5 w-5" />
+                  المرشحون المحددون
+                  <span className="text-sm text-gray-400">
+                    ({editableCandidates.length})
+                  </span>
+                </h3>
+
+                <div className="space-y-4">
+                  {editableCandidates.map((candidate, index) => (
+                    <div
+                      key={candidate.id}
+                      className="bg-slate-700/50 rounded-lg p-4"
+                    >
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-400 mb-2">
+                            اسم المرشح
+                          </label>
+                          <div className="flex items-center gap-2">
+                            <input
+                              type="text"
+                              value={candidate.name}
+                              onChange={(e) =>
+                                updateCandidateData(
+                                  index,
+                                  "name",
+                                  e.target.value
+                                )
+                              }
+                              className="flex-1 px-3 py-2 bg-slate-600 border border-slate-500 rounded text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                            <Edit3 className="h-4 w-4 text-gray-400" />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-400 mb-2">
+                            البريد الإلكتروني
+                          </label>
+                          <div className="flex items-center gap-2">
+                            <input
+                              type="email"
+                              value={candidate.email}
+                              onChange={(e) =>
+                                updateCandidateData(
+                                  index,
+                                  "email",
+                                  e.target.value
+                                )
+                              }
+                              className="flex-1 px-3 py-2 bg-slate-600 border border-slate-500 rounded text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                              placeholder="example@email.com"
+                            />
+                            <Mail className="h-4 w-4 text-gray-400" />
+                          </div>
+                        </div>
+                      </div>
+
+                      {candidatesData.find((c) => c.id === candidate.id)
+                        ?.email !== candidate.email && (
+                        <div className="mt-2 text-xs text-yellow-400 flex items-center gap-1">
+                          <Edit3 className="h-3 w-3" />
+                          تم تعديل البريد الإلكتروني
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex items-center justify-between pt-4 border-t border-slate-600">
+                <button
+                  onClick={() => setShowConfirmModal(false)}
+                  className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors"
+                >
+                  إلغاء
+                </button>
+
+                <button
+                  onClick={generateShareLink}
+                  disabled={sending}
+                  className="px-6 py-2 bg-green-600 hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg transition-colors flex items-center gap-2"
+                >
+                  {sending ? (
+                    <>
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
+                      جاري الإرسال...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-4 w-4" />
+                      إرسال الدعوات ({editableCandidates.length})
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
