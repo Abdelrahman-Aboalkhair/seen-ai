@@ -23,89 +23,90 @@ export function CVResultsHeader({
   const { t, isRTL } = useTranslation();
 
   return (
-    <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 mb-6 mt-8">
+    <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-4 border border-slate-700 mb-6 mt-8">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div
-          className={`flex items-center ${
-            isRTL() ? "flex-row-reverse space-x-reverse space-x-3" : "space-x-3"
-          }`}
-        >
-          <Users className="h-6 w-6 text-cyan-400" />
-          <h2 className="text-xl font-semibold text-white">
-            {t("services.cv_analysis.cv_analysis_results")} ({resultsCount})
-          </h2>
+        {/* Left Section - Title and Count */}
+        <div className="flex items-center space-x-3">
+          <div className="w-8 h-8 bg-cyan-500/20 rounded-lg flex items-center justify-center">
+            <Users className="h-4 w-4 text-cyan-400" />
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold text-white">
+              {t("services.cv_analysis.cv_analysis_results")}
+            </h2>
+            <p className="text-sm text-gray-400">
+              {resultsCount} {resultsCount === 1 ? "مرشح" : "مرشحين"}
+            </p>
+          </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3">
-          {/* Filter by Score */}
-          <div
-            className={`flex items-center ${
-              isRTL()
-                ? "flex-row-reverse space-x-reverse space-x-2"
-                : "space-x-2"
-            }`}
-          >
-            <Filter className="h-4 w-4 text-gray-400" />
-            <select
-              value={filterByScore}
-              onChange={(e) => setFilterByScore(e.target.value)}
-              className="bg-slate-700 border border-slate-600 rounded-md px-3 py-1 text-sm text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
-            >
-              <option value="all">جميع التقييمات</option>
-              <option value="high">عالية (8+)</option>
-              <option value="medium">متوسطة (6-8)</option>
-              <option value="low">منخفضة (&lt;6)</option>
-            </select>
+        {/* Right Section - Controls */}
+        <div className="flex items-center gap-3">
+          {/* Filter Dropdown */}
+          <div className="relative">
+            <div className="flex items-center space-x-2 px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg hover:border-slate-500 transition-colors">
+              <Filter className="h-4 w-4 text-gray-400" />
+              <select
+                value={filterByScore}
+                onChange={(e) => setFilterByScore(e.target.value)}
+                className="bg-transparent text-sm text-white focus:outline-none cursor-pointer appearance-none pr-2"
+              >
+                <option value="all">جميع التقييمات</option>
+                <option value="high">عالية (8+)</option>
+                <option value="medium">متوسطة (6-8)</option>
+                <option value="low">منخفضة (&lt;6)</option>
+              </select>
+              <div className="w-2 h-2 border-r border-t border-gray-400 transform rotate-45 pointer-events-none"></div>
+            </div>
           </div>
 
-          {/* Sort */}
-          <div
-            className={`flex items-center ${
-              isRTL()
-                ? "flex-row-reverse space-x-reverse space-x-2"
-                : "space-x-2"
-            }`}
-          >
-            <SortDesc className="h-4 w-4 text-gray-400" />
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="bg-slate-700 border border-slate-600 rounded-md px-3 py-1 text-sm text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
-            >
-              <option value="vote">حسب التقييم</option>
-              <option value="name">حسب الاسم</option>
-              <option value="ranking">حسب الترتيب</option>
-            </select>
+          {/* Sort Dropdown */}
+          <div className="relative">
+            <div className="flex items-center space-x-2 px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg hover:border-slate-500 transition-colors">
+              <SortDesc className="h-4 w-4 text-gray-400" />
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="bg-transparent text-sm text-white focus:outline-none cursor-pointer appearance-none pr-2"
+              >
+                <option value="vote">حسب التقييم</option>
+                <option value="name">حسب الاسم</option>
+                <option value="ranking">حسب الترتيب</option>
+              </select>
+              <div className="w-2 h-2 border-r border-t border-gray-400 transform rotate-45 pointer-events-none"></div>
+            </div>
           </div>
 
-          {/* Export Buttons */}
-          <div
-            className={`flex items-center gap-2 ${
-              isRTL() ? "flex-row-reverse" : ""
-            }`}
-          >
+          {/* Export Section */}
+          <div className="flex items-center space-x-1">
+            <div className="w-px h-6 bg-slate-600 mx-2"></div>
             <Download className="h-4 w-4 text-gray-400" />
-            <button
-              onClick={() => onExport("csv")}
-              disabled={exporting}
-              className="bg-green-600 hover:bg-green-700 disabled:bg-slate-600 text-white text-xs px-3 py-1 rounded-md transition-colors disabled:cursor-not-allowed"
-            >
-              {exporting ? t("services.cv_analysis.exporting") : "CSV"}
-            </button>
-            <button
-              onClick={() => onExport("json")}
-              disabled={exporting}
-              className="bg-blue-600 hover:bg-blue-700 disabled:bg-slate-600 text-white text-xs px-3 py-1 rounded-md transition-colors disabled:cursor-not-allowed"
-            >
-              {exporting ? t("services.cv_analysis.exporting") : "JSON"}
-            </button>
-            <button
-              onClick={() => onExport("pdf")}
-              disabled={exporting}
-              className="bg-red-600 hover:bg-red-700 disabled:bg-slate-600 text-white text-xs px-3 py-1 rounded-md transition-colors disabled:cursor-not-allowed"
-            >
-              {exporting ? t("services.cv_analysis.exporting") : "PDF"}
-            </button>
+            <div className="flex space-x-1">
+              <button
+                onClick={() => onExport("csv")}
+                disabled={exporting}
+                className="px-2 py-1 bg-green-600/20 hover:bg-green-600/30 disabled:bg-slate-600/20 text-green-400 hover:text-green-300 disabled:text-gray-500 text-xs rounded-md transition-all duration-200 disabled:cursor-not-allowed border border-green-600/30"
+                title="تصدير CSV"
+              >
+                {exporting ? "..." : "CSV"}
+              </button>
+              <button
+                onClick={() => onExport("json")}
+                disabled={exporting}
+                className="px-2 py-1 bg-blue-600/20 hover:bg-blue-600/30 disabled:bg-slate-600/20 text-blue-400 hover:text-blue-300 disabled:text-gray-500 text-xs rounded-md transition-all duration-200 disabled:cursor-not-allowed border border-blue-600/30"
+                title="تصدير JSON"
+              >
+                {exporting ? "..." : "JSON"}
+              </button>
+              <button
+                onClick={() => onExport("pdf")}
+                disabled={exporting}
+                className="px-2 py-1 bg-red-600/20 hover:bg-red-600/30 disabled:bg-slate-600/20 text-red-400 hover:text-red-300 disabled:text-gray-500 text-xs rounded-md transition-all duration-200 disabled:cursor-not-allowed border border-red-600/30"
+                title="تصدير PDF"
+              >
+                {exporting ? "..." : "PDF"}
+              </button>
+            </div>
           </div>
         </div>
       </div>

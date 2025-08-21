@@ -1,386 +1,384 @@
-import React from "react";
-import { motion } from "framer-motion";
+import { useState } from "react";
 import {
   User,
   Mail,
   Phone,
   MapPin,
-  Calendar,
   Star,
-  Award,
-  CheckCircle,
-  AlertCircle,
-  GraduationCap,
   Briefcase,
-  FileText,
+  GraduationCap,
+  Award,
+  AlertCircle,
+  Eye,
+  X,
+  Calendar,
+  CheckCircle,
+  XCircle,
 } from "lucide-react";
 import { useTranslation } from "../../lib/i18n";
 
-interface CVAnalysisProps {
-  candidate: {
-    name: string;
-    email: string;
-    phone: string;
-    city: string;
-    dateOfBirth: string;
-    skills: any; // Can be string, array, or object from OpenAI
-    summary: string;
-    education: string;
-    jobHistory: string;
-    consideration: string;
-    strengths: any; // Can be string or array from OpenAI
-    gaps: any; // Can be string or array from OpenAI
-    vote: string;
-    analysisDate: string;
-    ranking: number;
-  };
+interface CVAnalysisCardProps {
+  candidate: any;
   index: number;
 }
 
-export function CVAnalysisCard({ candidate, index }: CVAnalysisProps) {
+export function CVAnalysisCard({ candidate, index }: CVAnalysisCardProps) {
   const { t, isRTL } = useTranslation();
+  const [showModal, setShowModal] = useState(false);
 
-  const getVoteColor = (vote: string) => {
-    const voteNum = parseInt(vote);
-    if (voteNum >= 8)
-      return "text-green-500 bg-green-500/10 border-green-500/30";
-    if (voteNum >= 6)
-      return "text-yellow-500 bg-yellow-500/10 border-yellow-500/30";
-    if (voteNum >= 4)
-      return "text-orange-500 bg-orange-500/10 border-orange-500/30";
-    return "text-red-500 bg-red-500/10 border-red-500/30";
+  const getScoreColor = (score: number) => {
+    if (score >= 8) return "text-green-400";
+    if (score >= 6) return "text-yellow-400";
+    return "text-red-400";
   };
 
-  const getVoteLabel = (vote: string) => {
-    const voteNum = parseInt(vote);
-    if (voteNum >= 8) return "ممتاز";
-    if (voteNum >= 6) return "جيد";
-    if (voteNum >= 4) return "متوسط";
+  const getScoreBgColor = (score: number) => {
+    if (score >= 8) return "bg-green-400/10 border-green-400/20";
+    if (score >= 6) return "bg-yellow-400/10 border-yellow-400/20";
+    return "bg-red-400/10 border-red-400/20";
+  };
+
+  const getScoreText = (score: number) => {
+    if (score >= 8) return "ممتاز";
+    if (score >= 6) return "جيد";
     return "ضعيف";
   };
 
-  const parseSkills = (skillsText: any) => {
-    console.log("🔍 Parsing skills:", skillsText);
-    console.log("🔍 Skills type:", typeof skillsText);
-    console.log("🔍 Skills is array:", Array.isArray(skillsText));
-
-    if (!skillsText) {
-      console.log("⚠️  No skills provided, returning empty array");
-      return [];
-    }
-
-    // Handle different data types
-    if (typeof skillsText === "string") {
-      console.log("📝 Processing skills as string");
-      if (skillsText === "غير محدد") return [];
-      const result = skillsText
-        .split(",")
-        .map((skill) => skill.trim())
-        .slice(0, 5);
-      console.log("✅ Parsed skills from string:", result);
-      return result;
-    }
-
-    // Handle array
-    if (Array.isArray(skillsText)) {
-      console.log("📝 Processing skills as array");
-      const result = skillsText
-        .map((skill) => String(skill).trim())
-        .slice(0, 5);
-      console.log("✅ Parsed skills from array:", result);
-      return result;
-    }
-
-    // Handle object (convert to string)
-    if (typeof skillsText === "object") {
-      console.log("📝 Processing skills as object");
-      const skillsString = JSON.stringify(skillsText);
-      const result = skillsString
-        .replace(/[{}"]/g, "")
-        .split(",")
-        .map((skill) => skill.trim())
-        .slice(0, 5);
-      console.log("✅ Parsed skills from object:", result);
-      return result;
-    }
-
-    // Fallback: convert to string
-    console.log("📝 Processing skills as fallback (convert to string)");
-    const result = String(skillsText)
-      .split(",")
-      .map((skill) => skill.trim())
-      .slice(0, 5);
-    console.log("✅ Parsed skills from fallback:", result);
-    return result;
-  };
-
-  const parseList = (listText: any, maxItems: number = 3) => {
-    if (!listText) return [];
-
-    // Handle array
-    if (Array.isArray(listText)) {
-      return listText.map((item) => String(item).trim()).slice(0, maxItems);
-    }
-
-    // Handle string
-    if (typeof listText === "string") {
-      if (listText === "غير محدد") return [];
-      return listText
-        .split(",")
-        .map((item) => item.trim())
-        .slice(0, maxItems);
-    }
-
-    // Fallback: convert to string
-    return String(listText)
-      .split(",")
-      .map((item) => item.trim())
-      .slice(0, maxItems);
-  };
-
-  const skills = parseSkills(candidate.skills);
+  const skills = candidate.skills
+    ? candidate.skills.split(",").slice(0, 3)
+    : [];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="bg-white/5 backdrop-blur-sm border border-gray-700 rounded-xl p-6 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10"
-    >
-      {/* Header */}
-      <div
-        className={`flex items-start justify-between mb-4 ${
-          isRTL() ? "flex-row-reverse" : ""
-        }`}
-      >
-        <div className="flex-1">
-          <div
-            className={`flex items-center mb-2 ${
-              isRTL()
-                ? "flex-row-reverse space-x-reverse space-x-3"
-                : "space-x-3"
-            }`}
-          >
-            <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center">
-              <User className="h-6 w-6 text-white" />
+    <>
+      {/* Compact Card */}
+      <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-4 border border-slate-700 hover:border-slate-600 transition-all duration-200 hover:shadow-lg">
+        {/* Header */}
+        <div className="flex items-start justify-between mb-3">
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 bg-cyan-500/20 rounded-full flex items-center justify-center">
+              <User className="h-5 w-5 text-cyan-400" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-white mb-1">
-                {candidate.name}
+              <h3 className="font-semibold text-white text-sm">
+                {candidate.name || "غير محدد"}
               </h3>
-              <div className="text-sm text-gray-400">
-                تحليل رقم: {candidate.ranking}
-              </div>
+              <p className="text-xs text-gray-400">
+                تحليل رقم: {candidate.ranking || index + 1}
+              </p>
+            </div>
+          </div>
+
+          {/* Score Badge */}
+          <div
+            className={`px-2 py-1 rounded-lg border ${getScoreBgColor(
+              parseInt(candidate.vote)
+            )}`}
+          >
+            <div
+              className={`text-xs font-bold ${getScoreColor(
+                parseInt(candidate.vote)
+              )}`}
+            >
+              {candidate.vote}/10
+            </div>
+            <div
+              className={`text-xs ${getScoreColor(parseInt(candidate.vote))}`}
+            >
+              {getScoreText(parseInt(candidate.vote))}
             </div>
           </div>
         </div>
 
-        {/* Vote Score */}
-        <div
-          className={`flex flex-col items-center ${getVoteColor(
-            candidate.vote
-          )} border rounded-lg p-3 min-w-[80px]`}
+        {/* Contact Info */}
+        <div className="space-y-1 mb-3">
+          {candidate.email && (
+            <div className="flex items-center space-x-2 text-xs text-gray-300">
+              <Mail className="h-3 w-3 text-gray-400" />
+              <span className="truncate">{candidate.email}</span>
+            </div>
+          )}
+          {candidate.phone && (
+            <div className="flex items-center space-x-2 text-xs text-gray-300">
+              <Phone className="h-3 w-3 text-gray-400" />
+              <span>{candidate.phone}</span>
+            </div>
+          )}
+          {candidate.city && (
+            <div className="flex items-center space-x-2 text-xs text-gray-300">
+              <MapPin className="h-3 w-3 text-gray-400" />
+              <span>{candidate.city}</span>
+            </div>
+          )}
+        </div>
+
+        {/* Skills */}
+        {skills.length > 0 && (
+          <div className="mb-3">
+            <div className="flex flex-wrap gap-1">
+              {skills.map((skill: string, skillIndex: number) => (
+                <span
+                  key={skillIndex}
+                  className="px-2 py-1 bg-slate-700 text-xs text-gray-300 rounded-md"
+                >
+                  {skill.trim()}
+                </span>
+              ))}
+              {candidate.skills && candidate.skills.split(",").length > 3 && (
+                <span className="px-2 py-1 bg-slate-700 text-xs text-gray-400 rounded-md">
+                  +{candidate.skills.split(",").length - 3}
+                </span>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Summary Preview */}
+        {candidate.summary && (
+          <div className="mb-3">
+            <p className="text-xs text-gray-300 line-clamp-2">
+              {candidate.summary}
+            </p>
+          </div>
+        )}
+
+        {/* Action Button */}
+        <button
+          onClick={() => setShowModal(true)}
+          className="w-full flex items-center justify-center space-x-2 px-3 py-2 bg-cyan-600 hover:bg-cyan-700 text-white text-xs rounded-lg transition-colors duration-200"
         >
-          <div className="text-2xl font-bold">{candidate.vote}/10</div>
-          <div className="text-xs opacity-80">
-            {getVoteLabel(candidate.vote)}
-          </div>
-        </div>
+          <Eye className="h-3 w-3" />
+          <span>عرض التفاصيل</span>
+        </button>
       </div>
 
-      {/* Contact Information */}
-      <div className="mb-4 space-y-2">
-        {candidate.email && (
-          <div
-            className={`flex items-center text-sm text-gray-400 ${
-              isRTL()
-                ? "flex-row-reverse space-x-reverse space-x-2"
-                : "space-x-2"
-            }`}
-          >
-            <Mail className="h-4 w-4" />
-            <span>{candidate.email}</span>
-          </div>
-        )}
-        {candidate.phone && (
-          <div
-            className={`flex items-center text-sm text-gray-400 ${
-              isRTL()
-                ? "flex-row-reverse space-x-reverse space-x-2"
-                : "space-x-2"
-            }`}
-          >
-            <Phone className="h-4 w-4" />
-            <span>{candidate.phone}</span>
-          </div>
-        )}
-        {candidate.city && (
-          <div
-            className={`flex items-center text-sm text-gray-400 ${
-              isRTL()
-                ? "flex-row-reverse space-x-reverse space-x-2"
-                : "space-x-2"
-            }`}
-          >
-            <MapPin className="h-4 w-4" />
-            <span>{candidate.city}</span>
-          </div>
-        )}
-        {candidate.dateOfBirth && (
-          <div
-            className={`flex items-center text-sm text-gray-400 ${
-              isRTL()
-                ? "flex-row-reverse space-x-reverse space-x-2"
-                : "space-x-2"
-            }`}
-          >
-            <Calendar className="h-4 w-4" />
-            <span>{candidate.dateOfBirth}</span>
-          </div>
-        )}
-      </div>
-
-      {/* Skills */}
-      {skills.length > 0 && (
-        <div className="mb-4">
-          <h4 className="text-sm font-medium text-gray-300 mb-2">المهارات:</h4>
-          <div
-            className={`flex flex-wrap gap-2 ${
-              isRTL() ? "flex-row-reverse" : ""
-            }`}
-          >
-            {skills.map((skill, idx) => (
-              <span
-                key={idx}
-                className="bg-cyan-500/20 text-cyan-300 text-xs font-medium px-2.5 py-1 rounded-full border border-cyan-500/30"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Summary */}
-      {candidate.summary && (
-        <div className="mb-4">
-          <h4 className="text-sm font-medium text-gray-300 mb-2">ملخص:</h4>
-          <p className="text-sm text-gray-400 leading-relaxed line-clamp-3">
-            {candidate.summary}
-          </p>
-        </div>
-      )}
-
-      {/* Education */}
-      {candidate.education && (
-        <div className="mb-4">
-          <h4 className="text-sm font-medium text-gray-300 mb-2">
-            <GraduationCap className="h-4 w-4 inline mr-2" />
-            التعليم:
-          </h4>
-          <p className="text-sm text-gray-400 leading-relaxed line-clamp-2">
-            {candidate.education}
-          </p>
-        </div>
-      )}
-
-      {/* Job History */}
-      {candidate.jobHistory && (
-        <div className="mb-4">
-          <h4 className="text-sm font-medium text-gray-300 mb-2">
-            <Briefcase className="h-4 w-4 inline mr-2" />
-            الخبرة العملية:
-          </h4>
-          <p className="text-sm text-gray-400 leading-relaxed line-clamp-2">
-            {candidate.jobHistory}
-          </p>
-        </div>
-      )}
-
-      {/* Strengths */}
-      {candidate.strengths && candidate.strengths !== "غير محدد" && (
-        <div className="mb-4">
-          <h4 className="text-sm font-medium text-green-400 mb-2">
-            نقاط القوة:
-          </h4>
-          <div className="text-sm text-gray-400">
-            {parseList(candidate.strengths, 3).map((strength, idx) => (
-              <div
-                key={idx}
-                className={`flex items-start mb-1 ${
-                  isRTL() ? "flex-row-reverse" : ""
-                }`}
-              >
-                <CheckCircle
-                  className={`h-3 w-3 text-green-400 mt-0.5 flex-shrink-0 ${
-                    isRTL() ? "ml-2" : "mr-2"
-                  }`}
-                />
-                <span className="text-xs">{strength}</span>
+      {/* Modal */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-slate-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-6 border-b border-slate-700">
+              <div className="flex items-center space-x-3">
+                <div className="w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center">
+                  <User className="h-6 w-6 text-cyan-400" />
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-white">
+                    {candidate.name || "غير محدد"}
+                  </h2>
+                  <p className="text-sm text-gray-400">
+                    تحليل رقم: {candidate.ranking || index + 1}
+                  </p>
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-      )}
 
-      {/* Gaps */}
-      {candidate.gaps && candidate.gaps !== "غير محدد" && (
-        <div className="mb-4">
-          <h4 className="text-sm font-medium text-orange-400 mb-2">
-            نقاط التحسين:
-          </h4>
-          <div className="text-sm text-gray-400">
-            {parseList(candidate.gaps, 2).map((gap, idx) => (
+              {/* Score */}
               <div
-                key={idx}
-                className={`flex items-start mb-1 ${
-                  isRTL() ? "flex-row-reverse" : ""
-                }`}
+                className={`px-3 py-2 rounded-lg border ${getScoreBgColor(
+                  parseInt(candidate.vote)
+                )}`}
               >
-                <AlertCircle
-                  className={`h-3 w-3 text-orange-400 mt-0.5 flex-shrink-0 ${
-                    isRTL() ? "ml-2" : "mr-2"
-                  }`}
-                />
-                <span className="text-xs">{gap}</span>
+                <div
+                  className={`text-lg font-bold ${getScoreColor(
+                    parseInt(candidate.vote)
+                  )}`}
+                >
+                  {candidate.vote}/10
+                </div>
+                <div
+                  className={`text-sm ${getScoreColor(
+                    parseInt(candidate.vote)
+                  )}`}
+                >
+                  {getScoreText(parseInt(candidate.vote))}
+                </div>
               </div>
-            ))}
+
+              <button
+                onClick={() => setShowModal(false)}
+                className="p-2 text-gray-400 hover:text-white transition-colors"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6 space-y-6">
+              {/* Contact Information */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {candidate.email && (
+                  <div className="flex items-center space-x-3 p-3 bg-slate-700/50 rounded-lg">
+                    <Mail className="h-4 w-4 text-cyan-400" />
+                    <div>
+                      <p className="text-xs text-gray-400">البريد الإلكتروني</p>
+                      <p className="text-sm text-white">{candidate.email}</p>
+                    </div>
+                  </div>
+                )}
+                {candidate.phone && (
+                  <div className="flex items-center space-x-3 p-3 bg-slate-700/50 rounded-lg">
+                    <Phone className="h-4 w-4 text-cyan-400" />
+                    <div>
+                      <p className="text-xs text-gray-400">رقم الهاتف</p>
+                      <p className="text-sm text-white">{candidate.phone}</p>
+                    </div>
+                  </div>
+                )}
+                {candidate.city && (
+                  <div className="flex items-center space-x-3 p-3 bg-slate-700/50 rounded-lg">
+                    <MapPin className="h-4 w-4 text-cyan-400" />
+                    <div>
+                      <p className="text-xs text-gray-400">الموقع</p>
+                      <p className="text-sm text-white">{candidate.city}</p>
+                    </div>
+                  </div>
+                )}
+                {candidate.dateOfBirth && (
+                  <div className="flex items-center space-x-3 p-3 bg-slate-700/50 rounded-lg">
+                    <Calendar className="h-4 w-4 text-cyan-400" />
+                    <div>
+                      <p className="text-xs text-gray-400">تاريخ الميلاد</p>
+                      <p className="text-sm text-white">
+                        {candidate.dateOfBirth}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Skills */}
+              {candidate.skills && (
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-3 flex items-center">
+                    <Award className="h-5 w-5 text-cyan-400 mr-2" />
+                    المهارات
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {candidate.skills
+                      .split(",")
+                      .map((skill: string, skillIndex: number) => (
+                        <span
+                          key={skillIndex}
+                          className="px-3 py-1 bg-cyan-500/20 text-cyan-400 text-sm rounded-lg border border-cyan-500/30"
+                        >
+                          {skill.trim()}
+                        </span>
+                      ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Summary */}
+              {candidate.summary && (
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-3">
+                    ملخص
+                  </h3>
+                  <p className="text-gray-300 leading-relaxed">
+                    {candidate.summary}
+                  </p>
+                </div>
+              )}
+
+              {/* Education */}
+              {candidate.education && (
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-3 flex items-center">
+                    <GraduationCap className="h-5 w-5 text-cyan-400 mr-2" />
+                    التعليم
+                  </h3>
+                  <p className="text-gray-300 leading-relaxed">
+                    {candidate.education}
+                  </p>
+                </div>
+              )}
+
+              {/* Work Experience */}
+              {candidate.jobHistory && (
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-3 flex items-center">
+                    <Briefcase className="h-5 w-5 text-cyan-400 mr-2" />
+                    الخبرة العملية
+                  </h3>
+                  <p className="text-gray-300 leading-relaxed">
+                    {candidate.jobHistory}
+                  </p>
+                </div>
+              )}
+
+              {/* Strengths */}
+              {candidate.strengths && (
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-3 flex items-center">
+                    <CheckCircle className="h-5 w-5 text-green-400 mr-2" />
+                    نقاط القوة
+                  </h3>
+                  <div className="space-y-2">
+                    {candidate.strengths
+                      .split(",")
+                      .map((strength: string, strengthIndex: number) => (
+                        <div
+                          key={strengthIndex}
+                          className="flex items-center space-x-2"
+                        >
+                          <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
+                          <span className="text-gray-300">
+                            {strength.trim()}
+                          </span>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Areas for Improvement */}
+              {candidate.gaps && (
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-3 flex items-center">
+                    <XCircle className="h-5 w-5 text-red-400 mr-2" />
+                    نقاط التحسين
+                  </h3>
+                  <div className="space-y-2">
+                    {candidate.gaps
+                      .split(",")
+                      .map((gap: string, gapIndex: number) => (
+                        <div
+                          key={gapIndex}
+                          className="flex items-center space-x-2"
+                        >
+                          <XCircle className="h-4 w-4 text-red-400 flex-shrink-0" />
+                          <span className="text-gray-300">{gap.trim()}</span>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Overall Assessment */}
+              {candidate.consideration && (
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-3 flex items-center">
+                    <Star className="h-5 w-5 text-yellow-400 mr-2" />
+                    التقييم العام
+                  </h3>
+                  <p className="text-gray-300 leading-relaxed">
+                    {candidate.consideration}
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Modal Footer */}
+            <div className="p-6 border-t border-slate-700 bg-slate-800/50">
+              <div className="flex items-center justify-between text-sm text-gray-400">
+                <span>تم التحليل بواسطة الذكاء الاصطناعي</span>
+                <span>
+                  {new Date(candidate.analysisDate).toLocaleDateString("ar-SA")}
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       )}
-
-      {/* Consideration */}
-      {candidate.consideration && (
-        <div className="mb-4">
-          <h4 className="text-sm font-medium text-blue-400 mb-2">
-            <FileText className="h-4 w-4 inline mr-2" />
-            التقييم العام:
-          </h4>
-          <p className="text-sm text-gray-400 leading-relaxed line-clamp-3">
-            {candidate.consideration}
-          </p>
-        </div>
-      )}
-
-      {/* Footer */}
-      <div
-        className={`flex items-center justify-between pt-4 border-t border-gray-700 ${
-          isRTL() ? "flex-row-reverse" : ""
-        }`}
-      >
-        <div
-          className={`flex items-center text-xs text-gray-500 ${
-            isRTL() ? "flex-row-reverse space-x-reverse space-x-2" : "space-x-2"
-          }`}
-        >
-          <Award className="h-3 w-3" />
-          <span>تم التحليل بواسطة الذكاء الاصطناعي</span>
-        </div>
-
-        <div className="text-xs text-gray-500">
-          {new Date(candidate.analysisDate).toLocaleDateString("ar-SA")}
-        </div>
-      </div>
-    </motion.div>
+    </>
   );
 }
