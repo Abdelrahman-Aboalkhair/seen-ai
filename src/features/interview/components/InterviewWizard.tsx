@@ -1,26 +1,15 @@
 import React, { useState } from "react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "../../../components/ui/Card";
+import { Card, CardContent } from "../../../components/ui/Card";
 import { Button } from "../../../components/ui/Button";
 import { Badge } from "../../../components/ui/Badge";
 import { Progress } from "../../../components/ui/Progress";
-import {
-  ChevronLeft,
-  ChevronRight,
-  CheckCircle,
-  Circle,
-  Users,
-  FileText,
-  Share2,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, CheckCircle, Circle } from "lucide-react";
 import { useInterviewWizard } from "../hooks/useInterviewWizard";
+import toast from "react-hot-toast";
 import { InterviewSetup } from "./InterviewSetup";
 import { CandidateSelection } from "./CandidateSelection";
 import { InterviewSummary } from "./InterviewSummary";
+import { SummaryStep } from "./SummaryStep";
 import { INTERVIEW_STEPS } from "../types";
 
 export const InterviewWizard: React.FC = () => {
@@ -35,6 +24,7 @@ export const InterviewWizard: React.FC = () => {
     toggleTestType,
     generateQuestions,
     updateQuestions,
+    regenerateQuestions,
     fetchCandidates,
     createInterview,
     addCandidatesToInterview,
@@ -57,7 +47,11 @@ export const InterviewWizard: React.FC = () => {
         await generateQuestions();
       }
       if (questions.length > 0) {
-        await createInterview();
+        // Only create interview if it hasn't been created yet
+        if (!interviewData.id) {
+          await createInterview();
+        }
+        updateInterviewData({ currentStep: currentStep + 1 });
       }
     } else if (currentStep === 2) {
       // Step 2: Add candidates to interview
@@ -66,6 +60,7 @@ export const InterviewWizard: React.FC = () => {
           selectedCandidateIds
         );
         setInterviewCandidates(addedCandidates || []);
+        updateInterviewData({ currentStep: currentStep + 1 });
       }
     }
   };
@@ -95,11 +90,14 @@ export const InterviewWizard: React.FC = () => {
   const canProceedToNextStep = () => {
     switch (currentStep) {
       case 1:
-        return questions.length > 0 && interviewData.id;
+        // Allow proceeding if questions are generated, even if interview ID is not set yet
+        // The interview will be created when the user clicks Next
+        return questions.length > 0;
       case 2:
         return selectedCandidateIds.length > 0;
       case 3:
-        return interviewCandidates.length > 0;
+        // Step 3 is the final step, no next button needed
+        return false;
       default:
         return false;
     }
@@ -119,6 +117,7 @@ export const InterviewWizard: React.FC = () => {
             generatingQuestions={generatingQuestions}
             balance={balance}
             onToggleTestType={toggleTestType}
+            onRegenerateQuestions={regenerateQuestions}
           />
         );
 
@@ -138,13 +137,18 @@ export const InterviewWizard: React.FC = () => {
 
       case 3:
         return (
-          <InterviewSummary
-            interviewData={interviewData}
-            questions={questions}
-            canGenerateQuestions={false}
-            onGenerateQuestions={() => {}}
-            generatingQuestions={false}
-            balance={balance}
+          <SummaryStep
+            interviewData={{
+              ...interviewData,
+              questions: questions,
+              candidates: interviewCandidates,
+            }}
+            onComplete={() => {
+              // Handle completion - could redirect to dashboard or show success message
+              toast.success("تم إنشاء المقابلة بنجاح!");
+            }}
+            onReset={resetInterview}
+            onGenerateLinks={generateInterviewLinks}
           />
         );
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   CheckCircle,
   Share2,
@@ -13,37 +13,89 @@ import {
 } from "lucide-react";
 import { InterviewData } from "../types";
 import toast from "react-hot-toast";
+import { supabase } from "../../../lib/supabase";
 
 interface SummaryStepProps {
   interviewData: InterviewData;
   onComplete: () => void;
   onReset: () => void;
+  onGenerateLinks?: () => Promise<void>;
 }
 
 export const SummaryStep: React.FC<SummaryStepProps> = ({
   interviewData,
   onComplete,
   onReset,
+  onGenerateLinks,
 }) => {
   const [copied, setCopied] = useState(false);
   const [shareLink, setShareLink] = useState("");
 
+  // Fetch session links when component mounts
+  useEffect(() => {
+    if (interviewData.id) {
+      fetchSessionLinks();
+    }
+  }, [interviewData.id]);
+
   // Generate share link
-  const generateShareLink = () => {
+  const generateShareLink = async () => {
     if (!interviewData.id) {
       toast.error("لا يمكن إنشاء رابط المشاركة بدون معرف المقابلة");
       return;
     }
 
-    const baseUrl = window.location.origin;
-    const link = `${baseUrl}/interview/${interviewData.id}`;
-    setShareLink(link);
-    return link;
+    if (onGenerateLinks) {
+      try {
+        await onGenerateLinks();
+        toast.success("تم إنشاء روابط المقابلة بنجاح");
+
+        // After generating links, fetch the actual session tokens
+        await fetchSessionLinks();
+      } catch (error) {
+        toast.error("فشل في إنشاء روابط المقابلة");
+        return;
+      }
+    }
+  };
+
+  // Fetch actual session links from the database
+  const fetchSessionLinks = async () => {
+    if (!interviewData.id) return;
+
+    try {
+      const { data: sessions, error } = await supabase
+        .from("interview_sessions")
+        .select("session_token, candidate_id")
+        .eq("interview_id", interviewData.id);
+
+      if (error) {
+        console.error("Error fetching sessions:", error);
+        return;
+      }
+
+      if (sessions && sessions.length > 0) {
+        // Use the first session token for the demo link
+        const firstSession = sessions[0];
+        const baseUrl = window.location.origin;
+        const link = `${baseUrl}/interview/${encodeURIComponent(
+          firstSession.session_token
+        )}`;
+        setShareLink(link);
+        return link;
+      }
+    } catch (error) {
+      console.error("Error fetching session links:", error);
+    }
   };
 
   // Copy link to clipboard
   const copyToClipboard = async () => {
-    const link = shareLink || generateShareLink();
+    let link = shareLink;
+    if (!link) {
+      await generateShareLink();
+      link = shareLink; // Get the updated shareLink after generation
+    }
     if (!link) return;
 
     try {
@@ -57,8 +109,12 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
   };
 
   // Share via email
-  const shareViaEmail = () => {
-    const link = shareLink || generateShareLink();
+  const shareViaEmail = async () => {
+    let link = shareLink;
+    if (!link) {
+      await generateShareLink();
+      link = shareLink; // Get the updated shareLink after generation
+    }
     if (!link) return;
 
     const subject = encodeURIComponent(`مقابلة: ${interviewData.jobTitle}`);
@@ -109,21 +165,21 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
           <FileText className="h-5 w-5 mr-2" />
           تفاصيل المقابلة
         </h3>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
             <div>
               <label className="text-gray-400 text-sm">المسمى الوظيفي</label>
               <p className="text-white font-medium">{interviewData.jobTitle}</p>
             </div>
-            
+
             <div>
               <label className="text-gray-400 text-sm">نوع المقابلة</label>
               <p className="text-white font-medium">
                 {getInterviewTypeLabel(interviewData.interviewType)}
               </p>
             </div>
-            
+
             <div>
               <label className="text-gray-400 text-sm">مدة المقابلة</label>
               <p className="text-white font-medium flex items-center">
@@ -132,7 +188,7 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
               </p>
             </div>
           </div>
-          
+
           <div className="space-y-4">
             <div>
               <label className="text-gray-400 text-sm">وضع المقابلة</label>
@@ -140,7 +196,7 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
                 {getInterviewModeLabel(interviewData.interviewMode)}
               </p>
             </div>
-            
+
             <div>
               <label className="text-gray-400 text-sm">عدد الأسئلة</label>
               <p className="text-white font-medium flex items-center">
@@ -148,7 +204,7 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
                 {interviewData.questions.length} سؤال
               </p>
             </div>
-            
+
             <div>
               <label className="text-gray-400 text-sm">عدد المرشحين</label>
               <p className="text-white font-medium flex items-center">
@@ -176,14 +232,16 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
             <Brain className="h-5 w-5 mr-2" />
             الأسئلة ({interviewData.questions.length})
           </h3>
-          
+
           <div className="space-y-2 max-h-40 overflow-y-auto">
             {interviewData.questions.slice(0, 5).map((question, index) => (
               <div key={question.id || index} className="flex items-start">
                 <span className="text-gray-400 text-sm mr-3 mt-1">
                   {index + 1}.
                 </span>
-                <span className="text-white text-sm">{question.questionText}</span>
+                <span className="text-white text-sm">
+                  {question.questionText}
+                </span>
                 {question.isAiGenerated && (
                   <span className="ml-2 text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded">
                     AI
@@ -207,18 +265,20 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
             <Users className="h-5 w-5 mr-2" />
             المرشحون ({interviewData.candidates.length})
           </h3>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {interviewData.candidates.map((candidate, index) => (
               <div key={index} className="bg-slate-700 rounded p-3">
                 <p className="text-white font-medium">{candidate.name}</p>
                 <p className="text-gray-400 text-sm">{candidate.email}</p>
-                <span className={`text-xs px-2 py-1 rounded mt-2 inline-block ${
-                  candidate.status === 'completed' 
-                    ? 'bg-green-500/20 text-green-400' 
-                    : 'bg-yellow-500/20 text-yellow-400'
-                }`}>
-                  {candidate.status === 'completed' ? 'مكتمل' : 'في الانتظار'}
+                <span
+                  className={`text-xs px-2 py-1 rounded mt-2 inline-block ${
+                    candidate.status === "completed"
+                      ? "bg-green-500/20 text-green-400"
+                      : "bg-yellow-500/20 text-yellow-400"
+                  }`}
+                >
+                  {candidate.status === "completed" ? "مكتمل" : "في الانتظار"}
                 </span>
               </div>
             ))}
@@ -232,7 +292,7 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
           <Share2 className="h-5 w-5 mr-2" />
           مشاركة المقابلة
         </h3>
-        
+
         <div className="space-y-4">
           <div className="flex items-center space-x-3">
             <button
@@ -240,9 +300,9 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
               className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center"
             >
               <LinkIcon className="h-4 w-4 mr-2" />
-              إنشاء رابط المشاركة
+              إنشاء روابط المقابلة وإرسال البريد
             </button>
-            
+
             <button
               onClick={shareViaEmail}
               className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors flex items-center"
@@ -254,7 +314,9 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
 
           {shareLink && (
             <div className="bg-slate-700 rounded p-4">
-              <label className="text-gray-400 text-sm mb-2 block">رابط المشاركة</label>
+              <label className="text-gray-400 text-sm mb-2 block">
+                رابط المشاركة
+              </label>
               <div className="flex items-center space-x-2">
                 <input
                   type="text"
@@ -265,13 +327,13 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
                 <button
                   onClick={copyToClipboard}
                   className={`px-3 py-2 rounded transition-colors flex items-center ${
-                    copied 
-                      ? 'bg-green-600 text-white' 
-                      : 'bg-slate-600 hover:bg-slate-500 text-white'
+                    copied
+                      ? "bg-green-600 text-white"
+                      : "bg-slate-600 hover:bg-slate-500 text-white"
                   }`}
                 >
                   <Copy className="h-4 w-4 mr-1" />
-                  {copied ? 'تم النسخ' : 'نسخ'}
+                  {copied ? "تم النسخ" : "نسخ"}
                 </button>
                 <a
                   href={shareLink}
@@ -296,7 +358,7 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
         >
           إنشاء مقابلة جديدة
         </button>
-        
+
         <button
           onClick={onComplete}
           className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors flex items-center"

@@ -53,27 +53,24 @@ export const useInterviewWizard = () => {
   }, [interviewData]);
 
   // Calculate total questions and credits based on selected test types and their plans
-  const calculateInterviewDetails = useCallback(
-    (selectedTypes: TestType[]) => {
-      let totalQuestions = 0;
-      let creditsUsed = 0;
+  const calculateInterviewDetails = useCallback((selectedTypes: TestType[]) => {
+    let totalQuestions = 0;
+    let creditsUsed = 0;
 
-      selectedTypes.forEach((testType) => {
-        if (testType.selectedPlan) {
-          totalQuestions += testType.selectedPlan.questionCount;
-          creditsUsed += testType.selectedPlan.credits;
-        } else {
-          // Fallback to default plan if none selected
-          const defaultPlan = testType.durationOptions[0];
-          totalQuestions += defaultPlan.questionCount;
-          creditsUsed += defaultPlan.credits;
-        }
-      });
+    selectedTypes.forEach((testType) => {
+      if (testType.selectedPlan) {
+        totalQuestions += testType.selectedPlan.questionCount;
+        creditsUsed += testType.selectedPlan.credits;
+      } else {
+        // Fallback to default plan if none selected
+        const defaultPlan = testType.durationOptions[0];
+        totalQuestions += defaultPlan.questionCount;
+        creditsUsed += defaultPlan.credits;
+      }
+    });
 
-      return { totalQuestions, creditsUsed };
-    },
-    []
-  );
+    return { totalQuestions, creditsUsed };
+  }, []);
 
   // Update interview data
   const updateInterviewData = useCallback(
@@ -123,14 +120,13 @@ export const useInterviewWizard = () => {
             // If no plan selected, use the first available plan
             selectedPlan = testType.durationOptions[0];
           }
-          
+
           const testTypeWithPlan = { ...testType, selectedPlan };
           newSelectedTypes = [...prev.selectedTestTypes, testTypeWithPlan];
         }
 
-        const { totalQuestions, creditsUsed } = calculateInterviewDetails(
-          newSelectedTypes
-        );
+        const { totalQuestions, creditsUsed } =
+          calculateInterviewDetails(newSelectedTypes);
 
         return {
           ...prev,
@@ -177,7 +173,8 @@ export const useInterviewWizard = () => {
       let questionOrder = 1;
 
       for (const testType of interviewData.selectedTestTypes) {
-        const selectedPlan = testType.selectedPlan || testType.durationOptions[0];
+        const selectedPlan =
+          testType.selectedPlan || testType.durationOptions[0];
         const questionsPerType = selectedPlan.questionCount;
 
         const { data, error } = await supabase.functions.invoke(
@@ -209,9 +206,14 @@ export const useInterviewWizard = () => {
               testType: testType.name,
               modelAnswer: q.modelAnswer,
               skillMeasured: q.skillMeasured,
-              questionDurationSeconds: Math.round((selectedPlan.duration * 60) / questionsPerType), // Calculate based on plan duration
+              questionDurationSeconds: Math.round(
+                (selectedPlan.duration * 60) / questionsPerType
+              ), // Calculate based on plan duration
               questionOrder: questionOrder + index,
               isAiGenerated: true,
+              options: q.options || [],
+              correctAnswer: q.correctAnswer || "",
+              questionType: q.questionType || "multiple_choice",
             })
           );
 
@@ -354,7 +356,6 @@ export const useInterviewWizard = () => {
       updateInterviewData({
         id: interview.id,
         status: "questions_ready",
-        currentStep: 2,
       });
 
       toast.success("تم إنشاء المقابلة بنجاح");
@@ -401,7 +402,6 @@ export const useInterviewWizard = () => {
 
         updateInterviewData({
           status: "candidates_added",
-          currentStep: 3,
         });
 
         toast.success(`تم إضافة ${selectedCandidates.length} مرشح بنجاح`);
@@ -505,6 +505,55 @@ export const useInterviewWizard = () => {
     setQuestions(updatedQuestions);
   }, []);
 
+  // Regenerate questions for existing interview
+  const regenerateQuestions = useCallback(async () => {
+    if (!interviewData.id) {
+      toast.error("يرجى إنشاء المقابلة أولاً");
+      return;
+    }
+
+    setGeneratingQuestions(true);
+    try {
+      // Generate new questions
+      await generateQuestions();
+
+      // Update existing questions in database
+      if (questions.length > 0) {
+        const questionsToUpdate = questions.map((q) => ({
+          id: q.id, // We need the question ID to update
+          question_options: q.options || [],
+          correct_answer: q.correctAnswer || "",
+          question_type: q.questionType || "multiple_choice",
+        }));
+
+        // Update each question individually since we need to match by ID
+        for (const questionUpdate of questionsToUpdate) {
+          if (questionUpdate.id) {
+            const { error } = await supabase
+              .from("interview_questions")
+              .update({
+                question_options: questionUpdate.question_options,
+                correct_answer: questionUpdate.correct_answer,
+                question_type: questionUpdate.question_type,
+              })
+              .eq("id", questionUpdate.id);
+
+            if (error) {
+              console.error("Error updating question:", error);
+            }
+          }
+        }
+
+        toast.success("تم إعادة إنشاء الأسئلة بنجاح");
+      }
+    } catch (error: any) {
+      console.error("Error regenerating questions:", error);
+      toast.error("فشل في إعادة إنشاء الأسئلة");
+    } finally {
+      setGeneratingQuestions(false);
+    }
+  }, [interviewData.id, questions, generateQuestions]);
+
   // Reset interview data
   const resetInterview = useCallback(() => {
     setInterviewData({
@@ -536,6 +585,7 @@ export const useInterviewWizard = () => {
     toggleTestType,
     generateQuestions,
     updateQuestions,
+    regenerateQuestions,
     fetchCandidates,
     createInterview,
     addCandidatesToInterview,

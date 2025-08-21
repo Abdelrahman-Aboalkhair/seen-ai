@@ -17,6 +17,7 @@ interface InterviewSetupProps {
     testType: TestType,
     selectedPlan?: DurationOption
   ) => void;
+  onRegenerateQuestions?: () => void;
 }
 
 export const InterviewSetup: React.FC<InterviewSetupProps> = ({
@@ -29,6 +30,7 @@ export const InterviewSetup: React.FC<InterviewSetupProps> = ({
   generatingQuestions,
   balance,
   onToggleTestType,
+  onRegenerateQuestions,
 }) => {
   const [expandedCards, setExpandedCards] = useState<Set<string>>(new Set());
 
@@ -121,6 +123,8 @@ export const InterviewSetup: React.FC<InterviewSetupProps> = ({
         generatingQuestions={generatingQuestions}
         balance={balance}
         onContinueToNextStep={onContinueToNextStep}
+        showContinueButton={true}
+        onRegenerateQuestions={onRegenerateQuestions}
       />
     </div>
   );
