@@ -10,26 +10,35 @@ export interface TalentSearchForm {
 }
 
 export interface Candidate {
-  id: string;
+  id?: string;
   full_name: string;
-  email: string;
+  current_position?: string;
+  linkedin_url?: string;
+  match_score: number;
+  skills_match: string;
+  experience_match: string;
+  summary?: string;
+  ranking: number;
+  education_match: string;
+  culture_fit: string;
+  strengths: string;
+  gaps: string;
+  
+  // Legacy fields for backward compatibility
+  email?: string;
   phone?: string;
   location?: string;
-  match_score: number;
-  skills: string[];
-  experience_years: number;
-  education_level: string;
-  certifications: string[];
-  languages: string[];
+  skills?: string[];
+  experience_years?: number;
+  education_level?: string;
+  certifications?: string[];
+  languages?: string[];
   resume_url?: string;
-  linkedin_url?: string;
   github_url?: string;
   portfolio_url?: string;
-  availability: string;
+  availability?: string;
   salary_expectation?: string;
-  created_at: string;
-  current_position?: string;
-  summary?: string;
+  created_at?: string;
 }
 
 export interface SearchResult {

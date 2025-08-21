@@ -63,47 +63,29 @@ export const SearchFilters: React.FC<SearchFiltersProps> = ({
           </select>
         </div>
 
-        {/* Filter by Location */}
+        {/* Filter by Location - Disabled (not available in new n8n structure) */}
         <div>
           <label className="block text-sm font-medium text-gray-400 mb-2">
             Location
           </label>
           <select
-            value={filters.filterByLocation || ""}
-            onChange={(e) =>
-              onUpdateFilters({ filterByLocation: e.target.value || undefined })
-            }
-            className="w-full px-3 py-2 bg-slate-900 border border-slate-600 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            disabled
+            className="w-full px-3 py-2 bg-slate-900/50 border border-slate-600 rounded-lg text-gray-500 text-sm cursor-not-allowed"
           >
-            <option value="">All Locations</option>
-            {uniqueLocations.map((location) => (
-              <option key={location} value={location}>
-                {location}
-              </option>
-            ))}
+            <option value="">Not Available</option>
           </select>
         </div>
 
-        {/* Filter by Experience */}
+        {/* Filter by Experience - Disabled (not available in new n8n structure) */}
         <div>
           <label className="block text-sm font-medium text-gray-400 mb-2">
             Experience
           </label>
           <select
-            value={filters.filterByExperience || ""}
-            onChange={(e) =>
-              onUpdateFilters({
-                filterByExperience: e.target.value || undefined,
-              })
-            }
-            className="w-full px-3 py-2 bg-slate-900 border border-slate-600 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            disabled
+            className="w-full px-3 py-2 bg-slate-900/50 border border-slate-600 rounded-lg text-gray-500 text-sm cursor-not-allowed"
           >
-            <option value="">Any Experience</option>
-            {experienceRanges.map((range) => (
-              <option key={range.value} value={range.value}>
-                {range.label}
-              </option>
-            ))}
+            <option value="">Not Available</option>
           </select>
         </div>
       </div>

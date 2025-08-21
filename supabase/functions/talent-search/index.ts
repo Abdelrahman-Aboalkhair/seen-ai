@@ -236,13 +236,13 @@ Deno.serve(async (req) => {
       // Wrapped in data object
       candidatesArray = n8nData.data;
     } else if (n8nData.candidates && Array.isArray(n8nData.candidates)) {
-      // Wrapped in candidates object
+      // New n8n workflow format with candidates array
       candidatesArray = n8nData.candidates;
     } else if (n8nData.results && Array.isArray(n8nData.results)) {
       // Wrapped in results object
       candidatesArray = n8nData.results;
     } else if (n8nData.candidate && n8nData.matchScore) {
-      // Single candidate object format (your n8n service format)
+      // Single candidate object format (legacy n8n service format)
       candidatesArray = [n8nData];
     } else {
       console.error("Invalid n8n response format:", n8nData);
@@ -255,6 +255,7 @@ Deno.serve(async (req) => {
 
     console.log(`Found ${candidatesArray.length} candidates from n8n service`);
     console.log("Requested candidates:", numberOfCandidates);
+    console.log("First candidate structure:", candidatesArray[0]);
 
     // Transform n8n response to our expected format
     const candidates = candidatesArray.map((item, index) => {
@@ -263,6 +264,38 @@ Deno.serve(async (req) => {
         console.error("Invalid candidate data from n8n:", item);
         throw new Error("بيانات المرشح غير صحيحة من خدمة البحث");
       }
+
+      // Helper function to extract first line from analysis text
+      const extractFirstLine = (text: string, prefix: string) => {
+        if (!text) return "غير محدد";
+        const lines = text.split("\n");
+        const firstLine = lines[0];
+        return firstLine.replace(prefix, "").trim() || "غير محدد";
+      };
+
+      // Helper function to extract technical skills from skillsMatch
+      const extractTechnicalSkills = (skillsMatch: string) => {
+        if (!skillsMatch) return "غير محدد";
+        const lines = skillsMatch.split("\n");
+        for (const line of lines) {
+          if (line.includes("technicalSkills:")) {
+            return line.replace("technicalSkills:", "").trim();
+          }
+        }
+        return "غير محدد";
+      };
+
+      // Helper function to extract relevant experience from experienceMatch
+      const extractRelevantExperience = (experienceMatch: string) => {
+        if (!experienceMatch) return "غير محدد";
+        const lines = experienceMatch.split("\n");
+        for (const line of lines) {
+          if (line.includes("relevantExperience:")) {
+            return line.replace("relevantExperience:", "").trim();
+          }
+        }
+        return "غير محدد";
+      };
 
       return {
         current_position: item.candidate.headline || "غير محدد",
@@ -273,24 +306,17 @@ Deno.serve(async (req) => {
           email: "",
         },
         match_score: item.matchScore || 0,
-        skills_match:
-          item.analysis?.skillsMatch
-            ?.split("\n")[0]
-            ?.replace("technicalSkills: ", "") || "غير محدد",
-        experience_match:
+        skills_match: extractTechnicalSkills(item.analysis?.skillsMatch),
+        experience_match: extractRelevantExperience(
           item.analysis?.experienceMatch
-            ?.split("\n")[0]
-            ?.replace("quality: ", "") || "غير محدد",
+        ),
         summary: item.summary || "غير محدد",
         ranking: index + 1,
-        education_match:
-          item.analysis?.educationMatch
-            ?.split("\n")[0]
-            ?.replace("relevance: ", "") || "غير محدد",
-        culture_fit:
-          item.analysis?.cultureFit
-            ?.split("\n")[0]
-            ?.replace("evaluation: ", "") || "غير محدد",
+        education_match: extractFirstLine(
+          item.analysis?.educationMatch,
+          "relevantEducation:"
+        ),
+        culture_fit: extractFirstLine(item.analysis?.cultureFit, "values:"),
         strengths: item.analysis?.strengths?.join(", ") || "غير محدد",
         gaps: item.analysis?.gaps?.join(", ") || "غير محدد",
       };

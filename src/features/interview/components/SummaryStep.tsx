@@ -495,15 +495,19 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
                   <div>
                     <span className="text-gray-400">أنواع الاختبارات:</span>
                     <span className="text-white ml-2 font-medium">
-                      {interviewData.selectedTestTypes?.map(t => t.label).join(", ") || "تقنية"}
+                      {interviewData.selectedTestTypes
+                        ?.map((t) => t.label)
+                        .join(", ") || "تقنية"}
                     </span>
                   </div>
                 </div>
-                
+
                 {interviewData.jobDescription && (
                   <div className="mt-4 p-3 bg-slate-600/50 rounded border-r-4 border-blue-500">
                     <span className="text-gray-400 text-sm">وصف الوظيفة:</span>
-                    <p className="text-white text-sm mt-1">{interviewData.jobDescription}</p>
+                    <p className="text-white text-sm mt-1">
+                      {interviewData.jobDescription}
+                    </p>
                   </div>
                 )}
               </div>
@@ -514,37 +518,53 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
                   <Mail className="h-5 w-5 text-blue-400" />
                   ما سيتم إرساله في البريد الإلكتروني
                 </h3>
-                
+
                 <div className="space-y-3 text-sm">
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
                     <div>
-                      <span className="text-white font-medium">عنوان البريد:</span>
-                      <span className="text-gray-300"> مقابلة جديدة - {interviewData.jobTitle}</span>
+                      <span className="text-white font-medium">
+                        عنوان البريد:
+                      </span>
+                      <span className="text-gray-300">
+                        {" "}
+                        مقابلة جديدة - {interviewData.jobTitle}
+                      </span>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
                     <div>
-                      <span className="text-white font-medium">محتوى البريد:</span>
-                      <span className="text-gray-300"> دعوة رسمية مع رابط المقابلة الفريد</span>
+                      <span className="text-white font-medium">
+                        محتوى البريد:
+                      </span>
+                      <span className="text-gray-300">
+                        {" "}
+                        دعوة رسمية مع رابط المقابلة الفريد
+                      </span>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
                     <div>
                       <span className="text-white font-medium">الرابط:</span>
-                      <span className="text-gray-300"> رابط آمن ومشفر صالح لمدة 7 أيام</span>
+                      <span className="text-gray-300">
+                        {" "}
+                        رابط آمن ومشفر صالح لمدة 7 أيام
+                      </span>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
                     <div>
                       <span className="text-white font-medium">التوقعات:</span>
-                      <span className="text-gray-300"> سيتم إرسال بريد منفصل لكل مرشح</span>
+                      <span className="text-gray-300">
+                        {" "}
+                        سيتم إرسال بريد منفصل لكل مرشح
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -556,27 +576,37 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
                   <AlertCircle className="h-5 w-5 text-amber-400" />
                   ملاحظات مهمة
                 </h3>
-                
+
                 <div className="space-y-2 text-sm">
                   <div className="flex items-start gap-2">
                     <span className="text-amber-400">•</span>
-                    <span className="text-gray-300">سيتم إرسال دعوة منفصلة لكل مرشح على بريده الإلكتروني</span>
+                    <span className="text-gray-300">
+                      سيتم إرسال دعوة منفصلة لكل مرشح على بريده الإلكتروني
+                    </span>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="text-amber-400">•</span>
-                    <span className="text-gray-300">كل رابط مقابلة فريد ومخصص للمرشح المحدد</span>
+                    <span className="text-gray-300">
+                      كل رابط مقابلة فريد ومخصص للمرشح المحدد
+                    </span>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="text-amber-400">•</span>
-                    <span className="text-gray-300">الروابط صالحة لمدة 7 أيام من تاريخ الإرسال</span>
+                    <span className="text-gray-300">
+                      الروابط صالحة لمدة 7 أيام من تاريخ الإرسال
+                    </span>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="text-amber-400">•</span>
-                    <span className="text-gray-300">يمكن للمرشحين الوصول للمقابلة من أي جهاز متصل بالإنترنت</span>
+                    <span className="text-gray-300">
+                      يمكن للمرشحين الوصول للمقابلة من أي جهاز متصل بالإنترنت
+                    </span>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="text-amber-400">•</span>
-                    <span className="text-gray-300">سيتم تتبع تقدم كل مرشح وإرسال النتائج تلقائياً</span>
+                    <span className="text-gray-300">
+                      سيتم تتبع تقدم كل مرشح وإرسال النتائج تلقائياً
+                    </span>
                   </div>
                 </div>
               </div>

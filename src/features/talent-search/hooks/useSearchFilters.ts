@@ -22,21 +22,23 @@ export const useSearchFilters = (candidates: Candidate[]) => {
       filteredResults = filteredResults.filter((c) => c.match_score < 60);
     }
 
-    // Filter by location
+    // Filter by location (not available in new structure)
     if (filters.filterByLocation) {
-      filteredResults = filteredResults.filter((c) =>
-        c.location
-          ?.toLowerCase()
-          .includes(filters.filterByLocation!.toLowerCase())
-      );
+      // Location filtering is not available in the new n8n response structure
+      // filteredResults = filteredResults.filter((c) =>
+      //   c.location
+      //     ?.toLowerCase()
+      //     .includes(filters.filterByLocation!.toLowerCase())
+      // );
     }
 
-    // Filter by experience
+    // Filter by experience (not available in new structure)
     if (filters.filterByExperience) {
-      const experienceYears = parseInt(filters.filterByExperience);
-      filteredResults = filteredResults.filter(
-        (c) => c.experience_years >= experienceYears
-      );
+      // Experience filtering is not available in the new n8n response structure
+      // const experienceYears = parseInt(filters.filterByExperience);
+      // filteredResults = filteredResults.filter(
+      //   (c) => c.experience_years >= experienceYears
+      // );
     }
 
     // Sort results
@@ -48,12 +50,14 @@ export const useSearchFilters = (candidates: Candidate[]) => {
         filteredResults.sort((a, b) => a.full_name.localeCompare(b.full_name));
         break;
       case "experience":
-        filteredResults.sort((a, b) => b.experience_years - a.experience_years);
+        // Experience sorting is not available in the new n8n response structure
+        // filteredResults.sort((a, b) => b.experience_years - a.experience_years);
         break;
       case "location":
-        filteredResults.sort((a, b) =>
-          (a.location || "").localeCompare(b.location || "")
-        );
+        // Location sorting is not available in the new n8n response structure
+        // filteredResults.sort((a, b) =>
+        //   (a.location || "").localeCompare(b.location || "")
+        // );
         break;
     }
 
@@ -65,13 +69,15 @@ export const useSearchFilters = (candidates: Candidate[]) => {
     setFilters((prev) => ({ ...prev, ...updates }));
   };
 
-  // Get unique locations for filter dropdown
+  // Get unique locations for filter dropdown (not available in new structure)
   const uniqueLocations = useMemo(() => {
-    const locations = candidates
-      .map((c) => c.location)
-      .filter(Boolean)
-      .filter((value, index, self) => self.indexOf(value) === index);
-    return locations.sort();
+    // Location data is not available in the new n8n response structure
+    // const locations = candidates
+    //   .map((c) => c.location)
+    //   .filter(Boolean)
+    //   .filter((value, index, self) => self.indexOf(value) === index);
+    // return locations.sort();
+    return [];
   }, [candidates]);
 
   // Get experience ranges for filter dropdown

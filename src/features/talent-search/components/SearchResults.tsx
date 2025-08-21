@@ -36,27 +36,26 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {candidates.map((candidate, index) => {
           // Transform candidate data to match CandidateCard expectations
+          // The candidate object now comes from the updated n8n workflow structure
           const transformedCandidate = {
             current_position:
               candidate.current_position || "Position not specified",
             full_name: candidate.full_name,
             linkedin_url: candidate.linkedin_url || "",
             match_score: candidate.match_score,
-            skills_match:
-              candidate.skills?.join(", ") || "Skills not specified",
-            experience_match: `${candidate.experience_years || 0}+ years`,
+            skills_match: candidate.skills_match || "Skills not specified",
+            experience_match: candidate.experience_match || "Experience not specified",
             summary: candidate.summary || "No summary available",
-            ranking: index + 1,
-            education_match:
-              candidate.education_level || "Education not specified",
-            culture_fit: "Good cultural fit",
-            strengths: "Strong technical skills",
-            gaps: "No major gaps identified",
+            ranking: candidate.ranking || index + 1,
+            education_match: candidate.education_match || "Education not specified",
+            culture_fit: candidate.culture_fit || "Good cultural fit",
+            strengths: candidate.strengths || "Strong technical skills",
+            gaps: candidate.gaps || "No major gaps identified",
           };
 
           return (
             <CandidateCard
-              key={candidate.id}
+              key={candidate.id || `candidate-${index}`}
               candidate={transformedCandidate}
               index={index}
             />
