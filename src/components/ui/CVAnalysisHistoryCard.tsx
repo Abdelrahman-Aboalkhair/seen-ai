@@ -8,6 +8,8 @@ import {
   Eye,
   Download,
   Trash2,
+  Users,
+  Clock,
 } from "lucide-react";
 import { useTranslation } from "../../lib/i18n";
 
@@ -42,13 +44,13 @@ export function CVAnalysisHistoryCard({
   const getStatusColor = (status: string) => {
     switch (status) {
       case "completed":
-        return "text-green-500 bg-green-500/10 border-green-500/30";
+        return "text-green-400 bg-green-400/10 border-green-400/20";
       case "processing":
-        return "text-yellow-500 bg-yellow-500/10 border-yellow-500/30";
+        return "text-yellow-400 bg-yellow-400/10 border-yellow-400/20";
       case "failed":
-        return "text-red-500 bg-red-500/10 border-red-500/30";
+        return "text-red-400 bg-red-400/10 border-red-400/20";
       default:
-        return "text-gray-500 bg-gray-500/10 border-gray-500/30";
+        return "text-gray-400 bg-gray-400/10 border-gray-400/20";
     }
   };
 
@@ -67,117 +69,156 @@ export function CVAnalysisHistoryCard({
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("ar-SA", {
-      year: "numeric",
-      month: "long",
+      month: "short",
       day: "numeric",
       hour: "2-digit",
       minute: "2-digit",
     });
   };
 
+  const getTopCandidates = () => {
+    if (
+      !item.results ||
+      !Array.isArray(item.results) ||
+      item.results.length === 0
+    )
+      return [];
+    return item.results
+      .filter((result) => result && typeof result === "object" && result.vote)
+      .sort((a, b) => parseInt(b.vote) - parseInt(a.vote))
+      .slice(0, 3);
+  };
+
+  const topCandidates = getTopCandidates();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="bg-white/5 backdrop-blur-sm border border-gray-700 rounded-xl p-6 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10"
+      className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-4 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10"
     >
       {/* Header */}
-      <div
-        className={`flex items-start justify-between mb-4 ${
-          isRTL() ? "flex-row-reverse" : ""
-        }`}
-      >
+      <div className="flex items-start justify-between mb-4">
         <div className="flex-1">
-          <div
-            className={`flex items-center mb-2 ${
-              isRTL()
-                ? "flex-row-reverse space-x-reverse space-x-3"
-                : "space-x-3"
-            }`}
-          >
-            <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-              <FileText className="h-6 w-6 text-white" />
+          <div className="flex items-center space-x-3 mb-2">
+            <div className="w-10 h-10 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center">
+              <FileText className="h-5 w-5 text-white" />
             </div>
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-1">
+            <div className="flex-1">
+              <h3 className="text-lg font-semibold text-white mb-1 line-clamp-1">
                 {item.job_title}
               </h3>
-              <div className="text-sm text-gray-400">
-                {formatDate(item.created_at)}
+              <div className="flex items-center space-x-2 text-sm text-gray-400">
+                <Clock className="h-3 w-3" />
+                <span>{formatDate(item.created_at)}</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Status */}
+        {/* Status Badge */}
         <div
           className={`flex flex-col items-center ${getStatusColor(
             item.status
-          )} border rounded-lg p-3 min-w-[80px]`}
+          )} border rounded-lg px-3 py-2 min-w-[70px]`}
         >
-          <div className="text-sm font-bold">{getStatusLabel(item.status)}</div>
+          <div className="text-xs font-bold">{getStatusLabel(item.status)}</div>
           <div className="text-xs opacity-80">{item.credits_cost} كريدت</div>
         </div>
       </div>
 
-      {/* Job Description */}
-      <div className="mb-4">
-        <h4 className="text-sm font-medium text-gray-300 mb-2">وصف الوظيفة:</h4>
-        <p className="text-sm text-gray-400 leading-relaxed line-clamp-2">
-          {item.job_description}
-        </p>
+      {/* Quick Stats */}
+      <div className="grid grid-cols-3 gap-3 mb-4">
+        <div className="bg-slate-700/30 rounded-lg p-3 text-center">
+          <div className="flex items-center justify-center space-x-1 mb-1">
+            <Users className="h-4 w-4 text-cyan-400" />
+            <span className="text-sm font-medium text-white">
+              {Array.isArray(item.results) ? item.results.length : 0}
+            </span>
+          </div>
+          <div className="text-xs text-gray-400">مرشح</div>
+        </div>
+
+        <div className="bg-slate-700/30 rounded-lg p-3 text-center">
+          <div className="flex items-center justify-center space-x-1 mb-1">
+            <FileText className="h-4 w-4 text-blue-400" />
+            <span className="text-sm font-medium text-white">
+              {item.file_count || 0}
+            </span>
+          </div>
+          <div className="text-xs text-gray-400">ملف</div>
+        </div>
+
+        <div className="bg-slate-700/30 rounded-lg p-3 text-center">
+          <div className="flex items-center justify-center space-x-1 mb-1">
+            <Star className="h-4 w-4 text-yellow-400" />
+            <span className="text-sm font-medium text-white">
+              {topCandidates.length > 0 && topCandidates[0]?.vote
+                ? topCandidates[0].vote
+                : "0"}
+              /10
+            </span>
+          </div>
+          <div className="text-xs text-gray-400">أعلى تقييم</div>
+        </div>
       </div>
 
-      {/* Skills Required */}
+      {/* Job Description Preview */}
+      {item.job_description && (
+        <div className="mb-4">
+          <p className="text-sm text-gray-300 leading-relaxed line-clamp-2">
+            {item.job_description}
+          </p>
+        </div>
+      )}
+
+      {/* Top Skills */}
       {item.required_skills && item.required_skills.length > 0 && (
         <div className="mb-4">
-          <h4 className="text-sm font-medium text-gray-300 mb-2">
-            المهارات المطلوبة:
-          </h4>
-          <div className="flex flex-wrap gap-2">
-            {item.required_skills.map((skill: string, idx: number) => (
-              <span
-                key={idx}
-                className="px-2 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-md"
-              >
-                {skill}
+          <div className="flex flex-wrap gap-1">
+            {item.required_skills
+              .slice(0, 4)
+              .map((skill: string, idx: number) => (
+                <span
+                  key={idx}
+                  className="px-2 py-1 bg-cyan-500/20 text-cyan-300 text-xs rounded-md border border-cyan-500/30"
+                >
+                  {skill}
+                </span>
+              ))}
+            {item.required_skills.length > 4 && (
+              <span className="px-2 py-1 bg-slate-600/50 text-gray-400 text-xs rounded-md">
+                +{item.required_skills.length - 4}
               </span>
-            ))}
+            )}
           </div>
         </div>
       )}
 
-      {/* Analysis Results Summary */}
-      {item.results && item.results.length > 0 && (
+      {/* Top Candidates Preview */}
+      {topCandidates.length > 0 && (
         <div className="mb-4">
           <h4 className="text-sm font-medium text-gray-300 mb-2">
-            نتائج التحليل:
+            أفضل المرشحين:
           </h4>
           <div className="space-y-2">
-            {item.results.map((result: any, idx: number) => (
-              <div key={idx} className="bg-gray-800/50 rounded-lg p-3">
-                <div
-                  className={`flex items-center justify-between mb-2 ${
-                    isRTL() ? "flex-row-reverse" : ""
-                  }`}
-                >
+            {topCandidates.map((result: any, idx: number) => (
+              <div key={idx} className="bg-slate-700/30 rounded-lg p-2">
+                <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <User className="h-4 w-4 text-gray-400" />
-                    <span className="text-sm font-medium text-white">
+                    <User className="h-3 w-3 text-gray-400" />
+                    <span className="text-xs font-medium text-white line-clamp-1">
                       {result.name || "غير محدد"}
                     </span>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <Star className="h-4 w-4 text-yellow-500" />
-                    <span className="text-sm text-yellow-500 font-medium">
+                  <div className="flex items-center space-x-1">
+                    <Star className="h-3 w-3 text-yellow-400" />
+                    <span className="text-xs text-yellow-400 font-medium">
                       {result.vote}/10
                     </span>
                   </div>
                 </div>
-                <p className="text-xs text-gray-400 line-clamp-2">
-                  {result.summary}
-                </p>
               </div>
             ))}
           </div>
@@ -185,38 +226,22 @@ export function CVAnalysisHistoryCard({
       )}
 
       {/* Actions */}
-      <div
-        className={`flex items-center justify-between pt-4 border-t border-gray-700 ${
-          isRTL() ? "flex-row-reverse" : ""
-        }`}
-      >
-        <div
-          className={`flex items-center space-x-2 ${
-            isRTL() ? "flex-row-reverse space-x-reverse" : ""
-          }`}
+      <div className="flex items-center justify-between pt-3 border-t border-slate-600">
+        <button
+          onClick={() => onView(item)}
+          className="flex items-center space-x-2 px-3 py-2 bg-cyan-500/20 text-cyan-300 rounded-lg hover:bg-cyan-500/30 transition-colors border border-cyan-500/30"
         >
-          <button
-            onClick={() => onView(item)}
-            className="flex items-center space-x-1 px-3 py-2 bg-cyan-500/20 text-cyan-300 rounded-lg hover:bg-cyan-500/30 transition-colors"
-          >
-            <Eye className="h-4 w-4" />
-            <span className="text-sm">عرض التفاصيل</span>
-          </button>
-        </div>
+          <Eye className="h-4 w-4" />
+          <span className="text-sm">عرض التفاصيل</span>
+        </button>
 
-        <div
-          className={`flex items-center space-x-2 ${
-            isRTL() ? "flex-row-reverse space-x-reverse" : ""
-          }`}
+        <button
+          onClick={() => onDelete(item.id)}
+          className="flex items-center space-x-2 px-3 py-2 bg-red-500/20 text-red-300 rounded-lg hover:bg-red-500/30 transition-colors border border-red-500/30"
         >
-          <button
-            onClick={() => onDelete(item.id)}
-            className="flex items-center space-x-1 px-3 py-2 bg-red-500/20 text-red-300 rounded-lg hover:bg-red-500/30 transition-colors"
-          >
-            <Trash2 className="h-4 w-4" />
-            <span className="text-sm">حذف</span>
-          </button>
-        </div>
+          <Trash2 className="h-4 w-4" />
+          <span className="text-sm">حذف</span>
+        </button>
       </div>
     </motion.div>
   );
