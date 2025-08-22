@@ -3,13 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useTranslation } from "../../lib/i18n";
 import { Button } from "../ui/Button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../ui/Card";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/Card";
 import { Badge } from "../ui/Badge";
 import {
   Calendar,
@@ -35,10 +29,46 @@ import { useInterviews } from "../../features/interview/hooks/useInterviews";
 
 export function InterviewPage() {
   const { t, isRTL } = useTranslation();
-  const [activeTab, setActiveTab] = useState("completed");
+  const [activeTab, setActiveTab] = useState("pending");
   const { interviews, loading, error, refetch, deleteInterview } =
     useInterviews();
   console.log("interviews: ", interviews);
+
+  // Helper function to get status badge styling
+  const getStatusBadge = (status: string) => {
+    switch (status) {
+      case "pending":
+        return {
+          text: "معلق",
+          className: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
+        };
+      case "questions_ready":
+        return {
+          text: "الأسئلة جاهزة",
+          className: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+        };
+      case "candidates_added":
+        return {
+          text: "تم إضافة المرشحين",
+          className: "bg-purple-500/20 text-purple-400 border-purple-500/30",
+        };
+      case "active":
+        return {
+          text: "نشط",
+          className: "bg-green-500/20 text-green-400 border-green-500/30",
+        };
+      case "completed":
+        return {
+          text: "مكتمل",
+          className: "bg-gray-500/20 text-gray-400 border-gray-500/30",
+        };
+      default:
+        return {
+          text: status,
+          className: "bg-gray-500/20 text-gray-400 border-gray-500/30",
+        };
+    }
+  };
 
   // Calculate statistics
   const completedInterviews = interviews.filter(
@@ -47,8 +77,13 @@ export function InterviewPage() {
 
   const activeInterviews = interviews.filter(
     (interview) =>
+      interview.status === "active" ||
       interview.status === "questions_ready" ||
-      interview.status === "in_progress"
+      interview.status === "candidates_added"
+  );
+
+  const pendingInterviews = interviews.filter(
+    (interview) => interview.status === "pending"
   );
 
   const averageScore =
@@ -86,7 +121,25 @@ export function InterviewPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <Card className="bg-slate-800/50 border-slate-700">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-400">
+                  المقابلات المعلقة
+                </p>
+                <p className="text-2xl font-bold text-white mt-1">
+                  {loading ? "..." : pendingInterviews.length}
+                </p>
+              </div>
+              <div className="h-12 w-12 bg-yellow-500/20 rounded-lg flex items-center justify-center">
+                <Clock className="h-6 w-6 text-yellow-400" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         <Card className="bg-slate-800/50 border-slate-700">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
@@ -195,6 +248,16 @@ export function InterviewPage() {
           {/* Tab Navigation */}
           <div className="flex space-x-1 mb-6">
             <button
+              onClick={() => setActiveTab("pending")}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                activeTab === "pending"
+                  ? "bg-yellow-500 text-white"
+                  : "text-gray-400 hover:text-white hover:bg-slate-700"
+              }`}
+            >
+              المقابلات المعلقة ({loading ? "..." : pendingInterviews.length})
+            </button>
+            <button
               onClick={() => setActiveTab("active")}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 activeTab === "active"
@@ -248,9 +311,12 @@ export function InterviewPage() {
                 .filter((interview) => {
                   if (activeTab === "active") {
                     return (
+                      interview.status === "active" ||
                       interview.status === "questions_ready" ||
-                      interview.status === "in_progress"
+                      interview.status === "candidates_added"
                     );
+                  } else if (activeTab === "pending") {
+                    return interview.status === "pending";
                   } else {
                     return interview.status === "completed";
                   }
@@ -268,22 +334,12 @@ export function InterviewPage() {
                               {interview.job_title}
                             </h3>
                             <Badge
-                              variant={
-                                interview.status === "completed"
-                                  ? "default"
-                                  : interview.status === "in_progress"
-                                  ? "secondary"
-                                  : "outline"
-                              }
-                              className="text-xs"
+                              variant="outline"
+                              className={`text-xs ${
+                                getStatusBadge(interview.status).className
+                              }`}
                             >
-                              {interview.status === "completed"
-                                ? "مكتمل"
-                                : interview.status === "in_progress"
-                                ? "قيد التقدم"
-                                : interview.status === "questions_ready"
-                                ? "جاهز للبدء"
-                                : "في الانتظار"}
+                              {getStatusBadge(interview.status).text}
                             </Badge>
                           </div>
                           <p className="text-sm text-gray-400 mb-2">

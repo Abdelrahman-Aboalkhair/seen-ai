@@ -24,7 +24,11 @@ interface SummaryStepProps {
   interviewData: InterviewData;
   onComplete: () => void;
   onReset: () => void;
-  onGenerateLinks?: () => Promise<void>;
+  onGenerateLinks?: () => Promise<boolean>;
+  onStartNow?: () => void;
+  onFinishSetup?: () => void;
+  isSetupMode?: boolean;
+  finishSetupLoading?: boolean;
 }
 
 export const SummaryStep: React.FC<SummaryStepProps> = ({
@@ -32,6 +36,10 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
   onComplete,
   onReset,
   onGenerateLinks,
+  onStartNow,
+  onFinishSetup,
+  isSetupMode = false,
+  finishSetupLoading = false,
 }) => {
   const [copied, setCopied] = useState(false);
   const [shareLink, setShareLink] = useState("");
@@ -98,12 +106,16 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
       await updateCandidateEmails();
 
       if (onGenerateLinks) {
-        await onGenerateLinks();
-        toast.success("تم إنشاء روابط المقابلة وإرسال الدعوات بنجاح");
+        const success = await onGenerateLinks();
+        if (success) {
+          toast.success("تم إنشاء روابط المقابلة وإرسال الدعوات بنجاح");
 
-        // After generating links, fetch the actual session tokens
-        await fetchSessionLinks();
-        setShowConfirmModal(false);
+          // After generating links, fetch the actual session tokens
+          await fetchSessionLinks();
+          setShowConfirmModal(false);
+        } else {
+          toast.error("فشل في إنشاء روابط المقابلة أو إرسال الدعوات");
+        }
       }
     } catch (error) {
       toast.error("فشل في إنشاء روابط المقابلة");
@@ -184,22 +196,6 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
     } catch (error) {
       toast.error("فشل في نسخ الرابط");
     }
-  };
-
-  // Share via email
-  const shareViaEmail = async () => {
-    let link = shareLink;
-    if (!link) {
-      await generateShareLink();
-      link = shareLink; // Get the updated shareLink after generation
-    }
-    if (!link) return;
-
-    const subject = encodeURIComponent(`مقابلة: ${interviewData.jobTitle}`);
-    const body = encodeURIComponent(
-      `مرحباً،\n\nتمت دعوتك للمشاركة في مقابلة للوظيفة: ${interviewData.jobTitle}\n\nرابط المقابلة: ${link}\n\nشكراً لك.`
-    );
-    window.open(`mailto:?subject=${subject}&body=${body}`);
   };
 
   // Get interview type label
@@ -372,7 +368,7 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
         </h3>
 
         <div className="space-y-4">
-          <div className="flex items-center space-x-3">
+          {/* <div className="flex items-center space-x-3">
             <button
               onClick={showSendConfirmation}
               className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center"
@@ -380,15 +376,7 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
               <Send className="h-4 w-4 mr-2" />
               إرسال دعوات المقابلة
             </button>
-
-            <button
-              onClick={shareViaEmail}
-              className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors flex items-center"
-            >
-              <Mail className="h-4 w-4 mr-2" />
-              مشاركة عبر البريد
-            </button>
-          </div>
+          </div> */}
 
           {shareLink && (
             <div className="bg-slate-700 rounded p-4">
@@ -413,15 +401,6 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
                   <Copy className="h-4 w-4 mr-1" />
                   {copied ? "تم النسخ" : "نسخ"}
                 </button>
-                <a
-                  href={shareLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded transition-colors flex items-center"
-                >
-                  <ExternalLink className="h-4 w-4 mr-1" />
-                  فتح
-                </a>
               </div>
             </div>
           )}
@@ -430,20 +409,50 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
 
       {/* Action Buttons */}
       <div className="flex justify-center space-x-4">
-        <button
-          onClick={onReset}
-          className="px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors"
-        >
-          إنشاء مقابلة جديدة
-        </button>
+        {isSetupMode ? (
+          // Setup mode - show finish setup button
+          <button
+            onClick={onFinishSetup}
+            className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors flex items-center"
+            disabled={finishSetupLoading}
+          >
+            {finishSetupLoading ? (
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+            ) : (
+              <CheckCircle className="h-5 w-5 mr-2" />
+            )}
+            إنهاء إعداد المقابلة
+          </button>
+        ) : (
+          // Management mode - show original buttons
+          <>
+            <button
+              onClick={showSendConfirmation}
+              className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors flex items-center"
+            >
+              <CheckCircle className="h-5 w-5 mr-2" />
+              إنهاء وإرسال الدعوات
+            </button>
 
-        <button
-          onClick={onComplete}
-          className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors flex items-center"
-        >
-          <CheckCircle className="h-5 w-5 mr-2" />
-          إكمال
-        </button>
+            <button
+              onClick={onReset}
+              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center"
+            >
+              <FileText className="h-5 w-5 mr-2" />
+              إنشاء مقابلة جديدة
+            </button>
+
+            <a
+              href={shareLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded transition-colors flex items-center"
+            >
+              <ExternalLink className="h-4 w-4 mr-1" />
+              ابدأ المقابلة
+            </a>
+          </>
+        )}
       </div>
 
       {/* Confirmation Modal */}

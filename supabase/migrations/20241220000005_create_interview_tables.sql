@@ -8,10 +8,13 @@ CREATE TABLE IF NOT EXISTS interviews (
   interview_type TEXT,
   duration_minutes INTEGER,
   interview_mode TEXT,
-  status TEXT DEFAULT 'draft',
+  status TEXT DEFAULT 'pending' CHECK (status IN ('pending', 'questions_ready', 'candidates_added', 'active', 'completed')),
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
+
+-- Add comment to explain the status flow
+COMMENT ON COLUMN interviews.status IS 'Interview status: pending (setup) -> questions_ready -> candidates_added -> active (ready for candidates) -> completed';
 
 -- Create interview_questions table
 CREATE TABLE IF NOT EXISTS interview_questions (

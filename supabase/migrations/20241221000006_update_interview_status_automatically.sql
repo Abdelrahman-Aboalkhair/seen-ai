@@ -8,10 +8,10 @@ BEGIN
     WHERE interview_id = NEW.interview_id 
     AND status != 'completed'
   ) THEN
-    -- Not all sessions are completed, update interview status to 'in_progress'
+    -- Not all sessions are completed, keep interview status as 'active'
     UPDATE interviews 
-    SET status = 'in_progress', updated_at = NOW()
-    WHERE id = NEW.interview_id;
+    SET status = 'active', updated_at = NOW()
+    WHERE id = NEW.interview_id AND status != 'active';
   ELSE
     -- All sessions are completed, update interview status to 'completed'
     UPDATE interviews 

@@ -11,6 +11,7 @@ import { CandidateSelection } from "./CandidateSelection";
 import { InterviewSummary } from "./InterviewSummary";
 import { SummaryStep } from "./SummaryStep";
 import { INTERVIEW_STEPS } from "../types";
+import { InterviewManagementStep } from "./InterviewManagementStep";
 
 export const InterviewWizard: React.FC = () => {
   const {
@@ -29,7 +30,9 @@ export const InterviewWizard: React.FC = () => {
     createInterview,
     addCandidatesToInterview,
     generateInterviewLinks,
+    startInterviewAsCandidate,
     resetInterview,
+    finishInterviewSetup,
   } = useInterviewWizard();
 
   const [selectedCandidateIds, setSelectedCandidateIds] = useState<string[]>(
@@ -62,6 +65,10 @@ export const InterviewWizard: React.FC = () => {
         setInterviewCandidates(addedCandidates || []);
         updateInterviewData({ currentStep: currentStep + 1 });
       }
+    } else if (currentStep === 3) {
+      // Step 3: Finish setup - activate the interview
+      await finishInterviewSetup();
+      updateInterviewData({ currentStep: currentStep + 1 });
     }
   };
 
@@ -96,7 +103,10 @@ export const InterviewWizard: React.FC = () => {
       case 2:
         return selectedCandidateIds.length > 0;
       case 3:
-        // Step 3 is the final step, no next button needed
+        // Step 3 is the finish setup step, can always proceed
+        return true;
+      case 4:
+        // Step 4 is the final step, no next button needed
         return false;
       default:
         return false;
@@ -149,6 +159,24 @@ export const InterviewWizard: React.FC = () => {
             }}
             onReset={resetInterview}
             onGenerateLinks={generateInterviewLinks}
+            onStartNow={startInterviewAsCandidate}
+            onFinishSetup={handleNextStep}
+            isSetupMode={true}
+            finishSetupLoading={loading}
+          />
+        );
+
+      case 4:
+        return (
+          <InterviewManagementStep
+            interviewData={{
+              ...interviewData,
+              questions: questions,
+              candidates: interviewCandidates,
+            }}
+            onStartInterview={startInterviewAsCandidate}
+            onSendInvitations={generateInterviewLinks}
+            onBackToSetup={() => updateInterviewData({ currentStep: 3 })}
           />
         );
 

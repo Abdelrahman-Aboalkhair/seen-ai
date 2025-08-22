@@ -1,9 +1,15 @@
 export { InterviewWizard } from "./InterviewWizard";
-export { InterviewHeader } from "./InterviewHeader";
-export { ProgressBar } from "./ProgressBar";
-
-export { CandidatesStep } from "./CandidatesStep";
-export { QuestionsStep } from "./QuestionsStep";
-export { InterviewStep } from "./InterviewStep";
+export { InterviewSetup } from "./InterviewSetup";
+export { CandidateSelection } from "./CandidateSelection";
+export { InterviewSummary } from "./InterviewSummary";
 export { SummaryStep } from "./SummaryStep";
+export { InterviewManagementStep } from "./InterviewManagementStep";
+export { TestTypeCard } from "./TestTypeCard";
+export { JobInformationCard } from "./JobInformationCard";
+export { TestTypesSelection } from "./TestTypesSelection";
+export { CandidatesStep } from "./CandidatesStep";
+export { InterviewHeader } from "./InterviewHeader";
+export { InterviewStep } from "./InterviewStep";
+export { ProgressBar } from "./ProgressBar";
 export { QuestionCategorySelector } from "./QuestionCategorySelector";
+export { QuestionsStep } from "./QuestionsStep";

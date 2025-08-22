@@ -12,8 +12,6 @@ import {
 import { useCreditBalance } from "../../../hooks/useCreditBalance";
 import toast from "react-hot-toast";
 
-const STORAGE_KEY = "interview_wizard_data";
-
 export const useInterviewWizard = () => {
   const [loading, setLoading] = useState(false);
   const [generatingQuestions, setGeneratingQuestions] = useState(false);
@@ -21,36 +19,19 @@ export const useInterviewWizard = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const { balance, deductCredits } = useCreditBalance();
 
-  const [interviewData, setInterviewData] = useState<InterviewData>(() => {
-    // Load from sessionStorage on initial render
-    const saved = sessionStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      try {
-        return JSON.parse(saved);
-      } catch (error) {
-        console.error("Failed to parse saved interview data:", error);
-      }
-    }
-
-    return {
-      jobTitle: "",
-      jobDescription: "",
-      requiredSkills: [],
-      testLevel: "intermediate",
-      selectedTestTypes: [],
-      languageProficiency: undefined,
-      durationMinutes: 30,
-      totalQuestions: 0,
-      creditsUsed: 0,
-      status: "setup",
-      currentStep: 1,
-    };
+  const [interviewData, setInterviewData] = useState<InterviewData>({
+    jobTitle: "",
+    jobDescription: "",
+    requiredSkills: [],
+    testLevel: "intermediate",
+    selectedTestTypes: [],
+    languageProficiency: undefined,
+    durationMinutes: 30,
+    totalQuestions: 0,
+    creditsUsed: 0,
+    status: "pending",
+    currentStep: 1,
   });
-
-  // Save to sessionStorage whenever interviewData changes
-  useEffect(() => {
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(interviewData));
-  }, [interviewData]);
 
   // Calculate total questions and credits based on selected test types and their plans
   const calculateInterviewDetails = useCallback((selectedTypes: TestType[]) => {
@@ -256,30 +237,44 @@ export const useInterviewWizard = () => {
 
       if (error) throw error;
 
-      // Extract candidates from the results field
-      const allCandidates: Candidate[] = [];
+      // Extract candidates from the results field with deduplication
+      const candidateMap = new Map<string, Candidate>();
+
       data.forEach((search) => {
         if (search.results && Array.isArray(search.results)) {
           search.results.forEach((candidate: any, index: number) => {
-            allCandidates.push({
-              candidateId: `${search.id}_${index}`, // Create unique ID
-              name: candidate.full_name || candidate.name || "مرشح غير محدد",
-              email: candidate.email || "",
-              resumeUrl: candidate.resume_url || candidate.resumeUrl || null,
-              status: "pending",
-            });
+            const email = candidate.email || "";
+            const name =
+              candidate.full_name || candidate.name || "مرشح غير محدد";
+
+            // Use email as unique identifier to prevent duplicates
+            if (email && !candidateMap.has(email)) {
+              candidateMap.set(email, {
+                candidateId: `${search.id}_${index}`, // Create unique ID
+                name: name,
+                email: email,
+                resumeUrl: candidate.resume_url || candidate.resumeUrl || null,
+                status: "pending",
+              });
+            }
           });
         }
       });
 
-      // Add test candidate for development/testing
-      allCandidates.unshift({
-        candidateId: "00000000-0000-0000-0000-000000000001", // Use a valid UUID format
-        name: "Abdelrahman Aboalkhair (Test)",
-        email: "abdelrahman.aboalkhair1@gmail.com", // Use your verified Resend email
-        resumeUrl: null,
-        status: "pending",
-      });
+      // Convert map to array
+      const allCandidates = Array.from(candidateMap.values());
+
+      // Add test candidate for development/testing (only if not already present)
+      const testCandidateEmail = "abdelrahman.aboalkhair1@gmail.com";
+      if (!candidateMap.has(testCandidateEmail)) {
+        allCandidates.unshift({
+          candidateId: "00000000-0000-0000-0000-000000000001", // Use a valid UUID format
+          name: "Abdelrahman Aboalkhair (Test)",
+          email: testCandidateEmail,
+          resumeUrl: null,
+          status: "pending",
+        });
+      }
 
       setCandidates(allCandidates);
     } catch (error: any) {
@@ -421,7 +416,7 @@ export const useInterviewWizard = () => {
   const generateInterviewLinks = useCallback(async () => {
     if (!interviewData.id) {
       toast.error("يرجى إنشاء المقابلة أولاً");
-      return;
+      return false;
     }
 
     setLoading(true);
@@ -433,6 +428,11 @@ export const useInterviewWizard = () => {
         .eq("interview_id", interviewData.id);
 
       if (fetchError) throw fetchError;
+
+      if (!interviewCandidates || interviewCandidates.length === 0) {
+        toast.error("لا توجد مرشحين لإرسال الدعوات إليهم");
+        return false;
+      }
 
       // Generate session for each candidate
       for (const candidate of interviewCandidates) {
@@ -491,14 +491,78 @@ export const useInterviewWizard = () => {
 
       updateInterviewData({ status: "completed" });
       toast.success("تم إرسال روابط المقابلة بنجاح");
+      return true;
     } catch (error: any) {
       console.error("Error generating interview links:", error);
       toast.error("فشل في إنشاء روابط المقابلة");
-      throw error;
+      return false;
     } finally {
       setLoading(false);
     }
   }, [interviewData, updateInterviewData]);
+
+  // Start interview as candidate (for HR to test the interview)
+  const startInterviewAsCandidate = useCallback(async () => {
+    if (!interviewData.id) {
+      toast.error("يرجى إنشاء المقابلة أولاً");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      // Create a temporary candidate record for HR testing
+      const { data: tempCandidate, error: candidateError } = await supabase
+        .from("interview_candidates")
+        .insert({
+          interview_id: interviewData.id,
+          name: "HR Test Candidate",
+          email: "hr-test@example.com",
+          status: "pending",
+        })
+        .select()
+        .single();
+
+      if (candidateError) throw candidateError;
+
+      // Generate session token for HR to start the interview
+      const { data: tokenData, error: tokenError } = await supabase.rpc(
+        "generate_session_token"
+      );
+
+      if (tokenError) throw tokenError;
+
+      const sessionToken = tokenData;
+      console.log("Generated session token for HR:", sessionToken);
+
+      // Create a temporary session for HR
+      const { data: session, error: sessionError } = await supabase
+        .from("interview_sessions")
+        .insert({
+          interview_id: interviewData.id,
+          candidate_id: tempCandidate.id, // Use the temporary candidate ID
+          session_token: sessionToken,
+          expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // 24 hours for HR testing
+        })
+        .select()
+        .single();
+
+      if (sessionError) throw sessionError;
+
+      // Open the interview in a new tab
+      const baseUrl = window.location.origin;
+      const interviewUrl = `${baseUrl}/interview/${encodeURIComponent(
+        sessionToken
+      )}`;
+      window.open(interviewUrl, "_blank");
+
+      toast.success("تم فتح المقابلة في نافذة جديدة");
+    } catch (error: any) {
+      console.error("Error starting interview as candidate:", error);
+      toast.error("فشل في بدء المقابلة");
+    } finally {
+      setLoading(false);
+    }
+  }, [interviewData.id]);
 
   // Update questions
   const updateQuestions = useCallback((updatedQuestions: any[]) => {
@@ -554,6 +618,37 @@ export const useInterviewWizard = () => {
     }
   }, [interviewData.id, questions, generateQuestions]);
 
+  // Finish interview setup and activate it
+  const finishInterviewSetup = useCallback(async () => {
+    if (!interviewData.id) {
+      toast.error("يرجى إنشاء المقابلة أولاً");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      // Update interview status to active
+      const { error } = await supabase
+        .from("interviews")
+        .update({
+          status: "active",
+          updated_at: new Date().toISOString(),
+        })
+        .eq("id", interviewData.id);
+
+      if (error) throw error;
+
+      updateInterviewData({ status: "active" });
+      toast.success("تم تفعيل المقابلة بنجاح!");
+    } catch (error: any) {
+      console.error("Error finishing interview setup:", error);
+      toast.error("فشل في تفعيل المقابلة");
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  }, [interviewData.id, updateInterviewData]);
+
   // Reset interview data
   const resetInterview = useCallback(() => {
     setInterviewData({
@@ -566,12 +661,11 @@ export const useInterviewWizard = () => {
       durationMinutes: 30,
       totalQuestions: 0,
       creditsUsed: 0,
-      status: "setup",
+      status: "pending",
       currentStep: 1,
     });
     setQuestions([]);
     setCandidates([]);
-    sessionStorage.removeItem(STORAGE_KEY);
   }, []);
 
   return {
@@ -590,6 +684,8 @@ export const useInterviewWizard = () => {
     createInterview,
     addCandidatesToInterview,
     generateInterviewLinks,
+    startInterviewAsCandidate,
+    finishInterviewSetup,
     resetInterview,
     TEST_TYPES,
     DURATION_OPTIONS,

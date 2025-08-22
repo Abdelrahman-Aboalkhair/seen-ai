@@ -9,7 +9,12 @@ export interface InterviewData {
   durationMinutes: number;
   totalQuestions: number;
   creditsUsed: number;
-  status: "setup" | "questions_ready" | "candidates_added" | "completed";
+  status:
+    | "pending"
+    | "questions_ready"
+    | "candidates_added"
+    | "active"
+    | "completed";
   expiresAt?: string;
   currentStep: number;
   interviewType?: string;
@@ -304,8 +309,13 @@ export const INTERVIEW_STEPS: Step[] = [
   },
   {
     id: 3,
-    title: "مشاركة الروابط",
-    description: "راجع الملخص وشارك الروابط",
+    title: "إنهاء الإعداد",
+    description: "راجع الملخص وأنشئ المقابلة",
+  },
+  {
+    id: 4,
+    title: "إدارة المقابلة",
+    description: "ابدأ المقابلة أو أرسل الروابط",
   },
 ];
 
