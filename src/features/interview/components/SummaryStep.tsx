@@ -392,14 +392,24 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
                 />
                 <button
                   onClick={copyToClipboard}
-                  className={`px-3 py-2 rounded transition-colors flex items-center ${
+                  disabled={sending}
+                  className={`px-3 py-2 rounded transition-colors flex items-center disabled:opacity-50 disabled:cursor-not-allowed ${
                     copied
                       ? "bg-green-600 text-white"
                       : "bg-slate-600 hover:bg-slate-500 text-white"
                   }`}
                 >
-                  <Copy className="h-4 w-4 mr-1" />
-                  {copied ? "تم النسخ" : "نسخ"}
+                  {sending ? (
+                    <>
+                      <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white mr-1" />
+                      جاري...
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="h-4 w-4 mr-1" />
+                      {copied ? "تم النسخ" : "نسخ"}
+                    </>
+                  )}
                 </button>
               </div>
             </div>
@@ -413,43 +423,86 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
           // Setup mode - show finish setup button
           <button
             onClick={onFinishSetup}
-            className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors flex items-center"
+            className="px-6 py-3 bg-green-600 hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg transition-colors flex items-center"
             disabled={finishSetupLoading}
           >
             {finishSetupLoading ? (
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+                جاري التفعيل...
+              </>
             ) : (
-              <CheckCircle className="h-5 w-5 mr-2" />
+              <>
+                <CheckCircle className="h-5 w-5 mr-2" />
+                إنهاء إعداد المقابلة
+              </>
             )}
-            إنهاء إعداد المقابلة
           </button>
         ) : (
           // Management mode - show original buttons
           <>
             <button
               onClick={showSendConfirmation}
-              className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors flex items-center"
+              disabled={sending}
+              className="px-6 py-3 bg-green-600 hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg transition-colors flex items-center"
             >
-              <CheckCircle className="h-5 w-5 mr-2" />
-              إنهاء وإرسال الدعوات
+              {sending ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+                  جاري الإرسال...
+                </>
+              ) : (
+                <>
+                  <CheckCircle className="h-5 w-5 mr-2" />
+                  إنهاء وإرسال الدعوات
+                </>
+              )}
             </button>
 
             <button
               onClick={onReset}
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center"
+              disabled={sending}
+              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg transition-colors flex items-center"
             >
-              <FileText className="h-5 w-5 mr-2" />
-              إنشاء مقابلة جديدة
+              {sending ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+                  جاري الإعداد...
+                </>
+              ) : (
+                <>
+                  <FileText className="h-5 w-5 mr-2" />
+                  إنشاء مقابلة جديدة
+                </>
+              )}
             </button>
 
             <a
               href={shareLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded transition-colors flex items-center"
+              className={`px-3 py-2 rounded transition-colors flex items-center ${
+                sending
+                  ? "bg-purple-400 cursor-not-allowed"
+                  : "bg-purple-600 hover:bg-purple-700"
+              } text-white`}
+              onClick={(e) => {
+                if (sending) {
+                  e.preventDefault();
+                }
+              }}
             >
-              <ExternalLink className="h-4 w-4 mr-1" />
-              ابدأ المقابلة
+              {sending ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-1" />
+                  جاري الإعداد...
+                </>
+              ) : (
+                <>
+                  <ExternalLink className="h-4 w-4 mr-1" />
+                  ابدأ المقابلة
+                </>
+              )}
             </a>
           </>
         )}
@@ -458,7 +511,20 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
       {/* Confirmation Modal */}
       {showConfirmModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-slate-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-700">
+          <div className="bg-slate-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-700 relative">
+            {sending && (
+              <div className="absolute inset-0 bg-slate-800/80 backdrop-blur-sm flex items-center justify-center z-10 rounded-xl">
+                <div className="text-center">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+                  <p className="text-white text-lg font-medium">
+                    جاري إرسال الدعوات...
+                  </p>
+                  <p className="text-gray-400 text-sm mt-2">
+                    يرجى الانتظار، لا تغلق هذه النافذة
+                  </p>
+                </div>
+              </div>
+            )}
             <div className="p-6">
               {/* Modal Header */}
               <div className="flex items-center justify-between mb-6">
@@ -470,7 +536,8 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
                 </h2>
                 <button
                   onClick={() => setShowConfirmModal(false)}
-                  className="text-gray-400 hover:text-gray-300 transition-colors"
+                  disabled={sending}
+                  className="text-gray-400 hover:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   <X className="h-6 w-6" />
                 </button>
@@ -652,7 +719,8 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
                                   e.target.value
                                 )
                               }
-                              className="flex-1 px-3 py-2 bg-slate-600 border border-slate-500 rounded text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                              disabled={sending}
+                              className="flex-1 px-3 py-2 bg-slate-600 border border-slate-500 rounded text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
                             />
                             <Edit3 className="h-4 w-4 text-gray-400" />
                           </div>
@@ -673,7 +741,8 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
                                   e.target.value
                                 )
                               }
-                              className="flex-1 px-3 py-2 bg-slate-600 border border-slate-500 rounded text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                              disabled={sending}
+                              className="flex-1 px-3 py-2 bg-slate-600 border border-slate-500 rounded text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
                               placeholder="example@email.com"
                             />
                             <Mail className="h-4 w-4 text-gray-400" />
@@ -697,9 +766,10 @@ export const SummaryStep: React.FC<SummaryStepProps> = ({
               <div className="flex items-center justify-between pt-4 border-t border-slate-600">
                 <button
                   onClick={() => setShowConfirmModal(false)}
-                  className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors"
+                  disabled={sending}
+                  className="px-4 py-2 bg-gray-600 hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg transition-colors"
                 >
-                  إلغاء
+                  {sending ? "جاري الإرسال..." : "إلغاء"}
                 </button>
 
                 <button
