@@ -98,11 +98,32 @@ export abstract class BaseAIService {
   // Parse JSON response with error handling
   protected parseJsonResponse<T>(content: string, operation: string): T {
     try {
-      return JSON.parse(content) as T;
+      // Clean the content - remove markdown code blocks if present
+      let cleanContent = content.trim();
+
+      // Remove markdown code blocks (```json ... ```)
+      if (cleanContent.startsWith("```json")) {
+        cleanContent = cleanContent
+          .replace(/^```json\s*/, "")
+          .replace(/\s*```$/, "");
+      } else if (cleanContent.startsWith("```")) {
+        cleanContent = cleanContent
+          .replace(/^```\s*/, "")
+          .replace(/\s*```$/, "");
+      }
+
+      // Remove any leading/trailing whitespace
+      cleanContent = cleanContent.trim();
+
+      return JSON.parse(cleanContent) as T;
     } catch (parseError) {
       logError(parseError as Error, {
         operation: `parse_${operation}`,
         content,
+        cleanedContent: content
+          .trim()
+          .replace(/^```json\s*/, "")
+          .replace(/\s*```$/, ""),
       });
       throw new Error(`Failed to parse ${operation} response`);
     }
