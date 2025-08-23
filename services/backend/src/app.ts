@@ -10,6 +10,7 @@ import compression from "compression";
 // import aiRoutes from "@/routes/ai.routes.js";
 // import paymentRoutes from "@/routes/payment.routes.js";
 // import talentRoutes from "@/routes/talent.routes.js";
+import talentSearchRoutes from "@/routes/talent-search.routes.js";
 import testRoutes from "@/routes/test.routes.js";
 
 // Import middleware
@@ -131,6 +132,7 @@ app.get("/health", async (req: Request, res: Response) => {
 // app.use("/api/ai", aiRoutes);
 // app.use("/api/payment", paymentRoutes);
 // app.use("/api/talent", talentRoutes);
+app.use("/api/talent", talentSearchRoutes);
 app.use("/api/test", testRoutes);
 
 // API info endpoint
