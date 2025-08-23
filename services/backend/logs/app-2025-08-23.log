@@ -3239,3 +3239,201 @@
   message: 'Performance Metric',
   timestamp: '2025-08-23 18:16:30'
 }
+{
+  operation: 'cache_get',
+  duration: '74ms',
+  key: 'smart-recruiter:smart-recruiter:questions:b62d6d06',
+  hit: false,
+  level: 'info',
+  message: 'Performance Metric',
+  timestamp: '2025-08-23 18:26:23'
+}
+{
+  service: 'openai',
+  operation: 'generate_questions',
+  duration: '17009ms',
+  success: true,
+  attempt: 1,
+  level: 'info',
+  message: 'External API Call',
+  timestamp: '2025-08-23 18:26:40'
+}
+{
+  operation: 'cache_set',
+  duration: '70ms',
+  key: 'smart-recruiter:smart-recruiter:questions:b62d6d06',
+  ttl: 7200,
+  level: 'info',
+  message: 'Performance Metric',
+  timestamp: '2025-08-23 18:26:40'
+}
+{
+  operation: 'questions_generated',
+  duration: '17156ms',
+  jobTitle: 'Backend Developer',
+  count: 10,
+  level: 'info',
+  message: 'Performance Metric',
+  timestamp: '2025-08-23 18:26:40'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:27:15'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:27:15'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:27:25'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:27:25'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:27:25'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:27:25'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:27:43'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:27:43'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:27:43'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:27:43'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:31:43'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:31:43'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:31:43'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:31:43'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-23 18:33:17'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-23 18:33:17'
+}
+{
+  operation: 'cache_get',
+  duration: '16295ms',
+  key: 'smart-recruiter:smart-recruiter:cv_analysis:4f1f9d87',
+  hit: false,
+  level: 'info',
+  message: 'Performance Metric',
+  timestamp: '2025-08-23 18:33:18'
+}
+{
+  service: 'openai',
+  operation: 'cv_analysis',
+  duration: '6416ms',
+  success: true,
+  attempt: 1,
+  level: 'info',
+  message: 'External API Call',
+  timestamp: '2025-08-23 18:33:24'
+}
+{
+  operation: 'cache_set',
+  duration: '80ms',
+  key: 'smart-recruiter:smart-recruiter:cv_analysis:4f1f9d87',
+  ttl: 3600,
+  level: 'info',
+  message: 'Performance Metric',
+  timestamp: '2025-08-23 18:33:24'
+}
+{
+  userId: 'anonymous',
+  duration: 22793,
+  level: 'info',
+  message: 'CV analysis generated successfully',
+  timestamp: '2025-08-23 18:33:24'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:33:54'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:33:54'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:33:54'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:33:54'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-23 18:34:00'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-23 18:34:01'
+}
+{
+  operation: 'cache_get',
+  duration: '672ms',
+  key: 'smart-recruiter:smart-recruiter:cv_analysis:4f1f9d87',
+  hit: true,
+  level: 'info',
+  message: 'Performance Metric',
+  timestamp: '2025-08-23 18:34:01'
+}
+{
+  userId: 'anonymous',
+  duration: 673,
+  level: 'info',
+  message: 'CV analysis retrieved from cache',
+  timestamp: '2025-08-23 18:34:01'
+}

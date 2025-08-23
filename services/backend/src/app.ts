@@ -13,6 +13,7 @@ import compression from "compression";
 import talentSearchRoutes from "@/routes/talent-search.routes.js";
 import testRoutes from "@/routes/test.routes.js";
 import questionGenerationRoutes from "@/routes/question-generation.routes.js";
+import cvAnalysisRoutes from "@/routes/cv-analysis.routes.js";
 
 // Import middleware
 // import { dynamicRateLimit, rateLimitStatus } from "@/middleware/rateLimiter.js";
@@ -136,6 +137,7 @@ app.get("/health", async (req: Request, res: Response) => {
 app.use("/api/talent", talentSearchRoutes);
 app.use("/api/test", testRoutes);
 app.use("/api/ai/generate-questions", questionGenerationRoutes);
+app.use("/api/ai/cv-analysis", cvAnalysisRoutes);
 
 // API info endpoint
 app.get("/api", (req: Request, res: Response) => {
@@ -239,6 +241,7 @@ app.use("*", (req: Request, res: Response) => {
       payment: "/api/payment",
       talent: "/api/talent",
       questionGeneration: "/api/ai/generate-questions",
+      cvAnalysis: "/api/ai/cv-analysis",
       health: "/health",
     },
   });
