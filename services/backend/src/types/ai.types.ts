@@ -67,25 +67,52 @@ export interface InterviewAnalysisResult {
 
 export interface JobRequirementsRequest {
   jobTitle: string;
-  department?: string;
-  experience?: string;
-  location?: string;
-  companySize?: string;
   industry?: string;
+  seniority?: string;
+  companySize?: string;
+  location?: string;
+  userId: string;
 }
 
 export interface JobRequirementsResult {
-  title: string;
-  description: string;
-  requirements: {
+  jobTitle: string;
+  summary: string;
+  keyResponsibilities: string[];
+  requiredSkills: {
     technical: string[];
     soft: string[];
-    experience: string[];
-    education: string[];
+    certifications: string[];
   };
-  responsibilities: string[];
-  qualifications: string[];
-  preferredQualifications: string[];
+  preferredSkills: {
+    technical: string[];
+    soft: string[];
+    certifications: string[];
+  };
+  experience: {
+    minimumYears: number;
+    preferredYears: number;
+    relevantExperience: string[];
+  };
+  education: {
+    minimum: string;
+    preferred: string;
+    relevantFields: string[];
+  };
+  qualifications: {
+    essential: string[];
+    desired: string[];
+  };
+  benefits: string[];
+  workEnvironment: string;
+  careerGrowth: string;
+  salaryRange: {
+    min: number;
+    max: number;
+    currency: string;
+  };
+  employmentType: string;
+  location: string;
+  remotePolicy: string;
 }
 
 export interface BatchCVAnalysisItem {

@@ -3437,3 +3437,243 @@
   message: 'CV analysis retrieved from cache',
   timestamp: '2025-08-23 18:34:01'
 }
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:46:42'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:46:42'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:46:42'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:46:42'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:46:51'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:46:51'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:46:51'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:46:51'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:47:01'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:47:01'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:47:01'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:47:01'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:47:01'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:47:01'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:47:11'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:47:11'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:47:11'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:47:11'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:47:11'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:47:11'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-23 18:48:13'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-23 18:48:13'
+}
+{
+  operation: 'cache_get',
+  duration: '402ms',
+  key: 'smart-recruiter:smart-recruiter:job_requirements:48d6b4aa',
+  hit: false,
+  level: 'info',
+  message: 'Performance Metric',
+  timestamp: '2025-08-23 18:48:13'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:48:24'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:48:24'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:48:24'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:48:24'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:48:24'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:48:24'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:48:55'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:48:55'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:48:55'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:48:55'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:48:55'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:48:55'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-23 18:49:25'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-23 18:49:25'
+}
+{
+  operation: 'cache_get',
+  duration: '339ms',
+  key: 'smart-recruiter:smart-recruiter:job_requirements:48d6b4aa',
+  hit: false,
+  level: 'info',
+  message: 'Performance Metric',
+  timestamp: '2025-08-23 18:49:25'
+}
+{
+  service: 'openai',
+  operation: 'job_requirements',
+  duration: '18803ms',
+  success: true,
+  attempt: 1,
+  level: 'info',
+  message: 'External API Call',
+  timestamp: '2025-08-23 18:49:44'
+}
+{
+  operation: 'cache_set',
+  duration: '72ms',
+  key: 'smart-recruiter:smart-recruiter:job_requirements:48d6b4aa',
+  ttl: 14400,
+  level: 'info',
+  message: 'Performance Metric',
+  timestamp: '2025-08-23 18:49:44'
+}
+{
+  userId: 'anonymous',
+  duration: 19217,
+  level: 'info',
+  message: 'Job requirements generated successfully',
+  timestamp: '2025-08-23 18:49:44'
+}
+{
+  operation: 'cache_get',
+  duration: '58ms',
+  key: 'smart-recruiter:smart-recruiter:job_requirements:48d6b4aa',
+  hit: true,
+  level: 'info',
+  message: 'Performance Metric',
+  timestamp: '2025-08-23 18:49:44'
+}
+{
+  userId: 'anonymous',
+  duration: 58,
+  level: 'info',
+  message: 'Job requirements retrieved from cache',
+  timestamp: '2025-08-23 18:49:44'
+}
