@@ -1,0 +1,12 @@
+{
+  message: 'Application Error listen EADDRINUSE: address already in use 0.0.0.0:3000',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1939:16)\n' +
+    '    at listenInCluster (node:net:1996:12)\n' +
+    '    at node:net:2205:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)',
+  name: 'Error',
+  context: { operation: 'uncaught_exception' },
+  level: 'error',
+  timestamp: '2025-08-23 15:29:34'
+}

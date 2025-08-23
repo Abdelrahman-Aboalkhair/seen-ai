@@ -1,26 +1,23 @@
-# SEEN AI HR Solutions
+# Smart Recruiter AI - Monorepo
 
 <div align="center">
-
-![SEEN AI Logo](public/seen-ai-logo.jpg)
 
 **AI-powered smart recruitment platform for talent discovery and CV analysis using advanced technologies**
 
 [![React](https://img.shields.io/badge/React-18.3.1-blue.svg)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6.2-blue.svg)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-6.0.1-purple.svg)](https://vitejs.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.16-38BDF8.svg)](https://tailwindcss.com/)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express-4.18.2-blue.svg)](https://expressjs.com/)
 [![Supabase](https://img.shields.io/badge/Supabase-2.54.0-green.svg)](https://supabase.com/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
 
-[Features](#features) • [Tech Stack](#tech-stack) • [Quick Start](#quick-start) • [Development](#development) • [Deployment](#deployment) • [Contributing](#contributing)
+[Features](#features) • [Architecture](#architecture) • [Quick Start](#quick-start) • [Development](#development) • [API Endpoints](#api-endpoints)
 
 </div>
 
 ## 🚀 Features
 
 ### Core Functionality
-
 - **AI-Powered CV Analysis**: Comprehensive analysis of resumes using advanced AI algorithms
 - **Smart Talent Search**: Intelligent candidate matching with customizable search criteria
 - **Interview Management**: Schedule and manage candidate interviews with integrated calendar
@@ -28,419 +25,235 @@
 - **Multi-language Support**: Full Arabic and English internationalization
 
 ### Dashboard Features
-
 - **Real-time Analytics**: Live statistics and performance metrics
 - **Search History**: Complete audit trail of all search operations
 - **CV Analysis History**: Track and review previous analyses
 - **Credit Management**: Monitor usage and purchase additional credits
 - **Admin Panel**: Advanced management tools for administrators
 
-### User Experience
+## 🏗 Architecture
 
-- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
-- **Dark Theme**: Modern, professional dark interface
-- **Real-time Notifications**: Toast notifications for user feedback
-- **Progressive Web App**: PWA capabilities for enhanced mobile experience
-- **Accessibility**: WCAG compliant design patterns
+This project follows a **monorepo architecture** with clear service separation:
 
-## 🛠 Tech Stack
+```
+smart-recruiter-refactored/
+├── services/
+│   ├── frontend/          # React + TypeScript + Vite frontend
+│   ├── backend/           # Node.js + Express + TypeScript backend
+│   ├── docs/              # Documentation and guides
+│   └── scripts/           # Utility scripts and CI/CD
+├── docker-compose.yml     # Multi-service orchestration
+├── Dockerfile             # Production container
+├── Dockerfile.dev         # Development container
+├── nginx.conf            # Production web server config
+├── Makefile              # Build and deployment commands
+└── package.json          # Monorepo root configuration
+```
 
-### Frontend
+### Service Details
 
-- **React 18.3.1** - Modern React with hooks and concurrent features
-- **TypeScript 5.6.2** - Type-safe development
-- **Vite 6.0.1** - Fast build tool and development server
-- **Tailwind CSS 3.4.16** - Utility-first CSS framework
-- **Framer Motion** - Smooth animations and transitions
+#### Frontend Service (`services/frontend/`)
+- **React 18.3.1** with TypeScript
+- **Vite 6.0.1** for fast development and building
+- **Tailwind CSS** for styling
+- **Framer Motion** for animations
+- **React Query** for state management
+- **React Router** for navigation
 
-### Backend & Services
+#### Backend Service (`services/backend/`)
+- **Node.js** with TypeScript
+- **Express.js** web framework
+- **Supabase** for database and authentication
+- **Redis** for caching
+- **OpenAI** integration for AI features
+- **Stripe** for payment processing
+- **JWT** for authentication
+- **Winston** for logging
 
-- **Supabase 2.54.0** - Backend-as-a-Service (Database, Auth, Storage)
-- **React Query** - Server state management and caching
-- **React Router DOM** - Client-side routing
+## 🚀 Quick Start
 
-### Development Tools
-
-- **ESLint** - Code linting and formatting
-- **TypeScript ESLint** - TypeScript-specific linting rules
-- **PostCSS & Autoprefixer** - CSS processing
-
-### Infrastructure
-
-- **Docker** - Containerization for development and production
-- **Nginx** - Production web server with optimized configuration
-- **Docker Compose** - Multi-service development environment
-
-## 📋 Prerequisites
-
-Before you begin, ensure you have the following installed:
-
+### Prerequisites
 - **Node.js** (v18 or higher)
 - **npm** or **pnpm** package manager
 - **Docker** and **Docker Compose** (for containerized development)
 - **Git** for version control
 
-## 🚀 Quick Start
+### Local Development
 
-### Option 1: Local Development (Recommended for Development)
-
-1. **Clone the repository**
-
+1. **Clone and setup**
    ```bash
-   git clone https://github.com/your-username/smart-recruiter-client-final.git
-   cd smart-recruiter-client-final
+   git clone <repository-url>
+   cd smart-recruiter-refactored
+   npm run install:all
    ```
 
-2. **Install dependencies**
-
+2. **Environment setup**
    ```bash
-   npm install
-   # or
-   pnpm install
+   cp env.example .env
+   cp services/backend/.env.example services/backend/.env
+   # Edit .env files with your configuration
    ```
 
-3. **Set up environment variables**
-
+3. **Start development servers**
    ```bash
-   cp .env.example .env.local
-   ```
-
-   Edit `.env.local` and add your Supabase credentials:
-
-   ```env
-   VITE_SUPABASE_URL=your_supabase_url
-   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-   ```
-
-4. **Start the development server**
-
-   ```bash
+   # Start both frontend and backend
    npm run dev
+   
+   # Or start individually
+   npm run dev:frontend    # Frontend on http://localhost:5173
+   npm run dev:backend     # Backend on http://localhost:3000
    ```
 
-5. **Open your browser**
-   Navigate to [http://localhost:5173](http://localhost:5173)
+### Docker Development
 
-### Option 2: Docker Development
+```bash
+# Start all services
+docker-compose up -d
 
-1. **Clone and navigate to the project**
+# View logs
+docker-compose logs -f
 
-   ```bash
-   git clone https://github.com/your-username/smart-recruiter-client-final.git
-   cd smart-recruiter-client-final
-   ```
+# Stop services
+docker-compose down
+```
 
-2. **Set up environment variables**
+## 🔧 Development
 
-   ```bash
-   cp .env.example .env.local
-   # Edit .env.local with your Supabase credentials
-   ```
+### Available Scripts
 
-3. **Start development environment**
+#### Root Level (Monorepo)
+```bash
+npm run dev              # Start both frontend and backend
+npm run build            # Build all services
+npm run lint             # Lint all services
+npm run type-check       # Type check all services
+npm run install:all      # Install dependencies for all services
+```
 
-   ```bash
-   docker-compose up app-dev
-   ```
+#### Frontend Service
+```bash
+npm run dev              # Start development server
+npm run build            # Build for production
+npm run preview          # Preview production build
+npm run lint             # Lint code
+npm run type-check       # Type check
+```
 
-4. **Access the application**
-   Navigate to [http://localhost:5173](http://localhost:5173)
-
-### Option 3: Production Docker
-
-1. **Build and run production container**
-
-   ```bash
-   docker-compose up app-prod
-   ```
-
-2. **Access the application**
-   Navigate to [http://localhost](http://localhost)
-
-## 🏗 Development
+#### Backend Service
+```bash
+npm run dev              # Start development server with hot reload
+npm run build            # Build TypeScript
+npm run start            # Start production server
+npm run lint             # Lint code
+npm run test             # Run tests
+```
 
 ### Project Structure
 
 ```
-smart-recruiter-client-final/
-├── src/
-│   ├── components/          # React components
-│   │   ├── dashboard/       # Dashboard-specific components
-│   │   ├── admin/          # Admin panel components
-│   │   ├── auth/           # Authentication components
-│   │   ├── layout/         # Layout components
+services/
+├── frontend/
+│   ├── src/
+│   │   ├── components/     # Reusable UI components
 │   │   ├── pages/          # Page components
-│   │   └── ui/             # Reusable UI components
-│   ├── hooks/              # Custom React hooks
-│   ├── lib/                # Utility libraries and configurations
-│   ├── locales/            # Internationalization files
-│   ├── pages/              # Page components (admin)
-│   ├── router/             # Routing configuration
-│   ├── services/           # API services
-│   └── utils/              # Utility functions
-├── public/                 # Static assets
-├── supabase/               # Supabase configuration and functions
-├── Dockerfile              # Production Docker configuration
-├── Dockerfile.dev          # Development Docker configuration
-├── docker-compose.yml      # Docker Compose configuration
-├── nginx.conf              # Nginx configuration for production
-└── README.md               # This file
+│   │   ├── features/       # Feature-specific modules
+│   │   ├── hooks/          # Custom React hooks
+│   │   ├── lib/            # Utility libraries
+│   │   ├── router/         # Routing configuration
+│   │   ├── services/       # API service layer
+│   │   ├── utils/          # Helper functions
+│   │   └── locales/        # Internationalization
+│   ├── public/             # Static assets
+│   └── dist/               # Build output
+├── backend/
+│   ├── src/
+│   │   ├── config/         # Configuration files
+│   │   ├── middleware/     # Express middleware
+│   │   ├── routes/         # API route handlers
+│   │   ├── services/       # Business logic services
+│   │   ├── types/          # TypeScript type definitions
+│   │   └── lib/            # Utility libraries
+│   ├── dist/               # Build output
+│   └── logs/               # Application logs
+├── docs/                   # Documentation and guides
+└── scripts/                # Utility scripts and CI/CD
 ```
 
-### Available Scripts
+## 🌐 API Endpoints
 
-```bash
-# Development
-npm run dev                 # Start development server
-npm run build              # Build for production
-npm run preview            # Preview production build
-npm run lint               # Run ESLint
-npm run lint:fix           # Fix ESLint issues
+### Health Check
+- **GET** `/api/test/health` - Server health status
+- **GET** `/api/test/ping` - Simple ping endpoint
+- **GET** `/api/test/config` - Configuration status
 
-# Docker commands
-docker-compose up app-dev  # Start development environment
-docker-compose up app-prod # Start production environment
-docker-compose down        # Stop all containers
-```
+### AI Services
+- **POST** `/api/ai/analyze-cv` - CV analysis
+- **POST** `/api/ai/generate-questions` - Interview questions
+- **POST** `/api/ai/search-talent` - Talent search
 
-### Environment Variables
+### Payment
+- **POST** `/api/payment/create-session` - Create payment session
+- **POST** `/api/payment/webhook` - Stripe webhook handler
 
-Create a `.env.local` file in the root directory:
-
-```env
-# Supabase Configuration
-VITE_SUPABASE_URL=your_supabase_project_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-
-# Optional: Development overrides
-VITE_API_BASE_URL=http://localhost:8000
-VITE_ENABLE_DEBUG=true
-```
-
-### Code Style and Linting
-
-The project uses ESLint with TypeScript support. Key rules:
-
-- **TypeScript strict mode** enabled
-- **React hooks rules** enforced
-- **Import/export consistency** required
-- **Prettier integration** for formatting
-
-### Internationalization (i18n)
-
-The application supports Arabic and English languages:
-
-- **Translation files**: `src/locales/ar/` and `src/locales/en/`
-- **Language switching**: Automatic detection with manual override
-- **RTL support**: Full right-to-left layout for Arabic
-
-### Testing
-
-```bash
-# Run tests (when implemented)
-npm run test
-
-# Run tests in watch mode
-npm run test:watch
-
-# Generate coverage report
-npm run test:coverage
-```
+### Talent Management
+- **GET** `/api/talent/search` - Search candidates
+- **POST** `/api/talent/analyze` - Analyze candidate profile
 
 ## 🚀 Deployment
 
 ### Production Build
-
-1. **Build the application**
-
-   ```bash
-   npm run build
-   ```
-
-2. **Test the production build locally**
-   ```bash
-   npm run preview
-   ```
-
-### Docker Deployment
-
-1. **Build production image**
-
-   ```bash
-   docker build -t seen-ai-hr .
-   ```
-
-2. **Run production container**
-   ```bash
-   docker run -p 80:80 seen-ai-hr
-   ```
-
-### Cloud Deployment
-
-#### Vercel (Recommended)
-
-1. **Install Vercel CLI**
-   ```bash
-   npm install -g vercel
-   ```
-
-2. **Deploy to Vercel**
-   ```bash
-   vercel --prod
-   ```
-
-3. **Or connect via GitHub:**
-   - Go to [vercel.com](https://vercel.com)
-   - Import your GitHub repository
-   - Vercel will auto-detect Vite/React settings
-   - Add environment variables in dashboard
-
-#### Environment Variables for Vercel
-
-Add these in your Vercel project settings:
-
-```env
-VITE_SUPABASE_URL=your_supabase_project_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-```
-
-#### AWS S3 + CloudFront
-
 ```bash
-# Build the application
+# Build all services
 npm run build
 
-# Deploy to S3
-aws s3 sync dist/ s3://your-bucket-name
-
-# Invalidate CloudFront cache
-aws cloudfront create-invalidation --distribution-id YOUR_DISTRIBUTION_ID --paths "/*"
+# Start production backend
+npm run start:backend
 ```
 
-## 🔧 Configuration
+### Docker Production
+```bash
+# Build production image
+docker build -t smart-recruiter .
 
-### Vite Configuration
+# Run production container
+docker run -p 3000:3000 smart-recruiter
+```
 
-The project uses Vite with the following configuration:
+### Environment Variables
 
-- **React plugin** for JSX support
-- **Path aliases** for clean imports (`@/` points to `src/`)
-- **Environment variables** prefixed with `VITE_`
-- **Build optimization** for production
+#### Frontend
+- `VITE_SUPABASE_URL` - Supabase project URL
+- `VITE_SUPABASE_ANON_KEY` - Supabase anonymous key
+- `VITE_API_BASE_URL` - Backend API base URL
 
-### Tailwind CSS
-
-Custom Tailwind configuration includes:
-
-- **Custom color palette** matching the brand
-- **Responsive breakpoints** for mobile-first design
-- **Custom animations** and transitions
-- **Dark mode** support
-
-### Supabase Setup
-
-1. **Create a Supabase project** at [supabase.com](https://supabase.com)
-2. **Set up database tables** (see `supabase/` directory)
-3. **Configure authentication** providers
-4. **Set up Row Level Security (RLS)** policies
-5. **Deploy Edge Functions** if needed
+#### Backend
+- `NODE_ENV` - Environment (development/production)
+- `PORT` - Server port (default: 3000)
+- `SUPABASE_URL` - Supabase project URL
+- `SUPABASE_SERVICE_KEY` - Supabase service key
+- `OPENAI_API_KEY` - OpenAI API key
+- `STRIPE_SECRET_KEY` - Stripe secret key
+- `REDIS_URL` - Redis connection URL
 
 ## 🤝 Contributing
 
-We welcome contributions! Please follow these steps:
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-1. **Fork the repository**
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/amazing-feature
-   ```
-3. **Make your changes**
-4. **Run tests and linting**
-   ```bash
-   npm run lint
-   npm run test
-   ```
-5. **Commit your changes**
-   ```bash
-   git commit -m 'Add amazing feature'
-   ```
-6. **Push to the branch**
-   ```bash
-   git push origin feature/amazing-feature
-   ```
-7. **Open a Pull Request**
-
-### Development Guidelines
-
-- **TypeScript**: Use strict typing, avoid `any`
-- **Components**: Use functional components with hooks
-- **Styling**: Use Tailwind CSS classes, avoid custom CSS
-- **State Management**: Use React Query for server state, local state for UI
-- **Testing**: Write tests for new features
-- **Documentation**: Update README for new features
-
-## 📝 License
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🆘 Support
 
-### Getting Help
-
-- **Documentation**: Check this README and inline code comments
-- **Issues**: Create an issue on GitHub for bugs or feature requests
-- **Discussions**: Use GitHub Discussions for questions and ideas
-
-### Common Issues
-
-#### Build Issues
-
-```bash
-# Clear cache and reinstall dependencies
-rm -rf node_modules package-lock.json
-npm install
-```
-
-#### Docker Issues
-
-```bash
-# Rebuild Docker images
-docker-compose build --no-cache
-docker-compose up
-```
-
-#### Supabase Connection Issues
-
-- Verify environment variables are set correctly
-- Check Supabase project status
-- Ensure RLS policies are configured
-
-## 🗺 Roadmap
-
-### Upcoming Features
-
-- [ ] **Advanced Analytics Dashboard**
-- [ ] **Bulk CV Processing**
-- [ ] **Integration with Job Boards**
-- [ ] **Advanced Interview Scheduling**
-- [ ] **Mobile App (React Native)**
-- [ ] **API Documentation**
-- [ ] **Performance Monitoring**
-- [ ] **Advanced Search Filters**
-
-### Performance Optimizations
-
-- [ ] **Code Splitting** for better loading times
-- [ ] **Image Optimization** and lazy loading
-- [ ] **Service Worker** for offline support
-- [ ] **Database Query Optimization**
+For support and questions:
+- Create an issue in the repository
+- Check the documentation in `services/docs/`
+- Review the development guides
 
 ---
 
-<div align="center">
-
-**Built with ❤️ by the SEEN AI Team**
-
-[Website](https://seenai.com) • [Documentation](https://docs.seenai.com) • [Support](https://support.seenai.com)
-
-</div>
+**Built with ❤️ by the Smart Recruiter Team**

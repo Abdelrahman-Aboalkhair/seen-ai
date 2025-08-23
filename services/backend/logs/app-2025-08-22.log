@@ -1,0 +1,8479 @@
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:14'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:14'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:14'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:14'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:14'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:14'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:14'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:14'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:14'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:14'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:14'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:14'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:14'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:14'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:14'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:14'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:14'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:14'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:15'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:15'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:15'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:15'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 4045,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 17:34:15'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:24'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:25'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:25'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:25'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:25'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:25'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:25'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:26'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:26'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:26'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:26'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:26'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:26'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:26'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:26'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:26'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:26'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:26'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:26'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:26'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:26'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:26'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:26'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 4130,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 17:34:26'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:44'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 4241,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 17:34:46'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:18'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:19'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:19'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:19'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:19'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:19'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:19'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:19'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:19'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:19'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:19'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:19'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:19'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:19'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:19'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:19'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:19'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:19'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:19'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:20'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:20'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:20'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:35:20'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 5413,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 17:35:20'
+}
+{
+  message: '127.0.0.1 - - [22/Aug/2025:14:39:10 +0000] "POST /api/ai/generate-questions HTTP/1.1" - - "-" "PostmanRuntime/7.45.0"',
+  level: 'info',
+  timestamp: '2025-08-22 17:39:10'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:27'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:28'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:28'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:28'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:28'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:28'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:28'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:28'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:28'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:28'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:28'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:28'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:28'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:28'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:28'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:28'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:28'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:28'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:28'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:28'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:29'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:29'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:40:29'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 7975,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 17:40:29'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:29'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 8381,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 17:41:31'
+}
+{
+  message: '127.0.0.1 - - [22/Aug/2025:14:46:18 +0000] "POST /api/ai/cv-analysis HTTP/1.1" - - "-" "PostmanRuntime/7.45.0"',
+  level: 'info',
+  timestamp: '2025-08-22 17:46:18'
+}
+{
+  message: '127.0.0.1 - - [22/Aug/2025:14:47:03 +0000] "POST /api/ai/generate-questions HTTP/1.1" - - "-" "PostmanRuntime/7.45.0"',
+  level: 'info',
+  timestamp: '2025-08-22 17:47:03'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:04'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:05'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:05'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:05'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:05'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:05'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:05'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:06'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:06'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:06'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:06'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:06'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:06'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:06'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:06'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 11234,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 17:50:06'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:09'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 11292,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 17:50:11'
+}
+{
+  message: 'Received SIGINT. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 17:50:49'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:03'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:03'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:03'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:03'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:03'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:03'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:04'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:04'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:04'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:04'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:04'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:04'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:04'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:04'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:04'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:04'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:04'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:04'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:04'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:04'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:04'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:04'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 19260,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 17:57:04'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:21'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 19398,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 17:57:22'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:26'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 19453,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 17:57:27'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:23'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 19810,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 17:58:25'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:11'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:12'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:12'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:12'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:12'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:12'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:12'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:12'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:12'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:12'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:12'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:12'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:12'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:12'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:12'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:12'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:12'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:12'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:13'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:13'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:13'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:13'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:13'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 21463,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:00:13'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:49'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:50'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:50'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:50'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:50'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:50'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:50'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:51'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:51'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:51'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:51'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:51'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:51'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:51'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:51'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:51'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:51'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:51'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:51'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:51'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:51'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:51'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:51'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 21759,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:00:51'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:55'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 21918,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:00:56'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:00'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 21969,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:01:01'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:04'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 22022,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:01:06'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:13'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:15'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:15'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:15'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:15'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:15'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:15'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:16'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:16'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:16'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:16'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:16'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:16'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:16'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:16'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:16'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:16'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:16'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:16'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:16'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:16'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:16'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:16'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 22118,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:01:16'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:18'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 22170,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:01:19'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:34'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:35'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 22264,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:01:36'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:39'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 22315,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:01:40'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:43'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 22369,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:01:44'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:48'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:48'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:48'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:48'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:48'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:48'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:48'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:49'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:49'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:49'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:49'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:49'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:49'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:49'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:49'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:49'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:49'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:49'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:49'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:49'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:49'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:49'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:49'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 22424,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:01:49'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:52'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:53'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:53'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:53'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:53'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:53'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:53'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:53'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:53'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:53'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:53'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:53'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:53'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:53'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:53'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:53'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:53'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:53'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:54'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:54'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:54'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:54'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:54'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 22590,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:01:54'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:57'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 22647,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:01:58'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:12'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:13'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:13'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:13'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:13'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:13'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:13'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:13'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:13'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:14'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:14'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:14'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:14'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:14'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 22750,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:02:14'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:16'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:17'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:17'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:17'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:17'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:17'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:17'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:17'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:17'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:17'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:17'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:17'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:17'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:17'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:17'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:17'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:17'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:17'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:18'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:18'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:18'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:18'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:18'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 22831,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:02:18'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:21'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 22883,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:02:22'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:25'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 22941,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:02:26'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:41'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:42'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:42'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:42'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:42'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:42'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:42'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:42'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:42'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:42'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:42'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:42'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:42'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:42'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:42'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:42'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:42'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:42'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:43'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:43'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:43'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:43'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:43'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 23055,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:02:43'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:46'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 23109,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:02:47'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:50'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 23203,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:02:52'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:55'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 23320,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:02:56'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:03'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 23408,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:03:04'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:08'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 23474,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:03:09'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:12'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 23521,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:03:13'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:20'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 23602,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:03:22'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:34'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 23727,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:03:35'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:38'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:39'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:39'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:39'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:39'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:39'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:39'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:39'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:39'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:39'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:39'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:39'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:39'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:39'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:39'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:39'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:39'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:39'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:40'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:40'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:40'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:40'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:40'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 23781,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:03:40'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:47'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 23872,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:03:48'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:00'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:01'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:01'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:01'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:01'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:01'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:01'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:01'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:01'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:02'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:02'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:02'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:02'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:02'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 24059,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:04:02'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:07'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 24164,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:04:08'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:54'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 24632,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:04:55'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:04:59'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 24691,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:05:00'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:12'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:13'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:13'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:13'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:13'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:13'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:13'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:13'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:13'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:13'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:14'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:14'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:14'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:14'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:14'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 24802,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:05:14'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:21'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:22'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:22'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:22'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:22'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:22'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:22'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:22'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:22'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:22'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:23'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:23'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:23'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:23'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:23'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 24894,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:05:23'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:29'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:30'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:30'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:30'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:30'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:30'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:30'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:30'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:30'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:30'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:30'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:30'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:30'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:30'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:30'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:30'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:30'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:30'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:31'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:31'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:31'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:31'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:31'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 24997,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:05:31'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:35'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 25081,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:05:36'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:53'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 25289,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:05:54'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:56'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 25341,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:05:57'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:05'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 25439,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:06:06'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:10'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 25498,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:06:11'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:28'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 25604,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:06:29'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:42'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 25720,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:06:43'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:46'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:47'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:47'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:47'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:47'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:47'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:47'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:47'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:47'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:47'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:47'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:47'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:47'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:47'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:47'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:47'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:47'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:47'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:48'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:48'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:48'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:48'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:06:48'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 25773,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:06:48'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:09'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 26018,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:07:11'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:23'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 26133,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:07:24'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:27'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:28'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:28'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:28'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:28'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:28'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:28'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:28'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:28'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:28'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:28'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:28'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:28'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:28'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:28'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:28'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:28'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:28'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:28'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:29'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:29'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:29'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:29'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:29'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:29'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:30'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:30'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:30'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:30'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:30'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:30'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:30'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:30'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:30'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:30'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:30'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 26275,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:07:31'
+}
+{
+  message: '127.0.0.1 - - [22/Aug/2025:15:08:29 +0000] "POST /api/ai/generate-questions HTTP/1.1" - - "-" "PostmanRuntime/7.45.0"',
+  level: 'info',
+  timestamp: '2025-08-22 18:08:29'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:00'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:01'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:01'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:01'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:01'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:01'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:01'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:01'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:01'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:01'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:02'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:02'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:02'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:02'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:02'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 26895,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:09:02'
+}
+{
+  message: '127.0.0.1 - - [22/Aug/2025:15:09:46 +0000] "POST /api/ai/generate-questions HTTP/1.1" - - "-" "PostmanRuntime/7.45.0"',
+  level: 'info',
+  timestamp: '2025-08-22 18:09:46'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:34'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:35'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:35'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:35'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:35'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:35'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:35'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:35'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:35'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:35'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:35'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:36'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:36'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:36'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:36'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 27377,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:10:36'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:45'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:46'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:46'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:46'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:46'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:46'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:46'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:46'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:46'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:47'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:47'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:47'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:47'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:10:47'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 27482,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:10:47'
+}
+{
+  message: "Application Error Expected ':' after property name in JSON at position 32 (line 4 column 1)",
+  stack: "SyntaxError: Expected ':' after property name in JSON at position 32 (line 4 column 1)\n" +
+    '    at JSON.parse (<anonymous>)\n' +
+    '    at parse (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/backend/node_modules/body-parser/lib/types/json.js:92:19)\n' +
+    '    at /home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/backend/node_modules/body-parser/lib/read.js:128:18\n' +
+    '    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)\n' +
+    '    at invokeCallback (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/backend/node_modules/raw-body/index.js:238:16)\n' +
+    '    at done (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/backend/node_modules/raw-body/index.js:227:7)\n' +
+    '    at IncomingMessage.onEnd (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/backend/node_modules/raw-body/index.js:287:7)\n' +
+    '    at IncomingMessage.emit (node:events:518:28)\n' +
+    '    at endReadableNT (node:internal/streams/readable:1698:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)',
+  name: 'SyntaxError',
+  context: {
+    operation: 'global_error_handler',
+    url: '/api/health',
+    method: 'GET',
+    userId: undefined
+  },
+  level: 'error',
+  timestamp: '2025-08-22 18:11:26'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:33'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:34'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:34'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:34'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:34'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:34'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:34'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:34'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:34'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:34'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:34'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:34'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:34'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:34'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:34'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:34'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:34'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:34'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:35'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:35'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:35'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:35'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:35'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 27977,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:11:35'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:39'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:40'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:40'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:40'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:40'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:40'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:40'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:40'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:40'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:40'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:40'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:40'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:40'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:40'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:40'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:40'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:40'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:40'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:43'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:43'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:43'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:43'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:43'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 28061,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:11:43'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:44'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:45'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:45'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:45'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:45'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:45'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:45'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:46'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:46'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:46'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:46'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:46'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:46'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:46'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:46'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:46'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 28165,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:11:46'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:11:52'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:32'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:32'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:32'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:32'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:32'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:32'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:32'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:32'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:32'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:32'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:32'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:32'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:32'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:32'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:32'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:32'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:32'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:36'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:36'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:36'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:36'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:36'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 31776,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:15:36'
+}
+{
+  message: '127.0.0.1 - - [22/Aug/2025:15:15:41 +0000] "GET /api/test/ping HTTP/1.1" - - "-" "curl/8.5.0"',
+  level: 'info',
+  timestamp: '2025-08-22 18:15:41'
+}
+{
+  message: '127.0.0.1 - - [22/Aug/2025:15:16:15 +0000] "GET /health HTTP/1.1" - - "-" "curl/8.5.0"',
+  level: 'info',
+  timestamp: '2025-08-22 18:16:15'
+}
+{
+  message: 'Received SIGTERM. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:17:50'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:50'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:50'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:50'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:50'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:50'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:50'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:50'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:50'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:50'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:50'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:50'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:50'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:50'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:50'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:50'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:50'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:50'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:50'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:51'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:51'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:51'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:51'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 34662,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:18:51'
+}
+{
+  message: 'Received SIGINT. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:18:56'
+}
+{
+  message: 'Supabase clients initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:19'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:19'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:19'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:19'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:19'
+}
+{
+  message: 'AI Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:19'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:20'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:20'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:20'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:20'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:20'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:20'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:20'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:20'
+}
+{
+  message: 'Base Payment service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:20'
+}
+{
+  message: 'Payment Service initialized with all sub-services',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:20'
+}
+{
+  message: 'Base Talent service initialized',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:20'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:20'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:20'
+}
+{
+  message: 'Redis connected successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:20'
+}
+{
+  message: 'Starting cache warming process',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:20'
+}
+{
+  message: 'Cache warming completed successfully',
+  level: 'info',
+  timestamp: '2025-08-22 18:32:20'
+}
+{
+  environment: 'development',
+  nodeVersion: 'v22.15.0',
+  pid: 39586,
+  level: 'info',
+  message: 'Server running on 0.0.0.0:3000',
+  timestamp: '2025-08-22 18:32:20'
+}
+{
+  message: '127.0.0.1 - - [22/Aug/2025:15:33:10 +0000] "POST /api/ai/generate-job-requirements HTTP/1.1" - - "-" "PostmanRuntime/7.45.0"',
+  level: 'info',
+  timestamp: '2025-08-22 18:33:10'
+}
+{
+  message: 'Received SIGINT. Starting graceful shutdown...',
+  level: 'info',
+  timestamp: '2025-08-22 18:33:27'
+}

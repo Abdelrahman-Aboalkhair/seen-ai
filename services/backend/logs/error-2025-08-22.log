@@ -1,0 +1,23 @@
+{
+  message: "Application Error Expected ':' after property name in JSON at position 32 (line 4 column 1)",
+  stack: "SyntaxError: Expected ':' after property name in JSON at position 32 (line 4 column 1)\n" +
+    '    at JSON.parse (<anonymous>)\n' +
+    '    at parse (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/backend/node_modules/body-parser/lib/types/json.js:92:19)\n' +
+    '    at /home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/backend/node_modules/body-parser/lib/read.js:128:18\n' +
+    '    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)\n' +
+    '    at invokeCallback (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/backend/node_modules/raw-body/index.js:238:16)\n' +
+    '    at done (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/backend/node_modules/raw-body/index.js:227:7)\n' +
+    '    at IncomingMessage.onEnd (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/backend/node_modules/raw-body/index.js:287:7)\n' +
+    '    at IncomingMessage.emit (node:events:518:28)\n' +
+    '    at endReadableNT (node:internal/streams/readable:1698:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)',
+  name: 'SyntaxError',
+  context: {
+    operation: 'global_error_handler',
+    url: '/api/health',
+    method: 'GET',
+    userId: undefined
+  },
+  level: 'error',
+  timestamp: '2025-08-22 18:11:26'
+}
