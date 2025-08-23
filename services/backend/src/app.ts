@@ -15,6 +15,7 @@ import testRoutes from "@/routes/test.routes.js";
 import questionGenerationRoutes from "@/routes/question-generation.routes.js";
 import cvAnalysisRoutes from "@/routes/cv-analysis.routes.js";
 import jobRequirementsRoutes from "@/routes/job-requirements.routes.js";
+import interviewAnalysisRoutes from "@/routes/interview-analysis.routes.js";
 
 // Import middleware
 // import { dynamicRateLimit, rateLimitStatus } from "@/middleware/rateLimiter.js";
@@ -140,6 +141,7 @@ app.use("/api/test", testRoutes);
 app.use("/api/ai/generate-questions", questionGenerationRoutes);
 app.use("/api/ai/cv-analysis", cvAnalysisRoutes);
 app.use("/api/ai/job-requirements", jobRequirementsRoutes);
+app.use("/api/ai/interview-analysis", interviewAnalysisRoutes);
 
 // API info endpoint
 app.get("/api", (req: Request, res: Response) => {
@@ -245,6 +247,7 @@ app.use("*", (req: Request, res: Response) => {
       questionGeneration: "/api/ai/generate-questions",
       cvAnalysis: "/api/ai/cv-analysis",
       jobRequirements: "/api/ai/job-requirements",
+      interviewAnalysis: "/api/ai/interview-analysis",
       health: "/health",
     },
   });

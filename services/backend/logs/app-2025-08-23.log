@@ -3677,3 +3677,406 @@
   message: 'Job requirements retrieved from cache',
   timestamp: '2025-08-23 18:49:44'
 }
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:10'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:10'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:10'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:10'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:10'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:10'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:20'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:20'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:20'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:20'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:20'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:20'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:26'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:26'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:26'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:26'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:26'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:26'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:32'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:32'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:32'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:32'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:32'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:32'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:32'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:32'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:43'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:43'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:43'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:43'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:43'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:43'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:43'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:55:43'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:56:32'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:56:32'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:56:32'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:56:32'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:56:32'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:56:32'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:56:32'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:56:32'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-23 18:56:47'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-23 18:56:47'
+}
+{
+  operation: 'cache_get',
+  duration: '591ms',
+  key: 'smart-recruiter:smart-recruiter:interview_analysis:f309f3c7',
+  hit: false,
+  level: 'info',
+  message: 'Performance Metric',
+  timestamp: '2025-08-23 18:56:47'
+}
+{
+  service: 'openai',
+  operation: 'interview_analysis',
+  duration: '10948ms',
+  success: true,
+  attempt: 1,
+  level: 'info',
+  message: 'External API Call',
+  timestamp: '2025-08-23 18:56:58'
+}
+{
+  operation: 'cache_set',
+  duration: '71ms',
+  key: 'smart-recruiter:smart-recruiter:interview_analysis:f309f3c7',
+  ttl: 1800,
+  level: 'info',
+  message: 'Performance Metric',
+  timestamp: '2025-08-23 18:56:58'
+}
+{
+  userId: 'anonymous',
+  sessionId: 'interview_session_123',
+  duration: 11614,
+  level: 'info',
+  message: 'Interview analysis generated successfully',
+  timestamp: '2025-08-23 18:56:58'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:58:06'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:58:06'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:58:06'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:58:06'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:58:06'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:58:06'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:58:06'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 18:58:06'
+}
+{
+  message: 'Redis client connected',
+  level: 'info',
+  timestamp: '2025-08-23 18:59:42'
+}
+{
+  message: 'Redis client ready',
+  level: 'info',
+  timestamp: '2025-08-23 18:59:42'
+}
+{
+  operation: 'cache_get',
+  duration: '518ms',
+  key: 'smart-recruiter:smart-recruiter:interview_analysis:f309f3c7',
+  hit: true,
+  level: 'info',
+  message: 'Performance Metric',
+  timestamp: '2025-08-23 18:59:42'
+}
+{
+  userId: 'anonymous',
+  sessionId: 'interview_session_123',
+  duration: 519,
+  level: 'info',
+  message: 'Interview analysis retrieved from cache',
+  timestamp: '2025-08-23 18:59:42'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 19:03:39'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 19:03:39'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 19:03:39'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 19:03:39'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 19:03:39'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 19:03:39'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 19:03:39'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 19:03:39'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 19:03:49'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 19:03:49'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 19:03:49'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 19:03:49'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 19:03:49'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 19:03:49'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 19:03:49'
+}
+{
+  message: 'BaseAI service initialized',
+  level: 'info',
+  timestamp: '2025-08-23 19:03:49'
+}

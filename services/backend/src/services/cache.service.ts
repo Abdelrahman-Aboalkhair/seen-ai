@@ -130,14 +130,18 @@ export class CacheService {
   }
 
   // Interview analysis caching
-  async getInterviewAnalysis(sessionId: string) {
-    const key = `interview_analysis:${sessionId}`;
-    return this.get(key, { ttl: baseConfig.cache.ttl.interviewAnalysis });
+  async getInterviewAnalysis(sessionId: string, userId: string) {
+    const key = "interview_analysis";
+    const cacheKey = this.generateKey(key, { sessionId, userId });
+
+    return this.get(cacheKey, { ttl: baseConfig.cache.ttl.interviewAnalysis });
   }
 
-  async setInterviewAnalysis(sessionId: string, result: any) {
-    const key = `interview_analysis:${sessionId}`;
-    return this.set(key, result, {
+  async setInterviewAnalysis(sessionId: string, userId: string, result: any) {
+    const key = "interview_analysis";
+    const cacheKey = this.generateKey(key, { sessionId, userId });
+
+    return this.set(cacheKey, result, {
       ttl: baseConfig.cache.ttl.interviewAnalysis,
     });
   }
