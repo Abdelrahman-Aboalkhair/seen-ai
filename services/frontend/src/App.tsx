@@ -18,6 +18,7 @@ import { DashboardLayout } from "./components/dashboard/DashboardLayout";
 import { DashboardOverview } from "./components/dashboard/DashboardOverview";
 import { CreditHistoryPage } from "./components/dashboard/CreditHistoryPage";
 import { CVAnalysisPage } from "./components/dashboard/CVAnalysisPage";
+import { CVAnalysisPageNew } from "./components/dashboard/CVAnalysisPageNew";
 import { TalentSearchPage } from "./features/talent-search";
 import { TalentSearchHistoryPage } from "./components/dashboard/TalentSearchHistoryPage";
 import { CVAnalysisHistoryPage } from "./components/dashboard/CVAnalysisHistoryPage";
@@ -178,6 +179,7 @@ function App() {
                   element={<TalentSearchHistoryPage />}
                 />
                 <Route path="cv-analysis" element={<CVAnalysisPage />} />
+                <Route path="cv-analysis-new" element={<CVAnalysisPageNew />} />
                 <Route
                   path="cv-analysis-history"
                   element={<CVAnalysisHistoryPage />}

@@ -1,0 +1,384 @@
+# Environment Variables and Configuration Files
+# ===========================================
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+.env.staging
+.env.staging.local
+.env.hybrid
+.env.hybrid.local
+*.env
+*.env.*
+!*.env.example
+!*.env.template
+
+# API Keys and Secrets
+# ====================
+secrets.json
+secrets.yaml
+secrets.yml
+config/secrets.json
+config/secrets.yaml
+config/secrets.yml
+.secrets
+.secrets.*
+api-keys.json
+api-keys.yaml
+api-keys.yml
+credentials.json
+credentials.yaml
+credentials.yml
+service-account.json
+service-account.yaml
+service-account.yml
+firebase-key.json
+firebase-key.yaml
+firebase-key.yml
+supabase-key.json
+supabase-key.yaml
+supabase-key.yml
+
+# Node.js
+# ========
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+.npm
+.eslintcache
+.node_repl_history
+*.tgz
+.yarn-integrity
+
+# Build outputs
+# =============
+dist/
+build/
+out/
+.next/
+.nuxt/
+.vuepress/dist
+.serverless/
+.fusebox/
+.dynamodb/
+.tern-port
+.vscode-test
+
+# Logs
+# =====
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+.npm
+.eslintcache
+.node_repl_history
+*.tgz
+.yarn-integrity
+
+# Runtime data
+# ============
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+# =============================================
+coverage/
+*.lcov
+.nyc_output
+
+# Dependency directories
+# ======================
+jspm_packages/
+
+# Optional npm cache directory
+# ===========================
+.npm
+
+# Optional eslint cache
+# ====================
+.eslintcache
+
+# Microbundle cache
+# =================
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+# =====================
+.node_repl_history
+
+# Output of 'npm pack'
+# ===================
+*.tgz
+
+# Yarn Integrity file
+# ===================
+.yarn-integrity
+
+# dotenv environment variables file
+# ================================
+.env.test
+
+# parcel-bundler cache (https://parceljs.org/)
+# ===========================================
+.cache
+.parcel-cache
+
+# Next.js build output
+# ====================
+.next
+
+# Nuxt.js build / generate output
+# ===============================
+.nuxt
+dist
+
+# Gatsby files
+# ============
+.cache/
+public
+
+# Storybook build outputs
+# =======================
+.out
+.storybook-out
+
+# Temporary folders
+# =================
+tmp/
+temp/
+.tmp/
+.temp/
+
+# Editor directories and files
+# ===========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# OS generated files
+# =================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Docker
+# =======
+.dockerignore
+docker-compose.override.yml
+docker-compose.override.yaml
+
+# Database
+# =========
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Redis
+# ======
+dump.rdb
+*.rdb
+
+# SSL/TLS certificates
+# ====================
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx
+*.p7b
+*.p7c
+*.p7m
+*.p7s
+*.cer
+*.der
+
+# SSH keys
+# ========
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+*.ppk
+
+# GPG keys
+# ========
+*.gpg
+*.asc
+*.key
+
+# Terraform
+# ==========
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Kubernetes
+# ===========
+*.kubeconfig
+kubeconfig
+.kube/
+
+# AWS
+# ====
+.aws/
+aws-credentials
+aws-config
+
+# Google Cloud
+# ============
+gcloud/
+.gcloud/
+service-account-*.json
+*.p12
+*.pem
+
+# Azure
+# ======
+.azure/
+azure-credentials
+azure-config
+
+# Heroku
+# =======
+.env.local
+.env.production
+.env.staging
+
+# Vercel
+# =======
+.vercel
+vercel.json
+
+# Netlify
+# ========
+.netlify
+netlify.toml
+
+# Firebase
+# =========
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+.firebaserc
+
+# Supabase
+# =========
+.supabase/
+supabase/
+*.env.local
+
+# Testing
+# ========
+coverage/
+.nyc_output/
+.jest/
+test-results/
+playwright-report/
+test-results.xml
+
+# Monitoring and Analytics
+# ========================
+.sentryclirc
+.bugsnagrc
+.newrelic.yml
+.newrelic.yaml
+
+# Backup files
+# ============
+*.bak
+*.backup
+*.old
+*.orig
+*.save
+*.swp
+*.swo
+*~
+
+# Archive files
+# =============
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Local development
+# =================
+.local/
+local/
+dev/
+development/
+
+# IDE and Editor specific
+# =======================
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/usage.statistics.xml
+.idea/dictionaries/
+.idea/shelf/
+
+# Temporary files
+# ===============
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# System Files
+# ============
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Application specific
+# ===================
+# Add any application-specific files that should be ignored
+# For example:
+# config/local.json
+# uploads/
+# temp/
+# cache/

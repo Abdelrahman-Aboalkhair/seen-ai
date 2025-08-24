@@ -4,6 +4,7 @@ import { DashboardLayout } from "../components/dashboard/DashboardLayout";
 import { DashboardOverview } from "../components/dashboard/DashboardOverview";
 import { TalentSearchPage } from "../features/talent-search/components/TalentSearchPage";
 import { CVAnalysisPage } from "../components/dashboard/CVAnalysisPage";
+import { CVAnalysisPageNew } from "../components/dashboard/CVAnalysisPageNew";
 import { CVAnalysisHistoryPage } from "../components/dashboard/CVAnalysisHistoryPage";
 import { TalentSearchHistoryPage } from "../components/dashboard/TalentSearchHistoryPage";
 import { CreditHistoryPage } from "../components/dashboard/CreditHistoryPage";
@@ -31,6 +32,7 @@ const DashboardRoutes: React.FC = () => {
           element={<TalentSearchHistoryPage />}
         />
         <Route path="cv-analysis" element={<CVAnalysisPage />} />
+        <Route path="cv-analysis-new" element={<CVAnalysisPageNew />} />
         <Route path="cv-analysis-history" element={<CVAnalysisHistoryPage />} />
         <Route path="credit-history" element={<CreditHistoryPage />} />
         <Route path="credit-management" element={<CreditManagement />} />

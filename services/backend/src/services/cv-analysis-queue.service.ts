@@ -78,6 +78,13 @@ export class CVAnalysisQueueService {
    * Create a new CV analysis job
    */
   async createCVAnalysisJob(request: CVAnalysisRequest): Promise<string> {
+    console.log("🔍 [CV Queue] Creating new CV analysis job:", {
+      requestId: request.userId,
+      cvTextLength: request.cvText.length,
+      jobRequirementsLength: request.jobRequirements.length,
+      timestamp: new Date().toISOString(),
+    });
+
     const job = await this.cvAnalysisQueue.add(
       "analyze-cv",
       {
@@ -99,6 +106,12 @@ export class CVAnalysisQueueService {
       }
     );
 
+    console.log("✅ [CV Queue] Job created successfully:", {
+      jobId: job.id,
+      status: job.status,
+      timestamp: new Date().toISOString(),
+    });
+
     return job.id as string;
   }
 
@@ -107,17 +120,56 @@ export class CVAnalysisQueueService {
    */
   async getJobStatus(jobId: string): Promise<CVAnalysisJob | null> {
     try {
+      console.log("🔍 [CV Queue] Getting job status for:", jobId);
+
       const job = await this.cvAnalysisQueue.getJob(jobId);
 
       if (!job) {
+        console.log("❌ [CV Queue] Job not found:", jobId);
         return null;
       }
 
+      console.log("📊 [CV Queue] Raw job data:", {
+        jobId: job.id,
+        status: job.status,
+        processedOn: job.processedOn,
+        finishedOn: job.finishedOn,
+        hasReturnValue: !!job.returnvalue,
+        hasFailedReason: !!job.failedReason,
+        timestamp: job.timestamp,
+      });
+
       const jobData = job.data;
+
+      // Determine the actual status based on job state
+      let actualStatus: "pending" | "processing" | "completed" | "failed";
+
+      if (job.failedReason) {
+        actualStatus = "failed";
+        console.log("⚠️ [CV Queue] Job has failed reason, status is failed");
+      } else if (job.returnvalue) {
+        actualStatus = "completed";
+        console.log("✅ [CV Queue] Job has return value, status is completed");
+      } else if (job.processedOn && !job.finishedOn) {
+        actualStatus = "processing";
+        console.log("⚙️ [CV Queue] Job is being processed");
+      } else {
+        actualStatus = "pending";
+        console.log("⏳ [CV Queue] Job is pending");
+      }
+
+      console.log("🔄 [CV Queue] Status determination:", {
+        original: job.status,
+        determined: actualStatus,
+        hasFailedReason: !!job.failedReason,
+        hasReturnValue: !!job.returnvalue,
+        processedOn: !!job.processedOn,
+        finishedOn: !!job.finishedOn,
+      });
 
       const cvAnalysisJob: CVAnalysisJob = {
         jobId: job.id as string,
-        status: this.mapBullMQStatus(job.status),
+        status: actualStatus,
         request: jobData.request,
         result: job.returnvalue || undefined,
         error: job.failedReason || undefined,
@@ -137,9 +189,17 @@ export class CVAnalysisQueueService {
             : undefined,
       };
 
+      console.log("✅ [CV Queue] Constructed job status:", {
+        jobId: cvAnalysisJob.jobId,
+        status: cvAnalysisJob.status,
+        hasResult: !!cvAnalysisJob.result,
+        hasError: !!cvAnalysisJob.error,
+        processingTime: cvAnalysisJob.processingTime,
+      });
+
       return cvAnalysisJob;
     } catch (error) {
-      console.error("Error getting CV analysis job status:", error);
+      console.error("❌ [CV Queue] Error getting job status:", error);
       return null;
     }
   }
@@ -221,23 +281,39 @@ export class CVAnalysisQueueService {
    * Initialize the worker to process jobs
    */
   private initializeWorker(): void {
+    console.log("🔧 [CV Queue] Initializing worker...");
+
     this.worker = new Worker(
       "cv-analysis",
       async (job) => {
-        console.log(`CV Analysis Worker: Processing job ${job.id}`);
+        console.log(`🚀 [CV Worker] Starting job ${job.id}`);
+        console.log(`📝 [CV Worker] Job data:`, {
+          type: job.data.type,
+          userId: job.data.request.userId,
+          cvTextLength: job.data.request.cvText.length,
+          timestamp: job.data.timestamp,
+        });
 
         try {
           const { request } = job.data;
+          console.log(
+            `⚙️ [CV Worker] Calling CV analysis service for job ${job.id}`
+          );
 
           // Analyze CV using the service
           const result = await this.service.analyzeCV(request);
 
-          console.log(
-            `CV Analysis Worker: Job ${job.id} completed successfully`
-          );
+          console.log(`✅ [CV Worker] Job ${job.id} completed successfully`);
+          console.log(`📊 [CV Worker] Result summary:`, {
+            score: result.score,
+            matchPercentage: result.matchPercentage,
+            hasStrengths: !!result.strengths?.length,
+            hasWeaknesses: !!result.weaknesses?.length,
+          });
+
           return result;
         } catch (error) {
-          console.error(`CV Analysis Worker: Job ${job.id} failed:`, error);
+          console.error(`❌ [CV Worker] Job ${job.id} failed:`, error);
           throw error; // Re-throw to trigger retry logic
         }
       },
@@ -287,8 +363,27 @@ export class CVAnalysisQueueService {
    * Map BullMQ job status to our status format
    */
   private mapBullMQStatus(
-    bullMQStatus: string
+    bullMQStatus: string | undefined
   ): "pending" | "processing" | "completed" | "failed" {
+    console.log("🔍 [CV Queue] Mapping BullMQ status:", {
+      original: bullMQStatus,
+      hasFailedReason: !!this.cvAnalysisQueue.getJob(bullMQStatus || "")
+        ?.failedReason,
+    });
+
+    // If status is undefined but job has failed, it's failed
+    if (!bullMQStatus) {
+      // Try to get the actual job to check if it failed
+      const job = this.cvAnalysisQueue.getJob(bullMQStatus || "");
+      if (job && job.failedReason) {
+        console.log(
+          "⚠️ [CV Queue] Status undefined but job has failed reason, mapping to failed"
+        );
+        return "failed";
+      }
+      return "pending";
+    }
+
     switch (bullMQStatus) {
       case "waiting":
       case "delayed":

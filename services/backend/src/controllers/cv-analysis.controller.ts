@@ -29,7 +29,7 @@ export class CVAnalysisController {
       const { cvText, jobRequirements } = req.body;
       const userId = req.user?.id || "anonymous";
 
-      console.log("Controller: Async CV analysis request received:", {
+      console.log("🚀 [CV Controller] Async CV analysis request received:", {
         method: req.method,
         url: req.url,
         body: {
@@ -37,6 +37,7 @@ export class CVAnalysisController {
           jobRequirements: jobRequirements?.substring(0, 100) + "...",
         },
         userId,
+        timestamp: new Date().toISOString(),
       });
 
       // Validate request
@@ -57,16 +58,18 @@ export class CVAnalysisController {
       };
 
       // Create async job
+      console.log("🔧 [CV Controller] Creating async job...");
       const jobId = await this.jobQueue.createCVAnalysisJob(cvAnalysisRequest);
       const estimatedTime =
         this.jobQueue.getEstimatedProcessingTime(cvAnalysisRequest);
       const processingTime = Date.now() - startTime;
 
-      console.log("Controller: Async CV analysis job created:", {
+      console.log("✅ [CV Controller] Async CV analysis job created:", {
         jobId,
         userId,
         estimatedTime,
         processingTime,
+        timestamp: new Date().toISOString(),
       });
 
       // Return immediate response with job details
@@ -111,9 +114,10 @@ export class CVAnalysisController {
         return;
       }
 
-      console.log("Controller: CV analysis job status request:", {
+      console.log("🔍 [CV Controller] CV analysis job status request:", {
         jobId,
         userId,
+        timestamp: new Date().toISOString(),
       });
 
       // Get job status from queue

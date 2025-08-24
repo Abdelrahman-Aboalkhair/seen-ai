@@ -1789,3 +1789,315 @@
   message: 'Failed to generate questions',
   timestamp: '2025-08-23 18:10:42'
 }
+{
+  message: 'Application Error 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  stack: 'Error: 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.\n' +
+    '    at Function.generate (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/error.ts:76:14)\n' +
+    '    at OpenAI.makeStatusError (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:462:21)\n' +
+    '    at OpenAI.makeRequest (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:526:24)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n' +
+    '    at async BaseAIService.generateCompletion (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:80:22)\n' +
+    '    at async CVAnalysisRepository.generateCVAnalysis (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:129:21)\n' +
+    '    at async BaseAIService.withRetry (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:35:24)\n' +
+    '    at async CVAnalysisRepository.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:39:22)\n' +
+    '    at async CVAnalysisService.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis.service.ts:33:22)\n' +
+    '    at async Worker.worker.Worker.connection (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis-queue.service.ts:233:26)',
+  name: 'Error',
+  context: { operation: 'cv_analysis', attempts: 3 },
+  level: 'error',
+  timestamp: '2025-08-23 19:25:27'
+}
+{
+  error: '401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  userId: 'anonymous',
+  duration: 4065,
+  level: 'error',
+  message: 'Failed to analyze CV',
+  timestamp: '2025-08-23 19:25:27'
+}
+{
+  message: 'Application Error 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  stack: 'Error: 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.\n' +
+    '    at Function.generate (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/error.ts:76:14)\n' +
+    '    at OpenAI.makeStatusError (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:462:21)\n' +
+    '    at OpenAI.makeRequest (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:526:24)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n' +
+    '    at async BaseAIService.generateCompletion (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:80:22)\n' +
+    '    at async CVAnalysisRepository.generateCVAnalysis (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:129:21)\n' +
+    '    at async BaseAIService.withRetry (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:35:24)\n' +
+    '    at async CVAnalysisRepository.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:39:22)\n' +
+    '    at async CVAnalysisService.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis.service.ts:33:22)\n' +
+    '    at async Worker.worker.Worker.connection (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis-queue.service.ts:233:26)',
+  name: 'Error',
+  context: { operation: 'cv_analysis', attempts: 3 },
+  level: 'error',
+  timestamp: '2025-08-23 19:25:33'
+}
+{
+  error: '401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  userId: 'anonymous',
+  duration: 3839,
+  level: 'error',
+  message: 'Failed to analyze CV',
+  timestamp: '2025-08-23 19:25:33'
+}
+{
+  message: 'Application Error 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  stack: 'Error: 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.\n' +
+    '    at Function.generate (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/error.ts:76:14)\n' +
+    '    at OpenAI.makeStatusError (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:462:21)\n' +
+    '    at OpenAI.makeRequest (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:526:24)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n' +
+    '    at async BaseAIService.generateCompletion (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:80:22)\n' +
+    '    at async CVAnalysisRepository.generateCVAnalysis (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:129:21)\n' +
+    '    at async BaseAIService.withRetry (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:35:24)\n' +
+    '    at async CVAnalysisRepository.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:39:22)\n' +
+    '    at async CVAnalysisService.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis.service.ts:33:22)\n' +
+    '    at async Worker.worker.Worker.connection (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis-queue.service.ts:233:26)',
+  name: 'Error',
+  context: { operation: 'cv_analysis', attempts: 3 },
+  level: 'error',
+  timestamp: '2025-08-23 19:25:41'
+}
+{
+  error: '401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  userId: 'anonymous',
+  duration: 4112,
+  level: 'error',
+  message: 'Failed to analyze CV',
+  timestamp: '2025-08-23 19:25:41'
+}
+{
+  message: 'Application Error 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  stack: 'Error: 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.\n' +
+    '    at Function.generate (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/error.ts:76:14)\n' +
+    '    at OpenAI.makeStatusError (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:462:21)\n' +
+    '    at OpenAI.makeRequest (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:526:24)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n' +
+    '    at async BaseAIService.generateCompletion (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:80:22)\n' +
+    '    at async CVAnalysisRepository.generateCVAnalysis (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:129:21)\n' +
+    '    at async BaseAIService.withRetry (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:35:24)\n' +
+    '    at async CVAnalysisRepository.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:39:22)\n' +
+    '    at async CVAnalysisService.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis.service.ts:44:22)\n' +
+    '    at async Worker.worker.Worker.connection (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis-queue.service.ts:284:26)',
+  name: 'Error',
+  context: { operation: 'cv_analysis', attempts: 3 },
+  level: 'error',
+  timestamp: '2025-08-23 19:38:20'
+}
+{
+  error: '401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  userId: 'anonymous',
+  duration: 4533,
+  level: 'error',
+  message: 'Failed to analyze CV',
+  timestamp: '2025-08-23 19:38:20'
+}
+{
+  message: 'Application Error 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  stack: 'Error: 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.\n' +
+    '    at Function.generate (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/error.ts:76:14)\n' +
+    '    at OpenAI.makeStatusError (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:462:21)\n' +
+    '    at OpenAI.makeRequest (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:526:24)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n' +
+    '    at async BaseAIService.generateCompletion (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:80:22)\n' +
+    '    at async CVAnalysisRepository.generateCVAnalysis (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:129:21)\n' +
+    '    at async BaseAIService.withRetry (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:35:24)\n' +
+    '    at async CVAnalysisRepository.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:39:22)\n' +
+    '    at async CVAnalysisService.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis.service.ts:44:22)\n' +
+    '    at async Worker.worker.Worker.connection (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis-queue.service.ts:284:26)',
+  name: 'Error',
+  context: { operation: 'cv_analysis', attempts: 3 },
+  level: 'error',
+  timestamp: '2025-08-23 19:38:26'
+}
+{
+  error: '401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  userId: 'anonymous',
+  duration: 3752,
+  level: 'error',
+  message: 'Failed to analyze CV',
+  timestamp: '2025-08-23 19:38:26'
+}
+{
+  message: 'Application Error 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  stack: 'Error: 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.\n' +
+    '    at Function.generate (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/error.ts:76:14)\n' +
+    '    at OpenAI.makeStatusError (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:462:21)\n' +
+    '    at OpenAI.makeRequest (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:526:24)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n' +
+    '    at async BaseAIService.generateCompletion (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:80:22)\n' +
+    '    at async CVAnalysisRepository.generateCVAnalysis (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:129:21)\n' +
+    '    at async BaseAIService.withRetry (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:35:24)\n' +
+    '    at async CVAnalysisRepository.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:39:22)\n' +
+    '    at async CVAnalysisService.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis.service.ts:44:22)\n' +
+    '    at async Worker.worker.Worker.connection (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis-queue.service.ts:284:26)',
+  name: 'Error',
+  context: { operation: 'cv_analysis', attempts: 3 },
+  level: 'error',
+  timestamp: '2025-08-23 19:38:34'
+}
+{
+  error: '401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  userId: 'anonymous',
+  duration: 4106,
+  level: 'error',
+  message: 'Failed to analyze CV',
+  timestamp: '2025-08-23 19:38:34'
+}
+{
+  message: 'Application Error 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  stack: 'Error: 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.\n' +
+    '    at Function.generate (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/error.ts:76:14)\n' +
+    '    at OpenAI.makeStatusError (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:462:21)\n' +
+    '    at OpenAI.makeRequest (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:526:24)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n' +
+    '    at async BaseAIService.generateCompletion (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:80:22)\n' +
+    '    at async CVAnalysisRepository.generateCVAnalysis (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:129:21)\n' +
+    '    at async BaseAIService.withRetry (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:35:24)\n' +
+    '    at async CVAnalysisRepository.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:39:22)\n' +
+    '    at async CVAnalysisService.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis.service.ts:44:22)\n' +
+    '    at async Worker.worker.Worker.connection (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis-queue.service.ts:284:26)',
+  name: 'Error',
+  context: { operation: 'cv_analysis', attempts: 3 },
+  level: 'error',
+  timestamp: '2025-08-23 19:43:55'
+}
+{
+  error: '401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  userId: 'anonymous',
+  duration: 3943,
+  level: 'error',
+  message: 'Failed to analyze CV',
+  timestamp: '2025-08-23 19:43:55'
+}
+{
+  message: 'Application Error 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  stack: 'Error: 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.\n' +
+    '    at Function.generate (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/error.ts:76:14)\n' +
+    '    at OpenAI.makeStatusError (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:462:21)\n' +
+    '    at OpenAI.makeRequest (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:526:24)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n' +
+    '    at async BaseAIService.generateCompletion (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:80:22)\n' +
+    '    at async CVAnalysisRepository.generateCVAnalysis (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:129:21)\n' +
+    '    at async BaseAIService.withRetry (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:35:24)\n' +
+    '    at async CVAnalysisRepository.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:39:22)\n' +
+    '    at async CVAnalysisService.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis.service.ts:44:22)\n' +
+    '    at async Worker.worker.Worker.connection (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis-queue.service.ts:284:26)',
+  name: 'Error',
+  context: { operation: 'cv_analysis', attempts: 3 },
+  level: 'error',
+  timestamp: '2025-08-23 19:44:01'
+}
+{
+  error: '401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  userId: 'anonymous',
+  duration: 3776,
+  level: 'error',
+  message: 'Failed to analyze CV',
+  timestamp: '2025-08-23 19:44:01'
+}
+{
+  message: 'Application Error 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  stack: 'Error: 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.\n' +
+    '    at Function.generate (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/error.ts:76:14)\n' +
+    '    at OpenAI.makeStatusError (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:462:21)\n' +
+    '    at OpenAI.makeRequest (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:526:24)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n' +
+    '    at async BaseAIService.generateCompletion (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:80:22)\n' +
+    '    at async CVAnalysisRepository.generateCVAnalysis (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:129:21)\n' +
+    '    at async BaseAIService.withRetry (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:35:24)\n' +
+    '    at async CVAnalysisRepository.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:39:22)\n' +
+    '    at async CVAnalysisService.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis.service.ts:44:22)\n' +
+    '    at async Worker.worker.Worker.connection (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis-queue.service.ts:284:26)',
+  name: 'Error',
+  context: { operation: 'cv_analysis', attempts: 3 },
+  level: 'error',
+  timestamp: '2025-08-23 19:44:09'
+}
+{
+  error: '401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  userId: 'anonymous',
+  duration: 3821,
+  level: 'error',
+  message: 'Failed to analyze CV',
+  timestamp: '2025-08-23 19:44:09'
+}
+{
+  message: 'Application Error 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  stack: 'Error: 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.\n' +
+    '    at Function.generate (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/error.ts:76:14)\n' +
+    '    at OpenAI.makeStatusError (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:462:21)\n' +
+    '    at OpenAI.makeRequest (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:526:24)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n' +
+    '    at async BaseAIService.generateCompletion (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:80:22)\n' +
+    '    at async CVAnalysisRepository.generateCVAnalysis (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:129:21)\n' +
+    '    at async BaseAIService.withRetry (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:35:24)\n' +
+    '    at async CVAnalysisRepository.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:39:22)\n' +
+    '    at async CVAnalysisService.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis.service.ts:44:22)\n' +
+    '    at async Worker.worker.Worker.connection (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis-queue.service.ts:304:26)',
+  name: 'Error',
+  context: { operation: 'cv_analysis', attempts: 3 },
+  level: 'error',
+  timestamp: '2025-08-23 19:49:21'
+}
+{
+  error: '401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  userId: 'anonymous',
+  duration: 4272,
+  level: 'error',
+  message: 'Failed to analyze CV',
+  timestamp: '2025-08-23 19:49:21'
+}
+{
+  message: 'Application Error 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  stack: 'Error: 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.\n' +
+    '    at Function.generate (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/error.ts:76:14)\n' +
+    '    at OpenAI.makeStatusError (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:462:21)\n' +
+    '    at OpenAI.makeRequest (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:526:24)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n' +
+    '    at async BaseAIService.generateCompletion (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:80:22)\n' +
+    '    at async CVAnalysisRepository.generateCVAnalysis (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:129:21)\n' +
+    '    at async BaseAIService.withRetry (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:35:24)\n' +
+    '    at async CVAnalysisRepository.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:39:22)\n' +
+    '    at async CVAnalysisService.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis.service.ts:44:22)\n' +
+    '    at async Worker.worker.Worker.connection (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis-queue.service.ts:304:26)',
+  name: 'Error',
+  context: { operation: 'cv_analysis', attempts: 3 },
+  level: 'error',
+  timestamp: '2025-08-23 19:49:26'
+}
+{
+  error: '401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  userId: 'anonymous',
+  duration: 3738,
+  level: 'error',
+  message: 'Failed to analyze CV',
+  timestamp: '2025-08-23 19:49:26'
+}
+{
+  message: 'Application Error 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  stack: 'Error: 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.\n' +
+    '    at Function.generate (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/error.ts:76:14)\n' +
+    '    at OpenAI.makeStatusError (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:462:21)\n' +
+    '    at OpenAI.makeRequest (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/node_modules/openai/src/core.ts:526:24)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n' +
+    '    at async BaseAIService.generateCompletion (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:80:22)\n' +
+    '    at async CVAnalysisRepository.generateCVAnalysis (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:129:21)\n' +
+    '    at async BaseAIService.withRetry (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/ai/base-ai.service.ts:35:24)\n' +
+    '    at async CVAnalysisRepository.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/repositories/cv-analysis.repository.ts:39:22)\n' +
+    '    at async CVAnalysisService.analyzeCV (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis.service.ts:44:22)\n' +
+    '    at async Worker.worker.Worker.connection (/home/abdelrahman_aboalkhair/dev/workspace/smart-recruiter-refactored/services/backend/src/services/cv-analysis-queue.service.ts:304:26)',
+  name: 'Error',
+  context: { operation: 'cv_analysis', attempts: 3 },
+  level: 'error',
+  timestamp: '2025-08-23 19:49:34'
+}
+{
+  error: '401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************v9wA. You can find your API key at https://platform.openai.com/account/api-keys.',
+  userId: 'anonymous',
+  duration: 3834,
+  level: 'error',
+  message: 'Failed to analyze CV',
+  timestamp: '2025-08-23 19:49:34'
+}
