@@ -21,11 +21,24 @@ export interface CVAnalysisResult {
   matchPercentage: number;
 }
 
+export interface UploadedFile {
+  id: string;
+  file: File;
+  preview?: string;
+  status: "uploading" | "uploaded" | "error";
+  error?: string;
+}
+
 export interface CVAnalysisJob {
   jobId: string;
   status: "pending" | "processing" | "completed" | "failed";
   request: {
-    cvText: string;
+    cvText?: string;
+    cvFile?: {
+      buffer: Buffer;
+      mimetype: string;
+      originalname: string;
+    };
     jobRequirements: string;
     userId: string;
   };
@@ -53,6 +66,8 @@ interface CVAnalysisState {
   jobDescription: string;
   skillsRequired: string;
   cvText: string;
+  uploadedFiles: UploadedFile[];
+  inputMethod: "file" | "text" | "mixed";
 
   // UI state
   sortBy: "score" | "matchPercentage" | "experience";
@@ -72,6 +87,10 @@ interface CVAnalysisState {
   setJobDescription: (description: string) => void;
   setSkillsRequired: (skills: string) => void;
   setCVText: (text: string) => void;
+  setUploadedFiles: (files: UploadedFile[]) => void;
+  addUploadedFile: (file: UploadedFile) => void;
+  removeUploadedFile: (fileId: string) => void;
+  setInputMethod: (method: "file" | "text" | "mixed") => void;
   resetForm: () => void;
 
   // UI actions
@@ -98,6 +117,8 @@ export const useCVAnalysisStore = create<CVAnalysisState>()(
       jobDescription: "",
       skillsRequired: "",
       cvText: "",
+      uploadedFiles: [],
+      inputMethod: "file",
       sortBy: "score",
       filterByScore: "all",
 
@@ -131,12 +152,23 @@ export const useCVAnalysisStore = create<CVAnalysisState>()(
       setJobDescription: (description) => set({ jobDescription: description }),
       setSkillsRequired: (skills) => set({ skillsRequired: skills }),
       setCVText: (text) => set({ cvText: text }),
+      setUploadedFiles: (files) => set({ uploadedFiles: files }),
+      addUploadedFile: (file) =>
+        set((state) => ({
+          uploadedFiles: [...state.uploadedFiles, file],
+        })),
+      removeUploadedFile: (fileId) =>
+        set((state) => ({
+          uploadedFiles: state.uploadedFiles.filter((f) => f.id !== fileId),
+        })),
+      setInputMethod: (method) => set({ inputMethod: method }),
       resetForm: () =>
         set({
           jobTitle: "",
           jobDescription: "",
           skillsRequired: "",
           cvText: "",
+          uploadedFiles: [],
           currentJobId: null,
           isAnalyzing: false,
           analysisProgress: 0,
@@ -180,9 +212,18 @@ export const useCVAnalysisStore = create<CVAnalysisState>()(
       },
 
       getTotalCost: () => {
-        const { cvText } = get();
-        // For now, we'll charge per CV text (could be extended for file uploads)
-        return cvText.trim() ? CREDITS_COST : 0;
+        const { cvText, uploadedFiles } = get();
+        let cost = 0;
+        
+        // Charge for CV text if provided
+        if (cvText.trim()) {
+          cost += CREDITS_COST;
+        }
+        
+        // Charge for uploaded files
+        cost += uploadedFiles.length * CREDITS_COST;
+        
+        return cost;
       },
     }),
     {

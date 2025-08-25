@@ -1,6 +1,6 @@
 // Interview Analysis Service - Business Logic Layer
 
-import { InterviewAnalysisRepository } from "@/repositories/interview-analysis.repository.js";
+import OpenAI from "openai";
 import type {
   InterviewAnalysisRequest,
   InterviewAnalysisResult,
@@ -15,10 +15,12 @@ export interface IInterviewAnalysisService {
 }
 
 export class InterviewAnalysisService implements IInterviewAnalysisService {
-  private repository: InterviewAnalysisRepository;
+  private openai: OpenAI;
 
   constructor() {
-    this.repository = new InterviewAnalysisRepository();
+    this.openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
   }
 
   /**
@@ -36,8 +38,8 @@ export class InterviewAnalysisService implements IInterviewAnalysisService {
     const enrichedRequest = this.enrichRequest(request);
 
     try {
-      // Analyze interview using repository
-      const result = await this.repository.analyzeInterview(enrichedRequest);
+      // Generate analysis using OpenAI
+      const result = await this.generateInterviewAnalysis(enrichedRequest);
 
       // Validate generated result
       if (!result) {
@@ -67,73 +69,9 @@ export class InterviewAnalysisService implements IInterviewAnalysisService {
         });
       }
 
-      // Validate communication skills scores
-      if (result.communicationSkills) {
-        Object.keys(result.communicationSkills).forEach((key) => {
-          const score = (result.communicationSkills as any)[key];
-          if (score < 1 || score > 10) {
-            console.warn(
-              `Communication skill ${key} score out of range: ${score}, normalizing to 1-10`
-            );
-            (result.communicationSkills as any)[key] = Math.max(
-              1,
-              Math.min(10, score)
-            );
-          }
-        });
-      }
-
-      // Validate technical skills scores
-      if (result.technicalSkills) {
-        Object.keys(result.technicalSkills).forEach((key) => {
-          const score = (result.technicalSkills as any)[key];
-          if (score < 1 || score > 10) {
-            console.warn(
-              `Technical skill ${key} score out of range: ${score}, normalizing to 1-10`
-            );
-            (result.technicalSkills as any)[key] = Math.max(
-              1,
-              Math.min(10, score)
-            );
-          }
-        });
-      }
-
-      // Validate behavioral indicators scores
-      if (result.behavioralIndicators) {
-        Object.keys(result.behavioralIndicators).forEach((key) => {
-          const score = (result.behavioralIndicators as any)[key];
-          if (score < 1 || score > 10) {
-            console.warn(
-              `Behavioral indicator ${key} score out of range: ${score}, normalizing to 1-10`
-            );
-            (result.behavioralIndicators as any)[key] = Math.max(
-              1,
-              Math.min(10, score)
-            );
-          }
-        });
-      }
-
-      // Validate time management scores
-      if (result.timeManagement) {
-        Object.keys(result.timeManagement).forEach((key) => {
-          const score = (result.timeManagement as any)[key];
-          if (score < 1 || score > 10) {
-            console.warn(
-              `Time management ${key} score out of range: ${score}, normalizing to 1-10`
-            );
-            (result.timeManagement as any)[key] = Math.max(
-              1,
-              Math.min(10, score)
-            );
-          }
-        });
-      }
-
       return result;
     } catch (error) {
-      console.error("Interview analysis service error:", error);
+      console.error("Failed to analyze interview:", error);
       throw error;
     }
   }
@@ -324,5 +262,120 @@ export class InterviewAnalysisService implements IInterviewAnalysisService {
       questionTypeDistribution,
       difficultyDistribution,
     };
+  }
+
+  /**
+   * Generate interview analysis using OpenAI
+   */
+  private async generateInterviewAnalysis(
+    request: InterviewAnalysisRequest
+  ): Promise<InterviewAnalysisResult> {
+    const systemPrompt = `You are an expert HR professional and interview evaluator specializing in analyzing candidate responses and providing comprehensive feedback. You understand various assessment techniques, behavioral indicators, and evaluation criteria. Always return valid JSON format only.`;
+
+    const userPrompt = `
+    Analyze the following interview responses and provide a comprehensive assessment:
+
+    Interview Session ID: ${request.sessionId}
+    Questions Asked: ${request.questions.length}
+    Total Duration: ${this.calculateTotalDuration(request.answers)} seconds
+
+    Questions and Answers:
+    ${this.formatQuestionsAndAnswers(request.questions, request.answers)}
+
+    Please provide a detailed analysis in the following JSON format:
+    {
+      "overallScore": number (0-100),
+      "questionScores": [
+        {
+          "questionId": string,
+          "score": number (0-100),
+          "feedback": string,
+          "strengths": string[],
+          "improvements": string[]
+        }
+      ],
+      "summary": string,
+      "recommendations": string[],
+      "strengths": string[],
+      "weaknesses": string[]
+    }
+
+    Analysis Guidelines:
+    1. **Response Quality**: Evaluate clarity, completeness, and relevance
+    2. **Behavioral Indicators**: Identify positive and negative behavioral patterns
+    3. **Communication Skills**: Assess verbal communication effectiveness
+    4. **Problem-Solving**: Evaluate analytical thinking and solution approach
+    5. **Cultural Fit**: Consider alignment with company values and culture
+    6. **Overall Assessment**: Provide comprehensive evaluation and recommendations
+
+    Scoring Criteria:
+    - 90-100: Exceptional responses with strong examples and clear reasoning
+    - 80-89: Strong responses with good examples and logical thinking
+    - 70-79: Good responses with adequate examples and reasonable logic
+    - 60-69: Adequate responses with some gaps in examples or reasoning
+    - Below 60: Weak responses with significant gaps or poor examples
+
+    Please ensure the response is valid JSON without any markdown formatting or additional text.`;
+
+    const response = await this.openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userPrompt },
+      ],
+      temperature: 0.3,
+      max_tokens: 2500,
+    });
+
+    const content = response.choices[0]?.message?.content;
+    if (!content) {
+      throw new Error("No response from OpenAI");
+    }
+
+    return this.parseJsonResponse<InterviewAnalysisResult>(content);
+  }
+
+  /**
+   * Parse JSON response from OpenAI
+   */
+  private parseJsonResponse<T>(content: string): T {
+    try {
+      // Strip markdown code blocks if present
+      const cleanContent = content.replace(/```json\s*|\s*```/g, "").trim();
+      return JSON.parse(cleanContent) as T;
+    } catch (error) {
+      console.error("Failed to parse JSON response:", {
+        error: error instanceof Error ? error.message : "Unknown error",
+        content: content.substring(0, 200),
+      });
+      throw new Error(
+        `Failed to parse OpenAI response: ${
+          error instanceof Error ? error.message : "Invalid JSON"
+        }`
+      );
+    }
+  }
+
+  /**
+   * Calculate total duration of all answers
+   */
+  private calculateTotalDuration(answers: { duration: number }[]): number {
+    return answers.reduce((sum, a) => sum + a.duration, 0);
+  }
+
+  /**
+   * Format questions and answers for prompt
+   */
+  private formatQuestionsAndAnswers(
+    questions: { id: string; question: string }[],
+    answers: { questionId: string; answer: string }[]
+  ): string {
+    const questionMap = new Map(questions.map((q) => [q.id, q.question]));
+    return answers
+      .map((a) => {
+        const question = questionMap.get(a.questionId);
+        return `Question: ${question}\nAnswer: ${a.answer}\n`;
+      })
+      .join("\n");
   }
 }

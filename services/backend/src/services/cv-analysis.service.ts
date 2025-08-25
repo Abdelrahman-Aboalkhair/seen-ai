@@ -1,6 +1,7 @@
 // CV Analysis Service - Business Logic Layer
 
 import { CVAnalysisRepository } from "@/repositories/cv-analysis.repository.js";
+import { FileProcessingService } from "./file-processing.service.js";
 import type { CVAnalysisRequest, CVAnalysisResult } from "@/types/ai.types.js";
 
 export interface ICVAnalysisService {
@@ -11,9 +12,11 @@ export interface ICVAnalysisService {
 
 export class CVAnalysisService implements ICVAnalysisService {
   private repository: CVAnalysisRepository;
+  private fileProcessingService: FileProcessingService;
 
   constructor() {
     this.repository = new CVAnalysisRepository();
+    this.fileProcessingService = new FileProcessingService();
   }
 
   /**
@@ -22,7 +25,8 @@ export class CVAnalysisService implements ICVAnalysisService {
   async analyzeCV(request: CVAnalysisRequest): Promise<CVAnalysisResult> {
     console.log("🔍 [CV Service] Starting CV analysis:", {
       userId: request.userId,
-      cvTextLength: request.cvText.length,
+      hasCvText: !!request.cvText,
+      hasCvFile: !!request.cvFile,
       jobRequirementsLength: request.jobRequirements.length,
       timestamp: new Date().toISOString(),
     });
@@ -34,8 +38,15 @@ export class CVAnalysisService implements ICVAnalysisService {
     }
     console.log("✅ [CV Service] Request validation passed");
 
-    // Enrich request with defaults
-    const enrichedRequest = this.enrichRequest(request);
+    // Process CV input (text or file)
+    const cvText = await this.processCVInput(request);
+    console.log("📝 [CV Service] CV text processed, length:", cvText.length);
+
+    // Create enriched request with processed CV text
+    const enrichedRequest = this.enrichRequest({
+      ...request,
+      cvText,
+    });
     console.log("🔧 [CV Service] Request enriched");
 
     try {
@@ -81,10 +92,52 @@ export class CVAnalysisService implements ICVAnalysisService {
   }
 
   /**
+   * Process CV input (text or file) and return extracted text
+   */
+  private async processCVInput(request: CVAnalysisRequest): Promise<string> {
+    // If CV text is provided directly, use it
+    if (request.cvText && request.cvText.trim().length > 0) {
+      console.log("📝 [CV Service] Using provided CV text");
+      return request.cvText.trim();
+    }
+
+    // If CV file is provided, process it to extract text
+    if (request.cvFile) {
+      console.log(
+        "📁 [CV Service] Processing CV file:",
+        request.cvFile.originalname
+      );
+
+      const fileResult = await this.fileProcessingService.processCVFile(
+        request.cvFile
+      );
+
+      if (!fileResult.success) {
+        throw new Error(`Failed to process CV file: ${fileResult.error}`);
+      }
+
+      if (fileResult.extractedText.trim().length < 50) {
+        throw new Error(
+          "Extracted text from CV file is too short for meaningful analysis (minimum 50 characters)"
+        );
+      }
+
+      console.log("✅ [CV Service] Successfully extracted text from CV file");
+      return fileResult.extractedText.trim();
+    }
+
+    throw new Error("Either cvText or cvFile must be provided");
+  }
+
+  /**
    * Validate the CV analysis request
    */
   validateRequest(request: CVAnalysisRequest): boolean {
-    if (!request.cvText || request.cvText.trim().length === 0) {
+    // Must have either CV text or CV file
+    if (
+      (!request.cvText || request.cvText.trim().length === 0) &&
+      !request.cvFile
+    ) {
       return false;
     }
 
@@ -99,8 +152,8 @@ export class CVAnalysisService implements ICVAnalysisService {
       return false;
     }
 
-    // Check minimum text length for meaningful analysis
-    if (request.cvText.trim().length < 50) {
+    // If CV text is provided, check minimum length
+    if (request.cvText && request.cvText.trim().length < 50) {
       return false;
     }
 
@@ -116,7 +169,7 @@ export class CVAnalysisService implements ICVAnalysisService {
    */
   enrichRequest(request: CVAnalysisRequest): CVAnalysisRequest {
     return {
-      cvText: request.cvText.trim(),
+      cvText: request.cvText!.trim(), // We know cvText exists here since we processed it
       jobRequirements: request.jobRequirements.trim(),
       userId: request.userId.trim(),
     };
@@ -130,10 +183,15 @@ export class CVAnalysisService implements ICVAnalysisService {
     let estimatedTime = 20;
 
     // Add time for complex requests
-    if (request.cvText.length > 2000) estimatedTime += 10;
-    if (request.cvText.length > 5000) estimatedTime += 15;
+    if (request.cvText && request.cvText.length > 2000) estimatedTime += 10;
+    if (request.cvText && request.cvText.length > 5000) estimatedTime += 15;
     if (request.jobRequirements.length > 500) estimatedTime += 5;
     if (request.jobRequirements.length > 1000) estimatedTime += 10;
+
+    // Add extra time for file processing
+    if (request.cvFile) {
+      estimatedTime += 15; // Additional time for OCR/PDF processing
+    }
 
     return estimatedTime;
   }

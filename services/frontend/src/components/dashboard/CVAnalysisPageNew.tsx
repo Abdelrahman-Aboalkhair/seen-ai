@@ -11,6 +11,7 @@ import { useCVAnalysisStore } from "../../stores/cvAnalysisStore";
 import { CVAnalysisCard } from "../ui/CVAnalysisCard";
 import { CVStatsCards } from "./CVStatsCards";
 import { CVResultsHeader } from "./CVResultsHeader";
+import { CVUploadForm } from "./CVUploadForm";
 import toast from "react-hot-toast";
 
 export function CVAnalysisPageNew() {
@@ -34,6 +35,8 @@ export function CVAnalysisPageNew() {
     jobDescription,
     skillsRequired,
     cvText,
+    uploadedFiles,
+    inputMethod,
     sortBy,
     filterByScore,
 
@@ -148,9 +151,22 @@ export function CVAnalysisPageNew() {
       return;
     }
 
-    if (!jobTitle.trim() || !skillsRequired.trim() || !cvText.trim()) {
+    // Validate required fields based on input method
+    if (!jobTitle.trim() || !skillsRequired.trim()) {
       console.log("❌ [Frontend Component] Missing required fields");
-      toast.error("Please fill in all required fields");
+      toast.error("Please fill in job title and skills required");
+      return;
+    }
+
+    // Check if we have CV content based on input method
+    const hasCVContent =
+      (inputMethod === "text" && cvText.trim()) ||
+      (inputMethod === "file" && uploadedFiles.length > 0) ||
+      (inputMethod === "mixed" && (cvText.trim() || uploadedFiles.length > 0));
+
+    if (!hasCVContent) {
+      console.log("❌ [Frontend Component] No CV content provided");
+      toast.error("Please provide CV content (text or file upload)");
       return;
     }
 
@@ -168,7 +184,84 @@ export function CVAnalysisPageNew() {
 
       // Start async analysis
       console.log("📡 [Frontend Component] Calling startAsyncAnalysis...");
-      const response = await startAsyncAnalysis(cvText, jobRequirements);
+
+      // Prepare CV content based on input method
+      let finalCVText = "";
+      let response;
+
+      if (inputMethod === "file" && uploadedFiles.length > 0) {
+        // Convert file to base64 text
+        const file = uploadedFiles[0];
+        console.log("📁 [Frontend Component] Converting file to base64:", {
+          filename: file.file.name,
+          size: file.file.size,
+          type: file.file.type,
+        });
+
+        try {
+          const arrayBuffer = await file.file.arrayBuffer();
+          const base64 = btoa(
+            String.fromCharCode(...new Uint8Array(arrayBuffer))
+          );
+          finalCVText = `[File: ${file.file.name} (${file.file.type})]\n\nBase64 Content:\n${base64}`;
+        } catch (error) {
+          console.error(
+            "❌ [Frontend Component] Failed to convert file:",
+            error
+          );
+          throw new Error("Failed to process uploaded file");
+        }
+      } else if (inputMethod === "text" && cvText.trim()) {
+        // Use text input
+        finalCVText = cvText;
+        console.log("📝 [Frontend Component] Using text input for analysis");
+      } else if (inputMethod === "mixed") {
+        // Combine both if available
+        if (uploadedFiles.length > 0) {
+          const file = uploadedFiles[0];
+          console.log(
+            "📁 [Frontend Component] Converting file to base64 (mixed mode):",
+            {
+              filename: file.file.name,
+              size: file.file.size,
+              type: file.file.type,
+            }
+          );
+
+          try {
+            const arrayBuffer = await file.file.arrayBuffer();
+            const base64 = btoa(
+              String.fromCharCode(...new Uint8Array(arrayBuffer))
+            );
+            finalCVText = `[File: ${file.file.name} (${file.file.type})]\n\nBase64 Content:\n${base64}`;
+
+            // Add text input if available
+            if (cvText.trim()) {
+              finalCVText += `\n\nAdditional Text Input:\n${cvText}`;
+            }
+          } catch (error) {
+            console.error(
+              "❌ [Frontend Component] Failed to convert file (mixed mode):",
+              error
+            );
+            throw new Error("Failed to process uploaded file");
+          }
+        } else {
+          finalCVText = cvText;
+          console.log(
+            "📝 [Frontend Component] Using text input for analysis (mixed mode)"
+          );
+        }
+      } else {
+        throw new Error("No valid CV content provided");
+      }
+
+      // Start async analysis with the prepared CV text
+      console.log(
+        "📡 [Frontend Component] Starting analysis with CV text length:",
+        finalCVText.length
+      );
+      response = await startAsyncAnalysis(finalCVText, jobRequirements);
 
       console.log("📊 [Frontend Component] Analysis response:", {
         success: response.success,
@@ -239,7 +332,7 @@ export function CVAnalysisPageNew() {
       <CVStatsCards
         balance={balance}
         totalCost={totalCost}
-        uploadedFilesCount={0} // Simplified for now
+        uploadedFilesCount={uploadedFiles.length}
         cvTextsCount={cvText.trim() ? 1 : 0}
         creditsCost={5}
       />
@@ -299,17 +392,9 @@ export function CVAnalysisPageNew() {
 
           <div>
             <label className="block text-sm font-medium text-gray-400 mb-2">
-              CV Text *
+              CV Content *
             </label>
-            <textarea
-              value={cvText}
-              onChange={(e) => setCVText(e.target.value)}
-              rows={6}
-              className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
-              placeholder="Paste your CV text here or upload a file..."
-              dir={isRTL() ? "rtl" : "ltr"}
-              required
-            />
+            <CVUploadForm />
           </div>
         </div>
       </div>
@@ -322,7 +407,10 @@ export function CVAnalysisPageNew() {
           balance < totalCost ||
           !jobTitle.trim() ||
           !skillsRequired.trim() ||
-          !cvText.trim()
+          ((inputMethod === "text" || inputMethod === "mixed") &&
+            !cvText.trim()) ||
+          ((inputMethod === "file" || inputMethod === "mixed") &&
+            uploadedFiles.length === 0)
         }
         className="w-full bg-cyan-500 hover:bg-cyan-600 disabled:bg-slate-600 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-300 disabled:cursor-not-allowed disabled:text-gray-400"
       >

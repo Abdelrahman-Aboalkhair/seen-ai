@@ -1,15 +1,17 @@
 // CV Analysis Repository - Data Access Layer
 
-import { BaseAIService } from "@/services/ai/base-ai.service.js";
+import OpenAI from "openai";
 import cacheService from "@/services/cache.service.js";
 import logger from "@/lib/logger.js";
 import type { CVAnalysisRequest, CVAnalysisResult } from "@/types/ai.types.js";
 
 export class CVAnalysisRepository {
-  private aiService: BaseAIService;
+  private openai: OpenAI;
 
   constructor() {
-    this.aiService = new BaseAIService();
+    this.openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
   }
 
   /**
@@ -19,9 +21,12 @@ export class CVAnalysisRepository {
     const startTime = Date.now();
 
     try {
+      // Use CV text directly
+      const cvText = request.cvText;
+
       // Check cache first
       const cached = await cacheService.getCVAnalysis(
-        request.cvText,
+        cvText,
         request.jobRequirements,
         request.userId
       );
@@ -36,14 +41,14 @@ export class CVAnalysisRepository {
       }
 
       // Generate analysis using OpenAI
-      const result = await this.aiService.withRetry(
-        () => this.generateCVAnalysis(request),
-        "cv_analysis"
+      const result = await this.generateCVAnalysis(
+        cvText,
+        request.jobRequirements
       );
 
       // Cache the result
       await cacheService.setCVAnalysis(
-        request.cvText,
+        cvText,
         request.jobRequirements,
         request.userId,
         result
@@ -70,7 +75,8 @@ export class CVAnalysisRepository {
    * Generate CV analysis using OpenAI
    */
   private async generateCVAnalysis(
-    request: CVAnalysisRequest
+    cvText: string,
+    jobRequirements: string
   ): Promise<CVAnalysisResult> {
     const systemPrompt = `You are an expert HR analyst specializing in CV assessment. You have deep knowledge of various industries, job roles, and recruitment best practices. Provide detailed, objective analysis in valid JSON format only.`;
 
@@ -78,10 +84,10 @@ export class CVAnalysisRepository {
     Analyze the following CV against the job requirements and provide a comprehensive assessment.
 
     CV Text:
-    ${request.cvText}
+    ${cvText}
 
     Job Requirements:
-    ${request.jobRequirements}
+    ${jobRequirements}
 
     Please provide a detailed analysis in the following JSON format:
     {
@@ -126,19 +132,43 @@ export class CVAnalysisRepository {
     - Overall fit for the specific role and company
     `;
 
-    const content = await this.aiService.generateCompletion(
-      systemPrompt,
-      userPrompt,
-      {
-        temperature: 0.3,
-        maxTokens: 2500,
-      }
-    );
+    const response = await this.openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userPrompt },
+      ],
+      temperature: 0.3,
+      max_tokens: 2500,
+    });
 
-    return this.aiService.parseJsonResponse<CVAnalysisResult>(
-      content,
-      "cv_analysis"
-    );
+    const content = response.choices[0]?.message?.content;
+    if (!content) {
+      throw new Error("No response from OpenAI");
+    }
+
+    return this.parseJsonResponse<CVAnalysisResult>(content);
+  }
+
+  /**
+   * Parse JSON response from OpenAI
+   */
+  private parseJsonResponse<T>(content: string): T {
+    try {
+      // Strip markdown code blocks if present
+      const cleanContent = content.replace(/```json\s*|\s*```/g, "").trim();
+      return JSON.parse(cleanContent) as T;
+    } catch (error) {
+      logger.error("Failed to parse JSON response", {
+        error: error instanceof Error ? error.message : "Unknown error",
+        content: content.substring(0, 200),
+      });
+      throw new Error(
+        `Failed to parse OpenAI response: ${
+          error instanceof Error ? error.message : "Invalid JSON"
+        }`
+      );
+    }
   }
 
   /**

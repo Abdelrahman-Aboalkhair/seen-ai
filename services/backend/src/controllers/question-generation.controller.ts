@@ -2,7 +2,6 @@
 
 import { Request, Response } from "express";
 import type { QuestionGenerationRequest } from "@/types/ai.types.js";
-import { QuestionGenerationService } from "@/services/ai/question-generation.service.js";
 import {
   QuestionGenerationQueueService,
   type QuestionGenerationJobResponse,
@@ -10,11 +9,9 @@ import {
 } from "@/services/question-generation-queue.service.js";
 
 export class QuestionGenerationController {
-  private service: QuestionGenerationService;
   private jobQueue: QuestionGenerationQueueService;
 
   constructor() {
-    this.service = new QuestionGenerationService();
     this.jobQueue = new QuestionGenerationQueueService();
   }
 
@@ -248,7 +245,7 @@ export class QuestionGenerationController {
       }
 
       // Perform synchronous question generation (legacy behavior)
-      const questions = await this.service.generateQuestions(request);
+      const questions = await this.jobQueue.generateQuestionsSync(request);
 
       const duration = Date.now() - startTime;
 

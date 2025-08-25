@@ -1,6 +1,7 @@
 // AI Service Types
 export interface CVAnalysisRequest {
-  cvText: string;
+  cvText?: string; // Optional: for text input
+  cvFile?: Express.Multer.File; // Optional: for file uploads
   jobRequirements: string;
   userId: string;
 }

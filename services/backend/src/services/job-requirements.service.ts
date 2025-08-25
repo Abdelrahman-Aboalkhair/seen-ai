@@ -1,25 +1,34 @@
-// Job Requirements Generation Service - Business Logic Layer
+// Job Requirements Service - Business Logic Layer
 
-import { JobRequirementsRepository } from "@/repositories/job-requirements.repository.js";
-import type { JobRequirementsRequest, JobRequirementsResult } from "@/types/ai.types.js";
+import OpenAI from "openai";
+import type {
+  JobRequirementsRequest,
+  JobRequirementsResult,
+} from "@/types/ai.types.js";
 
 export interface IJobRequirementsService {
-  generateJobRequirements(request: JobRequirementsRequest): Promise<JobRequirementsResult>;
+  generateJobRequirements(
+    request: JobRequirementsRequest
+  ): Promise<JobRequirementsResult>;
   validateRequest(request: JobRequirementsRequest): boolean;
   enrichRequest(request: JobRequirementsRequest): JobRequirementsRequest;
 }
 
 export class JobRequirementsService implements IJobRequirementsService {
-  private repository: JobRequirementsRepository;
+  private openai: OpenAI;
 
   constructor() {
-    this.repository = new JobRequirementsRepository();
+    this.openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
   }
 
   /**
    * Generate job requirements
    */
-  async generateJobRequirements(request: JobRequirementsRequest): Promise<JobRequirementsResult> {
+  async generateJobRequirements(
+    request: JobRequirementsRequest
+  ): Promise<JobRequirementsResult> {
     // Validate request
     if (!this.validateRequest(request)) {
       throw new Error("Invalid job requirements request");
@@ -29,46 +38,117 @@ export class JobRequirementsService implements IJobRequirementsService {
     const enrichedRequest = this.enrichRequest(request);
 
     try {
-      // Generate job requirements using repository
-      const result = await this.repository.generateJobRequirements(enrichedRequest);
-      
+      // Generate job requirements using OpenAI
+      const result = await this.generateJobRequirementsWithAI(enrichedRequest);
+
       // Validate generated result
       if (!result) {
         throw new Error("No job requirements were generated");
       }
 
-      // Validate and normalize salary ranges
-      if (result.salaryRange) {
-        if (result.salaryRange.min < 0) {
-          console.warn(`Job requirements salary min out of range: ${result.salaryRange.min}, normalizing to 0`);
-          result.salaryRange.min = 0;
-        }
-        
-        if (result.salaryRange.max < result.salaryRange.min) {
-          console.warn(`Job requirements salary max (${result.salaryRange.max}) is less than min (${result.salaryRange.min}), swapping values`);
-          const temp = result.salaryRange.max;
-          result.salaryRange.max = result.salaryRange.min;
-          result.salaryRange.min = temp;
-        }
-      }
-
-      // Validate experience years
-      if (result.experience) {
-        if (result.experience.minimumYears < 0) {
-          console.warn(`Job requirements minimum years out of range: ${result.experience.minimumYears}, normalizing to 0`);
-          result.experience.minimumYears = 0;
-        }
-        
-        if (result.experience.preferredYears < result.experience.minimumYears) {
-          console.warn(`Job requirements preferred years (${result.experience.preferredYears}) is less than minimum (${result.experience.minimumYears}), adjusting`);
-          result.experience.preferredYears = result.experience.minimumYears + 2;
-        }
-      }
-
       return result;
     } catch (error) {
-      console.error("Job requirements service error:", error);
+      console.error("Failed to generate job requirements:", error);
       throw error;
+    }
+  }
+
+  /**
+   * Generate job requirements using OpenAI
+   */
+  private async generateJobRequirementsWithAI(
+    request: JobRequirementsRequest
+  ): Promise<JobRequirementsResult> {
+    const systemPrompt = `You are an expert HR professional and job description specialist with deep knowledge of various industries, roles, and recruitment best practices. You understand job market trends, skill requirements, and industry standards. Always return valid JSON format only.`;
+
+    const userPrompt = `
+    Generate comprehensive job requirements for the following position:
+
+    Job Title: ${request.jobTitle}
+    Industry: ${request.industry || "Technology"}
+    Seniority Level: ${request.seniority || "Mid-level"}
+    Company Size: ${request.companySize || "Medium"}
+    Location: ${request.location || "Remote"}
+
+    Please provide detailed job requirements in the following JSON format:
+    {
+      "jobTitle": string,
+      "summary": string,
+      "keyResponsibilities": string[],
+      "requiredSkills": {
+        "technical": string[],
+        "soft": string[],
+        "certifications": string[]
+      },
+      "preferredSkills": {
+        "technical": string[],
+        "soft": string[],
+        "certifications": string[]
+      },
+      "experience": {
+        "minimumYears": number,
+        "preferredYears": number,
+        "relevantExperience": string[]
+      },
+      "education": {
+        "minimum": string,
+        "preferred": string,
+        "relevantFields": string[]
+      }
+    }
+
+    Guidelines:
+    1. **Job Title**: Use industry-standard titles
+    2. **Summary**: 2-3 sentences describing the role and impact
+    3. **Responsibilities**: 5-8 key responsibilities in action-oriented language
+    4. **Skills**: Distinguish between required and preferred skills
+    5. **Experience**: Realistic years based on seniority level
+    6. **Education**: Consider industry standards and role requirements
+
+    Industry Insights for ${request.industry || "Technology"}:
+    - Focus on relevant technical skills and tools
+    - Include industry-specific certifications if applicable
+    - Consider current market trends and emerging technologies
+    - Adapt to company size and growth stage
+
+    Please ensure the response is valid JSON without any markdown formatting or additional text.`;
+
+    const response = await this.openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userPrompt },
+      ],
+      temperature: 0.3,
+      max_tokens: 2500,
+    });
+
+    const content = response.choices[0]?.message?.content;
+    if (!content) {
+      throw new Error("No response from OpenAI");
+    }
+
+    return this.parseJsonResponse<JobRequirementsResult>(content);
+  }
+
+  /**
+   * Parse JSON response from OpenAI
+   */
+  private parseJsonResponse<T>(content: string): T {
+    try {
+      // Strip markdown code blocks if present
+      const cleanContent = content.replace(/```json\s*|\s*```/g, "").trim();
+      return JSON.parse(cleanContent) as T;
+    } catch (error) {
+      console.error("Failed to parse JSON response:", {
+        error: error instanceof Error ? error.message : "Unknown error",
+        content: content.substring(0, 200),
+      });
+      throw new Error(
+        `Failed to parse OpenAI response: ${
+          error instanceof Error ? error.message : "Invalid JSON"
+        }`
+      );
     }
   }
 
@@ -122,13 +202,14 @@ export class JobRequirementsService implements IJobRequirementsService {
   getEstimatedProcessingTime(request: JobRequirementsRequest): number {
     // Base time: 25 seconds
     let estimatedTime = 25;
-    
+
     // Add time for complex requests
     if (request.jobTitle.length > 50) estimatedTime += 5;
     if (request.industry && request.industry.length > 20) estimatedTime += 3;
     if (request.seniority && request.seniority.length > 15) estimatedTime += 3;
-    if (request.companySize && request.companySize.length > 20) estimatedTime += 3;
-    
+    if (request.companySize && request.companySize.length > 20)
+      estimatedTime += 3;
+
     return estimatedTime;
   }
 
@@ -137,10 +218,21 @@ export class JobRequirementsService implements IJobRequirementsService {
    */
   private isValidSeniority(seniority: string): boolean {
     const validSeniorities = [
-      "entry", "junior", "associate", "mid-level", "mid", "intermediate",
-      "senior", "lead", "principal", "staff", "manager", "director", "executive"
+      "entry",
+      "junior",
+      "associate",
+      "mid-level",
+      "mid",
+      "intermediate",
+      "senior",
+      "lead",
+      "principal",
+      "staff",
+      "manager",
+      "director",
+      "executive",
     ];
-    return validSeniorities.some(valid => 
+    return validSeniorities.some((valid) =>
       seniority.toLowerCase().includes(valid.toLowerCase())
     );
   }
@@ -150,10 +242,20 @@ export class JobRequirementsService implements IJobRequirementsService {
    */
   private isValidIndustry(industry: string): boolean {
     const validIndustries = [
-      "technology", "healthcare", "finance", "education", "retail", "manufacturing",
-      "consulting", "media", "non-profit", "government", "real estate", "transportation"
+      "technology",
+      "healthcare",
+      "finance",
+      "education",
+      "retail",
+      "manufacturing",
+      "consulting",
+      "media",
+      "non-profit",
+      "government",
+      "real estate",
+      "transportation",
     ];
-    return validIndustries.some(valid => 
+    return validIndustries.some((valid) =>
       industry.toLowerCase().includes(valid.toLowerCase())
     );
   }
@@ -167,35 +269,76 @@ export class JobRequirementsService implements IJobRequirementsService {
     specialization: string[];
   } {
     const title = jobTitle.toLowerCase();
-    
+
     // Estimate seniority based on keywords
     let estimatedSeniority = "mid-level";
-    if (title.includes("senior") || title.includes("lead") || title.includes("principal")) {
+    if (
+      title.includes("senior") ||
+      title.includes("lead") ||
+      title.includes("principal")
+    ) {
       estimatedSeniority = "senior";
-    } else if (title.includes("junior") || title.includes("entry") || title.includes("associate")) {
+    } else if (
+      title.includes("junior") ||
+      title.includes("entry") ||
+      title.includes("associate")
+    ) {
       estimatedSeniority = "junior";
-    } else if (title.includes("manager") || title.includes("director") || title.includes("executive")) {
+    } else if (
+      title.includes("manager") ||
+      title.includes("director") ||
+      title.includes("executive")
+    ) {
       estimatedSeniority = "management";
     }
 
     // Extract common domains
     const commonDomains = [
-      "frontend", "backend", "full-stack", "mobile", "data", "ai", "ml", "devops",
-      "security", "cloud", "ui/ux", "product", "marketing", "sales", "hr", "finance"
+      "frontend",
+      "backend",
+      "full-stack",
+      "mobile",
+      "data",
+      "ai",
+      "ml",
+      "devops",
+      "security",
+      "cloud",
+      "ui/ux",
+      "product",
+      "marketing",
+      "sales",
+      "hr",
+      "finance",
     ];
-    const keyDomain = commonDomains.find(domain => title.includes(domain)) || "general";
+    const keyDomain =
+      commonDomains.find((domain) => title.includes(domain)) || "general";
 
     // Extract specializations
     const specializations = [
-      "react", "angular", "vue", "node.js", "python", "java", "c#", "sql", "aws",
-      "docker", "kubernetes", "machine learning", "data science", "cybersecurity"
+      "react",
+      "angular",
+      "vue",
+      "node.js",
+      "python",
+      "java",
+      "c#",
+      "sql",
+      "aws",
+      "docker",
+      "kubernetes",
+      "machine learning",
+      "data science",
+      "cybersecurity",
     ];
-    const specialization = specializations.filter(spec => title.includes(spec));
+    const specialization = specializations.filter((spec) =>
+      title.includes(spec)
+    );
 
     return {
       estimatedSeniority,
       keyDomain,
-      specialization
+      specialization,
     };
   }
 
@@ -209,26 +352,60 @@ export class JobRequirementsService implements IJobRequirementsService {
   } {
     const insights: Record<string, any> = {
       technology: {
-        marketTrends: ["AI/ML adoption", "Cloud migration", "Remote work tools", "Cybersecurity focus"],
-        competitiveFactors: ["Innovation speed", "Technical expertise", "Company culture", "Compensation packages"],
-        growthPotential: "High - Rapid technological advancement and digital transformation"
+        marketTrends: [
+          "AI/ML adoption",
+          "Cloud migration",
+          "Remote work tools",
+          "Cybersecurity focus",
+        ],
+        competitiveFactors: [
+          "Innovation speed",
+          "Technical expertise",
+          "Company culture",
+          "Compensation packages",
+        ],
+        growthPotential:
+          "High - Rapid technological advancement and digital transformation",
       },
       healthcare: {
-        marketTrends: ["Telemedicine", "AI diagnostics", "Patient data security", "Precision medicine"],
-        competitiveFactors: ["Regulatory compliance", "Clinical expertise", "Patient outcomes", "Innovation in care delivery"],
-        growthPotential: "High - Aging population and healthcare digitization"
+        marketTrends: [
+          "Telemedicine",
+          "AI diagnostics",
+          "Patient data security",
+          "Precision medicine",
+        ],
+        competitiveFactors: [
+          "Regulatory compliance",
+          "Clinical expertise",
+          "Patient outcomes",
+          "Innovation in care delivery",
+        ],
+        growthPotential: "High - Aging population and healthcare digitization",
       },
       finance: {
-        marketTrends: ["Fintech disruption", "Digital banking", "Blockchain adoption", "Regulatory changes"],
-        competitiveFactors: ["Risk management", "Compliance expertise", "Customer trust", "Technology integration"],
-        growthPotential: "Moderate - Digital transformation with regulatory constraints"
-      }
+        marketTrends: [
+          "Fintech disruption",
+          "Digital banking",
+          "Blockchain adoption",
+          "Regulatory changes",
+        ],
+        competitiveFactors: [
+          "Risk management",
+          "Compliance expertise",
+          "Customer trust",
+          "Technology integration",
+        ],
+        growthPotential:
+          "Moderate - Digital transformation with regulatory constraints",
+      },
     };
 
-    return insights[industry.toLowerCase()] || {
-      marketTrends: ["Industry-specific trends"],
-      competitiveFactors: ["Market positioning", "Quality of service"],
-      growthPotential: "Varies by market conditions"
-    };
+    return (
+      insights[industry.toLowerCase()] || {
+        marketTrends: ["Industry-specific trends"],
+        competitiveFactors: ["Market positioning", "Quality of service"],
+        growthPotential: "Varies by market conditions",
+      }
+    );
   }
 }

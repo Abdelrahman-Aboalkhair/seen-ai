@@ -9,37 +9,24 @@ import {
   FileText as FileTextIcon,
 } from "lucide-react";
 import { useTranslation } from "../../lib/i18n";
+import { useCVAnalysisStore } from "../../stores/cvAnalysisStore";
+import type { UploadedFile } from "../../stores/cvAnalysisStore";
 
-export interface UploadedFile {
-  id: string;
-  file: File;
-  preview?: string;
-  status: "uploading" | "uploaded" | "error";
-  error?: string;
-}
-
-interface CVUploadFormProps {
-  uploadedFiles: UploadedFile[];
-  setUploadedFiles: (
-    files: UploadedFile[] | ((prev: UploadedFile[]) => UploadedFile[])
-  ) => void;
-  cvTexts: string[];
-  setCvTexts: (texts: string[] | ((prev: string[]) => string[])) => void;
-  inputMethod: "file" | "text" | "mixed";
-  setInputMethod: (method: "file" | "text" | "mixed") => void;
-}
-
-export function CVUploadForm({
-  uploadedFiles,
-  setUploadedFiles,
-  cvTexts,
-  setCvTexts,
-  inputMethod,
-  setInputMethod,
-}: CVUploadFormProps) {
+export function CVUploadForm() {
   const { t, isRTL } = useTranslation();
   const [isDragOver, setIsDragOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const {
+    uploadedFiles,
+    inputMethod,
+    cvText,
+    setUploadedFiles,
+    addUploadedFile,
+    removeUploadedFile,
+    setInputMethod,
+    setCVText,
+  } = useCVAnalysisStore();
 
   const handleFileUpload = useCallback(
     (files: FileList | null) => {
@@ -55,13 +42,9 @@ export function CVUploadForm({
 
       console.log("📁 New files to add:", newFiles);
 
-      setUploadedFiles((prev) => {
-        const updated = [...prev, ...newFiles];
-        console.log("📁 Updated uploadedFiles state:", updated);
-        return updated;
-      });
+      newFiles.forEach((file) => addUploadedFile(file));
     },
-    [setUploadedFiles]
+    [addUploadedFile]
   );
 
   const handleFileDrop = useCallback(
@@ -88,29 +71,30 @@ export function CVUploadForm({
   }, []);
 
   const removeFile = (fileId: string) => {
-    setUploadedFiles((prev) => prev.filter((file) => file.id !== fileId));
+    removeUploadedFile(fileId);
   };
 
   const addTextInput = () => {
-    setCvTexts((prev) => [...prev, ""]);
+    setInputMethod("mixed");
   };
 
-  const removeTextInput = (index: number) => {
-    setCvTexts((prev) => prev.filter((_, i) => i !== index));
+  const removeTextInput = () => {
+    setInputMethod("file");
+    setCVText("");
   };
 
-  const updateTextInput = (index: number, value: string) => {
-    setCvTexts((prev) => prev.map((text, i) => (i === index ? value : text)));
+  const openFileDialog = () => {
+    fileInputRef.current?.click();
   };
 
   const getFileIcon = (file: File) => {
     if (file.type.startsWith("image/")) {
-      return <FileImage className="h-8 w-8 text-blue-400" />;
-    } else if (file.type === "application/pdf") {
-      return <FileTextIcon className="h-8 w-8 text-red-400" />;
-    } else {
-      return <File className="h-8 w-8 text-gray-400" />;
+      return <FileImage className="w-8 h-8 text-blue-500" />;
     }
+    if (file.type === "application/pdf") {
+      return <File className="w-8 h-8 text-red-500" />;
+    }
+    return <File className="w-8 h-8 text-gray-500" />;
   };
 
   const formatFileSize = (bytes: number) => {
@@ -122,122 +106,115 @@ export function CVUploadForm({
   };
 
   return (
-    <div>
-      <label className="block text-sm font-medium text-gray-400 mb-2">
-        {t("services.cv_analysis.upload_cv")} *
-      </label>
-
+    <div className="space-y-4">
       {/* Input Method Toggle */}
-      <div className="mb-4">
-        <div className="flex space-x-4">
-          <button
-            type="button"
-            onClick={() => setInputMethod("file")}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              inputMethod === "file"
-                ? "bg-cyan-500 text-white"
-                : "bg-slate-700 text-gray-300 hover:bg-slate-600"
-            }`}
-          >
-            رفع ملفات
-          </button>
-          <button
-            type="button"
-            onClick={() => setInputMethod("text")}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              inputMethod === "text"
-                ? "bg-cyan-500 text-white"
-                : "bg-slate-700 text-gray-300 hover:bg-slate-600"
-            }`}
-          >
-            إدخال نصوص
-          </button>
-          <button
-            type="button"
-            onClick={() => setInputMethod("mixed")}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              inputMethod === "mixed"
-                ? "bg-cyan-500 text-white"
-                : "bg-slate-700 text-gray-300 hover:bg-slate-600"
-            }`}
-          >
-            مختلط
-          </button>
-        </div>
+      <div className="flex space-x-4 rtl:space-x-reverse">
+        <button
+          type="button"
+          onClick={() => setInputMethod("file")}
+          className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+            inputMethod === "file"
+              ? "bg-blue-600 text-white"
+              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+          }`}
+        >
+          <FileImage className="w-4 h-4 inline mr-2" />
+          {t("services.cv_analysis.upload_files")}
+        </button>
+        <button
+          type="button"
+          onClick={() => setInputMethod("text")}
+          className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+            inputMethod === "text"
+              ? "bg-blue-600 text-white"
+              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+          }`}
+        >
+          <FileTextIcon className="w-4 h-4 inline mr-2" />
+          {t("services.cv_analysis.paste_text")}
+        </button>
+        <button
+          type="button"
+          onClick={() => setInputMethod("mixed")}
+          className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+            inputMethod === "mixed"
+              ? "bg-blue-600 text-white"
+              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+          }`}
+        >
+          <Plus className="w-4 h-4 inline mr-2" />
+          {t("services.cv_analysis.both")}
+        </button>
       </div>
 
       {/* File Upload Section */}
       {(inputMethod === "file" || inputMethod === "mixed") && (
         <div className="space-y-4">
-          {/* Drag & Drop Zone */}
+          {/* Drag & Drop Area */}
           <div
-            className={`border-2 border-dashed rounded-lg p-6 text-center transition-all duration-200 ${
+            className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
               isDragOver
-                ? "border-cyan-500 bg-cyan-500/10"
-                : "border-slate-600 hover:border-slate-500 bg-slate-900"
+                ? "border-blue-500 bg-blue-50"
+                : "border-gray-300 hover:border-gray-400"
             }`}
             onDrop={handleFileDrop}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
           >
+            <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+            <p className="text-lg font-medium text-gray-700 mb-2">
+              {t("services.cv_analysis.drag_drop_files")}
+            </p>
+            <p className="text-gray-500 mb-4">
+              {t("services.cv_analysis.supported_formats")}
+            </p>
+            <button
+              type="button"
+              onClick={openFileDialog}
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              {t("services.cv_analysis.choose_files")}
+            </button>
             <input
               ref={fileInputRef}
               type="file"
               multiple
-              accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp"
+              accept=".jpg,.jpeg,.png,.pdf"
               onChange={(e) => handleFileUpload(e.target.files)}
               className="hidden"
             />
-            <div
-              className="cursor-pointer"
-              onClick={() => fileInputRef.current?.click()}
-            >
-              <Upload
-                className={`h-12 w-12 mx-auto mb-4 transition-colors ${
-                  isDragOver ? "text-cyan-400" : "text-gray-400"
-                }`}
-              />
-              <p className="text-gray-300 mb-2">
-                {isDragOver
-                  ? "أفلت الملفات هنا"
-                  : "اسحب وأفلت الملفات هنا أو انقر للاختيار"}
-              </p>
-              <p className="text-sm text-gray-400">
-                {t("services.cv_analysis.supported_formats")} أو صور
-                (JPG/PNG/WEBP)
-              </p>
-            </div>
           </div>
 
           {/* Uploaded Files List */}
           {uploadedFiles.length > 0 && (
-            <div className="space-y-2">
-              <h4 className="text-sm font-medium text-gray-300">
-                الملفات المرفوعة ({uploadedFiles.length})
-              </h4>
-              <div className="grid gap-2">
-                {uploadedFiles.map((uploadedFile) => (
+            <div className="space-y-3">
+              <h3 className="text-lg font-medium text-gray-900">
+                {t("services.cv_analysis.uploaded_files")} (
+                {uploadedFiles.length})
+              </h3>
+              <div className="space-y-2">
+                {uploadedFiles.map((file) => (
                   <div
-                    key={uploadedFile.id}
-                    className="flex items-center justify-between p-3 bg-slate-900 border border-slate-600 rounded-lg"
+                    key={file.id}
+                    className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
                   >
-                    <div className="flex items-center space-x-3">
-                      {getFileIcon(uploadedFile.file)}
+                    <div className="flex items-center space-x-3 rtl:space-x-reverse">
+                      {getFileIcon(file.file)}
                       <div>
-                        <p className="text-sm font-medium text-white">
-                          {uploadedFile.file.name}
+                        <p className="font-medium text-gray-900">
+                          {file.file.name}
                         </p>
-                        <p className="text-xs text-gray-400">
-                          {formatFileSize(uploadedFile.file.size)}
+                        <p className="text-sm text-gray-500">
+                          {formatFileSize(file.file.size)}
                         </p>
                       </div>
                     </div>
                     <button
-                      onClick={() => removeFile(uploadedFile.id)}
-                      className="p-1 text-gray-400 hover:text-red-400 transition-colors"
-                      title="حذف الملف"
+                      type="button"
+                      onClick={() => removeFile(file.id)}
+                      className="p-1 text-gray-400 hover:text-red-500 transition-colors"
                     >
-                      <Trash2 className="h-4 w-4" />
+                      <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
                 ))}
@@ -251,65 +228,40 @@ export function CVUploadForm({
       {(inputMethod === "text" || inputMethod === "mixed") && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h4 className="text-sm font-medium text-gray-300">
-              نصوص السير الذاتية ({cvTexts.filter((t) => t.trim()).length})
-            </h4>
-            <button
-              onClick={addTextInput}
-              className="flex items-center space-x-1 px-3 py-1 bg-cyan-600 hover:bg-cyan-700 text-white text-sm rounded-md transition-colors"
-            >
-              <Plus className="h-4 w-4" />
-              <span>إضافة نص</span>
-            </button>
+            <h3 className="text-lg font-medium text-gray-900">
+              {t("services.cv_analysis.cv_text")}
+            </h3>
+            {inputMethod === "mixed" && (
+              <button
+                type="button"
+                onClick={removeTextInput}
+                className="text-red-500 hover:text-red-700 text-sm"
+              >
+                <X className="w-4 h-4 inline mr-1" />
+                {t("common.remove")}
+              </button>
+            )}
           </div>
-
-          <div className="space-y-3">
-            {cvTexts.map((text, index) => (
-              <div key={index} className="relative">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs text-gray-400">
-                    السيرة الذاتية {index + 1}
-                  </span>
-                  {cvTexts.length > 1 && (
-                    <button
-                      onClick={() => removeTextInput(index)}
-                      className="p-1 text-gray-400 hover:text-red-400 transition-colors"
-                      title="حذف النص"
-                    >
-                      <X className="h-4 w-4" />
-                    </button>
-                  )}
-                </div>
-                <textarea
-                  value={text}
-                  onChange={(e) => updateTextInput(index, e.target.value)}
-                  rows={6}
-                  className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 resize-none"
-                  placeholder="انسخ والصق نص السيرة الذاتية هنا..."
-                  dir={isRTL() ? "rtl" : "ltr"}
-                />
-                {text.trim() && (
-                  <p className="text-xs text-gray-400 mt-1">
-                    {text.length} حرف
-                  </p>
-                )}
-              </div>
-            ))}
-          </div>
+          <textarea
+            value={cvText}
+            onChange={(e) => setCVText(e.target.value)}
+            placeholder={t("services.cv_analysis.cv_text_placeholder")}
+            className="w-full h-32 p-3 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            rows={6}
+          />
         </div>
       )}
 
-      {/* Summary */}
-      <div className="mt-4 p-3 bg-slate-900/50 rounded-lg">
-        <p className="text-sm text-gray-300">
-          إجمالي السير الذاتية:{" "}
-          {uploadedFiles.length + cvTexts.filter((t) => t.trim()).length}
-        </p>
-        <p className="text-sm text-gray-400">
-          التكلفة الإجمالية:{" "}
-          {(uploadedFiles.length + cvTexts.filter((t) => t.trim()).length) * 5}{" "}
-          كريدت
-        </p>
+      {/* File Type Info */}
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <h4 className="font-medium text-blue-900 mb-2">
+          {t("services.cv_analysis.supported_formats_title")}
+        </h4>
+        <ul className="text-sm text-blue-800 space-y-1">
+          <li>• JPG/PNG: Direct analysis using OpenAI Vision API</li>
+          <li>• PDF: Text extraction and analysis (coming soon)</li>
+          <li>• Text: Direct analysis of pasted content</li>
+        </ul>
       </div>
     </div>
   );

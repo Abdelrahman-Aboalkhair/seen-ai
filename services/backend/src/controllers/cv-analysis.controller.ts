@@ -19,6 +19,52 @@ export class CVAnalysisController {
   }
 
   /**
+   * Create async CV analysis job from file upload
+   * POST /api/ai/cv-analysis/async/file
+   */
+  async createCVAnalysisJobFromFile(
+    cvAnalysisRequest: CVAnalysisRequest
+  ): Promise<string> {
+    const startTime = Date.now();
+
+    try {
+      console.log(
+        "🚀 [CV Controller] File-based CV analysis request received:",
+        {
+          hasCvFile: !!cvAnalysisRequest.cvFile,
+          fileName: cvAnalysisRequest.cvFile?.originalname,
+          jobRequirementsLength: cvAnalysisRequest.jobRequirements?.length,
+          userId: cvAnalysisRequest.userId,
+          timestamp: new Date().toISOString(),
+        }
+      );
+
+      // Create async job
+      console.log("🔧 [CV Controller] Creating async job from file...");
+      const jobId = await this.jobQueue.createCVAnalysisJob(cvAnalysisRequest);
+      const estimatedTime =
+        this.jobQueue.getEstimatedProcessingTime(cvAnalysisRequest);
+      const processingTime = Date.now() - startTime;
+
+      console.log("✅ [CV Controller] File-based CV analysis job created:", {
+        jobId,
+        userId: cvAnalysisRequest.userId,
+        estimatedTime,
+        processingTime,
+        timestamp: new Date().toISOString(),
+      });
+
+      return jobId;
+    } catch (error) {
+      console.error(
+        "Controller: File-based CV analysis job creation failed:",
+        error
+      );
+      throw error;
+    }
+  }
+
+  /**
    * Create async CV analysis job
    * POST /api/ai/cv-analysis/async
    */
