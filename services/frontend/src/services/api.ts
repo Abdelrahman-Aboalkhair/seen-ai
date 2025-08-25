@@ -222,6 +222,41 @@ class ApiService {
     return this.request("/api/ai/cv-analysis/stats");
   }
 
+  // CV Analysis History API methods
+  async getCVAnalysisHistory(
+    userId: string,
+    limit?: number,
+    offset?: number,
+    status?: string
+  ): Promise<ApiResponse<any>> {
+    const params = new URLSearchParams();
+    params.append("userId", userId);
+    if (limit) params.append("limit", limit.toString());
+    if (offset) params.append("offset", offset.toString());
+    if (status) params.append("status", status);
+
+    return this.request(`/api/ai/cv-analysis/history?${params.toString()}`);
+  }
+
+  async getCVAnalysisById(analysisId: string): Promise<ApiResponse<any>> {
+    return this.request(`/api/ai/cv-analysis/history/${analysisId}`);
+  }
+
+  async deleteCVAnalysis(analysisId: string): Promise<ApiResponse<any>> {
+    return this.request(`/api/ai/cv-analysis/history/${analysisId}`, {
+      method: "DELETE",
+    });
+  }
+
+  async getCVAnalysisStats(userId: string): Promise<ApiResponse<any>> {
+    const params = new URLSearchParams();
+    params.append("userId", userId);
+
+    return this.request(
+      `/api/ai/cv-analysis/history/stats?${params.toString()}`
+    );
+  }
+
   // Health check
   async healthCheck(): Promise<ApiResponse<any>> {
     return this.request("/health");

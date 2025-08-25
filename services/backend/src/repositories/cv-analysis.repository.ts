@@ -4,14 +4,17 @@ import OpenAI from "openai";
 import cacheService from "@/services/cache.service.js";
 import logger from "@/lib/logger.js";
 import type { CVAnalysisRequest, CVAnalysisResult } from "@/types/ai.types.js";
+import { CVAnalysisDBService } from "@/services/cv-analysis-db.service.js";
 
 export class CVAnalysisRepository {
   private openai: OpenAI;
+  private dbService: CVAnalysisDBService;
 
   constructor() {
     this.openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
     });
+    this.dbService = new CVAnalysisDBService();
   }
 
   /**
@@ -53,6 +56,41 @@ export class CVAnalysisRepository {
         request.userId,
         result
       );
+
+      // Save to database
+      try {
+        // Extract job title from requirements (first line or first 50 chars)
+        const jobTitle =
+          request.jobRequirements.split("\n")[0].substring(0, 100) ||
+          "CV Analysis";
+
+        // Extract required skills from the analysis result
+        const requiredSkills = result.keySkills || [];
+
+        // Count files (1 if file was uploaded, 0 if text only)
+        const fileCount = request.cvFile ? 1 : 0;
+
+        await this.dbService.saveAnalysisResult(
+          request.userId,
+          jobTitle,
+          request.jobRequirements,
+          requiredSkills,
+          fileCount,
+          result,
+          5 // Default credits cost
+        );
+        logger.info("CV analysis saved to database successfully", {
+          userId: request.userId,
+          jobTitle,
+          fileCount,
+        });
+      } catch (dbError) {
+        logger.warn("Failed to save CV analysis to database", {
+          userId: request.userId,
+          error: dbError instanceof Error ? dbError.message : "Unknown error",
+        });
+        // Don't fail the analysis if database save fails
+      }
 
       const duration = Date.now() - startTime;
       logger.info("CV analysis generated successfully", {

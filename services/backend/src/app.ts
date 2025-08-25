@@ -15,6 +15,7 @@ import testRoutes from "@/routes/test.routes.js";
 import questionGenerationRoutes from "@/routes/question-generation.routes.js";
 import cvAnalysisRoutes from "@/routes/cv-analysis.routes.js";
 import cvAnalysisFileRoutes from "@/routes/cv-analysis-file.routes.js";
+import cvAnalysisHistoryRoutes from "@/routes/cv-analysis-history.routes.js";
 import jobRequirementsRoutes from "@/routes/job-requirements.routes.js";
 import interviewAnalysisRoutes from "@/routes/interview-analysis.routes.js";
 
@@ -142,6 +143,7 @@ app.use("/api/test", testRoutes);
 app.use("/api/ai/generate-questions", questionGenerationRoutes);
 app.use("/api/ai/cv-analysis", cvAnalysisRoutes);
 app.use("/api/ai/cv-analysis", cvAnalysisFileRoutes);
+app.use("/api/ai/cv-analysis/history", cvAnalysisHistoryRoutes);
 app.use("/api/ai/job-requirements", jobRequirementsRoutes);
 app.use("/api/ai/interview-analysis", interviewAnalysisRoutes);
 
