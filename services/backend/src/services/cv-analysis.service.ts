@@ -58,6 +58,8 @@ export class CVAnalysisService implements ICVAnalysisService {
         hasResult: !!result,
         score: result?.score,
         matchPercentage: result?.matchPercentage,
+        resultKeys: result ? Object.keys(result) : [],
+        fullResult: JSON.stringify(result, null, 2),
       });
 
       // Validate generated result

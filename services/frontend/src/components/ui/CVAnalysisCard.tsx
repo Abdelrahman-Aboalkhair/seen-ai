@@ -250,7 +250,7 @@ export function CVAnalysisCard({ candidate, index }: CVAnalysisCardProps) {
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-3 flex items-center">
                     <Award className="h-5 w-5 text-cyan-400 mr-2" />
-                    المهارات
+                    المهارات الأساسية
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {candidate.skills
@@ -347,6 +347,31 @@ export function CVAnalysisCard({ candidate, index }: CVAnalysisCardProps) {
                         >
                           <XCircle className="h-4 w-4 text-red-400 flex-shrink-0" />
                           <span className="text-gray-300">{gap.trim()}</span>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Recommendations */}
+              {candidate.recommendations && (
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-3 flex items-center">
+                    <Award className="h-5 w-5 text-blue-400 mr-2" />
+                    التوصيات
+                  </h3>
+                  <div className="space-y-2">
+                    {candidate.recommendations
+                      .split(",")
+                      .map((recommendation: string, recIndex: number) => (
+                        <div
+                          key={recIndex}
+                          className="flex items-center space-x-2"
+                        >
+                          <Award className="h-4 w-4 text-blue-400 flex-shrink-0" />
+                          <span className="text-gray-300">
+                            {recommendation.trim()}
+                          </span>
                         </div>
                       ))}
                   </div>

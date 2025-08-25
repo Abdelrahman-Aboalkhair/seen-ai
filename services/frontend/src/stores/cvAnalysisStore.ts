@@ -140,11 +140,22 @@ export const useCVAnalysisStore = create<CVAnalysisState>()(
       setResults: (results) =>
         set({ results, showResults: results.length > 0 }),
       setShowResults: (show) => set({ showResults: show }),
-      addResult: (result) =>
+      addResult: (result) => {
+        console.log("🏪 [CV Store] Adding result:", {
+          resultType: typeof result,
+          resultKeys:
+            result && typeof result === "object" ? Object.keys(result) : [],
+          resultPreview: result
+            ? JSON.stringify(result).substring(0, 300)
+            : "undefined",
+          currentResultsCount: get().results.length,
+        });
+
         set((state) => ({
           results: [...state.results, result],
           showResults: true,
-        })),
+        }));
+      },
       clearResults: () => set({ results: [], showResults: false }),
 
       // Form actions
@@ -214,15 +225,15 @@ export const useCVAnalysisStore = create<CVAnalysisState>()(
       getTotalCost: () => {
         const { cvText, uploadedFiles } = get();
         let cost = 0;
-        
+
         // Charge for CV text if provided
         if (cvText.trim()) {
           cost += CREDITS_COST;
         }
-        
+
         // Charge for uploaded files
         cost += uploadedFiles.length * CREDITS_COST;
-        
+
         return cost;
       },
     }),

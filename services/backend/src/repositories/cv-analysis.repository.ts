@@ -147,7 +147,20 @@ export class CVAnalysisRepository {
       throw new Error("No response from OpenAI");
     }
 
-    return this.parseJsonResponse<CVAnalysisResult>(content);
+    console.log("🔍 [Repository] OpenAI response content:", {
+      contentLength: content.length,
+      contentPreview: content.substring(0, 500),
+      fullContent: content,
+    });
+
+    const result = this.parseJsonResponse<CVAnalysisResult>(content);
+
+    console.log("🔍 [Repository] Parsed result:", {
+      resultKeys: Object.keys(result),
+      fullResult: JSON.stringify(result, null, 2),
+    });
+
+    return result;
   }
 
   /**

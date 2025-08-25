@@ -111,6 +111,12 @@ export function CVAnalysisPageNew() {
         // Handle completed job
         if (jobData.status === "completed" && jobData.result) {
           console.log("✅ [Frontend Component] Job completed, adding result");
+          console.log("🔍 [Frontend Component] Result details:", {
+            resultType: typeof jobData.result,
+            resultKeys: Object.keys(jobData.result),
+            resultPreview: JSON.stringify(jobData.result).substring(0, 500),
+            fullResult: jobData.result,
+          });
           setAnalyzing(false);
           setCurrentJob(null);
           addResult(jobData.result);
@@ -445,22 +451,38 @@ export function CVAnalysisPageNew() {
                 key={index}
                 candidate={{
                   name: `Candidate ${index + 1}`,
-                  vote: result.score.toString(),
-                  ranking: result.matchPercentage,
-                  summary: result.summary,
-                  analysis: {
-                    skillsMatch: result.keySkills.join(", "),
-                    experienceMatch: `${result.experience.years} years`,
-                    educationMatch: result.education.degree,
-                    cultureFit: "Good",
-                    strengths: result.strengths,
-                    gaps: result.weaknesses,
-                  },
-                  candidate: {
-                    name: `Candidate ${index + 1}`,
-                    headline: `${result.experience.years} years experience`,
-                    profileUrl: "#",
-                  },
+                  vote: (result.score || 0).toString(),
+                  ranking: result.matchPercentage || 0,
+                  summary: result.summary || "No summary available",
+                  // Map skills directly to what the card expects
+                  skills:
+                    result.keySkills && result.keySkills.length > 0
+                      ? result.keySkills.join(", ")
+                      : "No skills identified",
+                  // Map experience
+                  experience: result.experience?.years
+                    ? `${result.experience.years} years experience`
+                    : "Experience not specified",
+                  // Map education
+                  education:
+                    result.education?.degree || "Education not specified",
+                  // Map strengths as comma-separated string
+                  strengths:
+                    result.strengths && result.strengths.length > 0
+                      ? result.strengths.join(", ")
+                      : "No specific strengths identified",
+                  // Map weaknesses as comma-separated string
+                  gaps:
+                    result.weaknesses && result.weaknesses.length > 0
+                      ? result.weaknesses.join(", ")
+                      : "No specific gaps identified",
+                  // Map recommendations
+                  recommendations:
+                    result.recommendations && result.recommendations.length > 0
+                      ? result.recommendations.join(", ")
+                      : "No specific recommendations",
+                  // Add analysis date
+                  analysisDate: new Date().toISOString(),
                 }}
                 index={index}
               />

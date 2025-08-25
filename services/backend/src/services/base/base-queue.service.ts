@@ -141,7 +141,7 @@ export abstract class BaseQueueService<T extends BaseJobData, R = any> {
       // Calculate estimated time remaining
       const estimatedTimeRemaining = this.calculateEstimatedTimeRemaining(job);
 
-      return {
+      const jobResult = {
         success: state === "completed",
         jobId,
         status: state,
@@ -154,6 +154,17 @@ export abstract class BaseQueueService<T extends BaseJobData, R = any> {
           : new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       };
+
+      console.log(`🔍 [${this.queueName}] Job status result:`, {
+        jobId,
+        status: state,
+        hasResult: !!result,
+        resultType: result ? typeof result : 'undefined',
+        resultKeys: result && typeof result === 'object' ? Object.keys(result) : [],
+        resultPreview: result ? JSON.stringify(result).substring(0, 200) : 'undefined',
+      });
+
+      return jobResult;
     } catch (error) {
       console.error(`❌ [${this.queueName}] Error getting job status:`, error);
       return {
