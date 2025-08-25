@@ -120,8 +120,7 @@ This document summarizes all the changes made to implement proper environment va
 
 ```typescript
 const supabaseUrl =
-  import.meta.env.VITE_SUPABASE_URL ||
-  "https://xbdjfswbbekmtagjrmup.supabase.co";
+  import.meta.env.VITE_SUPABASE_URL || "https://your-project.supabase.co";
 ```
 
 ### After (Dynamic)
