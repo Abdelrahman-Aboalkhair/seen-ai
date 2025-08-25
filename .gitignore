@@ -43,6 +43,13 @@ supabase-key.json
 supabase-key.yaml
 supabase-key.yml
 
+# Supabase specific
+# =================
+supabase/.temp/
+supabase/.env
+supabase/config.toml
+supabase/config.local.toml
+
 # Node.js
 # ========
 node_modules/
@@ -129,10 +136,6 @@ jspm_packages/
 # Yarn Integrity file
 # ===================
 .yarn-integrity
-
-# dotenv environment variables file
-# ================================
-.env.test
 
 # parcel-bundler cache (https://parceljs.org/)
 # ===========================================
@@ -382,4 +385,28 @@ $RECYCLE.BIN/
 # uploads/
 # temp/
 # cache/
-.env
+
+# Additional security patterns
+# ===========================
+# JWT tokens and API keys
+*_key
+*_token
+*_secret
+*_password
+*_credential
+
+# Database connection strings
+*connection*
+*url*
+
+# Cloud provider specific
+*aws*
+*gcp*
+*azure*
+*supabase*
+*firebase*
+
+# Local configuration overrides
+config/local.*
+config/production.*
+config/development.*

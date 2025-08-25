@@ -1,0 +1,224 @@
+repos:
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        args: ["--baseline", ".secrets.baseline"]
+        exclude: |
+          (?x)^(
+              \.git/|
+              \.venv/|
+              node_modules/|
+              dist/|
+              build/|
+              \.next/|
+              \.nuxt/|
+              coverage/|
+              \.nyc_output/|
+              \.cache/|
+              \.parcel-cache/|
+              \.rpt2_cache/|
+              \.rts2_cache_cjs/|
+              \.rts2_cache_es/|
+              \.rts2_cache_umd/|
+              \.eslintcache|
+              \.yarn-integrity|
+              \.npm|
+              \.node_repl_history|
+              \.DS_Store|
+              Thumbs\.db|
+              ehthumbs\.db|
+              Desktop\.ini|
+              \.idea/|
+              \.vscode/|
+              \.tmp/|
+              \.temp/|
+              tmp/|
+              temp/|
+              logs/|
+              \.log|
+              \.pid|
+              \.seed|
+              \.pid\.lock|
+              \.tgz|
+              \.zip|
+              \.tar\.gz|
+              \.rar|
+              \.7z|
+              \.bak|
+              \.backup|
+              \.old|
+              \.orig|
+              \.save|
+              \.swp|
+              \.swo|
+              \~|
+              \.pem|
+              \.key|
+              \.crt|
+              \.csr|
+              \.p12|
+              \.pfx|
+              \.p7b|
+              \.p7c|
+              \.p7m|
+              \.p7s|
+              \.cer|
+              \.der|
+              \.gpg|
+              \.asc|
+              \.ppk|
+              \.tfstate|
+              \.tfstate\..*|
+              \.terraform/|
+              \.terraform\.lock\.hcl|
+              \.kubeconfig|
+              kubeconfig|
+              \.kube/|
+              \.aws/|
+              aws-credentials|
+              aws-config|
+              gcloud/|
+              \.gcloud/|
+              service-account-.*\.json|
+              \.azure/|
+              azure-credentials|
+              azure-config|
+              \.vercel|
+              vercel\.json|
+              \.netlify|
+              netlify\.toml|
+              \.firebase/|
+              firebase-debug\.log|
+              firebase-debug\..*\.log|
+              \.firebaserc|
+              \.supabase/|
+              supabase/|
+              \.env|
+              \.env\..*|
+              \.env\.local|
+              \.env\.development|
+              \.env\.test|
+              \.env\.production|
+              \.env\.staging|
+              \.env\.hybrid|
+              \.env\.example|
+              \.env\.template|
+              secrets\.json|
+              secrets\.yaml|
+              secrets\.yml|
+              config/secrets\.json|
+              config/secrets\.yaml|
+              config/secrets\.yml|
+              \.secrets|
+              \.secrets\..*|
+              api-keys\.json|
+              api-keys\.yaml|
+              api-keys\.yml|
+              credentials\.json|
+              credentials\.yaml|
+              credentials\.yml|
+              service-account\.json|
+              service-account\.yaml|
+              service-account\.yml|
+              firebase-key\.json|
+              firebase-key\.yaml|
+              firebase-key\.yml|
+              supabase-key\.json|
+              supabase-key\.yaml|
+              supabase-key\.yml|
+              \.dockerignore|
+              docker-compose\.override\.yml|
+              docker-compose\.override\.yaml|
+              \.db|
+              \.sqlite|
+              \.sqlite3|
+              \.db-journal|
+              \.db-wal|
+              \.db-shm|
+              dump\.rdb|
+              \.rdb|
+              \.sentryclirc|
+              \.bugsnagrc|
+              \.newrelic\.yml|
+              \.newrelic\.yaml|
+              \.coverage|
+              \.nyc_output/|
+              \.jest/|
+              test-results/|
+              playwright-report/|
+              test-results\.xml|
+              \.local/|
+              local/|
+              dev/|
+              development/|
+              \.vscode/settings\.json|
+              \.vscode/launch\.json|
+              \.vscode/tasks\.json|
+              \.idea/workspace\.xml|
+              \.idea/tasks\.xml|
+              \.idea/usage\.statistics\.xml|
+              \.idea/dictionaries/|
+              \.idea/shelf/|
+              \.tmp|
+              \.temp|
+              \.swp|
+              \.swo|
+              \~|
+              Thumbs\.db|
+              ehthumbs\.db|
+              Desktop\.ini|
+              \$RECYCLE\.BIN/|
+              \.cab|
+              \.msi|
+              \.msix|
+              \.msm|
+              \.msp|
+              \.lnk|
+              config/local\.*|
+              config/production\.*|
+              config/development\.*|
+              uploads/|
+              temp/|
+              cache/
+          )$
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+        args: ["--maxkb=1000"]
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: check-json
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: debug-statements
+
+  - repo: https://github.com/psf/black
+    rev: 23.12.1
+    hooks:
+      - id: black
+        language_version: python3
+        args: [--line-length=88]
+
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v8.56.0
+    hooks:
+      - id: eslint
+        files: \.(js|jsx|ts|tsx)$
+        types: [file]
+        additional_dependencies:
+          - eslint@8.56.0
+          - "@typescript-eslint/eslint-plugin@6.19.0"
+          - "@typescript-eslint/parser@6.19.0"
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.2.4
+    hooks:
+      - id: prettier
+        files: \.(js|jsx|ts|tsx|json|css|scss|md|yaml|yml)$
+        types: [file]
