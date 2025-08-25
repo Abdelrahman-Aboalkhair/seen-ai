@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   apiService,
   type CVAnalysisRequest,
+  type CVAnalysisFileRequest,
   type CVAnalysisJobResponse,
   type CVAnalysisJobStatus,
 } from "../services/api";
@@ -39,6 +40,25 @@ export function useCVAnalysisAPI() {
     },
     onError: (error) => {
       console.error("Failed to create CV analysis job:", error);
+      toast.error("An error occurred");
+    },
+  });
+
+  // Create CV analysis job from file (async)
+  const createFileJobMutation = useMutation({
+    mutationFn: (request: CVAnalysisFileRequest) =>
+      apiService.createCVAnalysisJobFromFile(request),
+    onSuccess: (data) => {
+      if (data.success) {
+        toast.success("CV analysis job created successfully from file");
+        // Invalidate jobs list to refresh
+        queryClient.invalidateQueries({ queryKey: CV_ANALYSIS_KEYS.jobs() });
+      } else {
+        toast.error(data.error || "An error occurred");
+      }
+    },
+    onError: (error) => {
+      console.error("Failed to create CV analysis job from file:", error);
       toast.error("An error occurred");
     },
   });
@@ -133,6 +153,19 @@ export function useCVAnalysisAPI() {
     return createJobMutation.mutateAsync(request);
   };
 
+  // Helper function to start async analysis from file
+  const startAsyncAnalysisFromFile = async (
+    cvFile: File,
+    jobRequirements: string
+  ) => {
+    const request: CVAnalysisFileRequest = {
+      cvFile,
+      jobRequirements,
+      userId: user?.id || "anonymous",
+    };
+    return createFileJobMutation.mutateAsync(request);
+  };
+
   // Helper function to start sync analysis
   const startSyncAnalysis = async (cvText: string, jobRequirements: string) => {
     const request = createCVAnalysisRequest(cvText, jobRequirements);
@@ -142,6 +175,7 @@ export function useCVAnalysisAPI() {
   return {
     // Mutations
     createJobMutation,
+    createFileJobMutation,
     analyzeSyncMutation,
 
     // Queries
@@ -151,14 +185,17 @@ export function useCVAnalysisAPI() {
     // Helper functions
     createCVAnalysisRequest,
     startAsyncAnalysis,
+    startAsyncAnalysisFromFile,
     startSyncAnalysis,
 
     // Loading states
     isCreatingJob: createJobMutation.isPending,
+    isCreatingFileJob: createFileJobMutation.isPending,
     isAnalyzingSync: analyzeSyncMutation.isPending,
 
     // Error states
     createJobError: createJobMutation.error,
+    createFileJobError: createFileJobMutation.error,
     analyzeSyncError: analyzeSyncMutation.error,
   };
 }

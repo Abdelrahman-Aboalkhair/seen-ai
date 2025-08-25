@@ -2,6 +2,8 @@
 export interface CVAnalysisRequest {
   cvText?: string; // Optional: for text input
   cvFile?: Express.Multer.File; // Optional: for file uploads
+  cvFileUrl?: string; // Optional: Cloudinary URL for processed files
+  cvPublicId?: string; // Optional: Cloudinary public ID for processed files
   jobRequirements: string;
   userId: string;
 }

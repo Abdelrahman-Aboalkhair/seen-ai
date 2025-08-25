@@ -39,8 +39,63 @@ export class CVAnalysisController {
         }
       );
 
-      // Create async job
-      console.log("🔧 [CV Controller] Creating async job from file...");
+      // Process the file immediately to extract text
+              if (cvAnalysisRequest.cvFile) {
+          console.log("🔧 [CV Controller] Processing file with Cloudinary...");
+          const { CloudinaryFileProcessingService } = await import(
+            "@/services/cloudinary-file-processing.service.js"
+          );
+          const fileService = new CloudinaryFileProcessingService();
+
+          const fileResult = await fileService.processCVFile(
+            cvAnalysisRequest.cvFile
+          );
+
+        if (!fileResult.success) {
+          throw new Error(`Failed to process CV file: ${fileResult.error}`);
+        }
+
+        // Create a new request with extracted text and Cloudinary data
+        const textBasedRequest: CVAnalysisRequest = {
+          cvText: fileResult.extractedText,
+          cvFileUrl: fileResult.cloudinaryUrl,
+          cvPublicId: fileResult.publicId,
+          jobRequirements: cvAnalysisRequest.jobRequirements,
+          userId: cvAnalysisRequest.userId,
+        };
+
+        console.log(
+          "🔧 [CV Controller] Creating async job with extracted text..."
+        );
+        const jobId = await this.jobQueue.createCVAnalysisJob(textBasedRequest);
+        // Estimate processing time based on text length
+        const estimatedTime = Math.max(
+          5000,
+          Math.min(
+            30000,
+            ((textBasedRequest.cvText!.length +
+              textBasedRequest.jobRequirements.length) /
+              1000) *
+              10000
+          )
+        );
+        const processingTime = Date.now() - startTime;
+
+        console.log("✅ [CV Controller] File-based CV analysis job created:", {
+          jobId,
+          userId: cvAnalysisRequest.userId,
+          estimatedTime,
+          processingTime,
+          timestamp: new Date().toISOString(),
+        });
+
+        return jobId;
+      }
+
+      // Fallback: create job with original request (should not happen)
+      console.log(
+        "⚠️ [CV Controller] No file provided, creating job with original request..."
+      );
       const jobId = await this.jobQueue.createCVAnalysisJob(cvAnalysisRequest);
       const estimatedTime =
         this.jobQueue.getEstimatedProcessingTime(cvAnalysisRequest);

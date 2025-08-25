@@ -20,8 +20,15 @@ export function CVAnalysisPageNew() {
   const { balance } = useCreditBalance();
 
   // API hooks
-  const { startAsyncAnalysis, useJobStatus, isCreatingJob, createJobError } =
-    useCVAnalysisAPI();
+  const {
+    startAsyncAnalysis,
+    startAsyncAnalysisFromFile,
+    useJobStatus,
+    isCreatingJob,
+    isCreatingFileJob,
+    createJobError,
+    createFileJobError,
+  } = useCVAnalysisAPI();
 
   // Zustand store
   const {
@@ -190,37 +197,26 @@ export function CVAnalysisPageNew() {
       let response;
 
       if (inputMethod === "file" && uploadedFiles.length > 0) {
-        // Convert file to base64 text
+        // Use file upload endpoint
         const file = uploadedFiles[0];
-        console.log("📁 [Frontend Component] Converting file to base64:", {
+        console.log("📁 [Frontend Component] Using file upload for analysis:", {
           filename: file.file.name,
           size: file.file.size,
           type: file.file.type,
         });
 
-        try {
-          const arrayBuffer = await file.file.arrayBuffer();
-          const base64 = btoa(
-            String.fromCharCode(...new Uint8Array(arrayBuffer))
-          );
-          finalCVText = `[File: ${file.file.name} (${file.file.type})]\n\nBase64 Content:\n${base64}`;
-        } catch (error) {
-          console.error(
-            "❌ [Frontend Component] Failed to convert file:",
-            error
-          );
-          throw new Error("Failed to process uploaded file");
-        }
+        response = await startAsyncAnalysisFromFile(file.file, jobRequirements);
       } else if (inputMethod === "text" && cvText.trim()) {
         // Use text input
         finalCVText = cvText;
         console.log("📝 [Frontend Component] Using text input for analysis");
+        response = await startAsyncAnalysis(finalCVText, jobRequirements);
       } else if (inputMethod === "mixed") {
-        // Combine both if available
+        // Handle mixed mode - prioritize file if available
         if (uploadedFiles.length > 0) {
           const file = uploadedFiles[0];
           console.log(
-            "📁 [Frontend Component] Converting file to base64 (mixed mode):",
+            "📁 [Frontend Component] Using file upload (mixed mode):",
             {
               filename: file.file.name,
               size: file.file.size,
@@ -228,40 +224,28 @@ export function CVAnalysisPageNew() {
             }
           );
 
-          try {
-            const arrayBuffer = await file.file.arrayBuffer();
-            const base64 = btoa(
-              String.fromCharCode(...new Uint8Array(arrayBuffer))
-            );
-            finalCVText = `[File: ${file.file.name} (${file.file.type})]\n\nBase64 Content:\n${base64}`;
+          response = await startAsyncAnalysisFromFile(
+            file.file,
+            jobRequirements
+          );
 
-            // Add text input if available
-            if (cvText.trim()) {
-              finalCVText += `\n\nAdditional Text Input:\n${cvText}`;
-            }
-          } catch (error) {
-            console.error(
-              "❌ [Frontend Component] Failed to convert file (mixed mode):",
-              error
+          // Add text input if available
+          if (cvText.trim()) {
+            console.log(
+              "📝 [Frontend Component] Text input available, but using file for now"
             );
-            throw new Error("Failed to process uploaded file");
+            // Note: In the future, we could combine both by sending text as additional context
           }
         } else {
           finalCVText = cvText;
           console.log(
             "📝 [Frontend Component] Using text input for analysis (mixed mode)"
           );
+          response = await startAsyncAnalysis(finalCVText, jobRequirements);
         }
       } else {
         throw new Error("No valid CV content provided");
       }
-
-      // Start async analysis with the prepared CV text
-      console.log(
-        "📡 [Frontend Component] Starting analysis with CV text length:",
-        finalCVText.length
-      );
-      response = await startAsyncAnalysis(finalCVText, jobRequirements);
 
       console.log("📊 [Frontend Component] Analysis response:", {
         success: response.success,

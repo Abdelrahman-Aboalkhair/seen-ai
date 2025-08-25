@@ -38,6 +38,12 @@ interface CVAnalysisRequest {
   userId: string;
 }
 
+interface CVAnalysisFileRequest {
+  cvFile: File;
+  jobRequirements: string;
+  userId: string;
+}
+
 class ApiService {
   private baseURL: string;
 
@@ -140,6 +146,45 @@ class ApiService {
     return result;
   }
 
+  async createCVAnalysisJobFromFile(
+    request: CVAnalysisFileRequest
+  ): Promise<ApiResponse<CVAnalysisJobResponse>> {
+    console.log("📡 [API Service] Creating CV analysis job from file:", {
+      fileName: request.cvFile.name,
+      fileSize: request.cvFile.size,
+      fileType: request.cvFile.type,
+      jobRequirementsLength: request.jobRequirements.length,
+      userId: request.userId,
+      endpoint: "/api/ai/cv-analysis/async/file",
+      timestamp: new Date().toISOString(),
+    });
+
+    const formData = new FormData();
+    formData.append("cvFile", request.cvFile);
+    formData.append("jobRequirements", request.jobRequirements);
+    formData.append("userId", request.userId);
+
+    const result = await this.request<CVAnalysisJobResponse>(
+      "/api/ai/cv-analysis/async/file",
+      {
+        method: "POST",
+        body: formData,
+        headers: {
+          // Don't set Content-Type for FormData, let browser set it with boundary
+        },
+      }
+    );
+
+    console.log("📊 [API Service] CV analysis file job creation result:", {
+      success: result.success,
+      jobId: result.data?.jobId,
+      error: result.error,
+      timestamp: new Date().toISOString(),
+    });
+
+    return result;
+  }
+
   async getCVAnalysisJobStatus(
     jobId: string
   ): Promise<ApiResponse<CVAnalysisJobStatus>> {
@@ -192,4 +237,5 @@ export type {
   CVAnalysisJobResponse,
   CVAnalysisJobStatus,
   CVAnalysisRequest,
+  CVAnalysisFileRequest,
 };

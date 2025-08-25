@@ -1,5 +1,3 @@
-// File Processing Service - Handles CV file uploads and text extraction
-
 import multer from "multer";
 import Tesseract from "tesseract.js";
 import sharp from "sharp";
@@ -7,8 +5,8 @@ import fs from "fs";
 import path from "path";
 import { promisify } from "util";
 
-// Dynamic import for pdf-parse to avoid initialization issues
-let pdfParse: any = null;
+// Dynamic import for pdf2pic to avoid initialization issues
+let pdf2pic: any = null;
 
 export interface FileProcessingResult {
   success: boolean;
@@ -36,9 +34,11 @@ export class FileProcessingService {
 
   private readonly maxFileSize = 10 * 1024 * 1024; // 10MB
   private readonly uploadDir = path.join(process.cwd(), "uploads");
+  private readonly tempDir = path.join(process.cwd(), "temp");
 
   constructor() {
     this.ensureUploadDirectory();
+    this.ensureTempDirectory();
   }
 
   /**
@@ -140,8 +140,12 @@ export class FileProcessingService {
 
       if (file.mimetype.startsWith("image/")) {
         extractedText = await this.extractTextFromImage(file.path);
+        // Clean up image file after processing
+        if (file.path) await this.cleanupFile(file.path);
       } else if (file.mimetype === "application/pdf") {
+        console.log("🔍 [File Processing] Processing PDF file:", file.mimetype);
         extractedText = await this.extractTextFromPDF(file.path);
+        // PDF file cleanup is handled inside extractTextFromPDF after conversion
       } else {
         throw new Error(`Unsupported file type: ${file.mimetype}`);
       }
@@ -172,6 +176,9 @@ export class FileProcessingService {
         error
       );
 
+      // Clean up file even if processing failed
+      if (file.path) await this.cleanupFile(file.path);
+
       return {
         success: false,
         extractedText: "",
@@ -180,9 +187,6 @@ export class FileProcessingService {
         fileType: file.mimetype,
         fileSize: file.size,
       };
-    } finally {
-      // Clean up uploaded file
-      await this.cleanupFile(file.path);
     }
   }
 
@@ -204,9 +208,10 @@ export class FileProcessingService {
           }
         },
       });
+      console.log("ocr result: ", result);
 
       // Clean up optimized image
-      await this.cleanupFile(optimizedImagePath);
+      // await this.cleanupFile(optimizedImagePath);
 
       return result.data.text.trim();
     } catch (error) {
@@ -220,34 +225,139 @@ export class FileProcessingService {
   }
 
   /**
-   * Extract text from PDF files
+   * Extract text from PDF files by converting to images first
    */
   private async extractTextFromPDF(pdfPath: string): Promise<string> {
     try {
-      console.log(`📄 [File Processing] Processing PDF...`);
+      console.log(
+        `📄 [File Processing] Processing PDF by converting to images...`
+      );
 
-      // Dynamically import pdf-parse to avoid initialization issues
-      if (!pdfParse) {
-        try {
-          const pdfModule = await import("pdf-parse");
-          pdfParse = pdfModule.default || pdfModule;
-        } catch (importError) {
-          console.error(
-            "❌ [File Processing] Failed to import pdf-parse:",
-            importError
-          );
-          throw new Error("PDF processing library not available");
-        }
+      // Convert PDF to images
+      const imagePaths = await this.convertPDFToImages(pdfPath);
+
+      if (imagePaths.length === 0) {
+        throw new Error("Failed to convert PDF to images");
       }
 
-      const dataBuffer = fs.readFileSync(pdfPath);
-      const data = await pdfParse(dataBuffer);
+      console.log(
+        `🖼️ [File Processing] Converted PDF to ${imagePaths.length} images`
+      );
 
-      return data.text.trim();
+      // Extract text from each image using OCR
+      const allTexts: string[] = [];
+
+      for (let i = 0; i < imagePaths.length; i++) {
+        const imagePath = imagePaths[i];
+        console.log(
+          `📝 [File Processing] Processing page ${i + 1}/${imagePaths.length}`
+        );
+
+        try {
+          const pageText = await this.extractTextFromImage(imagePath);
+          if (pageText.trim()) {
+            allTexts.push(`--- Page ${i + 1} ---\n${pageText}`);
+          }
+        } catch (error) {
+          console.warn(
+            `⚠️ [File Processing] Failed to process page ${i + 1}:`,
+            error
+          );
+        }
+
+        // Clean up page image
+        // await this.cleanupFile(imagePath);
+      }
+
+      if (allTexts.length === 0) {
+        throw new Error("No text could be extracted from any PDF pages");
+      }
+
+      const combinedText = allTexts.join("\n\n");
+      console.log(
+        `✅ [File Processing] Successfully extracted text from ${imagePaths.length} PDF pages`
+      );
+
+      // Clean up the original PDF file after successful conversion
+      // await this.cleanupFile(pdfPath);
+
+      return combinedText;
     } catch (error) {
       console.error("❌ [File Processing] PDF processing failed:", error);
       throw new Error(
         `Failed to extract text from PDF: ${
+          error instanceof Error ? error.message : "Unknown error"
+        }`
+      );
+    }
+  }
+
+  /**
+   * Convert PDF to images using pdf2pic
+   */
+  private async convertPDFToImages(pdfPath: string): Promise<string[]> {
+    try {
+      // Dynamically import pdf2pic to avoid initialization issues
+      if (!pdf2pic) {
+        try {
+          const pdf2picModule = await import("pdf2pic");
+          pdf2pic = pdf2picModule.fromPath;
+        } catch (importError) {
+          console.error(
+            "❌ [File Processing] Failed to import pdf2pic:",
+            importError
+          );
+          throw new Error("PDF to image conversion library not available");
+        }
+      }
+
+      // Configure pdf2pic
+      const options = {
+        density: 300, // Higher density for better OCR results
+        saveFilename: "page",
+        savePath: this.tempDir,
+        format: "png",
+        width: 2480, // A4 width at 300 DPI
+        height: 3508, // A4 height at 300 DPI
+      };
+
+      const convert = pdf2pic(pdfPath, options);
+
+      // Get PDF info to determine number of pages
+      const pdfInfo = await convert.bulk(-1, { responseType: "array" });
+      const pageCount = pdfInfo?.length || 0;
+
+      console.log(`📄 [File Processing] PDF has ${pageCount} pages`);
+
+      // Convert all pages to images
+      const imagePaths: string[] = [];
+
+      for (let i = 1; i <= pageCount; i++) {
+        try {
+          const result = await convert(i, { responseType: "array" });
+          if (result && result.length > 0 && result[0]) {
+            const imagePath = path.join(this.tempDir, `page_${i}.png`);
+            // Save the image data
+            fs.writeFileSync(imagePath, result[0]);
+            imagePaths.push(imagePath);
+            console.log(`✅ [File Processing] Converted page ${i} to image`);
+          }
+        } catch (error) {
+          console.warn(
+            `⚠️ [File Processing] Failed to convert page ${i}:`,
+            error
+          );
+        }
+      }
+
+      return imagePaths;
+    } catch (error) {
+      console.error(
+        "❌ [File Processing] PDF to image conversion failed:",
+        error
+      );
+      throw new Error(
+        `Failed to convert PDF to images: ${
           error instanceof Error ? error.message : "Unknown error"
         }`
       );
@@ -307,17 +417,31 @@ export class FileProcessingService {
   }
 
   /**
+   * Ensure temp directory exists
+   */
+  private ensureTempDirectory(): void {
+    if (!fs.existsSync(this.tempDir)) {
+      fs.mkdirSync(this.tempDir, { recursive: true });
+      console.log(
+        `📁 [File Processing] Created temp directory: ${this.tempDir}`
+      );
+    }
+  }
+
+  /**
    * Get file processing statistics
    */
   getFileProcessingStats(): {
     allowedTypes: string[];
     maxFileSize: number;
     uploadDirectory: string;
+    tempDirectory: string;
   } {
     return {
       allowedTypes: this.allowedMimeTypes,
       maxFileSize: this.maxFileSize,
       uploadDirectory: this.uploadDir,
+      tempDirectory: this.tempDir,
     };
   }
 }
